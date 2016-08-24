@@ -3,7 +3,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   window.gol = {
 
-    // Basic attributes
+
+    // BASIC ATTRIBUTES =======================================================
+
 
     canvas: document.getElementById("gol"),
     ctx: document.getElementById("gol").getContext("2d"),
@@ -18,7 +20,19 @@ document.addEventListener("DOMContentLoaded", function () {
     cells: undefined,
 
 
-    // Called to update the game if the canvas size changes
+    // HELPER FUNCTIONS =======================================================
+
+
+    _getBlankBoard: function() {
+
+    },
+
+
+    // MAIN FUNCTIONS =========================================================
+
+
+    // Called to update the game if the canvas size
+    // changes.
 
     sizeChanged: function() {
       var width = gol.canvas.offsetWidth,
@@ -27,16 +41,17 @@ document.addEventListener("DOMContentLoaded", function () {
       gol.canvas.setAttribute("width", width);
       gol.canvas.setAttribute("height", height);
 
-      // Update tile size by finding a width that will evenly fill the canvas
-      // and is closest to the idealCellSize, then doing the same thing for
+      // Update tile size by finding a width that will
+      // evenly fill the canvas and is closest to the
+      // idealCellSize, then doing the same thing for
       // height.
       gol.cellSize = [
         width / Math.round(width / gol.idealCellSize),
         height / Math.round(height / gol.idealCellSize)
       ];
 
-      // TODO: Change board size on resize. Kill cells that are cut off on
-      // resize, leave new cells blank.
+      // TODO: Change board size on resize. Kill cells
+      // that are cut off on resize, leave new cells blank.
     },
 
 
@@ -64,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var width = this.canvas.getAttribute("width"),
           height = this.canvas.getAttribute("height");
       this.ctx.clearRect(0, 0, width, height);
-      this.ctx.fillStyle = "#41555e"; // $background-blue-lighter in Sass
+      this.ctx.fillStyle = "#41555e"; // $background-blue-lighter
 
       // Render cells
       for (var x=0; x<this.cells.length; x++) {
@@ -114,4 +129,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener("resize", gol.sizeChanged);
   gol.init();
+
 });
