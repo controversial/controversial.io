@@ -24,7 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     _getBlankBoard: function() {
-
+      var array = [];
+      for (var i=0; i<this.boardSize[0]; i++) {
+        array.push(
+          new Array(this.boardSize[1]).fill(false)
+        );
+      }
+      return array;
     },
 
 
