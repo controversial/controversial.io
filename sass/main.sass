@@ -1,0 +1,69 @@
+$mobile-portrait: 420px
+
+$white: #fff
+
+// Pallet of gray and blue-gray with an accent color of red.
+   Colors from https://material.google.com/style/color.html#color-color-palette
+
+$background: #212121
+$background-blue: #37474f
+$background-blue-darker: darken($background-blue, 5)
+$accent-200: #ff5252
+
+$text: #fff
+
+*
+  box-sizing: border-box
+
+  &::before,
+  &::after
+    box-sizing: border-box
+
+
+body
+  margin: 0
+  font-family: 'Arvo' sans-serif
+
+
+// HEADER STYLES --------------------------------------------------------------
+
+
+header
+  background-color: $background-blue-darker
+
+  height: 100vh
+
+  h1
+    color: $white
+    margin: 0
+    font-weight: 400
+
+    position: absolute
+
+    // Portrait phones
+    @media (orientation: portrait)
+      top: 50vh
+      transform: translateY(-50%)
+
+      background-color: transparentize($white, .75)
+      padding: 2vh 0 2vh 15vw
+      word-spacing: 100vw
+
+      text-align: left
+      font-size: 15vw
+
+    @media (orientation: landscape)
+      top: 50vh
+      left: 50vw
+      transform: translate(-50%, -50%)
+
+      font-size: 5vw
+      text-align: center
+
+
+@media (max-width: $mobile-portrait)
+  height: 100vw
+
+  h1
+    font-size: 30vw
+    text-align: left
