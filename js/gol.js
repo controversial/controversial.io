@@ -10,6 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
     idealCellSize: 20,
     cellSize: [20, 20], // This gets updated dynamically.
 
+    cells: [
+      [true, false],
+      [false, true]
+    ],
+
     // Called to update the canvas when the window resizes.
     sizeChanged: function() {
       var width = gol.canvas.offsetWidth,
@@ -32,7 +37,18 @@ document.addEventListener("DOMContentLoaded", function () {
           height = this.canvas.getAttribute("height");
       this.ctx.clearRect(0, 0, width, height);
       this.ctx.fillStyle = "#41555e"; // $background-blue-lighter in Sass
-      this.ctx.fillRect(0, 0, this.cellSize[0], this.cellSize[1]);
+      for (var x=0; x<this.cells.length; x++) {
+        for (var y=0; y<this.cells[x].length; y++) {
+          if (this.cells[x][y]) {
+            this.ctx.fillRect(
+              this.cellSize[0] * x,
+              this.cellSize[1] * y,
+              this.cellSize[0],
+              this.cellSize[1]
+            );
+          }
+        }
+      }
     },
 
     start: function() {
