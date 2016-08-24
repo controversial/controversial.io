@@ -122,12 +122,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // Calculate sizes
       this.sizeChanged();
       // Initialize board
-      this.cells = [];
-      for (var i=0; i < this.boardSize[0]; i++) {
-        this.cells.push(
-          new Array(this.boardSize[1]).fill(false)
-        );
-      }
+      this.cells = this._getBlankBoard();
+      console.log(this.cells);
       this.randomize();
       this.start();
     }
