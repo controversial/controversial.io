@@ -58,9 +58,9 @@ document.addEventListener("DOMContentLoaded", function () {
     },
 
 
-    // Advance the simulation
+    // Render changes to the cells
 
-    step: function() {
+    redraw: function() {
       var width = this.canvas.getAttribute("width"),
           height = this.canvas.getAttribute("height");
       this.ctx.clearRect(0, 0, width, height);
@@ -82,10 +82,15 @@ document.addEventListener("DOMContentLoaded", function () {
     },
 
 
+    step: function() {
+      // TODO: Advance the simulation
+    },
+
     // Begin the loop
 
     start: function() {
       gol.step();
+      gol.redraw();
       setTimeout(gol.start, 1000 / gol.fps);
     },
 
