@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     boardSize: [10, 10],
 
-    cells: undefined,
+    board: undefined,
 
 
     // HELPER FUNCTIONS =======================================================
@@ -75,11 +75,11 @@ document.addEventListener("DOMContentLoaded", function () {
           cells[x].push(Math.random() < 0.125);
         }
       }
-      this.cells = cells;
+      this.board = cells;
     },
 
 
-    // Render changes to the cells
+    // Render the board on the canvas
 
     redraw: function() {
       var width = this.canvas.getAttribute("width"),
@@ -87,10 +87,10 @@ document.addEventListener("DOMContentLoaded", function () {
       this.ctx.clearRect(0, 0, width, height);
       this.ctx.fillStyle = "#41555e"; // $background-blue-lighter
 
-      // Render cells
-      for (var x=0; x<this.cells.length; x++) {
-        for (var y=0; y<this.cells[x].length; y++) {
-          if (this.cells[x][y]) {
+      // Render board
+      for (var x=0; x<this.board.length; x++) {
+        for (var y=0; y<this.board[x].length; y++) {
+          if (this.board[x][y]) {
             this.ctx.fillRect(
               this.cellSize[0] * x,
               this.cellSize[1] * y,
@@ -122,8 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Calculate sizes
       this.sizeChanged();
       // Initialize board
-      this.cells = this._getBlankBoard();
-      console.log(this.cells);
+      this.board = this._getBlankBoard();
       this.randomize();
       this.start();
     }
