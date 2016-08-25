@@ -145,8 +145,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     countLiveNeighbors: function(x, y) {
-      // Complete dummy values
-      return Math.floor(Math.random() * 8);
+      total = 0;
+
+      // Is there room in directions of:
+      //   - negative x
+      //   - negative y
+      //   - positive x
+      //   - positive y
+      xroomneg = x > 0;
+      yroomneg = y > 0;
+      xroompos = x < this.boardSize[0] - 1;
+      yroompos = y < this.boardSize[1] - 1;
+
+      neighbors = [
+        // above
+        yroomneg && this.board[x][y-1],
+        // above right
+        xroompos && yroomneg && this.board[x+1][y-1],
+        // right
+        xroompos && this.board[x+1][y],
+        // below right
+        xroompos && yroompos && this.board[x+1][y+1],
+        // below
+        yroompos && this.board[x][y+1],
+        // below left
+        xroomneg && yroompos && this.board[x-1][y+1],
+        // left
+        xroomneg && this.board[x-1][y],
+        // above and left
+        xroomneg && yroompos && this.board[x-1][y-1]
+      ];
+      for (var i=0; i<neighbors.length; i++) {
+        total += neighbors[i];
+      }
+      return total;
     },
 
     judgeFate: function(isLive, liveNeighbors) {
