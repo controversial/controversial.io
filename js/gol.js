@@ -41,8 +41,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // changes.
 
     sizeChanged: function() {
-      var width = gol.canvas.offsetWidth,
+      var i, k,  // Spare loop variables
+          width = gol.canvas.offsetWidth,
           height = gol.canvas.offsetHeight;
+
       // Update canvas coordinate system
       gol.canvas.setAttribute("width", width);
       gol.canvas.setAttribute("height", height);
@@ -51,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // evenly fill the canvas and is closest to the
       // idealCellSize, then doing the same thing for
       // height.
+
       gol.cellSize = [
         width / Math.round(width / gol.idealCellSize),
         height / Math.round(height / gol.idealCellSize)
@@ -75,18 +78,24 @@ document.addEventListener("DOMContentLoaded", function () {
         gol.board = gol.board.slice(0, gol.boardSize[0]);
       }
       if (diff[1] < 0) {
-        for (var i=0; i<gol.board.length; i++) {
+        for (i=0; i<gol.board.length; i++) {
           gol.board[i] = gol.board[i].slice(0, gol.boardSize[1]);
         }
       }
 
       // Populate new cells
 
-      if (diff[0] > 0) {
-        console.log("x grew by " + diff[0]);
+      for (i=0; i<diff[0]; i++) {
+        newRow = new Array(gol.boardSize[0]).fill(false);
+        for (k=0; k<newRow.length; k++) {
+          newRow[k] = Math.random() < 0.125;
+        }
+        gol.board.push(newRow);
       }
-      if (diff[1] > 0) {
-        console.log("y grew by " + diff[1]);
+      for (i=0; i<diff[1]; i++) {
+        for (k=0; k<gol.board.length; k++) {
+          gol.board[k].push(Math.random() < 0.125);
+        }
       }
 
       gol.redraw();
