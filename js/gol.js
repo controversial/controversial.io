@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     canvas: document.getElementById("gol"),
     ctx: document.getElementById("gol").getContext("2d"),
 
-    fps: 10,
+    fps: 15,
 
     idealCellSize: 20,
     cellSize: [20, 20], // This gets updated dynamically.
