@@ -209,6 +209,34 @@ document.addEventListener("DOMContentLoaded", function () {
     },
 
 
+    // USER INTERACTION =======================================================
+
+
+    // On a desktop computer, cells are born
+    // when moused over. On a mobile device
+    // it's wherever a touch occurs or is dragged.
+    interacted: function(e) {
+      var absx = e.pageX, absy=e.pageY;
+      var box = gol.canvas.getBoundingClientRect();
+      if (absy > box.top &&
+          absx < box.right &&
+          absy < box.bottom &&
+          absx > box.left) {
+        // Position of the mouse relative to the canvas
+        var relpos = [
+          absx - box.left,
+          absy - box.top
+        ];
+        // Position of the cell in the board
+        var cellpos = [
+          Math.floor(relpos[0] / gol.cellSize[0]),
+          Math.floor(relpos[1] / gol.cellSize[1])
+        ];
+        gol.board[cellpos[0]][cellpos[1]] = true;
+      }
+    },
+
+
     // CONTROL FUNCTIONS ======================================================
 
 
@@ -241,6 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   window.addEventListener("resize", gol.sizeChanged);
+  document.addEventListener("mousemove", gol.interacted);
   gol.init();
 
 });
