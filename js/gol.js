@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
     },
 
 
-    // MAIN FUNCTIONS =========================================================
+    // RENDERING FUNCTIONS ====================================================
+    // These functions connect the simulation to the browser
 
 
     // Called to update the game if the canvas size
@@ -140,9 +141,32 @@ document.addEventListener("DOMContentLoaded", function () {
     },
 
 
+    // GAME LOGIC =============================================================
+
+
+    countLiveNeighbors: function(x, y) {
+
+    },
+
+    judgeFate: function(isLive, liveNeighbors) {
+      if (isLive) {
+        // Any live cell with fewer than 2 live neighbors
+        // dies of underpopulation; any live cell with more
+        // than three dies of overpopulation.
+        return (liveNeighbors === 2 || liveNeighbors === 3);
+      } else {
+        // Any dead cell with exactly 3 neighbors is born
+        return liveNeighbors === 3;
+      }
+    },
+
     step: function() {
       // TODO: Advance the simulation
     },
+
+
+    // CONTROL FUNCTIONS ======================================================
+
 
     // Begin the loop
 
@@ -168,6 +192,9 @@ document.addEventListener("DOMContentLoaded", function () {
       this.start();
     }
   };
+
+
+
 
   window.addEventListener("resize", gol.sizeChanged);
   gol.init();
