@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // Populate new cells
+
       if (diff[0] > 0) {
         console.log("x grew by " + diff[0]);
       }
@@ -98,15 +99,11 @@ document.addEventListener("DOMContentLoaded", function () {
       var width = this.boardSize[0],
           height = this.boardSize[1];
 
-      var cells = [];
-
       for (var x=0; x<width; x++) {
-        cells.push([]);
         for (var y=0; y<height; y++) {
-          cells[x].push(Math.random() < 0.125);
+          this.board[x][y] = Math.random() < 0.125;
         }
       }
-      this.board = cells;
     },
 
 
