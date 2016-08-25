@@ -56,8 +56,12 @@ document.addEventListener("DOMContentLoaded", function () {
         height / Math.round(height / gol.idealCellSize)
       ];
 
-      // TODO: Change board size on resize. Kill cells
-      // that are cut off on resize, leave new cells blank.
+      // TODO:  when board size changes, kill cells that
+      // are cut off on resize, leave new cells blank.
+      gol.boardSize = [
+        width / gol.cellSize[0],
+        height / gol.cellSize[1]
+      ];
     },
 
 
