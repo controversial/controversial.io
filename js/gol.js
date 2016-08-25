@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var width = this.canvas.getAttribute("width"),
           height = this.canvas.getAttribute("height");
       this.ctx.clearRect(0, 0, width, height);
-      this.ctx.fillStyle = "#41555e"; // $background-blue-lighter
+      this.ctx.fillStyle = "#37474f"; // $background-blue
 
       // Render board
       for (var x=0; x<this.board.length; x++) {
