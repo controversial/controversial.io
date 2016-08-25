@@ -56,12 +56,35 @@ document.addEventListener("DOMContentLoaded", function () {
         height / Math.round(height / gol.idealCellSize)
       ];
 
-      // TODO: when board size changes, kill cells that
-      // are cut off on resize, randomize new terrain.
-      gol.boardSize = [
-        width / gol.cellSize[0],
-        height / gol.cellSize[1]
+      // When board size changes, kill cells that are
+      // cut off and randomize new terrain.
+
+      var oldBoardSize = gol.boardSize;  // Store old size
+      gol.boardSize = [  // Adjust size
+        Math.round(width / gol.cellSize[0]),
+        Math.round(height / gol.cellSize[1])
       ];
+      var diff = [  // Calculate size difference
+        gol.boardSize[0] - oldBoardSize[0],
+        gol.boardSize[1] - oldBoardSize[1]
+      ];
+
+      // Kill dead cells
+
+      if (diff[0] < 0) {
+        console.log("x shrunk by " + -diff[0]);
+      }
+      if (diff[1] < 0) {
+        console.log("y shrunk by " + -diff[1]);
+      }
+
+      // Populate new cells
+      if (diff[0] > 0) {
+        console.log("x grew by " + diff[0]);
+      }
+      if (diff[1] > 0) {
+        console.log("y grew by " + diff[1]);
+      }
     },
 
 
