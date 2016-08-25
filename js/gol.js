@@ -145,7 +145,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     countLiveNeighbors: function(x, y) {
-
+      // Complete dummy values
+      return Math.floor(Math.random() * 8);
     },
 
     judgeFate: function(isLive, liveNeighbors) {
@@ -161,7 +162,18 @@ document.addEventListener("DOMContentLoaded", function () {
     },
 
     step: function() {
-      // TODO: Advance the simulation
+      newState = this._getBlankBoard();
+
+      for (var x=0; x<this.board.length; x++) {
+        for (var y=0; y<this.board.length; y++) {
+          newState[x][y] = this.judgeFate(
+            this.board[x][y],
+            this.countLiveNeighbors(x, y)
+          );
+        }
+      }
+
+      this.board = newState;
     },
 
 
