@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
         height / Math.round(height / gol.idealCellSize)
       ];
 
-      // TODO:  when board size changes, kill cells that
-      // are cut off on resize, leave new cells blank.
+      // TODO: when board size changes, kill cells that
+      // are cut off on resize, randomize new terrain.
       gol.boardSize = [
         width / gol.cellSize[0],
         height / gol.cellSize[1]
