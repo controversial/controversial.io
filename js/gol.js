@@ -150,6 +150,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initialize and begin
 
     init: function() {
+      // Temporary board
+      this.board = this._getBlankBoard();
       // Calculate sizes
       this.sizeChanged();
       // Initialize board
