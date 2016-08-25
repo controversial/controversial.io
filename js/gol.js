@@ -72,10 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
       // Kill dead cells
 
       if (diff[0] < 0) {
-        console.log("x shrunk by " + -diff[0]);
+        gol.board = gol.board.slice(0, gol.boardSize[0]);
       }
       if (diff[1] < 0) {
-        console.log("y shrunk by " + -diff[1]);
+        for (var i=0; i<gol.board.length; i++) {
+          gol.board[i] = gol.board[i].slice(0, gol.boardSize[1]);
+        }
       }
 
       // Populate new cells
@@ -139,7 +141,9 @@ document.addEventListener("DOMContentLoaded", function () {
     start: function() {
       gol.step();
       gol.redraw();
-      setTimeout(gol.start, 1000 / gol.fps);
+      setTimeout(function() {
+        requestAnimationFrame(gol.start);
+      }, 1000 / gol.fps);
     },
 
 
