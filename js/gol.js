@@ -87,6 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (diff[1] > 0) {
         console.log("y grew by " + diff[1]);
       }
+
+      gol.redraw();
     },
 
 
