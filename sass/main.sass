@@ -41,7 +41,9 @@ header
     margin: 0
     font-weight: 400
 
-    position: absolute
+    // ScrollMagic's .setPin() won't update position when the window is resized
+    // so I'm fixing the header from CSS
+    position: fixed
 
     // Portrait devices
 
