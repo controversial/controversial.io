@@ -45,6 +45,10 @@ header
     // so I'm fixing the header from CSS
     position: fixed
 
+    // Tweening of letter-spacing doesn't work if it starts at 0, don't ask me
+    // why
+    letter-spacing: 1px
+
     // Portrait devices
 
     @media (orientation: portrait)
@@ -61,6 +65,8 @@ header
     // Landscape devices
 
     @media (orientation: landscape)
+      width: 100vw
+
       top: 50vh
       left: 50vw
       transform: translate(-50%, -50%)

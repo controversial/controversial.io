@@ -6,6 +6,8 @@ var scenes = [
     .setTween("header > h1", {
       css: {
         opacity: 0,
+        letterSpacing: "30px",
+        autoRound: false
       }
     })
     .addTo(ctrl)
