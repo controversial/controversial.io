@@ -27,6 +27,7 @@ body
   margin: 0
   font-family: 'Arvo', sans-serif
   background-color: $background-blue-darker
+  color: $white
 
 
 // HEADER STYLES --------------------------------------------------------------
@@ -37,7 +38,6 @@ header
   height: 100vh
 
   h1
-    color: $white
     margin: 0
     font-weight: 400
 
@@ -75,7 +75,13 @@ canvas
   left: 0
   width: 100vw
   height: 100vh
+  z-index: 0
 
+#content
+  position: absolute
+  top: 0
+  left: 0
+  z-index: 1
 
 section
   width: 100vw
