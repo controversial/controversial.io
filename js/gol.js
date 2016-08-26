@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // BASIC ATTRIBUTES =======================================================
 
-
+    cellColor: "#37474f",
     canvas: document.getElementById("gol"),
     ctx: document.getElementById("gol").getContext("2d"),
 
@@ -123,8 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var width = this.canvas.getAttribute("width"),
           height = this.canvas.getAttribute("height");
       this.ctx.clearRect(0, 0, width, height);
-      this.ctx.fillStyle = "#37474f"; // $background-blue
-
+      this.ctx.fillStyle = this.cellColor;
       // Render board
       for (var x=0; x<this.board.length; x++) {
         for (var y=0; y<this.board[x].length; y++) {
