@@ -8,3 +8,7 @@ var scenes = [
     })
     .addTo(ctrl)
 ];
+
+ctrl.scrollTo(function (newpos) {
+  TweenLite.to(window, 0.5, {scrollTo: {y: newpos}});
+});
