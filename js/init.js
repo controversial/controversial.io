@@ -1,14 +1,10 @@
 var ctrl = new ScrollMagic.Controller();
 var scenes = [
   new ScrollMagic.Scene({
-    duration: "100%"
+    duration: "50%"
   })
-    .setTween("header > h1", {
-      css: {
-        opacity: 0,
-        letterSpacing: "30px",
-        autoRound: false
-      }
+    .setTween("header > .down-indicator", {
+      opacity: 0,
     })
     .addTo(ctrl)
 ];

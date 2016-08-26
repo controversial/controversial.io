@@ -36,14 +36,13 @@ body
 header
 
   height: 100vh
+  position: relative
 
   h1
     margin: 0
     font-weight: 400
 
-    // ScrollMagic's .setPin() won't update position when the window is resized
-    // so I'm fixing the header from CSS
-    position: fixed
+    position: absolute
 
     // Tweening of letter-spacing doesn't work if it starts at 0, don't ask me
     // why
@@ -93,3 +92,13 @@ section
   width: 100vw
   height: 100vh
   padding: 10vh
+
+
+// Scroll indicator
+.down-indicator
+  display: inline-block
+  width: 100%
+  font-size: 5vw
+  text-align: center
+  position: fixed
+  bottom: 0
