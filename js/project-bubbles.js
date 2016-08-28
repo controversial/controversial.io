@@ -56,12 +56,29 @@ var projects = [
 
 
 var nodes = new vis.DataSet(projects.map(function(item) {
-  item.shape = "circularImage";
   item.id = item.gh.split("/")[1].toLowerCase();
   return item;
 }));
 
 var edges = new vis.DataSet();
-var data = {nodes: nodes, edges: edges};
 
-console.log(nodes);
+var options = {
+  nodes: {
+    borderWidth: 0,
+    shape: "circularImage"
+  },
+  physics: {
+    stabilization: false,
+    minVelocity:  0.01,
+    solver: "repulsion",
+    repulsion: {
+      nodeDistance: 60
+    }
+  }
+};
+
+var network = new vis.Network(
+  document.getElementById("projects"),
+  {nodes: nodes, edges: edges},
+  options
+);
