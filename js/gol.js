@@ -216,7 +216,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // it's wherever a touch occurs or is dragged.
     interacted: function(e) {
       var absx = e.clientX, absy=e.clientY;
-      ev = e;
       // Position of the cell in the board
       var cellpos = [
         Math.floor(absx / gol.cellSize[0]),
