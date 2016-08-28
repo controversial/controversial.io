@@ -53,3 +53,15 @@ var projects = [
     size: 30
   }
 ];
+
+
+var nodes = new vis.DataSet(projects.map(function(item) {
+  item.shape = "circularImage";
+  item.id = item.gh.split("/")[1].toLowerCase();
+  return item;
+}));
+
+var edges = new vis.DataSet();
+var data = {nodes: nodes, edges: edges};
+
+console.log(nodes);
