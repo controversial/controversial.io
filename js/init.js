@@ -29,7 +29,7 @@ var scenes = [
       width: window.innerWidth / 2,
       height: window.innerHeight / 2,
       left: window.innerWidth / 4,
-      top: window.innerHeight / 4,
+      top: window.innerHeight / 4
     }
   }).setPin("header"),
 
