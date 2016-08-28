@@ -43,8 +43,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     sizeChanged: function() {
       var i, k,  // Spare loop variables
-          width = gol.canvas.offsetWidth,
-          height = gol.canvas.offsetHeight;
+          // Use window sizes so that the canvas shrinks (doesn't crop) on scroll.
+          width = window.innerWidth,
+          height = window.innerHeight;
 
       // Update canvas coordinate system
       gol.canvas.setAttribute("width", width);
