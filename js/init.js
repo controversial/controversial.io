@@ -1,22 +1,6 @@
-// Set up scrollmagic stuff
+// Set up ScrollMagic stuff
 
 var ctrl = new ScrollMagic.Controller();
-var scenes = [
-  new ScrollMagic.Scene({
-    duration: "50%",
-    offset: 10
-  }).setTween(".down-indicator", {
-      opacity: 0,
-    }).on("enter", function(e) {
-      document.getElementsByClassName("down-indicator")[0].style["pointer-events"] = "none";
-    }).on("leave", function(e) {
-      document.getElementsByClassName("down-indicator")[0].style["pointer-events"] = e.scrollDirection === "REVERSE" ? "inherit": "none";
-    })
-];
-
-for (var i=0; i<scenes.length; i++) {
-  scenes[i] = scenes[i].addTo(ctrl);
-}
 
 ctrl.scrollTo(function (newpos) {
   TweenLite.to(window, 1, {
@@ -29,6 +13,33 @@ ctrl.scrollTo(function (newpos) {
   });
 });
 
+
+// Set up ScrollMagic scenes
+var scenes = [
+
+
+  // Fade down button
+
+  new ScrollMagic.Scene({
+    duration: "50%",
+    offset: 10
+  }).setTween(".down-indicator", {
+      opacity: 0,
+    }).on("enter", function(e) {
+      document.getElementsByClassName("down-indicator")[0].style["pointer-events"] = "none";
+    }).on("leave", function(e) {
+      document.getElementsByClassName("down-indicator")[0].style["pointer-events"] = e.scrollDirection === "REVERSE" ? "inherit": "none";
+    })
+
+];
+
+// Add scenes to the controller
+for (var i=0; i<scenes.length; i++) {
+  scenes[i] = scenes[i].addTo(ctrl);
+}
+
+
+// Bind down indicators to scroll down function
 var downIndicators = document.querySelectorAll(".down-indicator > i");
 function sectionJump () {
   ctrl.scrollTo(window.scrollY + window.innerWidth);
