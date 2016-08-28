@@ -29,10 +29,19 @@ var scenes = [
       width: window.innerWidth / 2,
       height: window.innerHeight / 2,
       left: window.innerWidth / 4,
-      top: window.innerHeight / 4
+      top: window.innerHeight / 4,
     }
-  }).setPin("header")
+  }).setPin("header"),
 
+
+  // Fade background to white
+  new ScrollMagic.Scene({
+    duration: "50%"
+  }).setTween("body", {
+    css: {
+      backgroundColor: "#fff"
+    }
+  })
 ];
 
 // Add scenes to the controller
