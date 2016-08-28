@@ -42,11 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // changes.
 
     sizeChanged: function() {
+      // TODO: adjust gol.idealCellSize during the animation
+
       var i, k,  // Spare loop variables
-          // Use window sizes so that the canvas shrinks (doesn't crop) on scroll.
-          // TODO: maybe just adjust gol.idealCellSize during the animation
-          width = window.innerWidth,
-          height = window.innerHeight;
+          width = gol.canvas.offsetWidth,
+          height = gol.canvas.offsetHeight;
 
       // Update canvas coordinate system
       gol.canvas.setAttribute("width", width);
