@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     sizeChanged: function() {
       var i, k,  // Spare loop variables
           // Use window sizes so that the canvas shrinks (doesn't crop) on scroll.
+          // TODO: maybe just adjust gol.idealCellSize during the animation
           width = window.innerWidth,
           height = window.innerHeight;
 
