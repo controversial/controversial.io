@@ -34,6 +34,21 @@ body
 // HEADER STYLES --------------------------------------------------------------
 
 
+h1
+  margin: 0
+  font-weight: 400
+  font-size: 5vw
+
+  position: fixed
+  top: 50vh
+  left: 0
+  transform: translateY(-50%)
+
+  width: 100vw
+  text-align: center
+
+  z-index: 3
+
 header
 
   height: 100vh
@@ -41,35 +56,10 @@ header
   position: relative
   background-color: $background-blue-darker
 
-  h1
-    margin: 0
-    font-weight: 400
-
-    position: relative
-
-    // Portrait devices
-
-    @media (orientation: portrait)
-      top: 50%
-      transform: translateY(-50%)
-
-      background-color: transparentize($white, .75)
-      padding: 2vh 0 2vh 15vw
-      word-spacing: 100vw
-
-      text-align: left
-      font-size: 15vw
-
-    // Landscape devices
-
-    @media (orientation: landscape)
-      width: 100%
-
-      top: 50%
-      transform: translateY(-50%)
-
-      font-size: 5vw
-      text-align: center
+  position: fixed
+  left: 50vw
+  top: 50vh
+  transform: translate(-50%, -50%)
 
 
 canvas
