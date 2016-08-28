@@ -1,0 +1,9 @@
+{
+  "name": "controversial.io",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "devDependencies": {
+    "lite-server": "2.2.2"
+  }
+}
