@@ -17,7 +17,22 @@ var scenes = [
 
   new ScrollMagic.Scene({
     duration: "50%",
-  }).setTween(".down-indicator", {opacity: 0})
+  }).setTween(".down-indicator", {opacity: 0}),
+
+
+  // Shrink header
+
+  new ScrollMagic.Scene({
+    duration: "50%"
+  }).setTween("header", {
+    css: {
+      width: window.innerWidth / 2,
+      height: window.innerHeight / 2,
+      left: window.innerWidth / 4,
+      top: window.innerHeight / 4
+    }
+  }).setPin("header")
+
 ];
 
 // Add scenes to the controller
