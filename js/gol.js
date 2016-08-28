@@ -125,8 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
       this.ctx.clearRect(0, 0, width, height);
       this.ctx.fillStyle = this.cellColor;
       // Render board
-      for (var x=0; x<this.board.length; x++) {
-        for (var y=0; y<this.board[x].length; y++) {
+      for (var x=0; x<this.boardSize[0]; x++) {
+        for (var y=0; y<this.boardSize[1]; y++) {
           if (this.board[x][y]) {
             this.ctx.fillRect(
               this.cellSize[0] * x,
@@ -195,8 +195,8 @@ document.addEventListener("DOMContentLoaded", function () {
     step: function() {
       newState = this._getBlankBoard();
 
-      for (var x=0; x<this.board.length; x++) {
-        for (var y=0; y<this.board[0].length; y++) {
+      for (var x=0; x<this.boardSize[0]; x++) {
+        for (var y=0; y<this.boardSize[1]; y++) {
           newState[x][y] = this.judgeFate(
             this.board[x][y],
             this.countLiveNeighbors(x, y)
