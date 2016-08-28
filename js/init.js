@@ -1,3 +1,5 @@
+// Set up scrollmagic stuff
+
 var ctrl = new ScrollMagic.Controller();
 var scenes = [
   new ScrollMagic.Scene({
