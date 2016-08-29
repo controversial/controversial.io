@@ -13,10 +13,12 @@ document.addEventListener("scroll", function(e) {
 
   var headerProgress = scroll / (window.innerHeight / 2);
 
-  function setFixedElements(fixed) {
-    position = fixed ? "fixed": "absolute";
-    header.style.position = position;
-    headerTitle.style.position = position;
+  function setHeaderElementsPinned(fixed) {
+    elements = [header, headerTitle];
+    for (var i=0; i<elements.length; i++) {
+      elements[i].style.position = fixed ? "fixed" : "absolute";
+      elements[i].style.top = fixed ? "50vh" : window.innerHeight + "px";
+    }
   }
 
   function updateHeaderElements(progress) {
@@ -26,21 +28,19 @@ document.addEventListener("scroll", function(e) {
     document.body.style.backgroundColor = backgroundScale(headerProgress).hex();
   }
 
-  // Starting phase
-  if (scroll < 5) {
-    setFixedElements(true); // Ensure header elements are fixed
-    updateHeaderElements(0);
-  // Intermediate phases
-  } else if (scroll < window.innerHeight / 2) {
-    setFixedElements(true); // Pin header elements
-    header.style.top = "50vh";
-    headerTitle.style.top = "50vh";
-    updateHeaderElements(headerProgress);
-  // End phase
-  } else {
-    setFixedElements(false); // Unpin header elements
-    header.style.top = window.innerHeight + "px";
-    headerTitle.style.top = window.innerHeight + "px";
-    updateHeaderElements(1);
+  switch(true) {
+    case (scroll < 5):
+      setHeaderElementsPinned(true);
+      updateHeaderElements(0);
+      break;
+
+    case (scroll < window.innerHeight / 2):
+      setHeaderElementsPinned(true);
+      updateHeaderElements(headerProgress);
+      break;
+
+    default:
+      setHeaderElementsPinned(false);
+      updateHeaderElements(1);
   }
 });
