@@ -57,6 +57,7 @@ header
     text-align: center
 
     i
+      animation: 1s bounce infinite
       cursor: default
       font-size: 50px
       -webkit-user-select: none
@@ -64,3 +65,14 @@ header
       -ms-user-select: none
       user-select: none
       -webkit-touch-callout: none
+
+
+@keyframes bounce
+  0%
+    transform: translateY(0)
+
+  50%
+    transform: translateY(-40%)
+
+  100%
+    transform: translateY(0)
