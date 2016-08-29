@@ -9,12 +9,13 @@ document.addEventListener("scroll", function(e) {
    *********************/
   var header = document.getElementsByTagName("header")[0];
   var headerTitle = document.getElementsByTagName("h1")[0];
+  var laptop = document.getElementsByClassName("laptop")[0];
   var downIndicator = document.getElementsByClassName("down-indicator")[0];
 
   var headerProgress = scroll / (window.innerHeight / 2);
 
   function setHeaderElementsPinned(fixed) {
-    elements = [header, headerTitle];
+    elements = [header, headerTitle, laptop];
     for (var i=0; i<elements.length; i++) {
       elements[i].style.position = fixed ? "fixed" : "absolute";
       elements[i].style.top = fixed ? "50vh" : window.innerHeight + "px";
