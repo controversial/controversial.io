@@ -12,32 +12,35 @@ document.addEventListener("scroll", function(e) {
   var downIndicator = document.getElementsByClassName("down-indicator")[0];
 
   var headerProgress = scroll / (window.innerHeight / 2);
+
+  function setFixedElements(fixed) {
+    position = fixed ? "fixed": "absolute";
+    header.style.position = position;
+    headerTitle.style.position = position;
+  }
+
+  function updateHeaderElements(progress) {
+    header.style.width = (1 - progress) * 50 + 50 + "vw";
+    header.style.height = (1 - progress) * 50 + 50 + "vh";
+    downIndicator.style.opacity = 1 - progress;
+    document.body.style.backgroundColor = backgroundScale(headerProgress).hex();
+  }
+
   // Starting phase
   if (scroll < 5) {
-    header.style.width = "100vw";
-    header.style.height = "100vh";
-    downIndicator.style.opacity = 1;
-    document.body.style.backgroundColor = backgroundScale(0).hex();
+    setFixedElements(true); // Ensure header elements are fixed
+    updateHeaderElements(0);
   // Intermediate phases
   } else if (scroll < window.innerHeight / 2) {
+    setFixedElements(true); // Pin header elements
     header.style.top = "50vh";
     headerTitle.style.top = "50vh";
-    header.style.position = "fixed";
-    headerTitle.style.position = "fixed";
-
-    header.style.width = ((1 - headerProgress) * 50 + 50).toString() + "vw";
-    header.style.height = ((1 - headerProgress) * 50 + 50).toString() + "vh";
-    downIndicator.style.opacity = 1 - headerProgress;
-    document.body.style.backgroundColor = backgroundScale(headerProgress).hex();
+    updateHeaderElements(headerProgress);
   // End phase
   } else {
+    setFixedElements(false); // Unpin header elements
     header.style.top = window.innerHeight + "px";
     headerTitle.style.top = window.innerHeight + "px";
-    header.style.position = "absolute";
-    headerTitle.style.position = "absolute";
-    header.style.width = "50vw";
-    header.style.height = "50vh";
-    downIndicator.style.opacity = 0;
-    document.body.style.backgroundColor = backgroundScale(1).hex();
+    updateHeaderElements(1);
   }
 });
