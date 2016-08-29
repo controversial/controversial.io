@@ -33,14 +33,15 @@ function updateHeaderElements(progress) {
     return a + (b - a) * progress;
   }
 
+  whRatio = elem.laptopContent.offsetWidth / elem.laptopContent.offsetHeight;
   elem.header.style.width = tween(
     100,
     (100 * elem.laptopContent.offsetWidth / window.innerWidth)
   ) + "vw";
   elem.header.style.height = tween(
-    100,
-    (100 * elem.laptopContent.offsetHeight / window.innerHeight)
-  ) + "vh";
+    100 * (window.innerHeight / window.innerWidth),
+    (100 * elem.laptopContent.offsetWidth / window.innerWidth) / whRatio
+  ) + "vw";
 
   elem.header.style.top = tween(
     window.innerHeight / 2,  // 50vh
@@ -61,7 +62,9 @@ function updateHeaderElements(progress) {
 
 
 
-// SCROLL LISTENER
+// SCROLL LISTENER ============================================================
+
+
 
 document.addEventListener("scroll", function(e) {
   var scroll = window.scrollY;
