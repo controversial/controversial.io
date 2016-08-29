@@ -6,6 +6,9 @@ $trackpad-color: #666
 
 
 .laptop
+  width: 50vw
+  height: 29vw
+
   position: absolute
   top: 50%
   left: 50%
@@ -15,19 +18,12 @@ $trackpad-color: #666
 
   .laptop-screen
     position: relative
-    left: 5vw
-    height: 50vh
-    width: 50vw
+    left: 7%
+    height: 94%
+    width: 86%
     background-color: $screen-border-color
-
-    @media screen and (orientation: portrait)
-      border-radius: 2vh 2vh 0 0
-      padding: 2.5vh
-
-    @media screen and (orientation: landscape)
-      border-radius: 2vw 2vw 0 0
-      padding: 2.5vw
-
+    border-radius: 2vw 2vw 0 0
+    padding: 3.5%
 
     .laptop-content
       width: 100%
@@ -35,10 +31,8 @@ $trackpad-color: #666
 
   .laptop-base
     background-color: $body-color
-    height: 3vh
-    width: 60vw
+    height: 6%
     border-radius: 0 0 1vw 1vw
-    overflow: scroll
 
     .laptop-trackpad
       position: relative
