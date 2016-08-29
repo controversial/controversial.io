@@ -27,6 +27,8 @@ document.addEventListener("scroll", function(e) {
     header.style.height = (1 - progress) * 50 + 50 + "vh";
     downIndicator.style.opacity = 1 - progress;
     document.body.style.backgroundColor = backgroundScale(headerProgress).hex();
+
+    // TODO: Update canvas pixel size
   }
 
   switch(true) {
