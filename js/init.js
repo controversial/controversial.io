@@ -1,3 +1,9 @@
+// Magic scroll things.
+// This binds cool animations to the scroll level in such a way that the
+// animations' progress can be controlled by scrolling. This does what
+// ScrollMagic does except without the bugs.
+
+
 var backgroundScale = new chroma.scale(["#2d3940", "#fff"]).mode("lab");
 
 var elem = {
@@ -8,6 +14,10 @@ var elem = {
   laptopContent: document.getElementsByClassName("laptop-content")[0],
   body: document.body
 };
+
+
+// HEADER TRANSITION LOGIC ====================================================
+
 
 function setHeaderElementsPinned(fixed) {
   var elements = [elem.headerTitle, elem.laptop];
@@ -50,13 +60,13 @@ function updateHeaderElements(progress) {
 }
 
 
+
+// SCROLL LISTENER
+
 document.addEventListener("scroll", function(e) {
   var scroll = window.scrollY;
 
-  /****** STAGE 1 ******
-   * HEADER SHRINK AND *
-   * DOWN ICON OPACITY *
-   *********************/
+  // Header
 
   var headerProgress = scroll / (window.innerHeight / 2);
 
