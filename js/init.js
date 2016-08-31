@@ -33,6 +33,8 @@ function updateHeaderElements(progress) {
     return a + (b - a) * progress;
   }
 
+  // RESIZE HEADER
+
   whRatio = elem.laptopContent.offsetWidth / elem.laptopContent.offsetHeight;
   elem.header.style.width = tween(
     100,
@@ -42,19 +44,22 @@ function updateHeaderElements(progress) {
     100 * (window.innerHeight / window.innerWidth),
     (100 * elem.laptopContent.offsetWidth / window.innerWidth) / whRatio
   ) + "vw";
-
   elem.header.style.top = (progress < 1 ?
     tween(window.innerHeight / 2, elem.laptopContent.offsetTop + elem.laptopContent.offsetHeight) :
     elem.laptopContent.offsetTop + elem.laptopContent.offsetHeight + window.innerHeight / 2) +
   "px";
   elem.header.style.position = progress < 1 ? "fixed" : "absolute";
 
-  elem.downIndicator.style.opacity = 1 - progress;
-  elem.body.style.backgroundColor = backgroundScale(progress).hex();
+  // DEAL WITH ASSOCIATED TIDBITS
+
+  elem.downIndicator.style.opacity = 1 - progress;  // Fade out down indicator
+  elem.body.style.backgroundColor = backgroundScale(progress).hex(); // Fade background to white
+  elem.headerTitle.style.fontSize = tween(5, 4) + "vw";
+
+  // ADJUST CANVAS SETTINGS
 
   // Mean of X scale difference and Y scale difference
   var canvasScale = (gol.canvas.offsetWidth / window.innerWidth + gol.canvas.offsetHeight / window.innerHeight) / 2;
-
   gol.idealCellSize = 20 * canvasScale;
   gol.sizeChanged();
 }
