@@ -52,6 +52,7 @@ function updateHeaderElements(progress) {
   elem.downIndicator.style.opacity = 1 - progress;
   elem.body.style.backgroundColor = backgroundScale(progress).hex();
 
+  gol.sizeChanged();
   // TODO: Update canvas pixel size
 }
 
