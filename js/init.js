@@ -4,8 +4,6 @@
 // ScrollMagic does except without the bugs.
 
 
-var backgroundScale = new chroma.scale(["#2d3940", "#fff"]).mode("lab");
-
 var elem = {
   header: document.getElementsByTagName("header")[0],
   headerTitle: document.getElementsByTagName("h1")[0],
@@ -53,7 +51,6 @@ function updateHeaderElements(progress) {
   // DEAL WITH ASSOCIATED TIDBITS
 
   elem.downIndicator.style.opacity = 1 - progress;  // Fade out down indicator
-  elem.body.style.backgroundColor = backgroundScale(progress).hex(); // Fade background to white
   elem.headerTitle.style.fontSize = tween(5, 4) + "vw";
 
   // ADJUST CANVAS SETTINGS
