@@ -43,17 +43,12 @@ function updateHeaderElements(progress) {
     (100 * elem.laptopContent.offsetWidth / window.innerWidth) / whRatio
   ) + "vw";
 
-  elem.header.style.top = tween(
-    window.innerHeight / 2,  // 50vh
-    elem.laptopContent.offsetTop + elem.laptopContent.offsetHeight
-  ) + "px";
+  elem.header.style.top = (progress < 1 ?
+    tween(window.innerHeight / 2, elem.laptopContent.offsetTop + elem.laptopContent.offsetHeight) :
+    elem.laptopContent.offsetTop + elem.laptopContent.offsetHeight + window.innerHeight / 2) +
+  "px";
+  elem.header.style.position = progress < 1 ? "fixed" : "absolute";
 
-  if (progress === 1) {
-    elem.header.style.top = elem.header.offsetTop + window.innerHeight / 2 + "px";
-    elem.header.style.position = "absolute";
-  } else {
-    elem.header.style.position = "fixed";
-  }
   elem.downIndicator.style.opacity = 1 - progress;
   elem.body.style.backgroundColor = backgroundScale(progress).hex();
 
