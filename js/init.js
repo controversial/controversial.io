@@ -52,8 +52,11 @@ function updateHeaderElements(progress) {
   elem.downIndicator.style.opacity = 1 - progress;
   elem.body.style.backgroundColor = backgroundScale(progress).hex();
 
+  // Mean of X scale difference and Y scale difference
+  var canvasScale = (gol.canvas.offsetWidth / window.innerWidth + gol.canvas.offsetHeight / window.innerHeight) / 2;
+
+  gol.idealCellSize = 20 * canvasScale;
   gol.sizeChanged();
-  // TODO: Update canvas pixel size
 }
 
 
