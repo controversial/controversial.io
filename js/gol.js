@@ -217,13 +217,26 @@ document.addEventListener("DOMContentLoaded", function () {
     // when moused over. On a mobile device
     // it's wherever a touch occurs or is dragged.
     interacted: function(e) {
-      var absx = e.clientX, absy=e.clientY;
-      // Position of the cell in the board
-      var cellpos = [
-        Math.floor(absx / gol.cellSize[0]),
-        Math.floor(absy / gol.cellSize[1])
-      ];
-      gol.board[cellpos[0]][cellpos[1]] = true;
+      // Position of the canvas in the viewport
+      var bbox = gol.canvas.getBoundingClientRect(),
+      // Position of the mouse in the viewport
+          absx = e.clientX, absy=e.clientY;
+
+      // If these two positions intersect:
+      if (absx > bbox.left  &&
+          absy > bbox.top   &&
+          absx < bbox.right &&
+          absy < bbox.bottom
+      ) {
+        // Calculate mouse position relative to canvas
+        var relx = absx - bbox.left,
+            rely = absy - bbox.top;
+        // Calculate cell position
+        var cellx = Math.floor(relx / gol.cellSize[0]),
+            celly = Math.floor(rely / gol.cellSize[1]);
+
+        gol.board[cellx][celly] = true;
+      }
     },
 
 
