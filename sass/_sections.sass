@@ -1,24 +1,24 @@
 // Generic styles for the page sections. Defines section colors and height.
 
-$background-1: #2196f3
-$background-2: #fff
-$background-3: #ffd54f
+$header-section-background: #2196f3
+$projects-section-background: #fff
+$contact-section-background: #ffd54f
 
 section
   width: 100vw
   height: 100vh
   overflow: auto
 
-  &#first
+  &#header-bg
     // Height is overriden here because the top 50vh is just blank space
        through which the user scrolls during the animation.
     height: 150vh
-    background-color: $background-1
+    background-color: $header-section-background
 
-  &#second
-    background-color: $background-2
+  &#projects
+    background-color: $projects-section-background
     color: $dark-text-primary
 
-  &#third
-    background-color: $background-3
+  &#contact
+    background-color: $contact-section-background
     color: $dark-text-primary
