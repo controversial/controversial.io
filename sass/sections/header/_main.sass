@@ -1,6 +1,9 @@
 // Styles for everything in the header
 
+$header-section-background: #2196f3
+
 @import _laptop
+
 
 #header-wrapper
   color: $light-text-primary
@@ -72,3 +75,10 @@
 
   100%
     transform: translateY(0)
+
+
+#header-bg
+  // Height is overriden here because the top 50vh is just blank space
+     through which the user scrolls during the animation.
+  height: 150vh
+  background-color: $header-section-background
