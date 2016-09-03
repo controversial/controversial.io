@@ -5,23 +5,36 @@
 body {
   background-color: #2d3940;
   margin: 0;
+  color: white;
 }
 
-h1 {
-  width: 100%;
-  text-align: center;
-  color: white;
-  font-family: 'Arvo';
-  font-size: 7vw;
+header {
   position: absolute;
   top: 50vh;
-  transform: translateY(-50%);
-  margin: 0;
-  font-weight: 400;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  text-align: center;
 
   z-index: 1;
 
   pointer-events: none;
+}
+
+h1 {
+  font-family: 'Arvo';
+  font-size: 7vw;
+  margin: 0;
+  font-weight: 400;
+  border-bottom: 5px solid rgba(255, 255, 255, 0.6);
+}
+
+h2 {
+  font-family: 'Open Sans';
+  font-size: 4vw;
+  margin: 0;
+  font-weight: 400;
+
+  color: rgba(255, 255, 255, 0.6);
 }
 
 #map {
