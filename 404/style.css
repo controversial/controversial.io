@@ -1,7 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #2d3940;
   margin: 0;
 }
+
 h1 {
   width: 100%;
   text-align: center;
@@ -13,4 +18,17 @@ h1 {
   transform: translateY(-50%);
   margin: 0;
   font-weight: 400;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+#map {
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.5;
+
+  z-index: 0;
+  cursor: default;
 }

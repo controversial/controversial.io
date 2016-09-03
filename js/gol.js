@@ -42,8 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // changes.
 
     sizeChanged: function() {
-      // TODO: adjust gol.idealCellSize during the animation
-
       var i, k,  // Spare loop variables
           width = gol.canvas.offsetWidth,
           height = gol.canvas.offsetHeight;
