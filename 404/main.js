@@ -20,4 +20,8 @@ function go(city) {
   );
 }
 
-go();
+if (places[window.location.search.substring(1)]) {
+  go(window.location.search.substring(1));
+} else {
+  go();
+}
