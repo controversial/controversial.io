@@ -2,12 +2,8 @@
 
 // Helper to generate the kind of coordinate pairs I'm using to store cities
 function bounds() {
-  var mapbounds = map.getBounds();
-  return [
-    [mapbounds._northEast.lat, mapbounds._northEast.lng],
-    [mapbounds._southWest.lat, mapbounds._southWest.lng],
-    map.getZoom()
-  ];
+  var center = map.getCenter();
+  return {lat: center.lat, lng: center.lng, zoom: map.getZoom()};
 }
 
 
