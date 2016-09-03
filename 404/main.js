@@ -14,12 +14,17 @@ function bounds() {
 L.mapbox.accessToken = "pk.eyJ1IjoiY29udHJvdmVyc2lhbCIsImEiOiJjaXMwaXEwYjUwM2l6MnpwOHdodTh6Y24xIn0.JOD0uX_n_KXqhJ7ERnK0Lg";
 var map = L.mapbox.map("map", "mapbox.pencil", {zoomControl: false});
 
-function go(index) {
+function go(city) {
   var placenames = Object.keys(places);
-  index = typeof index === "undefined" ? Math.floor(Math.random() * placenames.length) : index;
-  var coords = places[placenames[index]];
-  map.fitBounds(coords.slice(0, 2));
-  map.setZoom(coords[2]);
+  city = typeof city === "undefined" ?
+    placenames[Math.floor(Math.random() * placenames.length)] :
+    city;
+
+  var pos = places[city];
+  map.setView(
+    [pos.lat, pos.lng],
+    pos.zoom
+  );
 }
 
 go();
