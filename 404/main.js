@@ -12,10 +12,7 @@ var map = L.mapbox.map("map", "mapbox.pencil", {zoomControl: false});
 
 function go(city) {
   var placenames = Object.keys(places);
-  city = typeof city === "undefined" ?
-    placenames[Math.floor(Math.random() * placenames.length)] :
-    city;
-
+  city = city || placenames[Math.floor(Math.random() * placenames.length)];
   var pos = places[city];
   map.setView(
     [pos.lat, pos.lng],
