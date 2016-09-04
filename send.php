@@ -35,6 +35,8 @@ mail("luke@deentaylor.com", "Contact form | ".$email, $message, $headers);
       <h2>Thanks for getting in touch, <?php echo explode(" ", $sender)[0]; ?>. I'll get back to you shortly.</h2>
     </div>
 
+    <!-- TODO: replace this with an implementation of Boids, because flocking
+    birds are weakly connected to email sending -->
     <script type="text/javascript" src="js/gol.js"></script>
   </body>
 </html>
