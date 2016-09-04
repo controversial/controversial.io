@@ -24,6 +24,11 @@ var scenes = {
     zoom: 13,
     readableName: "Seoul"
   },
+  seoul2: {
+    lat: 37.59920416140708,
+    lng: 127.00281143188475,
+    zoom: 13
+  },
 
   new_york: {
     lat: 40.752832623340844,
