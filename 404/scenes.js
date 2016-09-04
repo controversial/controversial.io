@@ -70,6 +70,11 @@ var places = {
     zoom: 15,
     readableName: "Chicago"
   },
+  chicago2: {
+    lat: 41.92372198596431,
+    lng: -87.67149925231934,
+    zoom: 15
+  },
 
   munich: {
     lat: 48.131703904900526,
