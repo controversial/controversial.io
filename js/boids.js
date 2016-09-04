@@ -1,17 +1,17 @@
 /* Boids flocking simulation */
 
-function Boid (x, y, direction, velocity) {
-  this.x = 0;
+function Boid () {
+
 }
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  window.boids = {
+  window.flock = {
 
 
     // BASIC ATTRIBUTES =======================================================
 
-    flock: [],
+    boids: [],
     canvas: document.getElementById("boids"),
     ctx: document.getElementById("boids").getContext("2d"),
 
@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Called to update the canvas coordinate system if the canvas size changes
     sizeChanged: function() {
-      var width = boids.canvas.offsetWidth,
-          height = boids.canvas.offsetHeight;
-      boids.canvas.setAttribute("width", width);
-      boids.canvas.setAttribute("height", height);
+      var width = flock.canvas.offsetWidth,
+          height = flock.canvas.offsetHeight;
+      flock.canvas.setAttribute("width", width);
+      flock.canvas.setAttribute("height", height);
     },
 
 
@@ -63,11 +63,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Begin the loop
 
     start: function() {
-      boids.step();
-      boids.redraw();
+      flock.step();
+      flock.redraw();
       setTimeout(function() {
-        requestAnimationFrame(boids.start);
-      }, 1000 / boids.fps);
+        requestAnimationFrame(flock.start);
+      }, 1000 / flock.fps);
     },
 
 
@@ -83,8 +83,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-  window.addEventListener("resize", boids.sizeChanged);
-  document.addEventListener("mousemove", boids.interacted);
-  boids.init();
+  window.addEventListener("resize", flock.sizeChanged);
+  document.addEventListener("mousemove", flock.interacted);
+  flock.init();
 
 });
