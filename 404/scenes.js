@@ -51,6 +51,11 @@ var places = {
     zoom: 13,
     readableName: "Washington"
   },
+  washington2: {
+    lat: 38.863887875122494,
+    lng: -77.06003665924072,
+    zoom: 15
+  },
 
   paris: {
     lat: 48.85663993129474,
@@ -161,5 +166,19 @@ var places = {
     lng: -117.77257919311523,
     zoom: 13,
     readableName: "Los Angeles"
+  },
+
+  baarle_nassau_baarle_hertog: {
+    lat: 51.443669809372885,
+    lng: -355.0686836242676,
+    zoom: 15,
+    readableName: "Baarle Nassau and Baarle Hertog"
+  },
+
+  mexican_american_border: {
+    lat: 32.66979809274563,
+    lng: -475.46957015991205,
+    zoom: 13,
+    readableName: "Mexican/American border"
   }
 };
