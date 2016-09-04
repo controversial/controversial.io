@@ -14,6 +14,7 @@ function go(area) {
   var areas = Object.keys(scenes);
   area = area || areas[Math.floor(Math.random() * areas.length)];
   var scene = scenes[area];
+  console.log("Permalink here: " + "https://controversial.io/404?" + area);
   map.setView(
     [scene.lat, scene.lng],
     scene.zoom
