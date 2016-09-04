@@ -64,11 +64,11 @@
   <section id="contact">
     <h1 class="header-full">Get in touch.</h1>
 
-    <form>
-      <input type="text" placeholder="Name">
-      <input type="text" placeholder="Email">
-      <textarea placeholder="Type something"></textarea>
-      <button>Submit</button>
+    <form action="send.php" method="POST">
+      <input type="text" name="name" placeholder="Name">
+      <input type="email" name="email" placeholder="Email">
+      <textarea name="message" placeholder="Type something"></textarea>
+      <input type="submit" value="Submit">
     </form>
   </section>
 
