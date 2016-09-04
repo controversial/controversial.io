@@ -191,5 +191,11 @@ var scenes = {
     lng: -475.46957015991205,
     zoom: 13,
     readableName: "Mexican/American border"
+  },
+
+  baltimore: {
+    lat: 39.27962323424631,
+    lng: -76.59951210021973,
+    zoom: 15
   }
 };
