@@ -5,12 +5,15 @@
 
 
 var elem = {
+  body: document.body,
+
   header: document.getElementsByTagName("header")[0],
   headerTitle: document.getElementsByTagName("h1")[0],
-  laptop: document.getElementsByClassName("laptop")[0],
   downIndicator: document.getElementsByClassName("down-indicator")[0],
+
+  laptop: document.getElementsByClassName("laptop")[0],
   laptopContent: document.getElementsByClassName("laptop-content")[0],
-  body: document.body
+  laptopBase: document.getElementsByClassName("laptop-base")[0]
 };
 
 
@@ -31,7 +34,7 @@ function updateHeaderElements(progress) {
     return a + (b - a) * progress;
   }
 
-  // RESIZE HEADER
+  // FIT MAIN HEADER TO LAPTOP SCREEN
 
   whRatio = elem.laptopContent.offsetWidth / elem.laptopContent.offsetHeight;
   elem.header.style.width = tween(
@@ -43,15 +46,15 @@ function updateHeaderElements(progress) {
     (100 * elem.laptopContent.offsetWidth / window.innerWidth) / whRatio
   ) + "vw";
   elem.header.style.top = (progress < 1 ?
-    tween(window.innerHeight / 2, elem.laptopContent.offsetTop + elem.laptopContent.offsetHeight) :
-    elem.laptopContent.offsetTop + elem.laptopContent.offsetHeight + window.innerHeight / 2) +
+    tween(window.innerHeight / 2, window.innerHeight / 2 - elem.laptopBase.offsetHeight / 2) :
+    window.innerHeight - elem.laptopBase.offsetHeight / 2) +
   "px";
   elem.header.style.position = progress < 1 ? "fixed" : "absolute";
 
   // DEAL WITH ASSOCIATED TIDBITS
 
   elem.downIndicator.style.opacity = 1 - progress;  // Fade out down indicator
-  elem.headerTitle.style.fontSize = tween(5, 4) + "vw";
+  elem.headerTitle.style.fontSize = tween(5, 4) + "vw";  // Shrink header
 
   // ADJUST CANVAS SETTINGS
 
