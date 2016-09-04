@@ -7,5 +7,8 @@ $headers = "From: '".$sender."' <contact@controversial.io>\r\n";
 
 mail("luke@deentaylor.com", "Contact form | ".$email, $message, $headers);
 
-echo "Email sent";
+echo "Email sent\n";
+echo "From: ".$sender." (".$email.")";
+echo "\"".$message."\"";
+
 ?>
