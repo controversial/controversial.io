@@ -8,7 +8,14 @@ function coords() {
 
 
 L.mapbox.accessToken = "pk.eyJ1IjoiY29udHJvdmVyc2lhbCIsImEiOiJjaXMwaXEwYjUwM2l6MnpwOHdodTh6Y24xIn0.JOD0uX_n_KXqhJ7ERnK0Lg";
-var map = L.mapbox.map("map", "mapbox.pencil", {zoomControl: false});
+var map = L.mapbox.map("map", "mapbox.pencil", {
+  // Disable zooming by all methods
+  zoomControl: false,
+  touchZoom: false,
+  scrollWheelZoom: false,
+  doubleClickZoom: false,
+  boxZoom: false
+});
 
 function go(area) {
   var areas = Object.keys(scenes);
