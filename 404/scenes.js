@@ -154,5 +154,12 @@ var places = {
     lng: -810.1004219055176,
     zoom: 15,
     readableName: "New Orleans"
+  },
+
+  los_angeles: {
+    lat: 33.69313789270753,
+    lng: -117.77257919311523,
+    zoom: 13,
+    readableName: "Los Angeles"
   }
 };
