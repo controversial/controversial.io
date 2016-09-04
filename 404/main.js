@@ -10,17 +10,17 @@ function coords() {
 L.mapbox.accessToken = "pk.eyJ1IjoiY29udHJvdmVyc2lhbCIsImEiOiJjaXMwaXEwYjUwM2l6MnpwOHdodTh6Y24xIn0.JOD0uX_n_KXqhJ7ERnK0Lg";
 var map = L.mapbox.map("map", "mapbox.pencil", {zoomControl: false});
 
-function go(city) {
-  var placenames = Object.keys(places);
-  city = city || placenames[Math.floor(Math.random() * placenames.length)];
-  var pos = places[city];
+function go(area) {
+  var areas = Object.keys(scenes);
+  area = area || areas[Math.floor(Math.random() * areas.length)];
+  var scene = scenes[area];
   map.setView(
-    [pos.lat, pos.lng],
-    pos.zoom
+    [scene.lat, scene.lng],
+    scene.zoom
   );
 }
 
-if (places[window.location.search.substring(1)]) {
+if (scenes[window.location.search.substring(1)]) {
   go(window.location.search.substring(1));
 } else {
   go();

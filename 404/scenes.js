@@ -1,9 +1,10 @@
-// Cool looking parts of cities around the world.
+// Cool looking parts of the world.
 // Each is represented as map bounds, and a zoom level.
 
-// Some cities are represented twice, showing different views of the city.
+// Some places are represented more than once, showing multiple different parts
+// of the area.
 
-var places = {
+var scenes = {
   rome: {
     lat: 41.89659124583866,
     lng: 12.505531311035156,
