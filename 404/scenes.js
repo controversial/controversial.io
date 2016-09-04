@@ -27,7 +27,8 @@ var scenes = {
   seoul2: {
     lat: 37.59920416140708,
     lng: 127.00281143188475,
-    zoom: 13
+    zoom: 13,
+    readableName: "Seoul"
   },
 
   new_york: {
@@ -60,7 +61,8 @@ var scenes = {
   washington2: {
     lat: 38.863887875122494,
     lng: -77.06003665924072,
-    zoom: 15
+    zoom: 15,
+    readableName: "Washington"
   },
 
   paris: {
@@ -79,7 +81,8 @@ var scenes = {
   chicago2: {
     lat: 41.92372198596431,
     lng: -87.67149925231934,
-    zoom: 15
+    zoom: 15,
+    readableName: "Chicago"
   },
 
   munich: {
@@ -196,6 +199,7 @@ var scenes = {
   baltimore: {
     lat: 39.27962323424631,
     lng: -76.59951210021973,
-    zoom: 15
+    zoom: 15,
+    readableName: "Baltimore"
   }
 };
