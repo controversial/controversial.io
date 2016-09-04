@@ -1,7 +1,7 @@
 // 404 page using mapbox to show cities around the world.
 
 // Helper to generate the kind of coordinate pairs I'm using to store cities
-function bounds() {
+function coords() {
   var center = map.getCenter();
   return {lat: center.lat, lng: center.lng, zoom: map.getZoom()};
 }

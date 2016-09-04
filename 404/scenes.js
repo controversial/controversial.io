@@ -1,7 +1,7 @@
-// Twenty cities.
+// Cool looking parts of cities around the world.
 // Each is represented as map bounds, and a zoom level.
 
-// Rome and New Orleans are each represented twice, with slightly different views.
+// Some cities are represented twice, showing different views of the city.
 
 var places = {
   rome: {
