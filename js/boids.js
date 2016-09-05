@@ -1,7 +1,8 @@
-/* Boids flocking simulation */
+/* Boids flocking simulation (TODO) */
 
-function Boid () {
-
+function Boid (x, y) {
+  this.x = x || flock.canvas.getAttribute("width") / 2;
+  this.y = y || flock.canvas.getAttribute("height") / 2;
 }
 
 

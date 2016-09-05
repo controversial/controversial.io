@@ -29,7 +29,7 @@ mail("luke@deentaylor.com", "Contact form | ".$email, $message, $headers);
 
   </head>
   <body>
-    <canvas id="boids"></canvas>
+    <canvas id="gol"></canvas>
     <div class="content-main">
       <h1>Email sent</h1>
       <h2>Thanks for getting in touch, <?php echo explode(" ", $sender)[0]; ?>. I'll get back to you shortly.</h2>
@@ -37,6 +37,6 @@ mail("luke@deentaylor.com", "Contact form | ".$email, $message, $headers);
 
     <!-- TODO: replace this with an implementation of Boids, because flocking
     birds are weakly connected to email sending -->
-    <script type="text/javascript" src="js/boids.js"></script>
+    <script type="text/javascript" src="js/gol.js"></script>
   </body>
 </html>
