@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     contentIndex: 0,
 
     // A random delay in ms will be chosen from this range.
-    typingDelay: [100, 200],
+    typingDelay: [90, 150],
 
     /* Find common words that two strings start with. */
     _commonStart: function (a, b) {
@@ -94,7 +94,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* Recursively continue advancing */
     play: function() {
-      next(this.play);
+      next(function() {
+        setTimeout(function() {
+          typewriter.play();
+        }, 2000);
+      });
     }
 
   };
