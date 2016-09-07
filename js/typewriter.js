@@ -106,7 +106,19 @@ document.addEventListener("DOMContentLoaded", function () {
      */
     init: function() {
       this.element.textContent = this.contents[0];
-      this.play();
+      this._startOnScroll = function() {
+        if (
+          window.scrollY + window.innerHeight >
+          this.element.offsetTop + this.element.offsetHeight / 2
+        ) {
+          setTimeout(function(){typewriter.play();}, 1000);
+          window.removeEventListener("scroll", scrollFunc);
+        }
+      };
+      function scrollFunc() {
+        typewriter._startOnScroll();
+      }
+      window.addEventListener("scroll", scrollFunc);
     },
 
     /* Recursively continue advancing */
