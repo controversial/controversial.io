@@ -5,13 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
   window.typewriter = {
     element: document.getElementById("typewriter"),
     contents: [
-      "I write code.",
-      "I write software.",
-      "I write apps.",
-      "I write libraries.",
-      "I write simulations",
-      "I design experiences.",
-      "I design interfaces.",
+      "I write code.\xa0",
+      "I write software.\xa0",
+      "I write apps.\xa0",
+      "I write libraries.\xa0",
+      "I write simulations.\xa0",
+      "I design experiences.\xa0",
+      "I design interfaces.\xa0",
     ],
     contentIndex: 0,
 
