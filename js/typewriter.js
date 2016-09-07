@@ -11,8 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ],
     contentIndex: 0,
 
-    // A random delay in ms will be chosen from this range.
-    typingDelay: [90, 150],
+    // A random delay in ms will be chosen from this range. The resulting delay
+    // is multiplied for typing, so this isn't exact.
+    typingDelay: [50, 100],
 
     /* Find common words that two strings start with. */
     _commonStart: function (a, b) {
@@ -73,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
           this.element.textContent += text[i];
           i++;
-          setTimeout(function(){typewriter._type1();}, this._getTypingDelay());
+          setTimeout(function(){typewriter._type1();}, this._getTypingDelay() * 1.5);
         }
       };
       this._type1();
@@ -92,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
         this.contents[this.contentIndex]
       );
       this.backspace(changesNeeded.del, function() {
-        setTimeout(function(){typewriter.type(changesNeeded.add, callback);}, 300);
+        setTimeout(function(){typewriter.type(changesNeeded.add, callback);}, 200);
       });
     },
 
@@ -109,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
       this.next(function() {
         setTimeout(function() {
           typewriter.play();
-        }, 2000);
+        }, 3000);
       });
     }
 
