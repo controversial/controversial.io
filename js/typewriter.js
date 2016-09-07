@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (toGo === 0) {
           callback();
         } else {
-          console.log(this, this.element);
           content = this.element.textContent;
           this.element.textContent = content.slice(0, content.length - 1);
           toGo--;
@@ -62,6 +61,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       };
       this._backspace1();
+    },
+
+    /* Animate inserting a given string at the end of the text */
+    type: function(text, callback) {
+      var i = 0;
+      callback = callback || function() {};
+      this._type1 = function() {
+        if (i === text.length) {
+          callback();
+        } else {
+          this.element.textContent += text[i];
+          i++;
+          setTimeout(function(){typewriter._type1();}, this._getTypingDelay());
+        }
+      };
+      this._type1();
     },
 
     /* Animate advancing to the next phrase */
