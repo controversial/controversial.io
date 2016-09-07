@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
     ],
     contentIndex: 0,
 
+    // A random delay in ms will be chosen from this range.
+    typingDelay: [100, 200],
+
     /* Find common words that two strings start with. */
     _commonStart: function (a, b) {
       var aWords = a.split(" ");
@@ -37,6 +40,28 @@ document.addEventListener("DOMContentLoaded", function () {
         del: numCharactersToDelete,
         add: charactersToAdd
       };
+    },
+
+    _getTypingDelay: function() {
+      return Math.floor(Math.random() * (this.typingDelay[1] - this.typingDelay[0]) + this.typingDelay[0]);
+    },
+
+    /* Animate bacspacing by a given number of characters */
+    backspace: function(num, callback) {
+      var content, toGo = num;
+      callback = callback || function() {};
+      this._backspace1 = function() {
+        if (toGo === 0) {
+          callback();
+        } else {
+          console.log(this, this.element);
+          content = this.element.textContent;
+          this.element.textContent = content.slice(0, content.length - 1);
+          toGo--;
+          setTimeout(function(){typewriter._backspace1();}, this._getTypingDelay());
+        }
+      };
+      this._backspace1();
     },
 
     /* Animate advancing to the next phrase */
