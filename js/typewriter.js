@@ -81,7 +81,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* Animate advancing to the next phrase */
     next: function(callback) {
-
+      this.contentIndex++;
+      // Loop back
+      if (this.contentIndex === this.contents.length) {
+        this.contentIndex = 0;
+      }
+      // Make changes
+      var changesNeeded = this._transitionDescription(
+        this.element.textContent,
+        this.contents[this.contentIndex]
+      );
+      this.backspace(changesNeeded.del, function() {
+        setTimeout(function(){typewriter.type(changesNeeded.add, callback);}, 300);
+      });
     },
 
     /* Fill the element with the first phrase (non-animated) and set up other
@@ -89,11 +101,12 @@ document.addEventListener("DOMContentLoaded", function () {
      */
     init: function() {
       this.element.textContent = this.contents[0];
+      this.play();
     },
 
     /* Recursively continue advancing */
     play: function() {
-      next(function() {
+      this.next(function() {
         setTimeout(function() {
           typewriter.play();
         }, 2000);
