@@ -6,8 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
     element: document.getElementById("typewriter"),
     contents: [
       "I write code.",
+      "I write software.",
       "I write apps.",
-      "I create experiences."
+      "I write libraries.",
+      "I write simulations",
+      "I design experiences.",
+      "I design interfaces.",
     ],
     contentIndex: 0,
 
