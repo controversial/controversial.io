@@ -89,7 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
      */
     init: function() {
       this.element.textContent = this.contents[0];
-      this.element.style.borderRight = "5px solid #fff";
     },
 
     /* Recursively continue advancing */
