@@ -1,6 +1,10 @@
 var gulp = require("gulp");
-var sass = require("gulp-sass");
+
 var sourcemaps = require("gulp-sourcemaps");
+
+var sass = require("gulp-sass");
+
+var concat = require("gulp-concat");
 
 
 gulp.task("sass", function() {
@@ -8,6 +12,12 @@ gulp.task("sass", function() {
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: "compressed"}))
     .pipe(sourcemaps.write())
+    .pipe(gulp.dest("./dist"));
+});
+
+gulp.task("js", function() {
+  gulp.src("./js/**/*.js")
+    .pipe(concat("scripts.js"))
     .pipe(gulp.dest("./dist"));
 });
 
