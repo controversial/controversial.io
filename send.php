@@ -29,7 +29,7 @@ mail("luke@deentaylor.com", "Contact form | ".$email, $message, $headers);
 
   </head>
   <body>
-    <canvas id="gol"></canvas>
+    <canvas id="boids"></canvas>
     <div class="content-main">
       <h1>Email sent</h1>
       <h2>Thanks for getting in touch, <?php echo explode(" ", $sender)[0]; ?>. I'll get back to you shortly.</h2>
