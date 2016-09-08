@@ -8,7 +8,7 @@ gulp.task("sass", function() {
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: "compressed"}))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest("./css"));
+    .pipe(gulp.dest("./dist"));
 });
 
 gulp.task("watch", function() {
