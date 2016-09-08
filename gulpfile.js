@@ -49,8 +49,6 @@ gulp.task("watch", ["sass", "js"], function() {
   gulp.watch("./js/**/*.js", ["js"]);
 });
 
-gulp.task("default", ["watch"]);
-
 
 // Serving
 
@@ -65,3 +63,6 @@ gulp.task('serve', function() {
     browserSync.reload
   );
 });
+
+
+gulp.task("default", ["watch", "serve"]);
