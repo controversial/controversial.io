@@ -18,7 +18,7 @@ gulp.task("sass", function() {
 
 gulp.task("js", function() {
   // Scripts for the front page
-  gulp.src(["js/gol.js", "js/init.js", "js/typewriter.js"])
+  gulp.src("js/home/*.js")
     .pipe(sourcemaps.init())
     .pipe(concat("home.js"))
     .pipe(uglify())
@@ -26,7 +26,7 @@ gulp.task("js", function() {
     .pipe(gulp.dest("./dist"));
 
   // Scrips for the "email sent" page
-  gulp.src("js/gol.js")
+  gulp.src("js/emailsent/*.js")
     .pipe(sourcemaps.init())
     .pipe(concat("emailsent.js"))
     .pipe(uglify())
