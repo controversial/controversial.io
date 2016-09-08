@@ -17,21 +17,20 @@ gulp.task("sass", function() {
 });
 
 gulp.task("js", function() {
-  // Scripts for the front page
-  gulp.src("js/home/*.js")
-    .pipe(sourcemaps.init())
-    .pipe(concat("home.js"))
-    .pipe(uglify())
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest("./dist"));
+  // Build all the scripts from a directory into a file.
+  function buildScriptsForPage(dir, path) {
+    gulp.src(dir+"/*.js")
+      .pipe(sourcemaps.init())
+      .pipe(concat(path))
+      .pipe(uglify())
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest("./dist"));
+  }
 
+  // Scripts for the front page
+  buildScriptsForPage("js/home", "home.js");
   // Scrips for the "email sent" page
-  gulp.src("js/emailsent/*.js")
-    .pipe(sourcemaps.init())
-    .pipe(concat("emailsent.js"))
-    .pipe(uglify())
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest("./dist"));
+  buildScriptsForPage("js/emailsent", "emailsent.js");
 });
 
 gulp.task("watch", function() {
