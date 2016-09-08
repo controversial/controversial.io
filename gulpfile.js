@@ -5,6 +5,7 @@ var sourcemaps = require("gulp-sourcemaps");
 var sass = require("gulp-sass");
 
 var concat = require("gulp-concat");
+var uglify = require("gulp-uglify");
 
 
 gulp.task("sass", function() {
@@ -17,7 +18,10 @@ gulp.task("sass", function() {
 
 gulp.task("js", function() {
   gulp.src("./js/**/*.js")
+    .pipe(sourcemaps.init())
     .pipe(concat("scripts.js"))
+    .pipe(uglify())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest("./dist"));
 });
 
