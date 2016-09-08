@@ -10,3 +10,7 @@ gulp.task("sass", function() {
     .pipe(sourcemaps.write())
     .pipe(gulp.dest("./css"));
 });
+
+gulp.task("watch", function() {
+  gulp.watch("./sass/**/*.sass", ["sass"]);
+});
