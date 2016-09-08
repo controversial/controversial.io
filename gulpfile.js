@@ -44,7 +44,7 @@ gulp.task("js", function() {
 
 // Watching
 
-gulp.task("watch", function() {
+gulp.task("watch", ["sass", "js"], function() {
   gulp.watch("./sass/**/*.sass", ["sass"]);
   gulp.watch("./js/**/*.js", ["js"]);
 });
