@@ -7,6 +7,8 @@ var sass = require("gulp-sass");
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
 
+var browserSync = require('browser-sync').create();
+
 
 // SASS compilation and minification
 
@@ -15,7 +17,8 @@ gulp.task("sass", function() {
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: "compressed"}))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest("./dist"));
+    .pipe(gulp.dest("./dist"))
+    .pipe(browserSync.reload({stream: true}));
 });
 
 
@@ -47,3 +50,18 @@ gulp.task("watch", function() {
 });
 
 gulp.task("default", ["watch"]);
+
+
+// Serving
+
+gulp.task('serve', function() {
+  browserSync.init({
+    server: {
+      baseDir: '.'
+    },
+  });
+  gulp.watch(
+    ["./js/**/*.js", "./sass/**/*.sass", "./**/*.html", "!node_modules"],
+    browserSync.reload
+  );
+});
