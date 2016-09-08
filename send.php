@@ -37,6 +37,6 @@ mail("luke@deentaylor.com", "Contact form | ".$email, $message, $headers);
 
     <!-- TODO: replace this with an implementation of Boids, because flocking
     birds are weakly connected to email sending -->
-    <script type="text/javascript" src="js/gol.js"></script>
+    <script type="text/javascript" src="dist/emailsent.js"></script>
   </body>
 </html>
