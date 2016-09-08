@@ -8,6 +8,8 @@ var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
 
 
+// SASS compilation and minification
+
 gulp.task("sass", function() {
   gulp.src("./sass/**/*.sass")
     .pipe(sourcemaps.init())
@@ -15,6 +17,9 @@ gulp.task("sass", function() {
     .pipe(sourcemaps.write())
     .pipe(gulp.dest("./dist"));
 });
+
+
+// JS compilation and minification
 
 gulp.task("js", function() {
   // Build all the scripts from a directory into a file.
@@ -33,8 +38,12 @@ gulp.task("js", function() {
   buildScriptsForPage("js/emailsent", "emailsent.js");
 });
 
+
+// Watching
+
 gulp.task("watch", function() {
   gulp.watch("./sass/**/*.sass", ["sass"]);
+  gulp.watch("./js/**/*.js", ["js"]);
 });
 
 gulp.task("default", ["watch"]);
