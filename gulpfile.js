@@ -34,7 +34,8 @@ gulp.task("js", function() {
       .pipe(concat(path))
       .pipe(uglify())
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest("./dist"));
+      .pipe(gulp.dest("./dist"))
+      .pipe(browserSync.reload({stream: true}));
   }
 
   // Scripts for the front page
@@ -61,7 +62,7 @@ gulp.task('serve', function() {
     },
   });
   gulp.watch(
-    ["./js/**/*.js", "./**/*.html", "!node_modules"],
+    ["./**/*.html", "!node_modules"],
     browserSync.reload
   );
 });
