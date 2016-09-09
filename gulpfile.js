@@ -3,6 +3,7 @@ var gulp = require("gulp");
 var sourcemaps = require("gulp-sourcemaps");
 
 var sass = require("gulp-sass");
+var autoprefixer = require("gulp-autoprefixer");
 
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
@@ -17,6 +18,7 @@ gulp.task("sass", function() {
     .pipe(sourcemaps.init())
     .pipe(sass({outputStyle: "compressed"}))
     .pipe(sourcemaps.write())
+    .pipe(autoprefixer({browsers: "last 5 versions"}))
     .pipe(gulp.dest("./dist"))
     .pipe(browserSync.reload({stream: true}));
 });
@@ -59,7 +61,7 @@ gulp.task('serve', function() {
     },
   });
   gulp.watch(
-    ["./js/**/*.js", "./sass/**/*.sass", "./**/*.html", "!node_modules"],
+    ["./js/**/*.js", "./**/*.html", "!node_modules"],
     browserSync.reload
   );
 });
