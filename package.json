@@ -1,7 +1,7 @@
 {
   "name": "controversial.io",
   "scripts": {
-    "start": "lite-server"
+    "start": "gulp"
   },
   "devDependencies": {
     "browser-sync": "^2.15.0",
