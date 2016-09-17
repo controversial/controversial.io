@@ -44,10 +44,12 @@ gulp.task("js", function() {
   buildScriptsForPage("js/emailsent", "emailsent.js");
 });
 
+// Compile everything at once
+gulp.task("build", ["sass", "js"]);
 
 // Watching
 
-gulp.task("watch", ["sass", "js"], function() {
+gulp.task("watch", ["build"], function() {
   gulp.watch("./sass/**/*.sass", ["sass"]);
   gulp.watch("./js/**/*.js", ["js"]);
 });
