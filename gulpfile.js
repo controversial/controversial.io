@@ -15,7 +15,7 @@ var browserSync = require('browser-sync').create();
 // SASS compilation and minification
 
 gulp.task("sass", function() {
-  gulp.src("./sass/**/*.sass")
+  gulp.src("./sass/main.sass")
     .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(sass({outputStyle: "compressed"}))
