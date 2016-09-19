@@ -4,6 +4,7 @@ var sourcemaps = require("gulp-sourcemaps");
 
 var sass = require("gulp-sass");
 var autoprefixer = require("gulp-autoprefixer");
+var plumber = require("gulp-plumber"); // Error handling for sass
 
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
@@ -16,6 +17,7 @@ var browserSync = require('browser-sync').create();
 gulp.task("sass", function() {
   gulp.src("./sass/**/*.sass")
     .pipe(sourcemaps.init())
+    .pipe(plumber())
     .pipe(sass({outputStyle: "compressed"}))
     .pipe(sourcemaps.write())
     .pipe(autoprefixer({browsers: "last 5 versions"}))
