@@ -40,9 +40,15 @@ $slider-shadow-color: rgba(0, 0, 0, .25)
     display: block
     font-size: 30px
     text-align: center
+    transition: all .1s ease-in-out
+    width: 40px
 
     &.ion-chevron-left
       left: 5%
 
     &.ion-chevron-right
       right: 5%
+
+    &:hover
+      transform: scale(1.2, 1.2)
+      text-shadow: 2px 2px 5px $slider-shadow-color
