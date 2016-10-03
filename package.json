@@ -1,7 +1,8 @@
 {
   "name": "controversial.io",
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "test": "xo"
   },
   "devDependencies": {
     "browser-sync": "^2.15.0",
@@ -11,6 +12,18 @@
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^2.0.0"
+    "gulp-uglify": "^2.0.0",
+    "xo": "^0.16.0"
+  },
+
+  "xo": {
+    "space": 2,
+    "esnext": true,
+    "envs": [
+      "browser"
+    ],
+    "rules": {
+      "quotes": ["error", "double", {"allowTemplateLiterals": true}]
+    }
   }
 }
