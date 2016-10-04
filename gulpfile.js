@@ -7,6 +7,7 @@ var autoprefixer = require("gulp-autoprefixer");
 var plumber = require("gulp-plumber"); // Error handling for sass
 
 var concat = require("gulp-concat");
+var babel = require("gulp-babel");
 var uglify = require("gulp-uglify");
 
 var browserSync = require('browser-sync').create();
@@ -34,6 +35,9 @@ gulp.task("js", function() {
     gulp.src(dir+"/*.js")
       .pipe(sourcemaps.init())
       .pipe(concat(path))
+      .pipe(babel({
+        presets: ["es2015"]
+      }))
       .pipe(uglify())
       .pipe(sourcemaps.write())
       .pipe(gulp.dest("./dist"))
