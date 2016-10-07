@@ -34,10 +34,10 @@ gulp.task("js", function() {
   function buildScriptsForPage(dir, path) {
     gulp.src(dir+"/*.js")
       .pipe(sourcemaps.init())
-      .pipe(concat(path))
       .pipe(babel({
         presets: ["es2015"]
       }))
+      .pipe(concat(path))
       .pipe(uglify())
       .pipe(sourcemaps.write())
       .pipe(gulp.dest("./dist"))
@@ -70,7 +70,7 @@ gulp.task('serve', function() {
     },
   });
   gulp.watch(
-    ["./**/*.html", "!node_modules"],
+    ["./*.html", "./dist/**/*.js"],
     browserSync.reload
   );
 });
