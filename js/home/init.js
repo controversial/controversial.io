@@ -3,8 +3,7 @@
 // animations' progress can be controlled by scrolling. This does what
 // ScrollMagic does except without the bugs.
 
-
-var elem = {
+const elem = {
   body: document.body,
 
   header: document.getElementsByTagName("header")[0],
@@ -16,27 +15,26 @@ var elem = {
   laptopBase: document.getElementsByClassName("laptop-base")[0]
 };
 
-
 // HEADER TRANSITION LOGIC ====================================================
 
-
-function setHeaderElementsPinned(fixed) {
-  var elements = [elem.headerTitle, elem.laptop];
-  for (var i=0; i<elements.length; i++) {
+const setHeaderElementsPinned = fixed => {
+  const elements = [elem.headerTitle, elem.laptop];
+  // Switch between fixed and absolute, pinning elements in the appropriate place
+  for (let i = 0; i < elements.length; i++) {
     elements[i].style.position = fixed ? "fixed" : "absolute";
     elements[i].style.top = fixed ? "50vh" : window.innerHeight + "px";
   }
-}
+};
 
-function updateHeaderElements(progress) {
-
-  function tween(a, b) {
-    return a + (b - a) * progress;
-  }
+const updateHeaderElements = progress => {
+  // Blends two values based on "progress" made between them.
+  const tween = (a, b) => {
+    return a + ((b - a) * progress);
+  };
 
   // FIT MAIN HEADER TO LAPTOP SCREEN
 
-  whRatio = elem.laptopContent.offsetWidth / elem.laptopContent.offsetHeight;
+  const whRatio = elem.laptopContent.offsetWidth / elem.laptopContent.offsetHeight;
   elem.header.style.width = tween(
     100,
     (100 * elem.laptopContent.offsetWidth / window.innerWidth)
@@ -46,8 +44,8 @@ function updateHeaderElements(progress) {
     (100 * elem.laptopContent.offsetWidth / window.innerWidth) / whRatio
   ) + "vw";
   elem.header.style.top = (progress < 1 ?
-    tween(window.innerHeight / 2, window.innerHeight / 2 - elem.laptopBase.offsetHeight / 2) :
-    window.innerHeight - elem.laptopBase.offsetHeight / 2) +
+    tween(window.innerHeight / 2, (window.innerHeight / 2) - (elem.laptopBase.offsetHeight / 2)) :
+    window.innerHeight - (elem.laptopBase.offsetHeight / 2)) +
   "px";
   elem.header.style.position = progress < 1 ? "fixed" : "absolute";
 
@@ -59,25 +57,21 @@ function updateHeaderElements(progress) {
   // ADJUST CANVAS SETTINGS
 
   // Mean of X scale difference and Y scale difference
-  var canvasScale = (gol.canvas.offsetWidth / window.innerWidth + gol.canvas.offsetHeight / window.innerHeight) / 2;
-  gol.idealCellSize = 20 * canvasScale;
-  gol.sizeChanged();
-}
-
-
+  const canvasScale = ((window.gol.canvas.offsetWidth / window.innerWidth) + (window.gol.canvas.offsetHeight / window.innerHeight)) / 2;
+  window.gol.idealCellSize = 20 * canvasScale;
+  window.gol.sizeChanged();
+};
 
 // SCROLL LISTENER ============================================================
 
-
-
-document.addEventListener("scroll", function(e) {
-  var scroll = window.scrollY;
+document.addEventListener("scroll", () => {
+  const scroll = window.scrollY;
 
   // Header
 
-  var headerProgress = scroll / (window.innerHeight / 2);
+  const headerProgress = scroll / (window.innerHeight / 2);
 
-  switch(true) {
+  switch (true) {
     case (scroll < 5):
       setHeaderElementsPinned(true);
       updateHeaderElements(0);
