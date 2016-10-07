@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.typewriter = {
     element: document.getElementById("typewriter"),
     contents: [
-      "I write codez.\xa0",
+      "I write code.\xa0",
       "I write software.\xa0",
       "I write websites.\xa0",
       "I write apps.\xa0",
@@ -20,12 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
     typingDelay: [50, 100],
 
     /* Find common words that two strings start with. */
-    _commonStart: (a, b) => {
+    _commonStart(a, b) {
       const aWords = a.split(" ");
       const bWords = b.split(" ");
 
       const commonWords = [];
-      for (const i of aWords) {
+      for (let i = 0; i < aWords.length; a++) {
         if (aWords[i] === bWords[i]) {
           commonWords.push(aWords[i]);
         } else {
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /* Get instructions for transforming between two strings in the form of
      * number of characters to delete and characters to add.
      */
-    _transitionDescription: (a, b) => {
+    _transitionDescription(a, b) {
       const common = this._commonStart(a, b);
       const numCharactersToDelete = a.length - common.length;
       const charactersToAdd = b.slice(common.length);
@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
       };
     },
 
-    _getTypingDelay: () => {
+    _getTypingDelay() {
       return Math.floor((Math.random() * (this.typingDelay[1] - this.typingDelay[0])) + this.typingDelay[0]);
     },
 
     /* Animate bacspacing by a given number of characters */
-    backspace: (num, callback) => {
+    backspace(num, callback) {
       let content;
       let toGo = num;
       callback = callback || (() => {});
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
 
     /* Animate inserting a given string at the end of the text */
-    type: (text, callback) => {
+    type(text, callback) {
       let i = 0;
       callback = callback || (() => {});
       this._type1 = () => {
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
 
     /* Animate advancing to the next phrase */
-    next: callback => {
+    next(callback) {
       this.contentIndex++;
       // Loop back
       if (this.contentIndex === this.contents.length) {
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /* Fill the element with the first phrase (non-animated) and set up other
      * miscellaneous details.
      */
-    init: () => {
+    init() {
       this.element.textContent = this.contents[0];
       this._startOnScroll = () => {
         if (
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
 
     /* Recursively continue advancing */
-    play: () => {
+    play() {
       this.next(() => {
         setTimeout(() => window.typewriter.play(), 3000);
       });
