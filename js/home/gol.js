@@ -1,8 +1,7 @@
 /* Conway's Game of Life */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   window.gol = {
-
 
     // BASIC ATTRIBUTES =======================================================
 
@@ -19,13 +18,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     board: undefined,
 
-
     // HELPER FUNCTIONS =======================================================
 
-
-    _getBlankBoard: function() {
-      var array = [];
-      for (var i=0; i<this.boardSize[0]; i++) {
+    _getBlankBoard() {
+      const array = [];
+      for (let i = 0; i < this.boardSize[0]; i++) {
         array.push(
           new Array(this.boardSize[1]).fill(false)
         );
@@ -33,100 +30,99 @@ document.addEventListener("DOMContentLoaded", function () {
       return array;
     },
 
-
     // RENDERING FUNCTIONS ====================================================
     // These functions connect the simulation to the browser
 
-
     // Called to update the game if the canvas size
     // changes.
+    sizeChanged() {
+      // Spare loop variables
+      let i;
+      let k;
 
-    sizeChanged: function() {
-      var i, k,  // Spare loop variables
-          width = gol.canvas.offsetWidth,
-          height = gol.canvas.offsetHeight;
+      const width = window.gol.canvas.offsetWidth;
+      const height = window.gol.canvas.offsetHeight;
 
       // Update canvas coordinate system
-      gol.canvas.setAttribute("width", width);
-      gol.canvas.setAttribute("height", height);
+      window.gol.canvas.setAttribute("width", width);
+      window.gol.canvas.setAttribute("height", height);
 
       // Update tile size by finding a width that will
       // evenly fill the canvas and is closest to the
       // idealCellSize, then doing the same thing for
       // height.
 
-      gol.cellSize = [
-        width / Math.round(width / gol.idealCellSize),
-        height / Math.round(height / gol.idealCellSize)
+      window.gol.cellSize = [
+        width / Math.round(width / window.gol.idealCellSize),
+        height / Math.round(height / window.gol.idealCellSize)
       ];
 
       // When board size changes, kill cells that are
       // cut off and randomize new terrain.
 
-      var oldBoardSize = gol.boardSize;  // Store old size
-      gol.boardSize = [  // Adjust size
-        Math.round(width / gol.cellSize[0]),
-        Math.round(height / gol.cellSize[1])
+      const oldBoardSize = window.gol.boardSize;  // Store old size
+      window.gol.boardSize = [  // Adjust size
+        Math.round(width / window.gol.cellSize[0]),
+        Math.round(height / window.gol.cellSize[1])
       ];
-      var diff = [  // Calculate size difference
-        gol.boardSize[0] - oldBoardSize[0],
-        gol.boardSize[1] - oldBoardSize[1]
+      const diff = [  // Calculate size difference
+        window.gol.boardSize[0] - oldBoardSize[0],
+        window.gol.boardSize[1] - oldBoardSize[1]
       ];
 
       // Kill dead cells
 
       if (diff[0] < 0) {
-        gol.board = gol.board.slice(0, gol.boardSize[0]);
+        window.gol.board = window.gol.board.slice(0, window.gol.boardSize[0]);
       }
       if (diff[1] < 0) {
-        for (i=0; i<gol.board.length; i++) {
-          gol.board[i] = gol.board[i].slice(0, gol.boardSize[1]);
+        for (i = 0; i < window.gol.board.length; i++) {
+          window.gol.board[i] = window.gol.board[i].slice(0, window.gol.boardSize[1]);
         }
       }
 
       // Populate new cells
 
-      for (i=0; i<diff[0]; i++) {
-        newRow = new Array(gol.boardSize[0]).fill(false);
-        for (k=0; k<newRow.length; k++) {
+      for (i = 0; i < diff[0]; i++) {
+        const newRow = new Array(window.gol.boardSize[0]).fill(false);
+        for (k = 0; k < newRow.length; k++) {
           newRow[k] = Math.random() < 0.125;
         }
-        gol.board.push(newRow);
+        window.gol.board.push(newRow);
       }
-      for (i=0; i<diff[1]; i++) {
-        for (k=0; k<gol.board.length; k++) {
-          gol.board[k].push(Math.random() < 0.125);
+      for (i = 0; i < diff[1]; i++) {
+        for (k = 0; k < window.gol.board.length; k++) {
+          window.gol.board[k].push(Math.random() < 0.125);
         }
       }
 
-      gol.redraw();
+      window.gol.redraw();
     },
-
 
     // Randomize the game state
 
-    randomize: function() {
-      var width = this.boardSize[0],
-          height = this.boardSize[1];
+    randomize() {
+      const width = this.boardSize[0];
+      const height = this.boardSize[1];
 
-      for (var x=0; x<width; x++) {
-        for (var y=0; y<height; y++) {
+      for (let x = 0; x < width; x++) {
+        for (let y = 0; y < height; y++) {
           this.board[x][y] = Math.random() < 0.125;
         }
       }
     },
 
-
     // Render the board on the canvas
 
-    redraw: function() {
-      var width = this.canvas.getAttribute("width"),
-          height = this.canvas.getAttribute("height");
+    redraw() {
+      const width = this.canvas.getAttribute("width");
+      const height = this.canvas.getAttribute("height");
+
       this.ctx.clearRect(0, 0, width, height);
       this.ctx.fillStyle = this.cellColor;
       // Render board
-      for (var x=0; x<this.boardSize[0]; x++) {
-        for (var y=0; y<this.boardSize[1]; y++) {
+      for (let x = 0; x < this.boardSize[0]; x++) {
+        for (let y = 0; y < this.boardSize[1]; y++) {
           if (this.board[x][y]) {
             this.ctx.fillRect(
               this.cellSize[0] * x,
@@ -139,64 +135,62 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     },
 
-
     // GAME LOGIC =============================================================
 
-
-    countLiveNeighbors: function(x, y) {
-      total = 0;
+    countLiveNeighbors(x, y) {
+      let total = 0;
 
       // Is there room in directions of:
       //   - negative x
       //   - negative y
       //   - positive x
       //   - positive y
-      xroomneg = x > 0;
-      yroomneg = y > 0;
-      xroompos = x < this.boardSize[0] - 1;
-      yroompos = y < this.boardSize[1] - 1;
+      const xroomneg = x > 0;
+      const yroomneg = y > 0;
+      const xroompos = x < this.boardSize[0] - 1;
+      const yroompos = y < this.boardSize[1] - 1;
 
-      neighbors = [
+      const neighbors = [
         // above
-        yroomneg && this.board[x][y-1],
+        yroomneg && this.board[x][y - 1],
         // above right
-        xroompos && yroomneg && this.board[x+1][y-1],
+        xroompos && yroomneg && this.board[x + 1][y - 1],
         // right
-        xroompos && this.board[x+1][y],
+        xroompos && this.board[x + 1][y],
         // below right
-        xroompos && yroompos && this.board[x+1][y+1],
+        xroompos && yroompos && this.board[x + 1][y + 1],
         // below
-        yroompos && this.board[x][y+1],
+        yroompos && this.board[x][y + 1],
         // below left
-        xroomneg && yroompos && this.board[x-1][y+1],
+        xroomneg && yroompos && this.board[x - 1][y + 1],
         // left
-        xroomneg && this.board[x-1][y],
+        xroomneg && this.board[x - 1][y],
         // above and left
-        xroomneg && yroompos && this.board[x-1][y-1]
+        xroomneg && yroompos && this.board[x - 1][y - 1]
       ];
-      for (var i=0; i<neighbors.length; i++) {
+      for (let i = 0; i < neighbors.length; i++) {
         total += neighbors[i];
       }
       return total;
     },
 
-    judgeFate: function(isLive, liveNeighbors) {
+    judgeFate(isLive, liveNeighbors) {
       if (isLive) {
         // Any live cell with fewer than 2 live neighbors
         // dies of underpopulation; any live cell with more
         // than three dies of overpopulation.
         return (liveNeighbors === 2 || liveNeighbors === 3);
-      } else {
-        // Any dead cell with exactly 3 neighbors is born
-        return liveNeighbors === 3;
       }
+
+      // Any dead cell with exactly 3 neighbors is born
+      return liveNeighbors === 3;
     },
 
-    step: function() {
-      newState = this._getBlankBoard();
+    step() {
+      const newState = this._getBlankBoard();
 
-      for (var x=0; x<this.boardSize[0]; x++) {
-        for (var y=0; y<this.boardSize[1]; y++) {
+      for (let x = 0; x < this.boardSize[0]; x++) {
+        for (let y = 0; y < this.boardSize[1]; y++) {
           newState[x][y] = this.judgeFate(
             this.board[x][y],
             this.countLiveNeighbors(x, y)
@@ -207,54 +201,50 @@ document.addEventListener("DOMContentLoaded", function () {
       this.board = newState;
     },
 
-
     // USER INTERACTION =======================================================
-
 
     // On a desktop computer, cells are born
     // when moused over. On a mobile device
     // it's wherever a touch occurs or is dragged.
-    interacted: function(e) {
+    interacted(e) {
       // Position of the canvas in the viewport
-      var bbox = gol.canvas.getBoundingClientRect(),
+      const bbox = window.gol.canvas.getBoundingClientRect();
       // Position of the mouse in the viewport
-          absx = e.clientX, absy=e.clientY;
+      const absx = e.clientX;
+      const absy = e.clientY;
 
       // If these two positions intersect:
-      if (absx > bbox.left  &&
-          absy > bbox.top   &&
+      if (absx > bbox.left &&
+          absy > bbox.top &&
           absx < bbox.right &&
           absy < bbox.bottom
       ) {
         // Calculate mouse position relative to canvas
-        var relx = absx - bbox.left,
-            rely = absy - bbox.top;
+        const relx = absx - bbox.left;
+        const rely = absy - bbox.top;
         // Calculate cell position
-        var cellx = Math.floor(relx / gol.cellSize[0]),
-            celly = Math.floor(rely / gol.cellSize[1]);
+        const cellx = Math.floor(relx / window.gol.cellSize[0]);
+        const celly = Math.floor(rely / window.gol.cellSize[1]);
 
-        gol.board[cellx][celly] = true;
+        window.gol.board[cellx][celly] = true;
       }
     },
 
-
     // CONTROL FUNCTIONS ======================================================
-
 
     // Begin the loop
 
-    start: function() {
-      gol.step();
-      gol.redraw();
-      setTimeout(function() {
-        requestAnimationFrame(gol.start);
-      }, 1000 / gol.fps);
+    start() {
+      window.gol.step();
+      window.gol.redraw();
+      setTimeout(() => {
+        requestAnimationFrame(window.gol.start);
+      }, 1000 / window.gol.fps);
     },
-
 
     // Initialize and begin
 
-    init: function() {
+    init() {
       // Temporary board
       this.board = this._getBlankBoard();
       // Calculate sizes
@@ -266,11 +256,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-
-
-
-  window.addEventListener("resize", gol.sizeChanged);
-  document.addEventListener("mousemove", gol.interacted);
-  gol.init();
-
+  window.addEventListener("resize", window.gol.sizeChanged);
+  document.addEventListener("mousemove", window.gol.interacted);
+  window.gol.init();
 });
