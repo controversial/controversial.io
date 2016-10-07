@@ -1,21 +1,20 @@
-var gulp = require("gulp");
+const gulp = require("gulp");
 
-var sourcemaps = require("gulp-sourcemaps");
+const sourcemaps = require("gulp-sourcemaps");
 
-var sass = require("gulp-sass");
-var autoprefixer = require("gulp-autoprefixer");
-var plumber = require("gulp-plumber"); // Error handling for sass
+const sass = require("gulp-sass");
+const autoprefixer = require("gulp-autoprefixer");
+const plumber = require("gulp-plumber"); // Error handling for sass
 
-var concat = require("gulp-concat");
-var babel = require("gulp-babel");
-var uglify = require("gulp-uglify");
+const concat = require("gulp-concat");
+const babel = require("gulp-babel");
+const uglify = require("gulp-uglify");
 
-var browserSync = require('browser-sync').create();
-
+const browserSync = require("browser-sync").create();
 
 // SASS compilation and minification
 
-gulp.task("sass", function() {
+gulp.task("sass", () => {
   gulp.src("./sass/main.sass")
     .pipe(sourcemaps.init())
     .pipe(plumber())
@@ -26,13 +25,12 @@ gulp.task("sass", function() {
     .pipe(browserSync.reload({stream: true}));
 });
 
-
 // JS compilation and minification
 
-gulp.task("js", function() {
+gulp.task("js", () => {
   // Build all the scripts from a directory into a file.
   function buildScriptsForPage(dir, path) {
-    gulp.src(dir+"/*.js")
+    gulp.src(dir + "/*.js")
       .pipe(sourcemaps.init())
       .pipe(babel({
         presets: ["es2015"]
@@ -55,25 +53,23 @@ gulp.task("build", ["sass", "js"]);
 
 // Watching
 
-gulp.task("watch", ["build"], function() {
+gulp.task("watch", ["build"], () => {
   gulp.watch("./sass/**/*.sass", ["sass"]);
   gulp.watch("./js/**/*.js", ["js"]);
 });
 
-
 // Serving
 
-gulp.task('serve', function() {
+gulp.task("serve", () => {
   browserSync.init({
     server: {
-      baseDir: '.'
-    },
+      baseDir: "."
+    }
   });
   gulp.watch(
     ["./*.html", "./dist/**/*.js"],
     browserSync.reload
   );
 });
-
 
 gulp.task("default", ["watch", "serve"]);
