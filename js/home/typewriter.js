@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const bWords = b.split(" ");
 
       const commonWords = [];
-      for (let i = 0; i < aWords.length; a++) {
+      for (let i = 0; i < aWords.length; i++) {
         if (aWords[i] === bWords[i]) {
           commonWords.push(aWords[i]);
         } else {
