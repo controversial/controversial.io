@@ -23,8 +23,10 @@ $slider-shadow-color: rgba(0, 0, 0, .25)
     border-radius: 10px
     box-shadow: 15px 15px 20px 0 $slider-shadow-color
 
+    animation: 1s slide-in-left ease-in-out
+
     &:hover
-      animation: 1s slide-out-left
+      animation: 1s slide-out-left ease-in-out
 
     h5
       margin: 0
@@ -58,7 +60,14 @@ $slider-shadow-color: rgba(0, 0, 0, .25)
 
 @keyframes slide-out-left
   0%
-    position: absolute
+    left: 0
 
   100%
     left: -100vw
+
+@keyframes slide-in-left
+  0%
+    left: -100vw
+
+  100%
+    left: 0
