@@ -52,7 +52,7 @@ const updateHeaderElements = progress => {
   // DEAL WITH ASSOCIATED TIDBITS
 
   elem.downIndicator.style.opacity = 1 - progress;  // Fade out down indicator
-  elem.headerTitle.style.fontSize = tween(5, 4) + "vw";  // Shrink header
+  elem.headerTitle.style.fontSize = tween(5, 3.5) + "vw";  // Shrink header
 
   // ADJUST CANVAS SETTINGS
 
