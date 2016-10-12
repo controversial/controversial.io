@@ -23,10 +23,10 @@ $slider-shadow-color: rgba(0, 0, 0, .25)
     border-radius: 10px
     box-shadow: 15px 15px 20px 0 $slider-shadow-color
 
-    animation: 1s slide-in ease-in-out
+    animation: 1s slide-in-right ease-in-out
 
     &:hover
-      animation: 1s slide-out ease-in-out
+      animation: 1s slide-out-left ease-in-out
 
     h5
       margin: 0
@@ -58,16 +58,30 @@ $slider-shadow-color: rgba(0, 0, 0, .25)
       transform: scale(1.3, 1.3)
       text-shadow: 2px 2px 5px $slider-shadow-color
 
-@keyframes slide-out
+@keyframes slide-out-left
   from
     left: 0
 
   to
     left: -100vw
 
-@keyframes slide-in
+@keyframes slide-in-left
   from
     left: -100vw
+
+  to
+    left: 0
+
+@keyframes slide-out-right
+  from
+    left: 0
+
+  to
+    left: 100vw
+
+@keyframes slide-in-right
+  from
+    left: 100vw
 
   to
     left: 0
