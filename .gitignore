@@ -2,7 +2,11 @@
 CNAME
 dist
 codingbat-mirror
+
+# Fonts
 pier-bold.otf
+pier-regular.otf
+
 
 # Created by https://www.gitignore.io/api/osx,node
 
