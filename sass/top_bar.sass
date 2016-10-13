@@ -2,6 +2,7 @@ $dribbble: #ea4c89
 $github: #000
 $twitter: #1da1f2
 
+
 .top-bar
   position: fixed
   width: 100vw
@@ -37,7 +38,6 @@ $twitter: #1da1f2
     i
       display: inline-block
       padding: 0 1vw
-      font-size: 1.7em
 
       color: $light-text-primary
       transition: color .2s ease
@@ -57,43 +57,52 @@ $twitter: #1da1f2
         opacity: 0
         z-index: 1
 
+      // Make sure that the icons appear on top of their backgrounds
+      &::before
+        position: relative
+        z-index: 2
 
       &:hover
         &::after
           opacity: 1
 
+
+      // Specific styles for each different logo. Somehow, transforms need to
+         be different for each bubble? Confusing.
+
       &.ion-social-dribbble
+        font-size: 1.75em
+
         &::after
-          transform: translateX(-1.15em) translateY(-.05em) scale(.01, .01)
+          transform: translateX(-1.12em) translateY(-.05em) scale(.01, .01)
 
         &:hover
           color: $dribbble
 
           &::after
-            transform: translateX(-1.15em) translateY(-.05em)
+            transform: translateX(-1.12em) translateY(-.05em)
 
       &.ion-social-github
+        font-size: 1.7em
 
         &::after
-          transform: translateX(-1.2em) translateY(-.05em) scale(.01, .01)
+          transform: translateX(-1.19em) translateY(-.05em) scale(.01, .01)
 
         &:hover
           color: $github
 
           &::after
-            transform: translateX(-1.2em) translateY(-.05em)
+            transform: translateX(-1.19em) translateY(-.05em)
 
       &.ion-social-twitter
+        font-size: 1.5em
+        transform: translateY(.07em)
+
         &::after
-          transform: translateX(-1.22em) translateY(-.05em) scale(.01, .01)
+          transform: translateX(-1.23em) translateY(-.05em) scale(.01, .01)
 
         &:hover
           color: $twitter
 
           &::after
-            transform: translateX(-1.22em) translateY(-.05em)
-
-
-      &::before
-        position: relative
-        z-index: 2
+            transform: translateX(-1.23em) translateY(-.05em)
