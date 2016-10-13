@@ -1,3 +1,7 @@
+$dribbble: #ea4c89
+$github: #000
+$twitter: #1da1f2
+
 .top-bar
   position: fixed
   width: 100vw
@@ -15,6 +19,7 @@
   li
     display: inline-block
 
+
     &.name
       font-family: 'PierSans', sans-serif
       font-weight: bold
@@ -31,9 +36,64 @@
 
     i
       display: inline-block
-      margin: 0 1vw
+      padding: 0 1vw
       font-size: 1.7em
-      transition: transform .2s ease-out
+
+      color: $light-text-primary
+      transition: color .2s ease
+
+      &::after
+        content: ''
+        display: inline-block
+        background-color: $white
+        // Round
+        border-radius: 50%
+        width: 1.5em
+        height: 1.5em
+        // Shouldn't take up space
+        position: absolute
+        // radial growth will animate
+        transition: transform .2s ease-out, opacity .2s ease-out
+        opacity: 0
+        z-index: 1
+
 
       &:hover
-        transform: scale(1.2, 1.2)
+        &::after
+          opacity: 1
+
+      &.ion-social-dribbble
+        &::after
+          transform: translateX(-1.15em) translateY(-.05em) scale(.01, .01)
+
+        &:hover
+          color: $dribbble
+
+          &::after
+            transform: translateX(-1.15em) translateY(-.05em)
+
+      &.ion-social-github
+
+        &::after
+          transform: translateX(-1.2em) translateY(-.05em) scale(.01, .01)
+
+        &:hover
+          color: $github
+
+          &::after
+            transform: translateX(-1.2em) translateY(-.05em)
+
+      &.ion-social-twitter
+        &::after
+          transform: translateX(-1.22em) translateY(-.05em) scale(.01, .01)
+
+        &:hover
+          color: $twitter
+
+          &::after
+            transform: translateX(-1.22em) translateY(-.05em)
+
+
+      &::before
+        position: relative
+        z-index: 2
