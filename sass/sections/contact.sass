@@ -44,3 +44,10 @@ $contact-section-background: #ffd54f
         background-color: $header-section-background
         color: $light-text-primary
         -webkit-appearance: none
+        transition: background-color .2s ease-in-out
+
+        &:hover
+          background-color: darken($header-section-background, 5)
+
+        &:active
+          background-color: darken($header-section-background, 10)
