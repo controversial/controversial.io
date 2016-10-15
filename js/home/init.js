@@ -20,8 +20,10 @@ const elem = {
 function setHeaderElementsPinned(fixed) {
   // Switch between fixed and absolute, pinning elements in the appropriate place
   [elem.headerTitle, elem.laptop].forEach((element) => {
+    /* eslint-disable no-param-reassign */
     element.style.position = fixed ? 'fixed' : 'absolute';
     element.style.top = fixed ? '50vh' : `${window.innerHeight}px`;
+    /* eslint-enable no-param-reassign */
   });
 }
 
