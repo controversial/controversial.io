@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'I write libraries.\xa0',
       'I write simulations.\xa0',
       'I design experiences.\xa0',
-      'I design interfaces.\xa0'
+      'I design interfaces.\xa0',
     ],
     contentIndex: 0,
 
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const charactersToAdd = b.slice(common.length);
       return {
         del: numCharactersToDelete,
-        add: charactersToAdd
+        add: charactersToAdd,
       };
     },
 
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
       this.next(() => {
         setTimeout(() => window.typewriter.play(), 3000);
       });
-    }
+    },
 
   };
 
