@@ -1,17 +1,17 @@
 /* Typewriter text animation */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   window.typewriter = {
-    element: document.getElementById("typewriter"),
+    element: document.getElementById('typewriter'),
     contents: [
-      "I write code.\xa0",
-      "I write software.\xa0",
-      "I write websites.\xa0",
-      "I write apps.\xa0",
-      "I write libraries.\xa0",
-      "I write simulations.\xa0",
-      "I design experiences.\xa0",
-      "I design interfaces.\xa0"
+      'I write code.\xa0',
+      'I write software.\xa0',
+      'I write websites.\xa0',
+      'I write apps.\xa0',
+      'I write libraries.\xa0',
+      'I write simulations.\xa0',
+      'I design experiences.\xa0',
+      'I design interfaces.\xa0'
     ],
     contentIndex: 0,
 
@@ -21,15 +21,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* Find common words that two strings start with. */
     _commonStart(a, b) {
-      const aWords = a.split(" ");
-      const bWords = b.split(" ");
+      const aWords = a.split(' ');
+      const bWords = b.split(' ');
 
       const commonWords = [];
       for (let i = 0; i < aWords.length; i++) {
         if (aWords[i] === bWords[i]) {
           commonWords.push(aWords[i]);
         } else {
-          return commonWords.join(" ");
+          return commonWords.join(' ');
         }
       }
     },
@@ -112,13 +112,13 @@ document.addEventListener("DOMContentLoaded", () => {
           window.scrollY + window.innerHeight > this.element.offsetTop + (this.element.offsetHeight / 2)
         ) {
           setTimeout(() => window.typewriter.play(), 1000);
-          window.removeEventListener("scroll", scrollFunc);
+          window.removeEventListener('scroll', scrollFunc);
         }
       };
       function scrollFunc() {
         window.typewriter._startOnScroll();
       }
-      window.addEventListener("scroll", scrollFunc);
+      window.addEventListener('scroll', scrollFunc);
     },
 
     /* Recursively continue advancing */
