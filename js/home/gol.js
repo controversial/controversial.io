@@ -174,8 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
     step() {
       const newState = this._getBlankBoard();
 
-      for (let x = 0; x < this.boardSize[0]; x++) {
-        for (let y = 0; y < this.boardSize[1]; y++) {
+      for (let x = 0; x < this.boardSize[0]; x += 1) {
+        for (let y = 0; y < this.boardSize[1]; y += 1) {
           newState[x][y] = this.judgeFate(
             this.board[x][y],
             this.countLiveNeighbors(x, y)
