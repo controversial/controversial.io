@@ -49,7 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     getTypingDelay() {
-      return Math.floor((Math.random() * (this.typingDelay[1] - this.typingDelay[0])) + this.typingDelay[0]);
+      return Math.floor(
+        (Math.random() * (this.typingDelay[1] - this.typingDelay[0])) + this.typingDelay[0]
+      );
     },
 
     /* Animate backspacing by a given number of characters */
@@ -110,7 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
       this.element.textContent = this.contents[0];
       this.startOnScroll = () => {
         if (
-          window.scrollY + window.innerHeight > this.element.offsetTop + (this.element.offsetHeight / 2)
+          window.scrollY + window.innerHeight >
+          this.element.offsetTop + (this.element.offsetHeight / 2)
         ) {
           setTimeout(() => window.typewriter.play(), 1000);
           window.removeEventListener('scroll', scrollFunc);
