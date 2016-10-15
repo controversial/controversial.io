@@ -109,6 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
      * miscellaneous details.
      */
     init() {
+      function scrollFunc() {
+        window.typewriter.startOnScroll();
+      }
       this.element.textContent = this.contents[0];
       this.startOnScroll = () => {
         if (
@@ -119,9 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
           window.removeEventListener('scroll', scrollFunc);
         }
       };
-      function scrollFunc() {
-        window.typewriter.startOnScroll();
-      }
       window.addEventListener('scroll', scrollFunc);
     },
 
