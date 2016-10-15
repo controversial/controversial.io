@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // HELPER FUNCTIONS =======================================================
 
-    _getBlankBoard() {
+    getBlankBoard() {
       return new Array(this.boardSize[0]).fill(0).map(
         () => new Array(this.boardSize[1]).fill(false)
       );
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Randomize the game state
 
     randomize() {
-      this.board = this._getBlankBoard().map(() => this._getRandomRow());
+      this.board = this.getBlankBoard().map(() => this._getRandomRow());
     },
 
     // Render the board on the canvas
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     step() {
-      const newState = this._getBlankBoard();
+      const newState = this.getBlankBoard();
 
       for (let x = 0; x < this.boardSize[0]; x += 1) {
         for (let y = 0; y < this.boardSize[1]; y += 1) {
@@ -231,11 +231,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init() {
       // Temporary board
-      this.board = this._getBlankBoard();
+      this.board = this.getBlankBoard();
       // Calculate sizes
       this.sizeChanged();
       // Initialize board
-      this.board = this._getBlankBoard();
+      this.board = this.getBlankBoard();
       this.randomize();
       this.start();
     },
