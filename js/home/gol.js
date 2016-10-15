@@ -126,8 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // GAME LOGIC =============================================================
 
     countLiveNeighbors(x, y) {
-      let total = 0;
-
       // Is there room in directions of:
       //   - negative x
       //   - negative y
@@ -156,10 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // above and left
         xroomneg && yroompos && this.board[x - 1][y - 1]
       ];
-      for (let i = 0; i < neighbors.length; i++) {
-        total += neighbors[i];
-      }
-      return total;
+
+      // Number of true values in neighbors array
+      return neighbors.filter(n => n).length;
     },
 
     judgeFate(isLive, liveNeighbors) {
