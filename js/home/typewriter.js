@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     typingDelay: [50, 100],
 
     /* Find common words that two strings start with. */
-    _commonStart(a, b) {
+    commonStart(a, b) {
       const aWords = a.split(' ');
       const bWords = b.split(' ');
 
@@ -29,16 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (aWords[i] === bWords[i]) {
           commonWords.push(aWords[i]);
         } else {
-          return commonWords.join(' ');
+          break;
         }
       }
+      return commonWords.join(' ');
     },
 
     /* Get instructions for transforming between two strings in the form of
      * number of characters to delete and characters to add.
      */
-    _transitionDescription(a, b) {
-      const common = this._commonStart(a, b);
+    transitionDescription(a, b) {
+      const common = this.commonStart(a, b);
       const numCharactersToDelete = a.length - common.length;
       const charactersToAdd = b.slice(common.length);
       return {
@@ -47,42 +48,42 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     },
 
-    _getTypingDelay() {
+    getTypingDelay() {
       return Math.floor((Math.random() * (this.typingDelay[1] - this.typingDelay[0])) + this.typingDelay[0]);
     },
 
-    /* Animate bacspacing by a given number of characters */
+    /* Animate backspacing by a given number of characters */
     backspace(num, callback) {
       let content;
       let toGo = num;
-      callback = callback || (() => {});
-      this._backspace1 = () => {
+      const callback2 = callback || (() => {});
+      this.backspaceOne = () => {
         if (toGo === 0) {
-          callback();
+          callback2();
         } else {
           content = this.element.textContent;
           this.element.textContent = content.slice(0, content.length - 1);
           toGo--;
-          setTimeout(() => window.typewriter._backspace1(), this._getTypingDelay());
+          setTimeout(() => window.typewriter.backspaceOne(), this.getTypingDelay());
         }
       };
-      this._backspace1();
+      this.backspaceOne();
     },
 
     /* Animate inserting a given string at the end of the text */
     type(text, callback) {
       let i = 0;
-      callback = callback || (() => {});
-      this._type1 = () => {
+      const callback2 = callback || (() => {});
+      this.typeOne = () => {
         if (i === text.length) {
-          callback();
+          callback2();
         } else {
           this.element.textContent += text[i];
           i++;
-          setTimeout(() => window.typewriter._type1(), this._getTypingDelay() * 1.5);
+          setTimeout(() => window.typewriter.typeOne(), this.getTypingDelay() * 1.5);
         }
       };
-      this._type1();
+      this.typeOne();
     },
 
     /* Animate advancing to the next phrase */
@@ -93,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.contentIndex = 0;
       }
       // Make changes
-      const changesNeeded = this._transitionDescription(
+      const changesNeeded = this.transitionDescription(
         this.element.textContent,
         this.contents[this.contentIndex]
       );
@@ -107,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     init() {
       this.element.textContent = this.contents[0];
-      this._startOnScroll = () => {
+      this.startOnScroll = () => {
         if (
           window.scrollY + window.innerHeight > this.element.offsetTop + (this.element.offsetHeight / 2)
         ) {
@@ -116,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       };
       function scrollFunc() {
-        window.typewriter._startOnScroll();
+        window.typewriter.startOnScroll();
       }
       window.addEventListener('scroll', scrollFunc);
     },
