@@ -22,12 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     _getBlankBoard() {
       const array = [];
-      for (let i = 0; i < this.boardSize[0]; i++) {
+      for (let i = 0; i < this.boardSize[0]; i += 1) {
         array.push(
           new Array(this.boardSize[1]).fill(false)
         );
       }
       return array;
+    },
+
+    _getRandomRow() {
+      return new Array(window.gol.boardSize[0]).fill(0).map(() => Math.random() < 0.125);
     },
 
     // RENDERING FUNCTIONS ====================================================
@@ -38,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     sizeChanged() {
       // Spare loop variables
       let i;
-      let k;
 
       const width = window.gol.canvas.offsetWidth;
       const height = window.gol.canvas.offsetHeight;
@@ -54,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       window.gol.cellSize = [
         width / Math.round(width / window.gol.idealCellSize),
-        height / Math.round(height / window.gol.idealCellSize)
+        height / Math.round(height / window.gol.idealCellSize),
       ];
 
       // When board size changes, kill cells that are
@@ -63,11 +66,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const oldBoardSize = window.gol.boardSize;  // Store old size
       window.gol.boardSize = [  // Adjust size
         Math.round(width / window.gol.cellSize[0]),
-        Math.round(height / window.gol.cellSize[1])
+        Math.round(height / window.gol.cellSize[1]),
       ];
       const diff = [  // Calculate size difference
         window.gol.boardSize[0] - oldBoardSize[0],
-        window.gol.boardSize[1] - oldBoardSize[1]
+        window.gol.boardSize[1] - oldBoardSize[1],
       ];
 
       // Kill dead cells
@@ -76,22 +79,18 @@ document.addEventListener('DOMContentLoaded', () => {
         window.gol.board = window.gol.board.slice(0, window.gol.boardSize[0]);
       }
       if (diff[1] < 0) {
-        for (i = 0; i < window.gol.board.length; i++) {
-          window.gol.board[i] = window.gol.board[i].slice(0, window.gol.boardSize[1]);
-        }
+        window.gol.board = window.gol.board.map(row => row.slice(0, window.gol.boardSize[1]));
       }
 
       // Populate new cells
 
-      for (i = 0; i < diff[0]; i++) {
-        const newRow = new Array(window.gol.boardSize[0]).fill(false);
-        for (k = 0; k < newRow.length; k++) {
-          newRow[k] = Math.random() < 0.125;
-        }
-        window.gol.board.push(newRow);
+      // Add new rows filled with random cells
+      for (i = 0; i < diff[0]; i += 1) {
+        window.gol.board.push(window.gol._getRandomRow());
       }
-      for (i = 0; i < diff[1]; i++) {
-        for (k = 0; k < window.gol.board.length; k++) {
+      // Add new random cells to existing rows (new columns)
+      for (i = 0; i < diff[1]; i += 1) {
+        for (let k = 0; k < window.gol.board.length; k += 1) {
           window.gol.board[k].push(Math.random() < 0.125);
         }
       }
@@ -102,14 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Randomize the game state
 
     randomize() {
-      const width = this.boardSize[0];
-      const height = this.boardSize[1];
-
-      for (let x = 0; x < width; x++) {
-        for (let y = 0; y < height; y++) {
-          this.board[x][y] = Math.random() < 0.125;
-        }
-      }
+      this.board = this._getBlankBoard().map(() => this._getRandomRow());
     },
 
     // Render the board on the canvas
