@@ -109,8 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
       this.ctx.clearRect(0, 0, width, height);
       this.ctx.fillStyle = this.cellColor;
       // Render board
-      for (let x = 0; x < this.boardSize[0]; x++) {
-        for (let y = 0; y < this.boardSize[1]; y++) {
+      for (let x = 0; x < this.boardSize[0]; x += 1) {
+        for (let y = 0; y < this.boardSize[1]; y += 1) {
           if (this.board[x][y]) {
             this.ctx.fillRect(
               this.cellSize[0] * x,
