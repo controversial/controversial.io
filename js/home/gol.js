@@ -21,13 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // HELPER FUNCTIONS =======================================================
 
     _getBlankBoard() {
-      const array = [];
-      for (let i = 0; i < this.boardSize[0]; i += 1) {
-        array.push(
-          new Array(this.boardSize[1]).fill(false)
-        );
-      }
-      return array;
+      return new Array(this.boardSize[0]).fill(0).map(
+        () => new Array(this.boardSize[1]).fill(false)
+      );
     },
 
     _getRandomRow() {
