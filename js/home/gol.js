@@ -1,13 +1,13 @@
 /* Conway's Game of Life */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   window.gol = {
 
     // BASIC ATTRIBUTES =======================================================
 
-    cellColor: "#37474f",
-    canvas: document.getElementById("gol"),
-    ctx: document.getElementById("gol").getContext("2d"),
+    cellColor: '#37474f',
+    canvas: document.getElementById('gol'),
+    ctx: document.getElementById('gol').getContext('2d'),
 
     fps: 15,
 
@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const height = window.gol.canvas.offsetHeight;
 
       // Update canvas coordinate system
-      window.gol.canvas.setAttribute("width", width);
-      window.gol.canvas.setAttribute("height", height);
+      window.gol.canvas.setAttribute('width', width);
+      window.gol.canvas.setAttribute('height', height);
 
       // Update tile size by finding a width that will
       // evenly fill the canvas and is closest to the
@@ -115,8 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Render the board on the canvas
 
     redraw() {
-      const width = this.canvas.getAttribute("width");
-      const height = this.canvas.getAttribute("height");
+      const width = this.canvas.getAttribute('width');
+      const height = this.canvas.getAttribute('height');
 
       this.ctx.clearRect(0, 0, width, height);
       this.ctx.fillStyle = this.cellColor;
@@ -256,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  window.addEventListener("resize", window.gol.sizeChanged);
-  document.addEventListener("mousemove", window.gol.interacted);
+  window.addEventListener('resize', window.gol.sizeChanged);
+  document.addEventListener('mousemove', window.gol.interacted);
   window.gol.init();
 });
