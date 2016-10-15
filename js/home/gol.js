@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     },
 
-    _getRandomRow() {
+    getRandomRow() {
       return new Array(window.gol.boardSize[0]).fill(0).map(() => Math.random() < 0.125);
     },
 
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Add new rows filled with random cells
       for (i = 0; i < diff[0]; i += 1) {
-        window.gol.board.push(window.gol._getRandomRow());
+        window.gol.board.push(window.gol.getRandomRow());
       }
       // Add new random cells to existing rows (new columns)
       for (i = 0; i < diff[1]; i += 1) {
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Randomize the game state
 
     randomize() {
-      this.board = this.getBlankBoard().map(() => this._getRandomRow());
+      this.board = this.getBlankBoard().map(() => this.getRandomRow());
     },
 
     // Render the board on the canvas
