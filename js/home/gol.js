@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // left
         xroomneg && this.board[x - 1][y],
         // above and left
-        xroomneg && yroompos && this.board[x - 1][y - 1]
+        xroomneg && yroompos && this.board[x - 1][y - 1],
       ];
 
       // Number of true values in neighbors array
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
       this.board = this._getBlankBoard();
       this.randomize();
       this.start();
-    }
+    },
   };
 
   window.addEventListener('resize', window.gol.sizeChanged);
