@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const bWords = b.split(' ');
 
       const commonWords = [];
-      for (let i = 0; i < aWords.length; i++) {
+      for (let i = 0; i < aWords.length; i += 1) {
         if (aWords[i] === bWords[i]) {
           commonWords.push(aWords[i]);
         } else {
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           content = this.element.textContent;
           this.element.textContent = content.slice(0, content.length - 1);
-          toGo--;
+          toGo -= 1;
           setTimeout(() => window.typewriter.backspaceOne(), this.getTypingDelay());
         }
       };
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
           callback2();
         } else {
           this.element.textContent += text[i];
-          i++;
+          i += 1;
           setTimeout(() => window.typewriter.typeOne(), this.getTypingDelay() * 1.5);
         }
       };
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* Animate advancing to the next phrase */
     next(callback) {
-      this.contentIndex++;
+      this.contentIndex += 1;
       // Loop back
       if (this.contentIndex === this.contents.length) {
         this.contentIndex = 0;
