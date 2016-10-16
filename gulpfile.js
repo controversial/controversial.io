@@ -59,8 +59,8 @@ gulp.task('build', ['copy', 'sass', 'js']);
 
 gulp.task('watch', ['build'], () => {
   gulp.watch(['./app/**/*', '!./app/**/*.sass', '!./app/**/*.js'], ['copy']);
-  gulp.watch('./sass/**/*.sass', ['sass']);
-  gulp.watch('./js/**/*.js', ['js']);
+  gulp.watch('./app/sass/**/*.sass', ['sass']);
+  gulp.watch('./app/js/**/*.js', ['js']);
 });
 
 // Serving
