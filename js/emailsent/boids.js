@@ -1,20 +1,22 @@
 /* Boids flocking simulation (TODO) */
 
-function Boid (x, y) {
-  this.x = x || flock.canvas.getAttribute("width") / 2;
-  this.y = y || flock.canvas.getAttribute("height") / 2;
+class Boid {
+  constructor(x, y) {
+    this.x = x || window.flock.canvas.getAttribute('width') / 2;
+    this.y = y || window.flock.canvas.getAttribute('height') / 2;
+  }
 }
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', () => {
   window.flock = {
 
 
     // BASIC ATTRIBUTES =======================================================
 
     boids: [],
-    canvas: document.getElementById("boids"),
-    ctx: document.getElementById("boids").getContext("2d"),
+    canvas: document.getElementById('boids'),
+    ctx: document.getElementById('boids').getContext('2d'),
 
     fps: 15,
 
@@ -24,16 +26,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // Called to update the canvas coordinate system if the canvas size changes
-    sizeChanged: function() {
-      var width = flock.canvas.offsetWidth,
-          height = flock.canvas.offsetHeight;
-      flock.canvas.setAttribute("width", width);
-      flock.canvas.setAttribute("height", height);
+    sizeChanged() {
+      const width = window.flock.canvas.offsetWidth;
+      const height = window.flock.canvas.offsetHeight;
+      window.flock.canvas.setAttribute('width', width);
+      window.flock.canvas.setAttribute('height', height);
     },
 
 
     // Render the simulation on the canvas
-    redraw: function() {
+    redraw() {
 
     },
 
@@ -42,50 +44,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // Advance the simulation by one step
-    step: function() {
+    step() {
 
     },
 
 
     // USER INTERACTION =======================================================
 
-    interacted: function(e) {
+    interacted(e) {
       // Position of the mouse in the viewport
-      var absx = e.clientX, absy=e.clientY;
+      const absx = e.clientX;
+      const absy = e.clientY;
     },
 
 
     // CONTROL FUNCTIONS ======================================================
 
-    randomize: function () {
+    randomize() {
 
     },
 
     // Begin the loop
 
-    start: function() {
-      flock.step();
-      flock.redraw();
-      setTimeout(function() {
-        requestAnimationFrame(flock.start);
-      }, 1000 / flock.fps);
+    start() {
+      window.flock.step();
+      window.flock.redraw();
+      setTimeout(() => {
+        requestAnimationFrame(window.flock.start);
+      }, 1000 / window.flock.fps);
     },
 
 
     // Initialize and begin
 
-    init: function() {
+    init() {
       this.sizeChanged(); // Calculate sizes
       this.randomize();
       this.start();
-    }
+    },
   };
 
 
-
-
-  window.addEventListener("resize", flock.sizeChanged);
-  document.addEventListener("mousemove", flock.interacted);
-  flock.init();
-
+  window.addEventListener('resize', window.flock.sizeChanged);
+  document.addEventListener('mousemove', window.flock.interacted);
+  window.flock.init();
 });
