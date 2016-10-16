@@ -30,7 +30,7 @@ $header-section-background: #2196f3
     padding-left: 2vw
     line-height: 150%
 
-    animation: fade-in 1s ease-in-out
+    animation: fade-in 2s ease-in-out
 
 
 
@@ -68,14 +68,16 @@ $header-section-background: #2196f3
 
       i
         display: block
-        animation: 1s bounce infinite
+        animation: 1s bounce infinite 4s, fade-in 2s ease-in-out 2s
+        animation-fill-mode: forwards
         cursor: default
         font-size: 30px
         user-select: none
         -webkit-touch-callout: none
+        opacity: 0
 
 
-@keyfraes fade-in
+@keyframes fade-in
   from
     opacity: 0
 
