@@ -12,10 +12,16 @@ const uglify = require("gulp-uglify");
 
 const browserSync = require("browser-sync").create();
 
+// Copy static files to dist folder
+gulp.task("copy", () => {
+  gulp.src(["./app/**/*", "!./app/**/*.js", "!./app/**/*.sass"])
+    .pipe(gulp.dest("dist"));
+});
+
 // SASS compilation and minification
 
 gulp.task("sass", () => {
-  gulp.src("./sass/main.sass")
+  gulp.src("./app/sass/main.sass")
     .pipe(sourcemaps.init())
     .pipe(plumber())
     .pipe(sass({outputStyle: "compressed"}))
@@ -43,17 +49,18 @@ gulp.task("js", () => {
   }
 
   // Scripts for the front page
-  buildScriptsForPage("js/home", "home.js");
+  buildScriptsForPage("app/js/home", "home.js");
   // Scrips for the "email sent" page
-  buildScriptsForPage("js/emailsent", "emailsent.js");
+  buildScriptsForPage("app/js/emailsent", "emailsent.js");
 });
 
 // Compile everything at once
-gulp.task("build", ["sass", "js"]);
+gulp.task("build", ["copy", "sass", "js"]);
 
 // Watching
 
 gulp.task("watch", ["build"], () => {
+  gulp.watch(["./app/**/*", "!./app/**/*.sass", "!./app/**/*.js"], ["copy"])
   gulp.watch("./sass/**/*.sass", ["sass"]);
   gulp.watch("./js/**/*.js", ["js"]);
 });
@@ -63,11 +70,11 @@ gulp.task("watch", ["build"], () => {
 gulp.task("serve", () => {
   browserSync.init({
     server: {
-      baseDir: "."
+      baseDir: "./dist"
     }
   });
   gulp.watch(
-    ["./*.html", "./dist/**/*.js"],
+    ["./app/**/*.html"],
     browserSync.reload
   );
 });
