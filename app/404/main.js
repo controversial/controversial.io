@@ -14,7 +14,9 @@ const map = L.mapbox.map('map', 'mapbox.pencil', {
   boxZoom: false,
 });
 
+/* eslint-disable no-unused-vars */
 function coords() {
+  /* eslint-enable no-unused-vars */
   const center = map.getCenter();
   return { lat: center.lat, lng: center.lng, zoom: map.getZoom() };
 }
@@ -24,8 +26,7 @@ function go(area) {
   const place = area || areas[Math.floor(Math.random() * areas.length)];
   const scene = scenes[place];
   /* eslint-disable no-console */
-  console.log(`Permalink here: https://controversial.io/404?${area}`);
-  console.log(`You're at ${coords()}`);
+  console.log(`Permalink here: https://controversial.io/404?${place}`);
   /* eslint-enable no-console */
   map.setView(
     [scene.lat, scene.lng],
@@ -33,8 +34,11 @@ function go(area) {
   );
 }
 
-if (scenes[window.location.search.substring(1)]) {
-  go(window.location.search.substring(1));
-} else {
-  go();
-}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (scenes[window.location.search.substring(1)]) {
+    go(window.location.search.substring(1));
+  } else {
+    go();
+  }
+});
