@@ -17,13 +17,13 @@ mail("luke@deentaylor.com", "Contact form | ".$email, $message, $headers);
     <meta charset="utf-8">
     <title>Thanks for getting in touch.</title>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arvo|Open+Sans">
-
     <style>
+      @font-face {font-family:'PierSans'; font-style: normal; font-weight:bold; src:url('/pier-bold.otf');}
+      @font-face {font-family:'PierSans'; font-style: normal; font-weight: normal; src: url('/pier-regular.otf');}
       body {background-color:#2d3940;margin:0;color:white;position:fixed;}
       .content-main {width:50vw;position:absolute;top:50vh;left:50vw;transform:translate(-50%, -50%);text-align:center;}
-      h1 {font-family:'Arvo';font-size:8vw;margin:0;font-weight:400;}
-      h2 {font-family:'Open Sans';font-size:3vw;margin:0;font-weight:400;}
+      h1 {font-family:'PierSans';font-size:6vw;margin:0;font-weight:bold;text-transform:uppercase;}
+      h2 {font-family:'PierSans';font-size:3vw;margin:0;font-weight:400;}
       canvas {width:100vw;height:100vh;}
     </style>
 
