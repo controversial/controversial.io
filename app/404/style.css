@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'PierSans';
+  font-style: normal;
+  font-weight: bold;
+  src: url('/pier-bold.otf');
+}
+
+@font-face {
+  font-family: 'PierSans';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/pier-regular.otf');
+}
+
 * {
   box-sizing: border-box;
 }
@@ -22,18 +36,19 @@ header {
 }
 
 h1 {
-  font-family: 'Arvo';
-  font-size: 7vw;
+  font-family: 'PierSans';
+  font-size: 6vw;
   margin: 0;
-  font-weight: 400;
+  font-weight: bold;
+  text-transform: uppercase;
   border-bottom: 5px solid rgba(255, 255, 255, 0.6);
 }
 
 h2 {
-  font-family: 'Open Sans';
+  font-family: 'PierSans';
   font-size: 4vw;
   margin: 0;
-  font-weight: 400;
+  font-weight: normal;
 
   color: rgba(255, 255, 255, 0.6);
 }
