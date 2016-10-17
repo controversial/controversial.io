@@ -50,6 +50,8 @@ gulp.task('js', () => {
   buildScriptsForPage('app/js/home', 'home.js');
   // Scrips for the "email sent" page
   buildScriptsForPage('app/js/emailsent', 'emailsent.js');
+  // Scripts for the 404 page
+  buildScriptsForPage('app/404', '404/404.js');
 });
 
 // Compile everything at once
@@ -59,8 +61,8 @@ gulp.task('build', ['copy', 'sass', 'js']);
 
 gulp.task('watch', ['build'], () => {
   gulp.watch(['./app/**/*', '!./app/**/*.sass', '!./app/**/*.js'], ['copy']);
-  gulp.watch('./app/sass/**/*.sass', ['sass']);
-  gulp.watch('./app/js/**/*.js', ['js']);
+  gulp.watch('./app/**/*.sass', ['sass']);
+  gulp.watch('./app/**/*.js', ['js']);
 });
 
 // Serving
