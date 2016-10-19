@@ -1,5 +1,19 @@
 /* Conway's Game of Life */
 
+// [].fill polyfill (by me).
+// Does not include start / end parameters because I'm not using that here.
+if (!Array.prototype.fill) {
+  /* eslint-disable no-extend-native */
+  Array.prototype.fill = function fill2(value) {
+    /* eslint-enable no-extend-native */
+    for (let i = 0; i < this.length; i += 1) {
+      this[i] = value;
+    }
+    return this;
+  };
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   window.gol = {
 
