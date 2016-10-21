@@ -15,7 +15,9 @@ const elem = {
   laptopBase: document.getElementsByClassName('laptop-base')[0],
 };
 
+
 // HEADER TRANSITION LOGIC ====================================================
+
 
 function setHeaderElementsPinned(fixed) {
   // Switch between fixed and absolute, pinning elements in the appropriate place
@@ -33,37 +35,53 @@ function updateHeaderElements(progress) {
     return a + ((b - a) * progress);
   }
 
+
   // FIT MAIN HEADER TO LAPTOP SCREEN
 
-  const whRatio = elem.laptopContent.offsetWidth / elem.laptopContent.offsetHeight;
-  const width = tween(
+
+  // Values for tweening. [x, y, w, h]. All values are viewport-relative.
+
+  const initialPos = [50, 50, 100, 100]; // The starting position (fixed)
+  const destinationPos = [               // The shrunk position (still fixed)
+    50, 50,
+    (100 * elem.laptopContent.offsetWidth) / window.innerWidth,
+    (100 * elem.laptopContent.offsetHeight) / window.innerHeight,
+  ];
+  const restingPos = [                   // The shrunk position (absolute now)
+    50,
     100,
-    ((100 * elem.laptopContent.offsetWidth) / window.innerWidth)
-  );
+    (100 * elem.laptopContent.offsetWidth) / window.innerWidth,
+    destinationPos[3],
+  ];
+
+  // NOTE: Left is ignored since it's constant
+
+  const fixedTop = tween(initialPos[1], destinationPos[1]);
+  const top = progress < 1 ? fixedTop : restingPos[1];
+  elem.header.style.top = `${top}vh`;
+
+  const width = tween(initialPos[2], destinationPos[2]);
   elem.header.style.width = `${width}vw`;
 
-  const height = tween(
-    100 * (window.innerHeight / window.innerWidth),
-    ((100 * elem.laptopContent.offsetWidth) / window.innerWidth) / whRatio
-  );
-  elem.header.style.height = `${height}vw`;
-
-  const top = (progress < 1 ?
-    tween(window.innerHeight / 2, (window.innerHeight / 2) - (elem.laptopBase.offsetHeight / 2)) :
-    window.innerHeight - (elem.laptopBase.offsetHeight / 2));
-  elem.header.style.top = `${top}px`;
+  const height = tween(initialPos[3], destinationPos[3]);
+  elem.header.style.height = `${height}vh`;
 
   elem.header.style.position = progress < 1 ? 'fixed' : 'absolute';
 
-  // DEAL WITH ASSOCIATED TIDBITS
 
-  elem.downIndicator.style.opacity = 1 - progress;  // Fade out down indicator
-  elem.headerTitle.style.fontSize = `${tween(5, 3.5)}vw`;  // Shrink header
+  // MISCELLANEOUS
+
+
+  // Update opacity of down indicator
+  elem.downIndicator.style.opacity = 1 - progress;
+  // Reduce font size of my name
+  elem.headerTitle.style.fontSize = `${tween(5, 3.5)}vw`;
+
 
   // ADJUST CANVAS SETTINGS
 
-  // Mean of X scale difference and Y scale difference
-  const canvasScale = (
+
+  const canvasScale = ( // Mean of X scale difference and Y scale difference
     (window.gol.canvas.offsetWidth / window.innerWidth) +
     (window.gol.canvas.offsetHeight / window.innerHeight)
   ) / 2;
@@ -71,7 +89,9 @@ function updateHeaderElements(progress) {
   window.gol.sizeChanged();
 }
 
+
 // SCROLL LISTENER ============================================================
+
 
 document.addEventListener('scroll', () => {
   const scroll = window.scrollY;
