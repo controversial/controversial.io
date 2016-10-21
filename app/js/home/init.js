@@ -43,14 +43,15 @@ function updateHeaderElements(progress) {
 
   const initialPos = [50, 50, 100, 100]; // The starting position (fixed)
   const destinationPos = [               // The shrunk position (still fixed)
-    50, 50,
+    50,
+    50 - ((100 * elem.laptopBase.offsetHeight) / window.innerHeight / 2),
     (100 * elem.laptopContent.offsetWidth) / window.innerWidth,
     (100 * elem.laptopContent.offsetHeight) / window.innerHeight,
   ];
   const restingPos = [                   // The shrunk position (absolute now)
     50,
-    100,
-    (100 * elem.laptopContent.offsetWidth) / window.innerWidth,
+    destinationPos[1] + 50,
+    destinationPos[2],
     destinationPos[3],
   ];
 
