@@ -4,13 +4,13 @@
     "start": "gulp",
     "build": "gulp build",
     "watch": "gulp watch",
-
     "lint-sass": "echo '\nSASS\n' && ./node_modules/sass-lint/bin/sass-lint.js 'sass/**/*.sass' -v",
     "lint-js": "echo '\nJS\n' && ./node_modules/eslint/bin/eslint.js js",
     "lint": "npm run -s lint-sass && npm run -s lint-js",
-    "test": "npm run -s lint"
+    "test": "npm run -s lint && gulp build && ava"
   },
   "devDependencies": {
+    "ava": "^0.16.0",
     "babel-preset-es2015": "^6.16.0",
     "browser-sync": "^2.15.0",
     "eslint": "^3.8.0",
