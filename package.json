@@ -27,6 +27,7 @@
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
+    "jsdom": "^9.8.0",
     "sass-lint": "^1.9.1"
   },
   "description": "This is my website. There are many like it, but this one is mine.",
@@ -42,11 +43,5 @@
     "url": "https://github.com/controversial/controversial.io/issues"
   },
   "homepage": "https://github.com/controversial/controversial.io#readme",
-
-
-  "sasslintConfig": ".sass-lint.yml",
-
-  "ava": {
-    "require": ["./test/helpers/setup-browser-env.js"]
-  }
+  "sasslintConfig": ".sass-lint.yml"
 }
