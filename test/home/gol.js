@@ -1,13 +1,24 @@
-import test from 'ava';
+// Test the game of life script
 
-const path = require('path');
+const test = require('ava');
+const jsdom = require('jsdom').jsdom;
 
-const appDir = path.join(__dirname, '../../app');
-
-
-// TESTS
+const mainScript = require.resolve('../../app/js/home/gol.js');
 
 
-test('foo', (t) => {
-  t.pass();
+// TESTS ======================================================================
+
+const document = jsdom(`
+<html>
+  <body>
+    <canvas id="gol"></canvas>
+    <script src="${mainScript}">
+  </body>
+</html>
+`);
+const window = document.defaultView;
+
+
+test('properly initializes game of life', (t) => {
+  t.true(typeof window.gol === 'object');
 });
