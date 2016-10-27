@@ -33,6 +33,7 @@ class Game {
 
   randomize() {
     this.board = this.getBlankBoard().map(() => this.getRandomRow());
+    return this;
   }
 
   countLiveNeighbors(x, y) {
@@ -129,6 +130,8 @@ class Game {
         this.board[k].push(Math.random() < 0.125);
       }
     }
+
+    return this;
   }
 
   toString() {
