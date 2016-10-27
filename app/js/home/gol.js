@@ -31,6 +31,11 @@ class Game {
     return new Array(this.boardSize[0]).fill(0).map(() => Math.random() < 0.125);
   }
 
+  clear() {
+    this.board = this.getBlankBoard();
+    return this;
+  }
+
   randomize() {
     this.board = this.getBlankBoard().map(() => this.getRandomRow());
     return this;
