@@ -135,6 +135,12 @@ class Game {
     function boolToAscii(n) { return n ? '*' : ' '; }
     return this.board.map(row => row.map(boolToAscii).join('')).join('\n');
   }
+
+  print() {
+    /* eslint-disable no-console */
+    console.log(this.toString());
+    /* eslint-enable no-console */
+  }
 }
 
 
