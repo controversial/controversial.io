@@ -19,6 +19,7 @@ if (!Array.prototype.fill) {
 class Game {
   constructor(height, width) {
     this.boardSize = [width || 10, height || 10];
+    this.board = this.getBlankBoard();
   }
 
   getBlankBoard() {
