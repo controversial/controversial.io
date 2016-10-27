@@ -14,6 +14,125 @@ if (!Array.prototype.fill) {
 }
 
 
+// CONTROLS GAME LOGIC
+
+class Game {
+  constructor(height, width) {
+    this.boardSize = [width || 10, height || 10];
+  }
+
+  getBlankBoard() {
+    return new Array(this.boardSize[0]).fill(0).map(
+      () => new Array(this.boardSize[1]).fill(false)
+    );
+  }
+
+  getRandomRow() {
+    return new Array(this.boardSize[0]).fill(0).map(() => Math.random() < 0.125);
+  }
+
+  randomize() {
+    this.board = this.getBlankBoard().map(() => this.getRandomRow());
+  }
+
+  countLiveNeighbors(x, y) {
+    // Is there room in directions of:
+    //   - negative x
+    //   - negative y
+    //   - positive x
+    //   - positive y
+    const xroomneg = x > 0;
+    const yroomneg = y > 0;
+    const xroompos = x < this.boardSize[0] - 1;
+    const yroompos = y < this.boardSize[1] - 1;
+
+    const neighbors = [
+      // above
+      yroomneg && this.board[x][y - 1],
+      // above right
+      xroompos && yroomneg && this.board[x + 1][y - 1],
+      // right
+      xroompos && this.board[x + 1][y],
+      // below right
+      xroompos && yroompos && this.board[x + 1][y + 1],
+      // below
+      yroompos && this.board[x][y + 1],
+      // below left
+      xroomneg && yroompos && this.board[x - 1][y + 1],
+      // left
+      xroomneg && this.board[x - 1][y],
+      // above and left
+      xroomneg && yroompos && this.board[x - 1][y - 1],
+    ];
+
+    // Number of true values in neighbors array
+    return neighbors.filter(n => n).length;
+  }
+
+  static judgeFate(isLive, liveNeighbors) {
+    if (isLive) {
+      // Any live cell with fewer than 2 live neighbors
+      // dies of underpopulation; any live cell with more
+      // than three dies of overpopulation.
+      return (liveNeighbors === 2 || liveNeighbors === 3);
+    }
+    // Any dead cell with exactly 3 neighbors is born
+    return liveNeighbors === 3;
+  }
+
+  step() {
+    const newState = this.getBlankBoard();
+
+    for (let x = 0; x < this.boardSize[0]; x += 1) {
+      for (let y = 0; y < this.boardSize[1]; y += 1) {
+        newState[x][y] = Game.judgeFate(
+          this.board[x][y],
+          this.countLiveNeighbors(x, y)
+        );
+      }
+    }
+
+    this.board = newState;
+    return this;
+  }
+
+  changeSize(width, height) {
+    // Store old board size
+    const oldBoardSize = this.boardSize;
+    // Change board size
+    this.boardSize[0] = width;
+    this.boardSize[1] = height;
+    // Calculate size difference
+    const diff = [
+      this.boardSize[0] - oldBoardSize[0],
+      this.boardSize[1] - oldBoardSize[1],
+    ];
+
+    // Kill dead cells
+
+    if (diff[0] < 0) { // if x shrinks
+      this.board = this.board.slice(0, this.boardSize[0]);
+    }                  // if y shrinks
+    if (diff[1] < 0) {
+      this.board = this.board.map(row => row.slice(0, this.boardSize[1]));
+    }
+
+    // Populate new cells
+
+    // Add new rows filled with random cells
+    for (let i = 0; i < diff[0]; i += 1) {
+      this.board.push(this.getRandomRow());
+    }
+    // Add new random cells to existing rows (new columns)
+    for (let i = 0; i < diff[1]; i += 1) {
+      for (let k = 0; k < this.board.length; k += 1) {
+        this.board[k].push(Math.random() < 0.125);
+      }
+    }
+  }
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   window.gol = {
 
