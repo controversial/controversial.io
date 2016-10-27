@@ -130,6 +130,11 @@ class Game {
       }
     }
   }
+
+  toString() {
+    function boolToAscii(n) { return n ? '*' : ' '; }
+    return this.board.map(row => row.map(boolToAscii).join('')).join('\n');
+  }
 }
 
 
