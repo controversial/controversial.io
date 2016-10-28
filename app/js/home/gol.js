@@ -14,7 +14,8 @@ if (!Array.prototype.fill) {
 }
 
 
-// CONTROLS GAME LOGIC
+// CONTROLS GAME LOGIC =============================================================================
+
 
 class Game {
   constructor(height, width) {
@@ -178,6 +179,9 @@ class Game {
 }
 
 
+// BINDS `Game` OBJECT TO A CANVAS =================================================================
+
+
 document.addEventListener('DOMContentLoaded', () => {
   window.gol = {
 
@@ -194,7 +198,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     game: new Game(),
 
-    // RENDERING FUNCTIONS ====================================================
+    // RENDERING FUNCTIONS
+
     // These functions connect the simulation to the browser
 
     // Called to update the game if the canvas size
@@ -250,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
 
-    // USER INTERACTION =======================================================
+    // USER INTERACTION
 
     // On a desktop computer, cells are born
     // when moused over. On a mobile device
@@ -279,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     },
 
-    // CONTROL FUNCTIONS ======================================================
+    // CONTROL FUNCTIONS
 
     // Begin the loop
 
