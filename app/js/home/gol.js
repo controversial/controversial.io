@@ -18,9 +18,9 @@ if (!Array.prototype.fill) {
 
 
 class Game {
-  constructor(height, width) {
-    this.boardSize = [width || 10, height || 10];
-    this.board = this.getBlankBoard();
+  constructor(width, height) {
+    this.board = [[]];
+    this.changeSize(width, height);
   }
 
   // HELPER FUNCTIONS
@@ -33,6 +33,10 @@ class Game {
 
   getRandomRow() {
     return new Array(this.boardSize[0]).fill(0).map(() => Math.random() < 0.125);
+  }
+
+  get boardSize() {
+    return [this.board.length, this.board[0].length];
   }
 
   // GAME MANIPULATION
@@ -130,22 +134,20 @@ class Game {
   changeSize(width, height) {
     // Store old board size
     const oldBoardSize = this.boardSize;
-    // Change board size
-    this.boardSize[0] = width;
-    this.boardSize[1] = height;
+    const newBoardSize = [width, height];
     // Calculate size difference
     const diff = [
-      this.boardSize[0] - oldBoardSize[0],
-      this.boardSize[1] - oldBoardSize[1],
+      newBoardSize[0] - oldBoardSize[0],
+      newBoardSize[1] - oldBoardSize[1],
     ];
 
     // Kill dead cells
 
     if (diff[0] < 0) { // if x shrinks
-      this.board = this.board.slice(0, this.boardSize[0]);
-    }                  // if y shrinks
-    if (diff[1] < 0) {
-      this.board = this.board.map(row => row.slice(0, this.boardSize[1]));
+      this.board = this.board.slice(0, newBoardSize[0]);
+    }
+    if (diff[1] < 0) { // if y shrinks
+      this.board = this.board.map(row => row.slice(0, newBoardSize[1]));
     }
 
     // Populate new cells
