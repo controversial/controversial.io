@@ -22,6 +22,8 @@ class Game {
     this.board = this.getBlankBoard();
   }
 
+  // HELPER FUNCTIONS
+
   getBlankBoard() {
     return new Array(this.boardSize[0]).fill(0).map(
       () => new Array(this.boardSize[1]).fill(false)
@@ -32,6 +34,8 @@ class Game {
     return new Array(this.boardSize[0]).fill(0).map(() => Math.random() < 0.125);
   }
 
+  // GAME MANIPULATION
+
   clear() {
     this.board = this.getBlankBoard();
     return this;
@@ -41,6 +45,22 @@ class Game {
     this.board = this.getBlankBoard().map(() => this.getRandomRow());
     return this;
   }
+
+  turnOn(x, y) {
+    this.board[x][y] = true;
+    return this;
+  }
+
+  turnOff(x, y) {
+    this.board[x][y] = false;
+    return this;
+  }
+
+  setState(x, y, state) {
+    this.board[x][y] = state;
+  }
+
+  // GAME LOGIC
 
   countLiveNeighbors(x, y) {
     // Is there room in directions of:
@@ -86,6 +106,8 @@ class Game {
     // Any dead cell with exactly 3 neighbors is born
     return liveNeighbors === 3;
   }
+
+  // GAME CONTROLS
 
   step() {
     const newState = this.getBlankBoard();
@@ -139,6 +161,8 @@ class Game {
 
     return this;
   }
+
+  // GAME DEBUG FUNCTIONS
 
   toString() {
     function boolToAscii(n) { return n ? '*' : ' '; }
