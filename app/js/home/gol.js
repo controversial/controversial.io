@@ -58,6 +58,7 @@ class Game {
 
   setState(x, y, state) {
     this.board[x][y] = state;
+    return this;
   }
 
   // GAME LOGIC
