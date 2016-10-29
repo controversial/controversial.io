@@ -296,130 +296,16 @@ class GameRenderer {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  window.gol = {
-
-    // BASIC ATTRIBUTES =======================================================
-
-    cellColor: '#37474f',
-    canvas: document.getElementById('gol'),
-    ctx: document.getElementById('gol').getContext('2d'),
-
-    fps: 15,
-
-    idealCellSize: 20,
-    cellSize: [20, 20], // This gets updated dynamically.
-
-    game: new Game(),
-
-    // RENDERING FUNCTIONS
-
-    // These functions connect the simulation to the browser
-
-    // Called to update the game if the canvas size
-    // changes.
-    sizeChanged() {
-      const width = window.gol.canvas.offsetWidth;
-      const height = window.gol.canvas.offsetHeight;
-
-      // Update canvas coordinate system
-      window.gol.canvas.setAttribute('width', width);
-      window.gol.canvas.setAttribute('height', height);
-
-      // Update tile size by finding a width that will
-      // evenly fill the canvas and is closest to the
-      // idealCellSize, then doing the same thing for
-      // height.
-
-      window.gol.cellSize = [
-        width / Math.round(width / window.gol.idealCellSize),
-        height / Math.round(height / window.gol.idealCellSize),
-      ];
-
-      // When board size changes, kill cells that are
-      // cut off and randomize new terrain.
-
-      window.gol.game.changeSize(
-        Math.round(width / window.gol.cellSize[0]),
-        Math.round(height / window.gol.cellSize[1]),
-      );
-
-      window.gol.redraw();
-    },
-
-    redraw() {
-      const width = this.canvas.getAttribute('width');
-      const height = this.canvas.getAttribute('height');
-
-      this.ctx.clearRect(0, 0, width, height);
-      this.ctx.fillStyle = this.cellColor;
-      // Render board
-      for (let x = 0; x < this.game.board.length; x += 1) {
-        for (let y = 0; y < this.game.board[0].length; y += 1) {
-          if (this.game.board[x][y]) {
-            this.ctx.fillRect(
-              this.cellSize[0] * x,
-              this.cellSize[1] * y,
-              this.cellSize[0],
-              this.cellSize[1]
-            );
-          }
-        }
-      }
-    },
-
-
-    // USER INTERACTION
-
-    // On a desktop computer, cells are born
-    // when moused over. On a mobile device
-    // it's wherever a touch occurs or is dragged.
-    interacted(e) {
-      // Position of the canvas in the viewport
-      const bbox = window.gol.canvas.getBoundingClientRect();
-      // Position of the mouse in the viewport
-      const absx = e.clientX;
-      const absy = e.clientY;
-
-      // If these two positions intersect:
-      if (absx > bbox.left &&
-          absy > bbox.top &&
-          absx < bbox.right &&
-          absy < bbox.bottom
-      ) {
-        // Calculate mouse position relative to canvas
-        const relx = absx - bbox.left;
-        const rely = absy - bbox.top;
-        // Calculate cell position
-        const cellx = Math.floor(relx / window.gol.cellSize[0]);
-        const celly = Math.floor(rely / window.gol.cellSize[1]);
-
-        window.gol.game.turnOn(cellx, celly);
-      }
-    },
-
-    // CONTROL FUNCTIONS
-
-    // Begin the loop
-
-    start() {
-      window.gol.game.step();
-      window.gol.redraw();
-      setTimeout(() => {
-        requestAnimationFrame(window.gol.start);
-      }, 1000 / window.gol.fps);
-    },
-
-    // Initialize and begin
-
-    init() {
-      this.sizeChanged();
-      this.game.randomize();
-      this.start();
-    },
-  };
-
-  window.addEventListener('resize', window.gol.sizeChanged);
-  document.addEventListener('mousemove', window.gol.interacted);
-  window.gol.init();
-});
+// Only if we're in a browser
+if (window) {
+  document.addEventListener('DOMContentLoaded', () => {
+    window.gol = new GameRenderer('#gol');
+    window.gol.start();
+    // Update canvas when resized (behavior may not apply to all situations, so this isn't default
+    // behavior)
+    window.addEventListener(
+      'resize',
+      () => window.gol.sizeChanged(window.gol.elem.offsetWidth, window.gol.elem.offsetHeight)
+    );
+  });
+}
