@@ -4,8 +4,8 @@
     "start": "gulp",
     "build": "gulp build",
     "watch": "gulp watch",
-    "lint-sass": "echo '\nSASS\n' && ./node_modules/sass-lint/bin/sass-lint.js 'sass/**/*.sass' -v",
-    "lint-js": "echo '\nJS\n' && ./node_modules/eslint/bin/eslint.js js",
+    "lint-sass": "echo '\nSASS\n' && ./node_modules/sass-lint/bin/sass-lint.js 'app/sass/**/*.sass' -v",
+    "lint-js": "echo '\nJS\n' && ./node_modules/eslint/bin/eslint.js 'app/js/**/*.js'",
     "lint": "npm run -s lint-sass && npm run -s lint-js",
     "test": "npm run -s lint"
   },
