@@ -225,7 +225,7 @@ class GameRenderer {
 
     this.game.changeSize(
       Math.round(width / this.cellSize[0]),
-      Math.round(height / this.cellSize[1]),
+      Math.round(height / this.cellSize[1])
     );
 
     this.draw();  // TODO: requestAnimationFrame here
@@ -297,7 +297,7 @@ class GameRenderer {
 
 
 // Only if we're in a browser
-if (window) {
+if (typeof window !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
     window.gol = new GameRenderer('#gol');
     window.gol.start();
