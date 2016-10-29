@@ -202,6 +202,8 @@ class GameRenderer {
 
     this.sizeChanged(this.elem.offsetWidth, this.elem.offsetHeight);
     this.game.randomize();
+
+    document.addEventListener('mousemove', e => this.mouse(e.clientX, e.clientY));
   }
 
 
