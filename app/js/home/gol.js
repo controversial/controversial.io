@@ -269,10 +269,10 @@ class GameRenderer {
       const relx = mousex - bbox.left;
       const rely = mousey - bbox.top;
       // Calculate cell position
-      const cellx = Math.floor(relx / window.gol.cellSize[0]);
-      const celly = Math.floor(rely / window.gol.cellSize[1]);
+      const cellx = Math.floor(relx / this.cellSize[0]);
+      const celly = Math.floor(rely / this.cellSize[1]);
 
-      window.gol.game.turnOn(cellx, celly);
+      this.game.turnOn(cellx, celly);
     }
   }
 
