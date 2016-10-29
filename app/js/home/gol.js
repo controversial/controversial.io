@@ -184,6 +184,17 @@ class Game {
 // BINDS `Game` OBJECT TO A CANVAS =================================================================
 
 
+class GameRenderer {
+  constructor(selector) {
+    this.elem = document.querySelector(selector);
+    if (!(this.elem instanceof window.HTMLCanvasElement)) {
+      throw new Error('Selector passed to GameRenderer must match a canvas element');
+    }
+    this.context = this.elem.getContext('2d');
+  }
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   window.gol = {
 
