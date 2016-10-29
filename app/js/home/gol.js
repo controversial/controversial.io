@@ -289,7 +289,7 @@ class GameRenderer {
     setTimeout(() => {  // TODO: allow stopping
       this.step();
       this.start();
-    }, 1000 / window.gol.fps);
+    }, 1000 / this.fps);
   }
 }
 
