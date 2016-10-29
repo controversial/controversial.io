@@ -185,12 +185,111 @@ class Game {
 
 
 class GameRenderer {
-  constructor(selector) {
+  constructor(selector, fps, cellSize, cellColor) {
+    this.game = new Game();
+
     this.elem = document.querySelector(selector);
     if (!(this.elem instanceof window.HTMLCanvasElement)) {
       throw new Error('Selector passed to GameRenderer must match a canvas element');
     }
     this.context = this.elem.getContext('2d');
+
+    // Store options
+    this.fps = fps || 15;
+    this.idealCellSize = cellSize || 20;
+    this.cellSize = [this.idealCellSize, this.idealCellSize]; // Updated to fit game to canvas
+    this.cellColor = cellColor || '#37474f';
+
+    this.sizeChanged(this.elem.offsetWidth, this.elem.offsetHeight);
+    this.game.randomize();
+  }
+
+
+  // RENDERING FUNCTIONS
+  //   These functions connect the simulation to the browser
+
+
+  sizeChanged(width, height) {
+    // Update canvas coordinate system
+    this.elem.setAttribute('width', width);
+    this.elem.setAttribute('height', height);
+
+    // Update tile size by finding the dimensions that will both evenly fill
+    // the canvas and be close closest to the idealCellSize.
+    this.cellSize = [
+      width / Math.round(width / this.idealCellSize),
+      height / Math.round(height / this.idealCellSize),
+    ];
+
+    this.game.changeSize(
+      Math.round(width / this.cellSize[0]),
+      Math.round(height / this.cellSize[1]),
+    );
+
+    this.draw();  // TODO: requestAnimationFrame here
+  }
+
+  draw() {
+    const width = this.elem.getAttribute('width');
+    const height = this.elem.getAttribute('height');
+
+    this.context.clearRect(0, 0, width, height);
+    this.context.fillStyle = this.cellColor;
+    // Render board
+    for (let x = 0; x < this.game.boardSize[0]; x += 1) {
+      for (let y = 0; y < this.game.boardSize[1]; y += 1) {
+        if (this.game.board[x][y]) {
+          this.context.fillRect(
+            this.cellSize[0] * x,
+            this.cellSize[1] * y,
+            this.cellSize[0],
+            this.cellSize[1]
+          );
+        }
+      }
+    }
+  }
+
+
+  // USER INTERACTION
+
+
+  // Turn a cell on or off based on a given mouse position (clientX and clientY)
+  mouse(mousex, mousey) {
+    // Position of the canvas in the viewport
+    const bbox = this.elem.getBoundingClientRect();
+
+    // If the mosue is over the canvas
+    if (mousex > bbox.left &&
+        mousey > bbox.top &&
+        mousex < bbox.right &&
+        mousey < bbox.bottom
+    ) {
+      // Calculate mouse position relative to canvas
+      const relx = mousex - bbox.left;
+      const rely = mousey - bbox.top;
+      // Calculate cell position
+      const cellx = Math.floor(relx / window.gol.cellSize[0]);
+      const celly = Math.floor(rely / window.gol.cellSize[1]);
+
+      window.gol.game.turnOn(cellx, celly);
+    }
+  }
+
+
+  // CONTROL FUNCTIONS
+
+  step() {
+    this.game.step();
+    requestAnimationFrame(() => { this.draw(); });
+  }
+
+  start() {
+    this.draw();
+    setTimeout(() => {  // TODO: allow stopping
+      this.step();
+      this.start();
+    }, 1000 / window.gol.fps);
   }
 }
 
