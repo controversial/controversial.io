@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // BASIC ATTRIBUTES =======================================================
 
-    boids: [],
+    boids: [new Boid(0, 0)],
     canvas: document.getElementById('boids'),
     ctx: document.getElementById('boids').getContext('2d'),
 
@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Position of the mouse in the viewport
       const absx = e.clientX;
       const absy = e.clientY;
+      return [absx, absy];
     },
 
 
