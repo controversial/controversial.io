@@ -41,5 +41,7 @@
     "url": "https://github.com/controversial/controversial.io/issues"
   },
   "homepage": "https://github.com/controversial/controversial.io#readme",
-  "sasslintConfig": ".sass-lint.yml"
+  "sasslintConfig": ".sass-lint.yml",
+
+  "ava": {"babel": {}}
 }
