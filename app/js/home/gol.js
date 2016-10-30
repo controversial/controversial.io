@@ -140,7 +140,7 @@ class Game {
     return this;
   }
 
-  changeSize(width, height) {
+  changeSize(width, height, shouldRandomize) {
     // Store old board size
     const oldBoardSize = this.boardSize;
     const newBoardSize = [width, height];
@@ -161,14 +161,16 @@ class Game {
 
     // Populate new cells
 
-    // Add new rows filled with random cells
+    // Add new rows
     for (let i = 0; i < diff[0]; i += 1) {
-      this.board.push(this.getRandomRow());
+      this.board.push(
+        shouldRandomize ? this.getRandomRow() : new Array(this.boardSize[0]).fill(false)
+      );
     }
-    // Add new random cells to existing rows (new columns)
+    // Add new cells to existing rows (new columns)
     for (let i = 0; i < diff[1]; i += 1) {
       for (let k = 0; k < this.board.length; k += 1) {
-        this.board[k].push(Math.random() < 0.125);
+        this.board[k].push(shouldRandomize ? Math.random() < 0.125 : false);
       }
     }
 
