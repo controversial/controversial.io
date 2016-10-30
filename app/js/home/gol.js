@@ -196,7 +196,7 @@ class Game {
 
 
 class GameRenderer {
-  constructor(selector, fps, cellSize, cellColor) {
+  constructor(selector, fps, cellSize, cellColor, randomize) {
     this.game = new Game();
 
     this.elem = document.querySelector(selector);
@@ -210,9 +210,10 @@ class GameRenderer {
     this.idealCellSize = cellSize || 20;
     this.cellSize = [this.idealCellSize, this.idealCellSize]; // Updated to fit game to canvas
     this.cellColor = cellColor || '#37474f';
+    this.isRandom = typeof randomize === 'undefined' ? true : randomize;
 
     this.needsSizeUpdate = true;
-    this.game.randomize();
+    if (this.isRandom) this.game.randomize();
 
     document.addEventListener('mousemove', e => this.mouse(e.clientX, e.clientY));
   }
@@ -238,7 +239,8 @@ class GameRenderer {
 
     this.game.changeSize(
       Math.round(width / this.cellSize[0]),
-      Math.round(height / this.cellSize[1])
+      Math.round(height / this.cellSize[1]),
+      this.isRandom
     );
 
     this.draw();
