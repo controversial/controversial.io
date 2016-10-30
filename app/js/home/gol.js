@@ -236,28 +236,30 @@ class GameRenderer {
       Math.round(height / this.cellSize[1])
     );
 
-    this.draw();  // TODO: requestAnimationFrame here
+    this.draw();
   }
 
   draw() {
-    const width = this.elem.getAttribute('width');
-    const height = this.elem.getAttribute('height');
+    requestAnimationFrame(() => {
+      const width = this.elem.getAttribute('width');
+      const height = this.elem.getAttribute('height');
 
-    this.context.clearRect(0, 0, width, height);
-    this.context.fillStyle = this.cellColor;
-    // Render board
-    for (let x = 0; x < this.game.boardSize[0]; x += 1) {
-      for (let y = 0; y < this.game.boardSize[1]; y += 1) {
-        if (this.game.board[x][y]) {
-          this.context.fillRect(
-            this.cellSize[0] * x,
-            this.cellSize[1] * y,
-            this.cellSize[0],
-            this.cellSize[1]
-          );
+      this.context.clearRect(0, 0, width, height);
+      this.context.fillStyle = this.cellColor;
+      // Render board
+      for (let x = 0; x < this.game.boardSize[0]; x += 1) {
+        for (let y = 0; y < this.game.boardSize[1]; y += 1) {
+          if (this.game.board[x][y]) {
+            this.context.fillRect(
+              this.cellSize[0] * x,
+              this.cellSize[1] * y,
+              this.cellSize[0],
+              this.cellSize[1]
+            );
+          }
         }
       }
-    }
+    });
   }
 
 
@@ -291,7 +293,7 @@ class GameRenderer {
 
   step() {
     this.game.step();
-    requestAnimationFrame(() => { this.draw(); });
+    this.draw();
   }
 
   start() {
