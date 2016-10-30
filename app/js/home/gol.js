@@ -65,6 +65,7 @@ class Game {
         this.board[coords[0]][coords[1]] = value;
       });
     }
+    return this;
   }
 
   turnOn(x, y) {
