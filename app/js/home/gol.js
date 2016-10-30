@@ -51,7 +51,7 @@ class Game {
     return this;
   }
 
-  set(x, y, value) {
+  setState(x, y, value) {
     if (!(typeof value === 'boolean')) {
       throw new Error('Board values are always boolean');
     }
@@ -67,11 +67,11 @@ class Game {
   }
 
   turnOn(x, y) {
-    return this.set(x, y, true);
+    return this.setState(x, y, true);
   }
 
   turnOff(x, y) {
-    return this.set(x, y, false);
+    return this.setState(x, y, false);
   }
 
   // GAME LOGIC
