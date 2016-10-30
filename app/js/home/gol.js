@@ -51,14 +51,27 @@ class Game {
     return this;
   }
 
+  set(x, y, value) {
+    if (!(typeof value === 'boolean')) {
+      throw new Error('Board values are always boolean');
+    }
+    if (typeof x === 'number' && typeof y === 'number') {
+      // A single coordinate pair was passed
+      this.board[x][y] = value;
+    } else if (typeof location[0] === 'object' && typeof location[0][0] === 'number') {
+      // A list of coordinate pairs was passed
+      x.forEach((coords) => {
+        this.board[coords[0]][coords[1]] = value;
+      });
+    }
+  }
+
   turnOn(x, y) {
-    this.board[x][y] = true;
-    return this;
+    return this.set(x, y, true);
   }
 
   turnOff(x, y) {
-    this.board[x][y] = false;
-    return this;
+    return this.set(x, y, false);
   }
 
   setState(x, y, state) {
