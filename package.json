@@ -5,7 +5,7 @@
     "build": "gulp build",
     "watch": "gulp watch",
     "lint-sass": "./node_modules/sass-lint/bin/sass-lint.js 'app/**/*.sass' -v",
-    "lint-js": "./node_modules/eslint/bin/eslint.js 'app/**/*.js'",
+    "lint-js": "./node_modules/eslint/bin/eslint.js .",
     "lint": "npm run -s lint-sass && npm run -s lint-js",
     "test": "ava -v"
   },
