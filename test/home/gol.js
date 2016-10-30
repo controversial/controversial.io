@@ -29,7 +29,7 @@ test('Game of life boardSize works', (t) => {
 
 test('Game of life logic works', (t) => {
   // Test game of life with a glider
-  const g = new gol.Game(10, 10);
+  const g = new gol.Game(6, 7);
   g.clear();
   // Create a glider
   g.turnOn([
@@ -37,24 +37,17 @@ test('Game of life logic works', (t) => {
                     [3, 2],
     [1, 3], [2, 3], [3, 3],
   ]);
-  for (let i = 0; i < 10; i += 1) {
-    g.print();
-    g.step();
-    console.log();
-  }
+  // Advance the glider 6 steps
+  g.print();
+  for (let i = 0; i < 6; i += 1) g.step().print();
+
   t.deepEqual(
     g.board,
-    [
-      [false, false, false, false, false, false, false, false, false, false],
-      [false, false, false, false, false, false, false, false, false, false],
-      [false, false, false, false, false, false, false, false, false, false],
-      [false, false, false, false, false, true, false, false, false, false],
-      [false, false, false, false, false, false, true, false, false, false],
-      [false, false, false, false, true, true, true, false, false, false],
-      [false, false, false, false, false, false, false, false, false, false],
-      [false, false, false, false, false, false, false, false, false, false],
-      [false, false, false, false, false, false, false, false, false, false],
-      [false, false, false, false, false, false, false, false, false, false],
-    ]
+    [[false, false, false, false, false, false, false],
+     [false, false, false, false, false, false, false],
+     [false, false, false, false, true, false, false],
+     [false, false, false, false, false, true, false],
+     [false, false, false, true, true, true, false],
+     [false, false, false, false, false, false, false]]
   );
 });
