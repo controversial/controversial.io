@@ -52,6 +52,12 @@ test('Game of life logic works', (t) => {
   );
 });
 
-test('Game of life helper methods work', () => {
-  
+test('Game of life helper methods work', (t) => {
+  const g = new gol.Game(2, 2);
+  // test getBlankBoard
+  t.deepEqual(g.getBlankBoard(), [[false, false], [false, false]]);
+  // test getRandomRow
+  t.true(typeof g.getRandomRow() === 'object');
+  t.is(g.getRandomRow().length, 2);
+  // boardSize is already tested
 });
