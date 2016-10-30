@@ -104,16 +104,16 @@ document.addEventListener('scroll', () => {
   switch (true) {
     case (scroll < 5):
       setHeaderElementsPinned(true);
-      updateHeaderElements(0);
+      requestAnimationFrame(() => updateHeaderElements(0));
       break;
 
     case (scroll < window.innerHeight / 2):
       setHeaderElementsPinned(true);
-      updateHeaderElements(headerProgress);
+      requestAnimationFrame(() => updateHeaderElements(headerProgress));
       break;
 
     default:
       setHeaderElementsPinned(false);
-      updateHeaderElements(1);
+      requestAnimationFrame(() => updateHeaderElements(1));
   }
 });
