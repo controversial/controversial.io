@@ -74,11 +74,6 @@ class Game {
     return this.set(x, y, false);
   }
 
-  setState(x, y, state) {
-    this.board[x][y] = state;
-    return this;
-  }
-
   // GAME LOGIC
 
   countLiveNeighbors(x, y) {
