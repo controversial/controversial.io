@@ -60,3 +60,20 @@ test('Game of life helper methods work', (t) => {
   t.is(g.getRandomRow().length, 2);
   // boardSize is already tested
 });
+
+test('Game of life manipulation methods work', (t) => {
+  const g = new gol.Game(3, 3);
+  // test turnOn
+  g.turnOn(1, 1);
+  t.deepEqual(g.board, [[false, false, false], [false, true, false], [false, false, false]]);
+  // test turnOff
+  g.turnOff(1, 1);
+  t.deepEqual(g.board, [[false, false, false], [false, false, false], [false, false, false]]);
+  // test clear
+  g.turnOn(1, 1).clear();
+  t.deepEqual(g.board, [[false, false, false], [false, false, false], [false, false, false]]);
+  // test randomize
+  const board1 = g.randomize().board;
+  const board2 = g.randomize().board;
+  t.notDeepEqual(board1, board2);
+});
