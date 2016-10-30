@@ -183,7 +183,7 @@ class Game {
 
   print() {
     /* eslint-disable no-console */
-    console.log(this.toString());
+    console.log(`${this.toString()}\n`);
     /* eslint-enable no-console */
   }
 }
