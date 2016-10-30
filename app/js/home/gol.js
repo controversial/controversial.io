@@ -208,7 +208,7 @@ class GameRenderer {
     this.cellSize = [this.idealCellSize, this.idealCellSize]; // Updated to fit game to canvas
     this.cellColor = cellColor || '#37474f';
 
-    this.sizeChanged(this.elem.offsetWidth, this.elem.offsetHeight);
+    this.sizeChanged();
     this.game.randomize();
 
     document.addEventListener('mousemove', e => this.mouse(e.clientX, e.clientY));
@@ -219,8 +219,10 @@ class GameRenderer {
   //   These functions connect the simulation to the browser
 
 
-  sizeChanged(width, height) {
+  sizeChanged() {
     // Update canvas coordinate system
+    const width = this.elem.offsetWidth;
+    const height = this.elem.offsetHeight;
     this.elem.setAttribute('width', width);
     this.elem.setAttribute('height', height);
 
@@ -322,7 +324,7 @@ if (typeof window !== 'undefined') {
     // behavior)
     window.addEventListener(
       'resize',
-      () => window.gol.sizeChanged(window.gol.elem.offsetWidth, window.gol.elem.offsetHeight)
+      () => window.gol.sizeChanged()
     );
   });
 } else {

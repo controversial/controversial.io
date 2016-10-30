@@ -5,7 +5,7 @@
 const test = require('ava');
 const gol = require('../../app/js/home/gol.js');
 
-test('Properly initializes game of life', (t) => {
+test('Game of life is properly initialized', (t) => {
   const g = new gol.Game(15, 15);
   t.true(g instanceof gol.Game);
   t.is(g.board.length, 15);
@@ -50,4 +50,8 @@ test('Game of life logic works', (t) => {
      [false, false, false, true, true, true, false],
      [false, false, false, false, false, false, false]]
   );
+});
+
+test('Game of life helper methods work', () => {
+  
 });

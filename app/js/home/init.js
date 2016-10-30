@@ -81,10 +81,9 @@ function updateHeaderElements(progress) {
 
   // ADJUST CANVAS SETTINGS
 
-
   const canvasScale = ( // Mean of X scale difference and Y scale difference
-    (window.gol.canvas.offsetWidth / window.innerWidth) +
-    (window.gol.canvas.offsetHeight / window.innerHeight)
+    (window.gol.elem.offsetWidth / window.innerWidth) +
+    (window.gol.elem.offsetHeight / window.innerHeight)
   ) / 2;
   window.gol.idealCellSize = 20 * canvasScale;
   window.gol.sizeChanged();
