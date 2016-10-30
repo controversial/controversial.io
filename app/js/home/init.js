@@ -86,7 +86,7 @@ function updateHeaderElements(progress) {
     (window.gol.elem.offsetHeight / window.innerHeight)
   ) / 2;
   window.gol.idealCellSize = 20 * canvasScale;
-  window.gol.sizeChanged();
+  window.gol.needsSizeUpdate = true;
 }
 
 
