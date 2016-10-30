@@ -73,6 +73,8 @@ test('Game of life manipulation methods work', (t) => {
   g.turnOn(1, 1).clear();
   t.deepEqual(g.board, [[false, false, false], [false, false, false], [false, false, false]]);
   // test randomize
+  // TODO: There's a slim chance that this fails because it depends on random stuff. I should fix
+  // that. Random test failures are probably bad.
   const board1 = g.randomize().board;
   const board2 = g.randomize().board;
   t.notDeepEqual(board1, board2);
