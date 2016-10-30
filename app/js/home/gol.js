@@ -285,6 +285,7 @@ class GameRenderer {
       const celly = Math.floor(rely / this.cellSize[1]);
 
       this.game.turnOn(cellx, celly);
+      this.draw();
     }
   }
 
