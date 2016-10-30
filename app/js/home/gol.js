@@ -177,7 +177,7 @@ class Game {
   // GAME DEBUG FUNCTIONS
 
   toString() {
-    function boolToAscii(n) { return n ? '*' : ' '; }
+    function boolToAscii(n) { return n ? 'o' : '.'; }
     return this.board.map(row => row.map(boolToAscii).join('')).join('\n');
   }
 
