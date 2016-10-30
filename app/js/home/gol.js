@@ -58,7 +58,7 @@ class Game {
     if (typeof x === 'number' && typeof y === 'number') {
       // A single coordinate pair was passed
       this.board[x][y] = value;
-    } else if (typeof location[0] === 'object' && typeof location[0][0] === 'number') {
+    } else if (typeof x === 'object' && typeof x[0][0] === 'number') {
       // A list of coordinate pairs was passed
       x.forEach((coords) => {
         this.board[coords[0]][coords[1]] = value;
