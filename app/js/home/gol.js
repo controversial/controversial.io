@@ -21,6 +21,7 @@ class Game {
   constructor(width, height) {
     this.board = [[]];
     this.changeSize(width, height);
+    this.clear();
   }
 
   // HELPER FUNCTIONS

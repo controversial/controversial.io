@@ -30,7 +30,6 @@ test('Game of life boardSize works', (t) => {
 test('Game of life logic works', (t) => {
   // Test game of life with a glider
   const g = new gol.Game(6, 7);
-  g.clear();
   // Create a glider
   g.turnOn([
             [2, 1],
