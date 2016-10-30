@@ -308,4 +308,6 @@ if (typeof window !== 'undefined') {
       () => window.gol.sizeChanged(window.gol.elem.offsetWidth, window.gol.elem.offsetHeight)
     );
   });
+} else {
+  module.exports.Game = Game;
 }
