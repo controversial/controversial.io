@@ -299,10 +299,16 @@ class GameRenderer {
 
   start() {
     this.draw();
-    setTimeout(() => {  // TODO: allow stopping
+    this.timeout = setTimeout(() => {  // TODO: allow stopping
       this.step();
       this.start();
     }, 1000 / this.fps);
+  }
+
+  stop() {
+    if (typeof this.timeout !== 'undefined') {
+      clearTimeout(this.timeout);
+    }
   }
 }
 
