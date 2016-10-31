@@ -1,53 +1,5 @@
 /* Typewriter text animation */
 
-/* Typewriter class
- * The callback passed will be called with full strings, which should be used as text. This class
- * takes care of partial phases, just use the text passed to the callback when it is called.
- */
-
-class Typewriter {
-  constructor(phrases, delayRange, callback) {
-    this.phrases = phrases;
-    this.delayRange = delayRange;
-    this.currentPhraseIndex = 0;
-    this.callback = callback;
-  }
-
-  /* Find the words that are common to the beginning of two phrases. */
-  static findCommonStart(phraseA, phraseB) {
-    const aWords = phraseA.split(' ');
-    const bWords = phraseB.split(' ');
-
-    const commonWords = [];
-    for (let i = 0; i < aWords.length; i += 1) {
-      if (aWords[i] === bWords[i]) commonWords.push(aWords[i]);
-      else break;
-    }
-    return commonWords.join(' ');
-  }
-
-  /* Get instructions for transforming between two strings in the form of
-   * number of characters to delete and characters to add.
-   */
-  transitionDescription(phraseA, phraseB) {
-    const commonStart = this.commonStart(phraseA, phraseB);
-    const numCharactersToDelete = phraseA.length - commonStart.length;
-    const charactersToAdd = phraseB.slice(commonStart.length);
-    return {
-      del: numCharactersToDelete,
-      add: charactersToAdd,
-    };
-  }
-
-  /* Pick a delay length from the delay range */
-  getTypingDelay() {
-    return Math.floor(
-      (Math.random() * (this.delayRange[1] - this.delayRange[0])) + this.delayRange[0]
-    );
-  }
-}
-
-
 document.addEventListener('DOMContentLoaded', () => {
   window.typewriter = {
     element: document.getElementById('typewriter'),
