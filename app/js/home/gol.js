@@ -48,7 +48,10 @@ class Game {
   }
 
   randomize() {
-    this.board = this.getBlankBoard().map(() => this.getRandomRow());
+    const oldBoard = this.board;
+    while (JSON.stringify(this.board) === JSON.stringify(oldBoard)) {
+      this.board = this.getBlankBoard().map(() => this.getRandomRow());
+    }
     return this;
   }
 
