@@ -10,7 +10,7 @@
     "lint": "npm run -s lint-sass && npm run -s lint-js",
     "test": "ava -v",
 
-    "docs": "jsdoc app/**/*.js -d docs --verbose"
+    "docs": "jsdoc app -r -d docs --verbose"
   },
   "devDependencies": {
     "ava": "^0.16.0",
