@@ -4,10 +4,13 @@
     "start": "gulp",
     "build": "gulp build",
     "watch": "gulp watch",
+
     "lint-sass": "./node_modules/sass-lint/bin/sass-lint.js 'app/**/*.sass' -v",
     "lint-js": "./node_modules/eslint/bin/eslint.js .",
     "lint": "npm run -s lint-sass && npm run -s lint-js",
-    "test": "ava -v"
+    "test": "ava -v",
+
+    "docs": "jsdoc app/**/*.js -d docs --verbose"
   },
   "devDependencies": {
     "ava": "^0.16.0",
@@ -26,6 +29,7 @@
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
+    "jsdoc": "^3.4.2",
     "sass-lint": "^1.9.1"
   },
   "description": "This is my website. There are many like it, but this one is mine.",
