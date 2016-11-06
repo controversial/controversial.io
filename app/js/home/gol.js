@@ -60,11 +60,19 @@ class Game {
 
   // GAME MANIPULATION
 
+  /**
+   * Set all cells in the board to blank.
+   * @return {Game} the current game (to allow chaining).
+   */
   clear() {
     this.board = this.getBlankBoard();
     return this;
   }
 
+  /**
+   * Set all cells in the game to random values.
+   * There's a 1 in 8 chance that a cell will be true, most cells will be false.
+   */
   randomize() {
     const oldBoard = this.board;
     while (JSON.stringify(this.board) === JSON.stringify(oldBoard)) {
@@ -73,6 +81,13 @@ class Game {
     return this;
   }
 
+  /**
+   * Set the state of one or more cells to be true or false.
+   * @param {number} x - the X position of the cell to change.
+   * @param {number} y - the Y position of the cell to change.
+   * @param {boolean} value - the boolean value to assign to the given cell(s).
+   * @return {Game} the current game (to allow chaining).
+   */
   setState(x, y, value) {
     if (!(typeof value === 'boolean')) {
       throw new Error('Board values are always boolean');
@@ -89,10 +104,22 @@ class Game {
     return this;
   }
 
+  /**
+   * Turn on a cell.
+   * @param {number} x - the X position of the cell to turn on.
+   * @param {number} y - the Y position of the cell to turn on.
+   * @return {Game} the current game (to allow chaining).
+   */
   turnOn(x, y) {
     return this.setState(x, y, true);
   }
 
+  /**
+   * Turn off a cell.
+   * @param {number} x - the X position of the cell to turn off.
+   * @param {number} y - the Y position of the cell to turn off.
+   * @return {Game} the current game (to allow chaining).
+   */
   turnOff(x, y) {
     return this.setState(x, y, false);
   }
