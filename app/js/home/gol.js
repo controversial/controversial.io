@@ -17,7 +17,13 @@ if (!Array.prototype.fill) {
 // CONTROLS GAME LOGIC =============================================================================
 
 
+/** Controls the logic for a Game of Life simulation. */
 class Game {
+  /**
+   * Create a new Game of Life simulation.
+   * @param {number} width - the width (in cells) of the game board
+   * @param {number} height - the height (in cells) of the game board
+   */
   constructor(width, height) {
     this.board = [[]];
     this.changeSize(width, height);
