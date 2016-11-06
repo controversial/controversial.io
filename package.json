@@ -4,13 +4,11 @@
     "start": "gulp",
     "build": "gulp build",
     "watch": "gulp watch",
-
     "lint-sass": "sass-lint 'app/**/*.sass' -v",
     "lint-js": "eslint .",
     "lint": "npm run -s lint-sass && npm run -s lint-js",
     "test": "ava -v",
-
-    "docs": "jsdoc app -r -d docs --verbose"
+    "docs": "jsdoc app -r -d docs -t node_modules/minami --verbose"
   },
   "devDependencies": {
     "ava": "^0.16.0",
@@ -30,6 +28,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
     "jsdoc": "^3.4.2",
+    "minami": "^1.1.1",
     "sass-lint": "^1.9.1"
   },
   "description": "This is my website. There are many like it, but this one is mine.",
