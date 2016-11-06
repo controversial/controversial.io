@@ -42,6 +42,7 @@
   },
   "homepage": "https://github.com/controversial/controversial.io#readme",
   "sasslintConfig": ".sass-lint.yml",
-
-  "ava": {"babel": {}}
+  "ava": {
+    "babel": {}
+  }
 }
