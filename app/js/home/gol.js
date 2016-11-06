@@ -32,16 +32,28 @@ class Game {
 
   // HELPER FUNCTIONS
 
+  /**
+   * Get a 2d array with the width and height of the game board.
+   * @return {Array} a 2D array filled with false values
+   */
   getBlankBoard() {
     return new Array(this.boardSize[0]).fill(0).map(
       () => new Array(this.boardSize[1]).fill(false)
     );
   }
 
+  /**
+   * Get a randomized board row.
+   * @return {Array} an array with the width of the board containing random boolean values.
+   */
   getRandomRow() {
     return new Array(this.boardSize[0]).fill(0).map(() => Math.random() < 0.125);
   }
 
+  /**
+   * Get the size of the simultion in cells.
+   * @return {Array} an array in the form [width, height].
+   */
   get boardSize() {
     return [this.board.length, this.board[0].length];
   }
