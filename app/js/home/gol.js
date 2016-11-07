@@ -324,6 +324,11 @@ class GameRenderer {
   //   These functions connect the simulation to the browser
 
 
+  /**
+   * Called when the size of the canvas changes in order to readjust the cells to fit the canvas.
+   * The canvas's coordinate systems will be updated, and the cells will be redrawn to match the
+   * ideal cell size provided.
+   */
   updateSize() {
     // Update canvas coordinate system
     const width = this.elem.offsetWidth;
@@ -347,6 +352,10 @@ class GameRenderer {
     this.draw();
   }
 
+  /**
+   * Render the cells onto the canvas.
+   * This method will draw each cell (with the given color) onto the canvas.
+   */
   draw() {
     requestAnimationFrame(() => {
       // Update canvas coordinates if needed
@@ -380,7 +389,14 @@ class GameRenderer {
   // USER INTERACTION
 
 
-  // Turn a cell on or off based on a given mouse position (clientX and clientY)
+  /**
+   * Turn a cell on or off based on a given mouse position. This implements the logic for the
+   * mapping of screen coordinates to coordinates on the game board.
+   * @param {number} mousex - the X coordinate of the mouse, as stored in the clientX property of
+   * a mousemove event.
+   * @param {number} mousey - the Y coordinate of the mouse, as stored in the clientY property of
+   * a mousemove event.
+   */
   mouse(mousex, mousey) {
     // Position of the canvas in the viewport
     const bbox = this.elem.getBoundingClientRect();
@@ -406,19 +422,22 @@ class GameRenderer {
 
   // CONTROL FUNCTIONS
 
+  /** Step and redraw. */
   step() {
     this.game.step();
     this.draw();
   }
 
+  /** Begin advancing the simulation in a timed loop. */
   start() {
     this.draw();
-    this.timeout = setTimeout(() => {  // TODO: allow stopping
+    this.timeout = setTimeout(() => {
       this.step();
       this.start();
     }, 1000 / this.fps);
   }
 
+  /** Stop the advancement of the simulation. */
   stop() {
     if (typeof this.timeout !== 'undefined') {
       clearTimeout(this.timeout);
