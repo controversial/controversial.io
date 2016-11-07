@@ -126,6 +126,12 @@ class Game {
 
   // GAME LOGIC
 
+  /**
+   * Find the number of live cells in a given cell's neighborhood.
+   * @param {number} x - the X position of the cell to check.
+   * @param {number} y - the Y position of the cell to check.
+   * @return {number} the number of live cells in the eight-cell neighborhood
+   */
   countLiveNeighbors(x, y) {
     // Is there room in directions of:
     //   - negative x
@@ -160,6 +166,13 @@ class Game {
     return neighbors.filter(n => n).length;
   }
 
+  /**
+   * Determine if a cell should live or die based on its number of live neighbors.
+   * @param {boolean} isLive - whether the cell in question is currently alive
+   * @param {number} liveNeighbors - the number of live neighbors in an eight-cell neighborhood (as
+   * returned from countLiveNeighbors)
+   * @return {boolean} whether the cell should live or die
+   */
   static judgeFate(isLive, liveNeighbors) {
     if (isLive) {
       // Any live cell with fewer than 2 live neighbors
@@ -173,6 +186,10 @@ class Game {
 
   // GAME CONTROLS
 
+  /**
+   * Advance the simulation one step.
+   * @return {Game} the current game (to allow chaining).
+   */
   step() {
     const newState = this.getBlankBoard();
 
@@ -189,6 +206,16 @@ class Game {
     return this;
   }
 
+  /**
+   * Change the size of the board. If either dimension shrinks, cells will be
+   * deleted from the bottom or right of the board. If either dimension grows,
+   * either blank or random cells will be added in the new territory.
+   * @param {number} width - the updated width of the board
+   * @param {number} height - the updated height of the board
+   * @param {boolean} shouldRandomize - whether any new territory should be filled with random cells
+   * or left blank.
+   * @return {Game} the current game (to allow chaining).
+   */
   changeSize(width, height, shouldRandomize) {
     // Store old board size
     const oldBoardSize = this.boardSize;
@@ -228,11 +255,24 @@ class Game {
 
   // GAME DEBUG FUNCTIONS
 
+  /**
+   * Get a string representing the game (sort of ascii art-esque). Example:
+   * .......
+   * .......
+   * ....o..
+   * .....o.
+   * ...ooo.
+   * .......
+   * @return {String} string representation of the simulation state.
+   */
   toString() {
     function boolToAscii(n) { return n ? 'o' : '.'; }
     return this.board.map(row => row.map(boolToAscii).join('')).join('\n');
   }
 
+  /**
+   * Print the game to the console.
+   */
   print() {
     /* eslint-disable no-console */
     console.log(`${this.toString()}\n`);
