@@ -284,7 +284,19 @@ class Game {
 // BINDS `Game` OBJECT TO A CANVAS =================================================================
 
 
+/** Binds a Game instance to a canvas to display it to a user. */
 class GameRenderer {
+  /**
+   * Bind a Game to a canvas. Initiaizatin requires DOM.
+   * @param {string} selector - a selector for the canvas element to bind to.
+   * @param {number} fps - the frames per second at which the animation should try to run.
+   * @param {number} cellSize - the optimal size (in pixels) for game cells which the renderer
+   * should strive to use. This will be stretched slightly in order to completely fill the canvas.
+   * @param {string} cellColor - a hex string for the color that should be used to draw cells
+   * @param {boolean} randomize - whether the board is randomized (as in the header of my site) or
+   * controlled manually. If true, the game will be initally randomized and all new territory will
+   * be randomized as well.
+   */
   constructor(selector, fps, cellSize, cellColor, randomize) {
     this.game = new Game();
 
