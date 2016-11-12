@@ -32,7 +32,7 @@
     "sass-lint": "^1.9.1"
   },
   "description": "This is my website. There are many like it, but this one is mine.",
-  "version": "0.14.0",
+  "version": "0.16.0",
   "main": "gulpfile.js",
   "repository": {
     "type": "git",
