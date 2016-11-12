@@ -42,5 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     go();
   }
 
-  document.addEventListener('mousewheel', e => map.panBy([e.deltaX, e.deltaY], { animate: false }));
+  document.addEventListener('mousewheel', (e) => {
+    e.preventDefault();
+    map.panBy([e.deltaX, e.deltaY], { animate: false });
+  });
 });
