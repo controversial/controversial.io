@@ -9,4 +9,8 @@ function get(url, callback) {
 }
 
 // Testing
-get('https://api.github.com/users/controversial');
+get('https://api.github.com/users/controversial', (resp) => {
+  const data = JSON.parse(resp);
+  const numRepos = data.public_repos;
+  document.getElementById('gh-label').innerHtml = numRepos;
+});
