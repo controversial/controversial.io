@@ -68,5 +68,8 @@ section
   overflow: auto
 
   &.full
-    // Account for height of top bar
-    height: calc(100vh - 69px)
+    // Account for height of top bar.
+       I sampled a bunch of values for the top bar height vs the window width,
+       and came up with the rough equation of Y = 0.01016*X + 55.90. It should
+       be good enough ¯\_(ツ)_/¯
+    height: calc(100vh - ((100vw * .01016) + 55.9px))
