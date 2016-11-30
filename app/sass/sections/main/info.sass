@@ -1,40 +1,36 @@
 $shadow-color: rgba(0, 0, 0, .16)
 
-.info-container
-  position: relative
+.info
+  margin: 6vh 10vw
 
-  padding: 6vh 10vw
+  display: flex
+  flex-direction: row
 
-  .info
+  background-color: $white
+  color: $dark-text-primary
 
-    display: flex
-    flex-direction: row
+  border-radius: 2px
+  box-shadow: 10px 10px 20px 20px $shadow-color
 
-    background-color: $white
-    color: $dark-text-primary
+  transition: box-shadow .25s
+  box-shadow: 0 4px 10px 0 $shadow-color, 0 4px 20px 0 $shadow-color
 
-    border-radius: 2px
-    box-shadow: 10px 10px 20px 20px $shadow-color
-
-    transition: box-shadow .25s
-    box-shadow: 0 4px 10px 0 $shadow-color, 0 4px 20px 0 $shadow-color
-
-    &:hover
-      box-shadow: 0 16px 34px 0 $shadow-color, 0 12px 40px 0 $shadow-color
+  &:hover
+    box-shadow: 0 16px 34px 0 $shadow-color, 0 12px 40px 0 $shadow-color
 
 
-    .third
-      flex: 1
-      text-align: center
+  .third
+    flex: 1
+    text-align: center
 
-      border-left: 1px solid $dark-text-hint
+    border-left: 1px solid $dark-text-hint
 
-      padding: 2vw 2vw 3.5vw
+    padding: 2vw 2vw 3.5vw
 
-      &:first-child
-        border-left: 0
+    &:first-child
+      border-left: 0
 
-      .icon
-        font-size: 8vw
-        margin-bottom: 1vw
-        display: block
+    .icon
+      font-size: 8vw
+      margin-bottom: 1vw
+      display: block
