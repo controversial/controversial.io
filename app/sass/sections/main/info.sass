@@ -6,29 +6,24 @@ $shadow-color: rgba(0, 0, 0, .16)
   display: flex
   flex-direction: row
 
-  background-color: $white
-  color: $dark-text-primary
-
-  border-radius: 2px
-  box-shadow: 10px 10px 20px 20px $shadow-color
-
-  transition: box-shadow .25s
-  box-shadow: 0 4px 10px 0 $shadow-color, 0 4px 20px 0 $shadow-color
-
-  &:hover
-    box-shadow: 0 16px 34px 0 $shadow-color, 0 12px 40px 0 $shadow-color
-
-
-  .third
+  .card
     flex: 1
     text-align: center
 
-    border-left: 1px solid $dark-text-hint
+    background-color: $white
+    color: $dark-text-primary
 
     padding: 2vw 2vw 3.5vw
+    margin: 2vw
 
-    &:first-child
-      border-left: 0
+    border-radius: 2px
+    box-shadow: 10px 10px 20px 20px $shadow-color
+
+    transition: box-shadow .25s
+    box-shadow: 0 4px 10px 0 $shadow-color, 0 4px 20px 0 $shadow-color
+
+    &:hover
+      box-shadow: 0 16px 34px 0 $shadow-color, 0 12px 40px 0 $shadow-color
 
     .icon
       font-size: 8vw
