@@ -11,6 +11,6 @@ function get(url, callback) {
 // Testing
 get('https://api.github.com/users/controversial', (resp) => {
   const data = JSON.parse(resp);
-  const numRepos = data.public_repos;
-  document.getElementById('gh-repo-count').innerText = numRepos;
+  document.getElementById('gh-repo-count').innerText = data.public_repos;
+  document.getElementById('gh-followers-count').innerText = data.followers;
 });
