@@ -10,10 +10,11 @@ $contributionsIndex = preg_match(
 $index = $matches[0][1];
 $oldIndex = $index;
 
-while (is_numeric($githubProfile[$index-2]) || $githubProfile[$index-2] == ',') {
+while (is_numeric($githubProfile[$index-2]) || $githubProfile[$index-2] == ',')
   $index--;
-}
 
-echo(substr($githubProfile, $index-1, $oldIndex-$index));
+$contributionsCount = substr($githubProfile, $index-1, $oldIndex-$index);
+
+echo(str_replace(',', '', $contributionsCount));
 
 ?>
