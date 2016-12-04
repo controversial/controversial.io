@@ -10,6 +10,7 @@ const concat = require('gulp-concat');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 
+const php = require('gulp-connect-php');
 const browserSync = require('browser-sync').create();
 
 // Copy static files to dist folder
@@ -67,12 +68,19 @@ gulp.task('watch', ['build'], () => {
 
 // Serving
 
-gulp.task('serve', () => {
-  browserSync.init({
-    server: {
-      baseDir: './dist',
-    },
+gulp.task('php-serve', () => {
+  php.server({
+    base: './dist',
+    port: 8000,
+    keepalive: true,
   });
+});
+
+gulp.task('serve', ['php-serve'], () => {
+  browserSync.init({
+    proxy: 'localhost:8000',
+  });
+
   gulp.watch(
     ['./app/**/*.html'],
     browserSync.reload
