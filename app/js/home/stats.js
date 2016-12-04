@@ -8,9 +8,14 @@ function get(url, callback) {
   /* eslint-enable no-console */
 }
 
-// Testing
+// Fill in GitHub repo count and followers count
 get('https://api.github.com/users/controversial', (resp) => {
   const data = JSON.parse(resp);
   document.getElementById('gh-repo-count').innerText = data.public_repos;
   document.getElementById('gh-followers-count').innerText = data.followers;
+});
+
+// Fill in GitHub contributions count
+get('contributions-count.php', (resp) => {
+  document.getElementById('gh-contributions-count').innerText = resp;
 });
