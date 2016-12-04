@@ -8,8 +8,12 @@ $contributionsIndex = preg_match(
   PREG_OFFSET_CAPTURE
 );
 $index = $matches[0][1];
+$oldIndex = $index;
 
-printf($index);
-printf(substr($githubProfile, $index-20, 50));
+while (is_numeric($githubProfile[$index-2]) || $githubProfile[$index-2] == ',') {
+  $index--;
+}
+
+echo(substr($githubProfile, $index-1, $oldIndex-$index));
 
 ?>
