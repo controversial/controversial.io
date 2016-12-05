@@ -22,10 +22,14 @@ get('contributions-count.php', (resp) => {
 
 get('https://api.stackexchange.com/2.2/users/4414003?site=stackoverflow', (resp) => {
   const data = JSON.parse(resp).items[0];
-  console.log(data);
 
   document.getElementById('so-reputation').innerText = data.reputation;
 
   const badgeCount = data.badge_counts.bronze + data.badge_counts.silver + data.badge_counts.gold;
   document.getElementById('so-badges').innerText = badgeCount;
 });
+
+setInterval(() => {
+  const age = (new Date() - Date.parse('11/03/2001 17:23')) / 31536000000;
+  document.getElementById('age').innerText = age.toFixed(9);
+}, 30);
