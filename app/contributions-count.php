@@ -8,12 +8,12 @@ $contributionsIndex = preg_match(
   PREG_OFFSET_CAPTURE
 );
 $index = $matches[0][1];
-$oldIndex = $index;
+$endIndex = $index;
 
 while (is_numeric($githubProfile[$index-2]) || $githubProfile[$index-2] == ',')
   $index--;
 
-$contributionsCount = substr($githubProfile, $index-1, $oldIndex-$index);
+$contributionsCount = substr($githubProfile, $index-1, $endIndex-$index);
 
 echo(str_replace(',', '', $contributionsCount));
 
