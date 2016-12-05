@@ -21,5 +21,6 @@ get('contributions-count.php', (resp) => {
 });
 
 get('https://api.stackexchange.com/2.2/users/4414003?site=stackoverflow', (resp) => {
-  console.log(resp);
+  const data = JSON.parse(resp).items[0];
+  document.getElementById('so-reputation').innerText = data.reputation;
 });
