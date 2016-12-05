@@ -19,3 +19,7 @@ get('https://api.github.com/users/controversial', (resp) => {
 get('contributions-count.php', (resp) => {
   document.getElementById('gh-contributions-count').innerText = resp;
 });
+
+get('https://api.stackexchange.com/2.2/users/4414003?site=stackoverflow', (resp) => {
+  console.log(resp);
+});
