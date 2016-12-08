@@ -8,13 +8,6 @@ function get(url, callback) {
   /* eslint-enable no-console */
 }
 
-// Fill in GitHub repo count and followers count
-get('https://api.github.com/users/controversial', (resp) => {
-  const data = JSON.parse(resp);
-  document.getElementById('gh-repo-count').innerText = data.public_repos;
-  document.getElementById('gh-followers-count').innerText = data.followers;
-});
-
 // Fill in GitHub contributions count
 get('contributions-count.php', (resp) => {
   document.getElementById('gh-contributions-count').innerText = resp;
@@ -22,11 +15,7 @@ get('contributions-count.php', (resp) => {
 
 get('https://api.stackexchange.com/2.2/users/4414003?site=stackoverflow', (resp) => {
   const data = JSON.parse(resp).items[0];
-
   document.getElementById('so-reputation').innerText = data.reputation;
-
-  const badgeCount = data.badge_counts.bronze + data.badge_counts.silver + data.badge_counts.gold;
-  document.getElementById('so-badges').innerText = badgeCount;
 });
 
 setInterval(() => {
