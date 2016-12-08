@@ -1,6 +1,6 @@
 $twitter: #1da1f2
 $github: #000
-$stackOverflow: #f69c55
+$stack-overflow: #f69c55
 $dribbble: #ea4c89
 
 
@@ -90,8 +90,8 @@ $dribbble: #ea4c89
           opacity: 1
 
 
-      // Specific styles for each different logo. Somehow, transforms need to
-         be different for each bubble? Confusing.
+      // Specific styles for each different logo. Transforms need to be different
+        for each bubble because each icon is differently sized and centered
 
 
       &.fa-twitter
@@ -130,7 +130,7 @@ $dribbble: #ea4c89
           transform: translateX(-32px) translateY(-7.5px) scale(.01, .01)
 
         &:hover
-          color: $stackOverflow
+          color: $stack-overflow
 
           &::after
             transform: translateX(-32px) translateY(-7.5px)
@@ -147,4 +147,3 @@ $dribbble: #ea4c89
 
           &::after
             transform: translateX(-35.5px) translateY(-7px)
-
