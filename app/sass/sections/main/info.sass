@@ -13,8 +13,8 @@ $shadow-color: rgba(0, 0, 0, .16)
     background-color: $white
     color: $dark-text-primary
 
-    padding: 2vw 2vw 3.5vw
-    margin: 2vw
+    padding: calc(10px + 1.5vw) calc(10px + 1.5vw) calc(12px + 2vw)
+    margin: calc(10px + 1vw)
 
     border-radius: 2px
     box-shadow: 10px 10px 20px 20px $shadow-color
@@ -22,17 +22,16 @@ $shadow-color: rgba(0, 0, 0, .16)
     transition: box-shadow .25s
     box-shadow: 0 4px 10px 0 $shadow-color, 0 4px 20px 0 $shadow-color
 
-    font-size: calc(20px + .5vw)
-    line-height: calc(20px + .5vw)
+    font-size: calc(15px + 1vw)
+    line-height: calc(15px + 1vw)
 
     &:hover
       box-shadow: 0 16px 34px 0 $shadow-color, 0 12px 40px 0 $shadow-color
 
     .fa
-      font-size: 8vw
+      font-size: calc(20px + 5vw)
       margin-bottom: 1vw
       display: block
-      line-height: 8vw
 
     .small
       font-size: 60%
