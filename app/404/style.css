@@ -1,16 +1,4 @@
-@font-face {
-  font-family: 'PierSans';
-  font-style: normal;
-  font-weight: bold;
-  src: url('/pier-bold.otf');
-}
-
-@font-face {
-  font-family: 'PierSans';
-  font-style: normal;
-  font-weight: normal;
-  src: url('/pier-regular.otf');
-}
+@import url('https://fonts.googleapis.com/css?family=Montserrat:600')
 
 * {
   box-sizing: border-box;
@@ -36,7 +24,8 @@ header {
 }
 
 h1 {
-  font-family: 'PierSans';
+  font-family: 'Montserrat';
+  font-weight: 600;
   font-size: 6vw;
   margin: 0 0 1vw 0;
   font-weight: bold;
@@ -45,7 +34,8 @@ h1 {
 }
 
 h2 {
-  font-family: 'PierSans';
+  font-family: 'Montserrat';
+  font-weight: 600;
   font-size: 4vw;
   margin: 0;
   font-weight: normal;
