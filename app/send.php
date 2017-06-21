@@ -7,7 +7,11 @@ $email = $_POST["email"];
 $message = $_POST["message"];
 $headers = "From: '".$sender."' <contact@controversial.io>\r\n";
 
-mail("luke@deentaylor.com", "Contact form | ".$email, $message, $headers);
+$success = false;
+if (strlen(trim($sender)) > 0 && strlen(trim($email)) > 0 && strlen(trim($message)) > 0) {
+  $success = true;
+  mail("luke@deentaylor.com", "Contact form | ".$email, $message, $headers);
+}
 
 ?>
 
@@ -30,8 +34,9 @@ mail("luke@deentaylor.com", "Contact form | ".$email, $message, $headers);
   <body>
     <canvas id="boids"></canvas>
     <div class="content-main">
-      <h1>Email sent</h1>
-      <h2>Thanks for getting in touch, <?php echo explode(" ", $sender)[0]; ?>. I'll get back to you shortly.</h2>
+      <h1><?= $success ? "Email sent" : "Email not sent" ?></h1>
+      <h2 style="display: <?= $success ? "block" : "none"?>">Thanks for getting in touch, <?php echo explode(" ", $sender)[0]; ?>. I'll get back to you shortly.</h2>
+      <h2 style="display: <?= $success ? "none" : "block"?>">Go back and fill in the missing fields</h2>
     </div>
 
     <!-- TODO: replace this with an implementation of Boids, because flocking
