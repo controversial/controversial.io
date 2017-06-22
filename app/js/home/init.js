@@ -122,31 +122,36 @@ document.addEventListener('scroll', () => {
   const headerProgress = scroll / (window.innerHeight / 2);
 
   switch (true) {
-    case (scroll < 5):
+    case (scroll < 5): {
       setHeaderElementsPinned(true);
       requestAnimationFrame(() => updateHeaderElements(0));
       break;
+    }
 
-    case (scroll < window.innerHeight / 2):
+    case (scroll < window.innerHeight / 2): {
       setHeaderElementsPinned(true);
       requestAnimationFrame(() => updateHeaderElements(headerProgress));
       break;
+    }
 
-    default:
+    default: {
       setHeaderElementsPinned(false);
       requestAnimationFrame(() => updateHeaderElements(1));
+    }
   }
 
   // Background
 
   switch (true) {
-    case (scroll < window.innerHeight * 0.75):
+    case (scroll < window.innerHeight * 0.75): {
       updateBackgroundColor(0);
       break;
+    }
 
-    case (scroll > window.innerHeight * 1.25):
+    case (scroll > window.innerHeight * 1.25): {
       updateBackgroundColor(1);
       break;
+    }
 
     default: {
       const bgProgress = (scroll - (window.innerHeight * 0.75)) / (window.innerHeight * 0.5);
