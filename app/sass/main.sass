@@ -25,6 +25,8 @@ body
   margin: 0
   font-family: 'Open Sans', sans-serif
   -webkit-font-smoothing: antialiased
+  width: 100vw
+  height: 250vh
 
 
 h1,
@@ -62,3 +64,15 @@ a
 
 section
   width: 100vw
+
+#background
+  position: fixed
+  top: 0
+  left: 0
+  width: 100vw
+  height: 100vh
+
+  // Starting colors
+  $grad-a: hsl(172, 96%, 68%)
+  $grad-b: hsl(242, 99%, 71%)
+  background-image: linear-gradient(135deg, $grad-a, $grad-b)
