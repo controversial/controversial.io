@@ -139,8 +139,18 @@ document.addEventListener('scroll', () => {
 
   // Background
 
-  if (scroll > window.innerHeight * 0.75 && scroll < window.innerHeight * 1.25) {
-    const bgProgress = (scroll - (window.innerHeight * 0.75)) / (window.innerHeight / 2);
-    updateBackgroundColor(bgProgress);
+  switch (true) {
+    case (scroll < window.innerHeight * 0.75):
+      updateBackgroundColor(0);
+      break;
+
+    case (scroll > window.innerHeight * 1.25):
+      updateBackgroundColor(1);
+      break;
+
+    default: {
+      const bgProgress = (scroll - (window.innerHeight * 0.75)) / (window.innerHeight * 0.5);
+      updateBackgroundColor(bgProgress);
+    }
   }
 });
