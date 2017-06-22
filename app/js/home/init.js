@@ -13,6 +13,8 @@ const elem = {
   laptop: document.getElementsByClassName('laptop')[0],
   laptopContent: document.getElementsByClassName('laptop-content')[0],
   laptopBase: document.getElementsByClassName('laptop-base')[0],
+
+  background: document.getElementById('background'),
 };
 
 
@@ -89,6 +91,25 @@ function updateHeaderElements(progress) {
   window.gol.needsSizeUpdate = true;
 }
 
+function updateBackgroundColor(progress) {
+  const grad1A = { r: 95, g: 252, b: 231 };
+  const grad1B = { r: 113, g: 108, b: 254 };
+  const grad2A = { r: 146, g: 255, b: 192 };
+  const grad2B = { r: 0, g: 38, b: 97 };
+
+  const interpolate = (a, b, amount) => ({
+    r: Math.floor((a.r * (1 - progress)) + (b.r * amount)),
+    g: Math.floor((a.g * (1 - progress)) + (b.g * amount)),
+    b: Math.floor((a.b * (1 - progress)) + (b.b * amount)),
+  });
+
+  const getCssGradString = (a, b, deg = 135) =>
+    `linear-gradient(${deg}deg, rgb(${a.r}, ${a.g}, ${a.b}), rgb(${b.r}, ${b.g}, ${b.b}))`;
+
+  const calcA = interpolate(grad1A, grad2A, progress);
+  const calcB = interpolate(grad1B, grad2B, progress);
+  elem.background.style.backgroundImage = getCssGradString(calcA, calcB);
+}
 
 // SCROLL LISTENER ============================================================
 
@@ -114,5 +135,12 @@ document.addEventListener('scroll', () => {
     default:
       setHeaderElementsPinned(false);
       requestAnimationFrame(() => updateHeaderElements(1));
+  }
+
+  // Background
+
+  if (scroll > window.innerHeight * 0.75 && scroll < window.innerHeight * 1.25) {
+    const bgProgress = (scroll - (window.innerHeight * 0.75)) / (window.innerHeight / 2);
+    updateBackgroundColor(bgProgress);
   }
 });
