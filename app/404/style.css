@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:600')
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600')
 
 * {
   box-sizing: border-box;
@@ -14,8 +14,9 @@ body {
 header {
   position: absolute;
   top: 50vh;
-  left: 50vw;
-  transform: translate(-50%, -50%);
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
   text-align: center;
 
   z-index: 1;
@@ -24,18 +25,19 @@ header {
 }
 
 h1 {
+  display: inline-block;
   font-family: 'Montserrat';
   font-weight: 600;
   font-size: 6vw;
   margin: 0 0 1vw 0;
-  font-weight: bold;
   text-transform: uppercase;
+  letter-spacing: .05em;
+  padding-left: .05em;
   border-bottom: 5px solid rgba(255, 255, 255, 0.6);
 }
 
 h2 {
   font-family: 'Montserrat';
-  font-weight: 600;
   font-size: 4vw;
   margin: 0;
   font-weight: normal;
