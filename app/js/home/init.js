@@ -13,8 +13,6 @@ const elem = {
   laptop: document.getElementsByClassName('laptop')[0],
   laptopContent: document.getElementsByClassName('laptop-content')[0],
   laptopBase: document.getElementsByClassName('laptop-base')[0],
-
-  background: document.getElementById('background'),
 };
 
 
@@ -108,7 +106,7 @@ function updateBackgroundColor(progress) {
 
   const calcA = interpolate(grad1A, grad2A, progress);
   const calcB = interpolate(grad1B, grad2B, progress);
-  elem.background.style.backgroundImage = getCssGradString(calcA, calcB);
+  elem.body.style.backgroundImage = getCssGradString(calcA, calcB);
 }
 
 // SCROLL LISTENER ============================================================
