@@ -20,39 +20,6 @@ $dribbble: #ea4c89
     display: inline-block
     overflow: visible
 
-
-    &.name
-      font-family: 'Montserrat', sans-serif
-      font-weight: 500
-      font-size: calc(15px + 1vw)
-      vertical-align: -30%
-      text-transform: uppercase
-      letter-spacing: .1em
-
-      // Hover effect
-      position: relative
-
-      &::after
-        content: ''
-        width: 100%
-        height: 2px
-        position: absolute
-        left: 0
-        bottom: 0
-        background-color: $light-text-primary
-        transform: scaleX(0)
-        transform-origin: bottom right
-        transition: transform .4s cubic-bezier(.215, .61, .355, 1)
-
-      &:hover
-        &::after
-          transform: scaleX(1)
-          transform-origin: bottom left
-
-      // Adjust spacing between capital Y and capital L
-      span
-        letter-spacing: .1em
-
     &.right
       @media (max-width: 350px)
         display: none
