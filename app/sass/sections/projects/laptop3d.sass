@@ -1,4 +1,4 @@
-$length: 50vw
+$length: 18vw
 $width: $length / 3 * 2
 $height: $length / 30
 
@@ -10,8 +10,6 @@ $silver-5: #a8a8ad
 
 .laptop3d
   position: absolute
-  top: 55vw - ($width / 2)
-  left: 50vw - ($length / 2)
   transform: rotateZ(60deg) rotateX(30deg) rotateY(-45deg)
   // This is true isometric but it doesn't look as good
   // transform: rotateZ(45deg) rotateY(-30deg) rotateX(30deg)
@@ -22,7 +20,7 @@ $silver-5: #a8a8ad
     position: relative
     width: $length
     height: $width
-    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/750152/out.png'), linear-gradient(to bottom right, $silver-1, $silver-5)
+    background: url('/out.png'), linear-gradient(to bottom right, $silver-1, $silver-5)
     background-size: $length auto
     background-repeat: no-repeat
 
@@ -93,6 +91,7 @@ $silver-5: #a8a8ad
       border: .3vw solid
       border-image: linear-gradient(to bottom right, $silver-3, $silver-5)
       border-image-slice: 1
+      transform-style: preserve-3d
 
       // Screen
       .screen
