@@ -114,7 +114,7 @@ function updateBackgroundColor(progress) {
 // SCROLL LISTENER ============================================================
 
 
-document.addEventListener('scroll', () => {
+function onscroll() {
   const scroll = window.scrollY;
 
   // Header
@@ -158,4 +158,8 @@ document.addEventListener('scroll', () => {
       updateBackgroundColor(bgProgress);
     }
   }
-});
+}
+
+
+document.addEventListener('scroll', onscroll);
+window.addEventListener('resize', onscroll);
