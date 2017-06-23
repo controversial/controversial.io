@@ -15,7 +15,7 @@ const browserSync = require('browser-sync').create();
 
 // Copy static files to dist folder
 gulp.task('copy', () => {
-  gulp.src(['./app/**/*', '!./app/**/*.js', '!./app/**/*.sass'])
+  gulp.src(['./app/**/*', './img/*', '!./app/**/*.js', '!./app/**/*.sass'])
     .pipe(gulp.dest('dist'));
 });
 
