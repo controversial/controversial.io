@@ -1,0 +1,122 @@
+$length: 50vw
+$width: $length / 3 * 2
+$height: $length / 30
+
+$silver-1: #fbfbfc
+$silver-2: #ededf2
+$silver-3: #c3c4c9
+$silver-4: #babbc0
+$silver-5: #a8a8ad
+
+.laptop3d
+  position: absolute
+  top: 55vw - ($width / 2)
+  left: 50vw - ($length / 2)
+  transform: rotateZ(60deg) rotateX(30deg) rotateY(-45deg)
+  // This is true isometric but it doesn't look as good
+  // transform: rotateZ(45deg) rotateY(-30deg) rotateX(30deg)
+  transform-style: preserve-3d
+  transition: transform .25s
+
+  .base
+    position: relative
+    width: $length
+    height: $width
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/750152/out.png'), linear-gradient(to bottom right, $silver-1, $silver-5)
+    background-size: $length auto
+    background-repeat: no-repeat
+
+    // Left
+    &::before
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      width: $length
+      height: $height
+      background: linear-gradient(to bottom right, $silver-3, $silver-5)
+      transform-origin: top
+      transform: translateY($width) rotateX(-90deg)
+
+    // Right
+    &::after
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      width: $width
+      height: $height
+      background: linear-gradient(to right, $silver-2, $silver-4)
+      border-radius: 0 0 .5 * $height 0
+      transform-origin: top left
+      transform: translateY($width) translateX($length) rotateX(-90deg) rotateY(90deg)
+
+  // Closeable lid of the laptop
+  .lid
+    transform-origin: 0 $width
+    transform: translateY(-2 * $width) rotateX(-90deg)
+    transform-style: preserve-3d
+    transition: transform 1s
+
+    // Top
+    &::before
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      width: $length
+      height: $height * .75
+      background: linear-gradient(to bottom right, $silver-3, $silver-5)
+      transform-origin: top
+      transform: rotateX(-90deg)
+
+    // Right
+    &::after
+      content: ''
+      position: absolute
+      top: 0
+      right: 0
+      width: $width
+      height: $height * .75
+      background: linear-gradient(to left, $silver-1, $silver-4)
+      transform-origin: top right
+      transform: rotateX(-90deg) rotateY(90deg)
+
+    // Front
+    .front
+      position: absolute
+      top: 0
+      left: 0
+      width: $length
+      height: $width
+      background: $black
+      border: .3vw solid
+      border-image: linear-gradient(to bottom right, $silver-3, $silver-5)
+      border-image-slice: 1
+
+      // Screen
+      .screen
+        position: absolute
+        background: lighten($black, 20)
+        $screen-bezel: .85 * $height
+        top: $screen-bezel
+        left: $screen-bezel
+        right: $screen-bezel
+        bottom: $screen-bezel * 1.5
+
+    // Back (seen when lid closes)
+    .back
+      position: absolute
+      top: 0
+      left: 0
+      width: $length
+      height: $width
+      background: linear-gradient(to top right, $silver-1, $silver-5)
+      transform: translateZ(-$height * .75)
+
+  // Close lid when laptop is hovered
+  &:hover
+    transform: rotateZ(60deg) rotateX(30deg) rotateY(-45deg) // translateZ($height)
+
+    .lid
+      transform: translateY(-2 * $width) rotateX(-180deg)
