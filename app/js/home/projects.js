@@ -17,12 +17,15 @@ function laptopify(elem, index) {
   for (let i = 0; i < children.length; i += 1) {
     screen.appendChild(children[i]);
   }
+  // Add offset (translateX)
   elem.style.transform = `${getComputedStyle(elem).transform} translateX(${23 * index}vw)`;
+
+  // Lift up a bit on hover
   elem.addEventListener('mouseenter', () => {
-    elem.classList.add('closed');
+    elem.style.transform += ' translateZ(1vw)';
   });
   elem.addEventListener('mouseleave', () => {
-    elem.classList.remove('closed');
+    elem.style.transform = elem.style.transform.replace(' translateZ(1vw)', '');
   });
 }
 
