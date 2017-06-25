@@ -1,7 +1,8 @@
 // Convert an element into a 3D laptop, moving its contents into the screen.
 
-function laptopify(elem) {
-  elem.classList.add('laptop3d');
+function laptopify(elem, index) {
+  elem.classList.add('laptop3d'); // All the elements on which this is run already have this class, but this adds flexibility to use the method on other elements
+  elem.setAttribute('data-laptop3d-index', index);
   const children = [...elem.childNodes];
   elem.innerHTML = `
     <div class="base"></div>
@@ -16,6 +17,7 @@ function laptopify(elem) {
   for (let i = 0; i < children.length; i += 1) {
     screen.appendChild(children[i]);
   }
+  elem.style.transform = `${getComputedStyle(elem).transform} translateX(${23 * index}vw)`;
   elem.addEventListener('mouseenter', () => {
     elem.classList.add('closed');
   });
@@ -29,6 +31,6 @@ function laptopify(elem) {
 document.addEventListener('DOMContentLoaded', () => {
   const laptops = document.getElementsByClassName('laptop3d');
   for (let i = 0; i < laptops.length; i += 1) {
-    laptopify(laptops[i]);
+    laptopify(laptops[i], i);
   }
 });
