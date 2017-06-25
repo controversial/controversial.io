@@ -113,9 +113,7 @@ $silver-5: #a8a8ad
       background: linear-gradient(to top right, $silver-1, $silver-5)
       transform: translateZ(-$height * .75)
 
-  // Close lid when laptop is hovered
-  &:hover
-    transform: rotateZ(60deg) rotateX(30deg) rotateY(-45deg) // translateZ($height)
-
+  // Close lid if 'closed' class is applied
+  &.closed
     .lid
       transform: translateY(-2 * $width) rotateX(-180deg)

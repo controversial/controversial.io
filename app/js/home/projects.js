@@ -16,6 +16,12 @@ function laptopify(elem) {
   for (let i = 0; i < children.length; i += 1) {
     screen.appendChild(children[i]);
   }
+  elem.addEventListener('mouseenter', () => {
+    elem.classList.add('closed');
+  });
+  elem.addEventListener('mouseleave', () => {
+    elem.classList.remove('closed');
+  });
 }
 
 
