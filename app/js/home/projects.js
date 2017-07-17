@@ -18,7 +18,7 @@ function laptopify(elem, index) {
     screen.appendChild(children[i]);
   }
   // Add offset (translateX)
-  elem.style.transform = `${getComputedStyle(elem).transform} translateX(${23 * index}vw)`;
+  elem.style.transform = `${getComputedStyle(elem).transform} translateX(${30 * index}vw)`;
 
   // Lift up a bit on hover
   elem.addEventListener('mouseenter', () => {
