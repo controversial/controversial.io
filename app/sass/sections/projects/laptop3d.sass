@@ -113,6 +113,32 @@ $silver-5: #a8a8ad
       height: $width
       background: linear-gradient(to top right, $silver-1, $silver-5)
       transform: translateZ(-$height * .75)
+      transform-style: preserve-3d
+
+
+      // Left
+      &::before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        width: $width
+        height: $height * .75
+        background: linear-gradient(to left, $silver-2, $silver-4)
+        transform-origin: top left
+        transform: rotateX(90deg) rotateY(90deg)
+
+      // Base left (this is awkward to put here but I didn't want to make a new element)
+      &::after
+        content: ''
+        position: absolute
+        left: 0
+        bottom: -$height
+        width: $width
+        height: $height
+        background: linear-gradient(to left, $silver-2, $silver-4)
+        transform-origin: top left
+        transform: rotateY(-90deg) translateX($height * .75)
 
   // Close lid if 'closed' class is applied
   &.closed
