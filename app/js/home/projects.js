@@ -32,7 +32,8 @@ function laptopify(elem, index) {
 
 // Convert all elements with the class 'laptop3d' into laptops
 document.addEventListener('DOMContentLoaded', () => {
-  const laptops = document.getElementsByClassName('laptop3d');
+  const laptopsContainer = document.getElementsByClassName('laptops-container')[0];
+  const laptops = laptopsContainer.getElementsByClassName('laptop3d');
   for (let i = 0; i < laptops.length; i += 1) {
     laptopify(laptops[i], i);
   }
