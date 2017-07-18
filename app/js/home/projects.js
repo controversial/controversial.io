@@ -57,5 +57,5 @@ document.addEventListener('DOMContentLoaded', () => {
     .fill(0)
     .map(() => document.createElement('div'))
     .map(l => laptopsContainer.appendChild(l))
-    .map((l, i) => new Laptop(l, -i - 1, true));
+    .map((l, i) => new Laptop(l, -(i + 1), true));
 });
