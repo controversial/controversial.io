@@ -32,15 +32,16 @@ class Laptop {
     console.log(`${getComputedStyle(this.elem).transform} translateX(${30 * this.index})vw`);
     this.elem.style.transform = `${getComputedStyle(this.elem).transform} translateX(${30 * this.index}vw)`;
 
-
     // Lift up a bit on hover
-    this.elem.addEventListener('mouseenter', () => {
-      elem.style.transform += ' translateZ(1vw)';
-    });
+    if (!this.dummy) {
+      this.elem.addEventListener('mouseenter', () => {
+        elem.style.transform += ' translateZ(1vw)';
+      });
 
-    this.elem.addEventListener('mouseleave', () => {
-      elem.style.transform = elem.style.transform.replace(' translateZ(1vw)', '');
-    });
+      this.elem.addEventListener('mouseleave', () => {
+        elem.style.transform = elem.style.transform.replace(' translateZ(1vw)', '');
+      });
+    }
   }
 }
 
