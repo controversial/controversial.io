@@ -12,7 +12,7 @@ class Laptop {
 
     this.elem.classList.add('laptop3d');
     if (this.dummy) this.elem.classList.add('dummy');
-    if (this.index) this.elem.setAttribute('data-laptop3d-index', this.index);
+    if (typeof this.index !== 'undefined') this.elem.setAttribute('data-laptop3d-index', this.index);
 
     const children = [...this.elem.childNodes];
     this.elem.innerHTML = `
