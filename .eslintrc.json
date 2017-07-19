@@ -4,7 +4,8 @@
     "browser": true
   },
   "rules": {
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-    "no-param-reassign": ["error", {"props": false}]
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "no-param-reassign": ["error", { "props": false }],
+    "no-underscore-dangle": ["error", { "allowAfterThis": true, "allowAfterSuper": true }]
   }
 }
