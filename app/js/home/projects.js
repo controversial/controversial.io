@@ -85,6 +85,12 @@ class LaptopCarousel {
     this.laptops = laptops;
     // Sort by index
     this.laptops.sort((a, b) => a.index - b.index);
+    // Check that there are no overlapping indices
+    const indices = this.laptops.map(l => l.index);
+    if (indices.length !== new Set(indices).size) throw new Error('LaptopCarousel indices must be unique');
+    // Build map of laptops by index
+    this.laptopsByIndex = {};
+    laptops.forEach((l) => { this.laptopsByIndex[l.index] = l; });
   }
 
   scroll(progress) {
