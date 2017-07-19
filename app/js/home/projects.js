@@ -46,6 +46,7 @@ class Laptop {
   // Allow getting and setting transformation properties individually
   _applyTransform() {
     this.elem.style.transform = [
+      'translateX(50vw) translateX(-50%)',
       `rotateX(${this._rotateX})`,
       `rotateY(${this._rotateY})`,
       `rotateZ(${this._rotateZ})`,
