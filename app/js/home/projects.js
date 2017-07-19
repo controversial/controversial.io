@@ -7,6 +7,9 @@ class Laptop {
     this.index = index;
     this.dummy = dummy;
 
+    this._translateX = this._translateY = this._translateZ = 0;
+    this._rotateX = '80deg'; this._rotateY = 0; this._rotateZ = '45deg';
+
     this.elem.classList.add('laptop3d');
     if (this.dummy) this.elem.classList.add('dummy');
     if (this.index) this.elem.setAttribute('data-laptop3d-index', this.index);
@@ -29,20 +32,50 @@ class Laptop {
     children.forEach(child => this.screen.appendChild(child));
 
     // Transform
-    console.log(`${getComputedStyle(this.elem).transform} translateX(${30 * this.index})vw`);
-    this.elem.style.transform = `${getComputedStyle(this.elem).transform} translateX(${30 * this.index}vw)`;
+    this._translateX = `${30 * this.index}vw`;
 
     // Lift up a bit on hover
     if (!this.dummy) {
-      this.elem.addEventListener('mouseenter', () => {
-        elem.style.transform += ' translateZ(1vw)';
-      });
-
-      this.elem.addEventListener('mouseleave', () => {
-        elem.style.transform = elem.style.transform.replace(' translateZ(1vw)', '');
-      });
+      this.elem.addEventListener('mouseenter', () => { this.translateZ = '1vw'; });
+      this.elem.addEventListener('mouseleave', () => { this.translateZ = 0; });
     }
+
+    this._applyTransform();
   }
+
+  // Allow getting and setting transformation properties individually
+  _applyTransform() {
+    this.elem.style.transform = [
+      `rotateX(${this._rotateX})`,
+      `rotateY(${this._rotateY})`,
+      `rotateZ(${this._rotateZ})`,
+      `translateX(${this._translateX})`,
+      `translateY(${this._translateY})`,
+      `translateZ(${this._translateZ})`,
+    ].join(' ');
+  }
+
+  get translateX() { return this._translateX; }
+  get translateY() { return this._translateY; }
+  get translateZ() { return this._translateZ; }
+  get rotateX() { return this._rotateX; }
+  get rotateY() { return this._rotateY; }
+  get rotateZ() { return this._rotateZ; }
+
+  set translateX(val) { this._translateX = val; this._applyTransform(); }
+  set translateY(val) { this._translateY = val; this._applyTransform(); }
+  set translateZ(val) { this._translateZ = val; this._applyTransform(); }
+
+  _setRotate(axis, val) {
+    if (!['X', 'Y', 'Z'].includes(axis)) throw new Error('Axis must be one of X Y or Z'); // val must be XYZ
+    const prop = `_rotate${axis}`; // Property that we're setting
+    if (typeof val === 'string' && val.endsWith('deg')) this[prop] = val; // Don't change if the value is already a string ending in 'deg'
+    else this[prop] = `${val}deg`; // Otherwise add the 'deg' suffix
+    this._applyTransform();
+  }
+  set rotateX(val) { this._setRotate('X', val); }
+  set rotateY(val) { this._setRotate('Y', val); }
+  set rotateZ(val) { this._setRotate('Z', val); }
 }
 
 
