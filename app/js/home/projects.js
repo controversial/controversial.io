@@ -79,6 +79,19 @@ class Laptop {
 }
 
 
+class LaptopCarousel {
+  constructor(container, laptops) {
+    this.container = container;
+    this.laptops = laptops;
+    // Sort by index
+    this.laptops.sort((a, b) => a.index - b.index);
+  }
+
+  scroll(progress) {
+    this.progress = progress;
+  }
+}
+
 // Set up laptop scene
 document.addEventListener('DOMContentLoaded', () => {
   // Convert all elements with the class 'laptop3d' into laptops
@@ -91,4 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .map(() => document.createElement('div'))
     .map(l => laptopsContainer.appendChild(l))
     .map((l, i) => new Laptop(l, -(i + 1), true));
+
+  window.carousel = new LaptopCarousel(laptopsContainer, laptops.concat(dummyLaptops));
 });
