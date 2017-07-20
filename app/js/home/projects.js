@@ -89,6 +89,8 @@ class LaptopCarousel {
     // Check that there are no overlapping indices
     const indices = this.laptops.map(l => l.index);
     if (indices.length !== new Set(indices).size) throw new Error('LaptopCarousel indices must be unique');
+    // Record this as the carousel for each laptop
+    laptops.forEach((l) => { l.carousel = this; });
     // Build map of laptops by index
     this.laptopsByIndex = {};
     laptops.forEach((l) => { this.laptopsByIndex[l.index] = l; });
