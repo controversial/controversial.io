@@ -30,6 +30,19 @@ $silver-5: #a8a8ad
     &::before
       content: ''
       position: absolute
+      left: 0
+      top: 0
+      width: $width
+      height: $height
+      background: linear-gradient(to left, $silver-2, $silver-4)
+      border-radius: 0 0 0 .5 * $height
+      transform-origin: top left
+      transform: rotateZ(90deg) rotateX(-90deg) rotateY(0)
+      transition: transform 1s
+
+    // Front
+    .front
+      position: absolute
       top: 0
       left: 0
       width: $length
@@ -128,19 +141,6 @@ $silver-5: #a8a8ad
         background: linear-gradient(to left, $silver-2, $silver-4)
         transform-origin: top left
         transform: rotateX(90deg) rotateY(90deg)
-
-      // Base left (this is awkward to put here but I didn't want to make a new element)
-      &::after
-        content: ''
-        position: absolute
-        left: 0
-        bottom: -$height
-        width: $width
-        height: $height
-        background: linear-gradient(to left, $silver-2, $silver-4)
-        border-radius: 0 0 0 .5 * $height
-        transform-origin: top left
-        transform: rotateY(-90deg) translateX($height * .75)
 
   // Close lid if 'closed' class is applied
   &.closed
