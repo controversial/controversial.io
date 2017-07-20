@@ -21,6 +21,10 @@
   &::after
     box-sizing: border-box
 
+html,
+body
+    max-width: 100vw
+    overflow-x: hidden
 
 body
   margin: 0
@@ -31,10 +35,7 @@ body
   $grad-b: hsl(242, 99%, 71%)
   background-image: linear-gradient(135deg, $grad-a, $grad-b)
   background-attachment: fixed
-
-  // Create scroll space
   width: 100vw
-  height: 250vh
 
 
 h1,
