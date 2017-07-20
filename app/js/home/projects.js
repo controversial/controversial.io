@@ -96,6 +96,16 @@ class LaptopCarousel {
     laptops.forEach((l) => { this.laptopsByIndex[l.index] = l; });
   }
 
+  // Minimum index represented
+  get minIndex() {
+    return Math.min(...this.laptops.map(l => l.index));
+  }
+
+  // Maximum index represented
+  get maxIndex() {
+    return Math.max(...this.laptops.map(l => l.index));
+  }
+
   scroll(progress) {
     this.progress = progress;
   }
