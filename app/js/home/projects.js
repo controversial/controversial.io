@@ -116,13 +116,6 @@ class LaptopCarousel {
   // Maximum index represented
   get maxIndex() { return Math.max(...this.indices); }
 
-  }
-
-  // Maximum index represented
-  get maxIndex() {
-    return Math.max(...this.laptops.map(l => l.index));
-  }
-
   scroll(progress) {
     this.progress = progress;
   }
