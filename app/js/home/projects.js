@@ -8,7 +8,7 @@ class Laptop {
     this.dummy = dummy;
 
     this._translateX = this._translateY = this._translateZ = 0;
-    this._rotateX = '80deg'; this._rotateY = 0; this._rotateZ = '45deg';
+    this._rotateX = this._rotateY = this._rotateZ = 0;
 
     this.elem.classList.add('laptop3d');
     if (this.dummy) this.elem.classList.add('dummy');
@@ -27,19 +27,19 @@ class Laptop {
       </div>
     `;
     // Record some common elements as properties
-    ['base', 'lid', 'screen'].forEach((name) => {
+    ['wrapper', 'base', 'lid', 'screen'].forEach((name) => {
       this[name] = this.elem.getElementsByClassName(name)[0];
     });
     // Add all former children to the new screen element
     children.forEach(child => this.screen.appendChild(child));
 
     // Transform
-    this._translateX = `${30 * this.index}vw`;
+    this.elem.style.transform = `translateX(50vw) translateX(-50%) rotateX(80deg) rotateZ(45deg) translateX(${30 * this.index}vw)`;
 
     // Lift up a bit on hover
     if (!this.dummy) {
-      this.elem.addEventListener('mouseenter', () => { this.translateZ = '1vw'; });
-      this.elem.addEventListener('mouseleave', () => { this.translateZ = 0; });
+      this.elem.addEventListener('mouseenter', () => { this.rotateZ = -90; });
+      this.elem.addEventListener('mouseleave', () => { this.rotateZ = 0; });
     }
 
     this._applyTransform();
@@ -47,8 +47,7 @@ class Laptop {
 
   // Allow getting and setting transformation properties individually
   _applyTransform() {
-    this.elem.style.transform = [
-      'translateX(50vw) translateX(-50%)',
+    this.wrapper.style.transform = [
       `rotateX(${this._rotateX})`,
       `rotateY(${this._rotateY})`,
       `rotateZ(${this._rotateZ})`,
