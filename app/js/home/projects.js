@@ -39,8 +39,8 @@ class Laptop {
 
     // Lift up a bit on hover
     if (!this.dummy) {
-      this.elem.addEventListener('mouseenter', () => { this.rotateZ = -90; });
-      this.elem.addEventListener('mouseleave', () => { this.rotateZ = 0; });
+      this.elem.addEventListener('mouseenter', () => { this.rotateZ = -90; this.lidAngle = 0; });
+      this.elem.addEventListener('mouseleave', () => { this.rotateZ = 0; this.lidAngle = 90; });
     }
 
     this._applyTransform();
