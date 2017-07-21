@@ -16,12 +16,14 @@ class Laptop {
 
     const children = [...this.elem.childNodes];
     this.elem.innerHTML = `
-      <div class="base"><div class="front"></div></div>
-      <div class="lid">
-        <div class="front">
-          <div class="screen"></div>
+      <div class="wrapper">
+        <div class="base"><div class="front"></div></div>
+        <div class="lid">
+          <div class="front">
+            <div class="screen"></div>
+          </div>
+          <div class="back"></div>
         </div>
-        <div class="back"></div>
       </div>
     `;
     // Record some common elements as properties
