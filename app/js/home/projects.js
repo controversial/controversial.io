@@ -2,6 +2,8 @@
 
 
 class Laptop {
+  static get defaultLidAngle() { return 100; }
+
   constructor(elem, index, dummy = false) {
     this.elem = elem;
     this.index = index;
@@ -9,7 +11,7 @@ class Laptop {
 
     this._translateX = this._translateY = this._translateZ = 0;
     this._rotateX = this._rotateY = this._rotateZ = 0;
-    this._lidAngle = 90;
+    this._lidAngle = Laptop.defaultLidAngle;
 
     this.elem.classList.add('laptop3d');
     if (this.dummy) this.elem.classList.add('dummy');
@@ -40,7 +42,7 @@ class Laptop {
     // Lift up a bit on hover
     if (!this.dummy) {
       this.elem.addEventListener('mouseenter', () => { this.rotateZ = -90; this.lidAngle = 0; });
-      this.elem.addEventListener('mouseleave', () => { this.rotateZ = 0; this.lidAngle = 90; });
+      this.elem.addEventListener('mouseleave', () => { this.rotateZ = 0; this.lidAngle = Laptop.defaultLidAngle; });
     }
 
     this._applyTransform();
