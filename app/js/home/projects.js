@@ -9,6 +9,7 @@ class Laptop {
 
     this._translateX = this._translateY = this._translateZ = 0;
     this._rotateX = this._rotateY = this._rotateZ = 0;
+    this._lidAngle = 90;
 
     this.elem.classList.add('laptop3d');
     if (this.dummy) this.elem.classList.add('dummy');
@@ -45,7 +46,7 @@ class Laptop {
     this._applyTransform();
   }
 
-  // Allow getting and setting transformation properties individually
+
   _applyTransform() {
     this.wrapper.style.transform = [
       `rotateX(${this._rotateX})`,
@@ -55,18 +56,24 @@ class Laptop {
       `translateY(${this._translateY})`,
       `translateZ(${this._translateZ})`,
     ].join(' ');
+    this.lid.style.transform = `translateY(-33.333333vw) rotateX(${-180 + this._lidAngle}deg)`;
   }
+
+
+  // Translation
 
   get translateX() { return this._translateX; }
   get translateY() { return this._translateY; }
   get translateZ() { return this._translateZ; }
-  get rotateX() { return this._rotateX; }
-  get rotateY() { return this._rotateY; }
-  get rotateZ() { return this._rotateZ; }
 
   set translateX(val) { this._translateX = val; this._applyTransform(); }
   set translateY(val) { this._translateY = val; this._applyTransform(); }
   set translateZ(val) { this._translateZ = val; this._applyTransform(); }
+
+  // Rotation
+  get rotateX() { return this._rotateX; }
+  get rotateY() { return this._rotateY; }
+  get rotateZ() { return this._rotateZ; }
 
   _setRotate(axis, val) {
     if (!['X', 'Y', 'Z'].includes(axis)) throw new Error('Axis must be one of X Y or Z'); // val must be XYZ
@@ -78,6 +85,11 @@ class Laptop {
   set rotateX(val) { this._setRotate('X', val); }
   set rotateY(val) { this._setRotate('Y', val); }
   set rotateZ(val) { this._setRotate('Z', val); }
+
+  // Lid
+  get lidAngle() { return this._lidAngle; }
+  set lidAngle(val) { this._lidAngle = val; this._applyTransform(); }
+
 }
 
 
