@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const laptopElems = [...laptopsContainer.getElementsByClassName('laptop3d')];
   const laptops = laptopElems.map((l, i) => new Laptop(l, i));
   // Add 10 dummy laptops to the beginning
-  const dummyLaptops = new Array(10)
+  const dummyLaptops = new Array(5)
     .fill(0)
     .map(() => document.createElement('div'))
     .map(l => laptopsContainer.appendChild(l))
