@@ -126,6 +126,14 @@ function setCarouselPinned(fixed) {
   });
 }
 
+function updatePerspectiveOrigin(scroll) {
+  // Pixels scrolled past the top of laptopCarousel
+  const pxScrolled = scroll - (elem.laptopsContainer.offsetTop - (window.innerHeight / 2));
+  const vwScrolled = (pxScrolled / window.innerWidth) * 100;
+  const adjustment = -50 + vwScrolled; // Starts at -50vw
+  elem.laptopsContainer.style.perspectiveOrigin = `center ${adjustment}vw`;
+}
+
 
 // SCROLL LISTENER =================================================================================
 
@@ -185,6 +193,7 @@ function onscroll() {
 
     case (scroll < elem.laptopsContainer.offsetTop + elem.laptopsContainer.offsetHeight): {
       setCarouselPinned(true);
+      updatePerspectiveOrigin(scroll);
       break;
     }
 
