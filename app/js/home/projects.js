@@ -107,7 +107,7 @@ class LaptopCarousel {
     this.laptopsByIndex = {};
     laptops.forEach((l) => { this.laptopsByIndex[l.index] = l; });
 
-    this.arrangeLaptops();
+    this.position = 0;
   }
 
   // All indices represented
@@ -124,22 +124,22 @@ class LaptopCarousel {
     return sign * Math.min(Math.abs(rot), rotLimit);
   }
 
-  positionLaptop(laptop) {
-    // Position laptops 25 degress apart from eachother
-    const initialRot = laptop.index * -25; // Basic position
-    const finalRot = initialRot + (this.progress * 25); // Position given progress
-    laptop.rotateZ = LaptopCarousel.boundRotation(finalRot);
-  }
-
-  arrangeLaptops(progress = 0) {
-    // Each 1 progress value represents centering the next laptop. Progress x will result in the
-    // the laptop with index x being centered
-    let newProgress = progress;
+  // Each 1 position value represents centering the next laptop. Position x will result in the
+  // the laptop with index x being centered
+  get position() { return this._position; }
+  set position(pos) {
+    let newPos = pos;
     // Bound within (this.minIndex, this.maxIndex)
-    newProgress = Math.min(progress, this.maxIndex);
-    newProgress = Math.max(progress, this.minIndex);
-    this.progress = newProgress;
-    this.laptops.forEach(l => this.positionLaptop(l));
+    newPos = Math.min(newPos, this.maxIndex);
+    newPos = Math.max(newPos, this.minIndex);
+    this._position = newPos;
+    this.laptops.forEach((laptop) => {
+      // Laptops are 25 degress from eachother
+      const initialRot = laptop.index * -25; // Basic laptop rotation
+      // Adjust laptop rotation given carousel position
+      const finalRot = initialRot + (this.position * 25);
+      laptop.rotateZ = LaptopCarousel.boundRotation(finalRot);
+    });
   }
 }
 
