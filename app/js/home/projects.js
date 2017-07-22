@@ -36,10 +36,6 @@ class Laptop {
     // Add all former children to the new screen element
     children.forEach(child => this.screen.appendChild(child));
 
-    // Transform: rotate by 25 degrees for each full index value, with a max of 75 degress from the
-    // center so that we can't see any in the background
-    this._rotateZ = `${-Math.sign(this.index) * Math.min(25 * Math.abs(this.index), 75)}deg`;
-
     // Lift up a bit on hover
     if (!this.dummy) {
       this.wrapper.addEventListener('mouseenter', () => { this.translateZ = '1vw'; });
@@ -110,6 +106,8 @@ class LaptopCarousel {
     // Build map of laptops by index
     this.laptopsByIndex = {};
     laptops.forEach((l) => { this.laptopsByIndex[l.index] = l; });
+
+    this.arrangeLaptops();
   }
 
   // All indices represented
@@ -119,8 +117,21 @@ class LaptopCarousel {
   // Maximum index represented
   get maxIndex() { return Math.max(...this.indices); }
 
-  scroll(progress) {
+  // Force a number to be inside (-rot, rot)
+  static boundRotation(rot) {
+    const rotLimit = 75;
+    const sign = Math.sign(rot);
+    return sign * Math.min(Math.abs(rot), rotLimit);
+  }
+
+  positionLaptop(laptop) {
+    // Position laptops 25 degress apart from eachother
+    laptop.rotateZ = LaptopCarousel.boundRotation(laptop.index * -25);
+  }
+
+  arrangeLaptops(progress) {
     this.progress = progress;
+    this.laptops.forEach(l => this.positionLaptop(l));
   }
 }
 
