@@ -39,8 +39,13 @@ class Laptop {
 
     // Lift up a bit on hover
     if (!this.dummy) {
-      this.wrapper.addEventListener('mouseenter', () => { this.translateZ = '1vw'; });
-      this.wrapper.addEventListener('mouseleave', () => { this.translateZ = 0; });
+      const performWithTransitionTime = (func, time) => {
+        const oldTime = this.transitionTime; this.transitionTime = time;
+        func();
+        setTimeout(() => { this.transitionTime = oldTime; }, this.transitionTime);
+      };
+      this.wrapper.addEventListener('mouseenter', () => performWithTransitionTime(() => { this.translateZ = '1vw'; }, 0.25));
+      this.wrapper.addEventListener('mouseleave', () => performWithTransitionTime(() => { this.translateZ = 0; }, 0.25));
     }
 
     this._applyTransform();
