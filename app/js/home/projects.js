@@ -165,6 +165,18 @@ class LaptopCarousel {
   }
 }
 
+
+function carouselScroll() {
+  const scroll = window.scrollY;
+  const scrollBottom = scroll + window.innerHeight;
+  const laptopsContainer = document.getElementsByClassName('laptops-container')[0];
+  const progress = (scrollBottom - laptopsContainer.offsetTop) / laptopsContainer.offsetHeight;
+  window.carousel.position = progress * window.carousel.maxIndex;
+}
+
+document.addEventListener('scroll', carouselScroll);
+document.addEventListener('resize', carouselScroll);
+
 // Set up laptop scene
 document.addEventListener('DOMContentLoaded', () => {
   // Convert all elements with the class 'laptop3d' into laptops
@@ -179,4 +191,5 @@ document.addEventListener('DOMContentLoaded', () => {
     .map((l, i) => new Laptop(l, -(i + 1), true));
 
   window.carousel = new LaptopCarousel(laptopsContainer, laptops.concat(dummyLaptops));
+  carouselScroll();
 });
