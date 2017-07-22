@@ -12,7 +12,7 @@ class Laptop {
     this._translateX = this._translateY = this._translateZ = 0;
     this._rotateX = this._rotateY = this._rotateZ = 0;
     this._lidAngle = Laptop.defaultLidAngle;
-    this._transitionTime = 0.5;
+    this._transitionTime = 0;
 
     this.elem.classList.add('laptop3d');
     if (this.dummy) this.elem.classList.add('dummy');
