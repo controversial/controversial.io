@@ -36,8 +36,9 @@ class Laptop {
     // Add all former children to the new screen element
     children.forEach(child => this.screen.appendChild(child));
 
-    // Transform
-    this.elem.style.transform = `translateX(50vw) translateX(-50%) rotateX(80deg) rotateZ(45deg) translateX(${30 * this.index}vw)`;
+    // Transform: rotate by 25 degrees for each full index value, with a max of 75 degress from the
+    // center so that we can't see any in the background
+    this._rotateZ = `${-Math.sign(this.index) * Math.min(25 * Math.abs(this.index), 75)}deg`;
 
     // Lift up a bit on hover
     if (!this.dummy) {
