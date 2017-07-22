@@ -12,6 +12,7 @@ class Laptop {
     this._translateX = this._translateY = this._translateZ = 0;
     this._rotateX = this._rotateY = this._rotateZ = 0;
     this._lidAngle = Laptop.defaultLidAngle;
+    this._transitionTime = 0.5;
 
     this.elem.classList.add('laptop3d');
     if (this.dummy) this.elem.classList.add('dummy');
@@ -89,6 +90,13 @@ class Laptop {
   get lidAngle() { return this._lidAngle; }
   set lidAngle(val) { this._lidAngle = val; this._applyTransform(); }
 
+  // Transition time
+  get transitionTime() { return this._transitionTime; }
+  set transitionTime(secs) {
+    this._transitionTime = secs;
+    this.wrapper.style.transition = `transform ${secs}s`;
+    this.lid.style.transition = `transform ${secs}s`;
+  }
 }
 
 
@@ -145,6 +153,10 @@ class LaptopCarousel {
       const closedAmount = Math.max(Math.min(distFromCenter - 0.5, 1), 0);
       laptop.lidAngle = (1 - closedAmount) * 100;
     });
+  }
+
+  setTransitionTime(secs) {
+    this.laptops.forEach((l) => { l.transitionTime = secs; });
   }
 }
 
