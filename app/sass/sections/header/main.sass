@@ -6,9 +6,13 @@
 #header-wrapper
   color: $light-text-primary
   width: 100%
-  height: 200vh
+  height: 150vw
   position: relative
   z-index: 1
+
+  @media (orientation: portrait)
+    height: 150vh
+
 
   h1
     // h1 is outside of header because header jumps around during animation and
