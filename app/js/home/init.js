@@ -13,10 +13,12 @@ const elem = {
   laptop: document.getElementsByClassName('laptop')[0],
   laptopContent: document.getElementsByClassName('laptop-content')[0],
   laptopBase: document.getElementsByClassName('laptop-base')[0],
+
+  laptopsContainer: document.getElementsByClassName('laptops-container')[0],
 };
 
 
-// HEADER TRANSITION LOGIC ====================================================
+// HEADER TRANSITION LOGIC =========================================================================
 
 
 function setHeaderElementsPinned(fixed) {
@@ -89,6 +91,10 @@ function updateHeaderElements(progress) {
   window.gol.needsSizeUpdate = true;
 }
 
+
+// BACKGROUND TRANSITION LOGIC =====================================================================
+
+
 function updateBackgroundColor(progress) {
   const grad1A = { r: 95, g: 252, b: 231 };
   const grad1B = { r: 113, g: 108, b: 254 };
@@ -109,15 +115,26 @@ function updateBackgroundColor(progress) {
   elem.body.style.backgroundImage = getCssGradString(calcA, calcB);
 }
 
-// SCROLL LISTENER ============================================================
+
+// CAROUSEL LOGIC ==================================================================================
+
+
+function setCarouselPinned(fixed) {
+  window.carousel.laptops.map(l => l.elem).forEach((l) => {
+    l.style.position = fixed ? 'fixed' : 'absolute';
+    l.style.top = fixed ? '50vh' : 0;
+  });
+}
+
+
+// SCROLL LISTENER =================================================================================
 
 
 function onscroll() {
   const scroll = window.scrollY;
+  const scrollBottom = scroll + window.innerHeight;
 
   // Header
-
-  const headerProgress = scroll / (window.innerHeight / 2);
 
   switch (true) {
     case (scroll < 5): {
@@ -128,6 +145,7 @@ function onscroll() {
 
     case (scroll < window.innerHeight / 2): {
       setHeaderElementsPinned(true);
+      const headerProgress = scroll / (window.innerHeight / 2);
       requestAnimationFrame(() => updateHeaderElements(headerProgress));
       break;
     }
@@ -156,6 +174,30 @@ function onscroll() {
       updateBackgroundColor(bgProgress);
     }
   }
+
+  // Carousel
+
+  switch (true) {
+    case (scroll < elem.laptopsContainer.offsetTop - (window.innerHeight / 2)): {
+      setCarouselPinned(false);
+      break;
+    }
+
+    case (scroll < elem.laptopsContainer.offsetTop + elem.laptopsContainer.offsetHeight): {
+      setCarouselPinned(true);
+      break;
+    }
+
+    default: {
+      setCarouselPinned(false);
+    }
+  }
+  const halfHeight = window.innerHeight / 2;
+  const carouselProgress = (scrollBottom - elem.laptopsContainer.offsetTop - halfHeight) /
+                           (elem.laptopsContainer.offsetHeight - halfHeight);
+  requestAnimationFrame(() => {
+    window.carousel.position = carouselProgress * window.carousel.maxIndex;
+  });
 }
 
 
