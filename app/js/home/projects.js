@@ -117,7 +117,7 @@ class LaptopCarousel {
   // Maximum index represented
   get maxIndex() { return Math.max(...this.indices); }
 
-  // Force a number to be inside (-rot, rot)
+  // Force a number to be inside (-rotLimit, rotLimit)
   static boundRotation(rot) {
     const rotLimit = 75;
     const sign = Math.sign(rot);
@@ -126,11 +126,19 @@ class LaptopCarousel {
 
   positionLaptop(laptop) {
     // Position laptops 25 degress apart from eachother
-    laptop.rotateZ = LaptopCarousel.boundRotation(laptop.index * -25);
+    const initialRot = laptop.index * -25; // Basic position
+    const finalRot = initialRot + (this.progress * 25); // Position given progress
+    laptop.rotateZ = LaptopCarousel.boundRotation(finalRot);
   }
 
-  arrangeLaptops(progress) {
-    this.progress = progress;
+  arrangeLaptops(progress = 0) {
+    // Each 1 progress value represents centering the next laptop. Progress x will result in the
+    // the laptop with index x being centered
+    let newProgress = progress;
+    // Bound within (this.minIndex, this.maxIndex)
+    newProgress = Math.min(progress, this.maxIndex);
+    newProgress = Math.max(progress, this.minIndex);
+    this.progress = newProgress;
     this.laptops.forEach(l => this.positionLaptop(l));
   }
 }
