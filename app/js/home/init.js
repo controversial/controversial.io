@@ -97,10 +97,11 @@ function updateHeaderElements(progress) {
 
 
 function updateBackgroundColor(progress) {
-  const grad1A = { r: 95, g: 252, b: 231 };
-  const grad1B = { r: 113, g: 108, b: 254 };
-  const grad2A = { r: 146, g: 255, b: 192 };
-  const grad2B = { r: 0, g: 38, b: 97 };
+  const grad1A = window.parseColor('#5EFCE8');
+  const grad1B = window.parseColor('#736EFE');
+
+  const grad2A = window.parseColor('#92FFC0');
+  const grad2B = window.parseColor('#002661');
 
   const interpolate = (a, b, amount) => ({
     r: Math.floor((a.r * (1 - progress)) + (b.r * amount)),
