@@ -15,6 +15,7 @@ const elem = {
   laptopBase: document.getElementsByClassName('laptop-base')[0],
 
   laptopsContainer: document.getElementsByClassName('laptops-container')[0],
+  laptopsStretcher: document.getElementsByClassName('laptops-stretcher')[0],
 };
 
 
@@ -120,18 +121,8 @@ function updateBackgroundColor(progress) {
 
 
 function setCarouselPinned(fixed) {
-  window.carousel.laptops.map(l => l.elem).forEach((l) => {
-    l.style.position = fixed ? 'fixed' : 'absolute';
-    l.style.top = fixed ? '50vh' : 0;
-  });
-}
-
-function updatePerspectiveOrigin(scroll) {
-  // Pixels scrolled past the top of laptopCarousel
-  const pxScrolled = scroll - (elem.laptopsContainer.offsetTop - (window.innerHeight / 2));
-  const vwScrolled = (pxScrolled / window.innerWidth) * 100;
-  const adjustment = -50 + vwScrolled; // Starts at -50vw
-  elem.laptopsContainer.style.perspectiveOrigin = `center ${adjustment}vw`;
+  elem.laptopsContainer.style.position = fixed ? 'fixed' : 'relative';
+  elem.laptopsContainer.style.top = fixed ? '50vh' : 0;
 }
 
 
@@ -189,14 +180,13 @@ function onscroll() {
   const laptopZoneHeight = 2 * Math.max(window.innerWidth, window.innerHeight);
 
   switch (true) {
-    case (scroll < elem.laptopsContainer.offsetTop - (window.innerHeight / 2)): {
+    case (scroll < elem.laptopsStretcher.offsetTop - (window.innerHeight / 2)): {
       setCarouselPinned(false);
       break;
     }
 
-    case (scroll < elem.laptopsContainer.offsetTop + laptopZoneHeight): {
+    case (scroll < elem.laptopsStretcher.offsetTop + laptopZoneHeight): {
       setCarouselPinned(true);
-      updatePerspectiveOrigin(scroll);
       break;
     }
 
@@ -205,7 +195,7 @@ function onscroll() {
     }
   }
   const halfHeight = window.innerHeight / 2;
-  const carouselProgress = (scrollBottom - elem.laptopsContainer.offsetTop - halfHeight) /
+  const carouselProgress = (scrollBottom - elem.laptopsStretcher.offsetTop - halfHeight) /
                            (laptopZoneHeight - halfHeight);
   requestAnimationFrame(() => {
     window.carousel.position = carouselProgress * window.carousel.maxIndex;
