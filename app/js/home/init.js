@@ -179,21 +179,12 @@ function onscroll() {
   // Vertical size of area through which laptops are pinned
   const laptopZoneHeight = 2 * Math.max(window.innerWidth, window.innerHeight);
 
-  switch (true) {
-    case (scroll < elem.laptopsStretcher.offsetTop - (window.innerHeight / 2)): {
-      setCarouselPinned(false);
-      break;
-    }
-
-    case (scroll < elem.laptopsStretcher.offsetTop + laptopZoneHeight): {
-      setCarouselPinned(true);
-      break;
-    }
-
-    default: {
-      setCarouselPinned(false);
-    }
-  }
+  // Smallest and largest scroll values at which the laptops should be pinned
+  const minPinned = elem.laptopsStretcher.offsetTop - (window.innerHeight / 2);
+  const maxPinned = elem.laptopsStretcher.offsetTop + laptopZoneHeight;
+  // Adjust pinning accordingly
+  setCarouselPinned(scroll >= minPinned && scroll <= maxPinned);
+  // And adjust carousel position
   const halfHeight = window.innerHeight / 2;
   const carouselProgress = (scrollBottom - elem.laptopsStretcher.offsetTop - halfHeight) /
                            (laptopZoneHeight - halfHeight);
