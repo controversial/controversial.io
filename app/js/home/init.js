@@ -185,13 +185,16 @@ function onscroll() {
 
   // Carousel
 
+  // Vertical size of area through which laptops are pinned
+  const laptopZoneHeight = 2 * Math.max(window.innerWidth, window.innerHeight);
+
   switch (true) {
     case (scroll < elem.laptopsContainer.offsetTop - (window.innerHeight / 2)): {
       setCarouselPinned(false);
       break;
     }
 
-    case (scroll < elem.laptopsContainer.offsetTop + elem.laptopsContainer.offsetHeight): {
+    case (scroll < elem.laptopsContainer.offsetTop + laptopZoneHeight): {
       setCarouselPinned(true);
       updatePerspectiveOrigin(scroll);
       break;
@@ -203,7 +206,7 @@ function onscroll() {
   }
   const halfHeight = window.innerHeight / 2;
   const carouselProgress = (scrollBottom - elem.laptopsContainer.offsetTop - halfHeight) /
-                           (elem.laptopsContainer.offsetHeight - halfHeight);
+                           (laptopZoneHeight - halfHeight);
   requestAnimationFrame(() => {
     window.carousel.position = carouselProgress * window.carousel.maxIndex;
   });
