@@ -61,7 +61,7 @@ class Laptop {
       `translateY(${this._translateY})`,
       `translateZ(${this._translateZ})`,
     ].join(' ');
-    this.lid.style.transform = `translateY(-33.333333vw) rotateX(${-180 + this._lidAngle}deg)`;
+    this.lid.style.transform = `translateY(-40vw) rotateX(${-180 + this._lidAngle}deg)`;
   }
 
 
@@ -132,7 +132,7 @@ class LaptopCarousel {
 
   // Force a number to be inside (-rotLimit, rotLimit)
   static boundRotation(rot) {
-    const rotLimit = 75;
+    const rotLimit = 80;
     const sign = Math.sign(rot);
     return sign * Math.min(Math.abs(rot), rotLimit);
   }
@@ -141,16 +141,16 @@ class LaptopCarousel {
   // the laptop with index x being centered
   get position() { return this._position; }
   set position(pos) {
+    const offsetAngle = 30; // Laptops are 30 degrees from eachother
     let newPos = pos;
     // Bound within (this.minIndex, this.maxIndex)
     newPos = Math.min(newPos, this.maxIndex);
     newPos = Math.max(newPos, this.minIndex);
     this._position = newPos;
     this.laptops.forEach((laptop) => {
-      // Laptops are 25 degress from eachother
-      const initialRot = laptop.index * -25; // Basic laptop rotation
+      const initialRot = laptop.index * -offsetAngle; // Basic laptop rotation
       // Adjust laptop rotation given carousel position
-      const finalRot = initialRot + (this.position * 25);
+      const finalRot = initialRot + (this.position * offsetAngle);
       laptop.rotateZ = LaptopCarousel.boundRotation(finalRot);
       // Adjust lid closed given carousel position. Lid starts closing when position is 0.5 away
       // from the center and becomes fully closed when position is 1.5 away from the center.
