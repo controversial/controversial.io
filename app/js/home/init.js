@@ -123,7 +123,6 @@ function updateBackgroundColor(progress) {
 
 function onscroll() {
   const scroll = window.scrollY;
-  const scrollBottom = scroll + window.innerHeight;
 
   // Header
 
@@ -168,13 +167,13 @@ function onscroll() {
 
   // Carousel
 
-  // Vertical size of area through which laptops are pinned
-  const laptopZoneHeight = 2 * Math.max(window.innerWidth, window.innerHeight);
+  const largerScreenDimension = Math.max(window.innerWidth, window.innerHeight);
 
   // And adjust carousel position
-  const halfHeight = window.innerHeight / 2;
-  const carouselProgress = (scrollBottom - elem.laptopsStretcher.offsetTop - halfHeight) /
-                           (laptopZoneHeight - halfHeight);
+  const start = elem.laptopsStretcher.offsetTop;
+  const end = start + (largerScreenDimension * 1.5);
+
+  const carouselProgress = (scroll - start) / (end - start);
   requestAnimationFrame(() => {
     window.carousel.position = carouselProgress * window.carousel.maxIndex;
   });
