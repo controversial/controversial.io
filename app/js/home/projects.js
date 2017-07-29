@@ -132,7 +132,7 @@ class LaptopCarousel {
 
   // Force a number to be inside (-rotLimit, rotLimit)
   static boundRotation(rot) {
-    const rotLimit = 80;
+    const rotLimit = 75;
     const sign = Math.sign(rot);
     return sign * Math.min(Math.abs(rot), rotLimit);
   }
