@@ -142,11 +142,7 @@ class LaptopCarousel {
   get position() { return this._position; }
   set position(pos) {
     const offsetAngle = 30; // Laptops are 30 degrees from eachother
-    let newPos = pos;
-    // Bound within (this.minIndex, this.maxIndex)
-    newPos = Math.min(newPos, this.maxIndex);
-    newPos = Math.max(newPos, this.minIndex);
-    this._position = newPos;
+    this._position = pos;
     this.laptops.forEach((laptop) => {
       const initialRot = laptop.index * -offsetAngle; // Basic laptop rotation
       // Adjust laptop rotation given carousel position
@@ -172,12 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const laptopsContainer = document.getElementsByClassName('laptops-container')[0];
   const laptopElems = [...laptopsContainer.getElementsByClassName('laptop3d')];
   const laptops = laptopElems.map((l, i) => new Laptop(l, i));
-  // Add 10 dummy laptops to the beginning
-  const dummyLaptops = new Array(5)
-    .fill(0)
-    .map(() => document.createElement('div'))
-    .map(l => laptopsContainer.appendChild(l))
-    .map((l, i) => new Laptop(l, -(i + 1), true));
 
-  window.carousel = new LaptopCarousel(laptopsContainer, laptops.concat(dummyLaptops));
+  window.carousel = new LaptopCarousel(laptopsContainer, laptops);
 });
