@@ -151,7 +151,7 @@ class LaptopCarousel {
       // Adjust lid closed given carousel position. Lid starts closing when position is 0.5 away
       // from the center and becomes fully closed when position is 1.5 away from the center.
       const distFromCenter = Math.abs(laptop.index - this.position);
-      const closedAmount = Math.max(Math.min(distFromCenter - 0.5, 1), 0);
+      const closedAmount = Math.max(Math.min(distFromCenter - 0.25, 1), 0);
       laptop.lidAngle = (1 - closedAmount) * 100;
     });
   }
