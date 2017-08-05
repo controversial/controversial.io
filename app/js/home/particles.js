@@ -22,8 +22,8 @@ class Particle {
     this.speed = randrange(5, 25, false);
     this.frequency = 1;
     // Amplitude is anywhere from 10% of screen width to 25%
-    this.amplitude = randrange(-0.10, 0.25, false, true, 10);
-    this.verticalShift = randrange(-0.25, 0.25, false, true, 20);
+    this.amplitude = randrange(-0.10, 0.25, false, true, 6);
+    this.verticalShift = randrange(-0.25, 0.25, false, true, 6);
     // Appearance
 
     this.radius = randrange(1, 7);
@@ -54,6 +54,7 @@ class SineParticles {
 
     this.resize();
     window.addEventListener('resize', () => this.resize());
+    setTimeout(() => this.resize(), 500);
 
     // Create particles
     for (let i = 0; i < count; i += 1) this.particles.push(new Particle(this));
@@ -103,4 +104,13 @@ class SineParticles {
 }
 
 
-window.SineParticles = SineParticles;
+// Only if we're in a browser
+if (typeof window !== 'undefined') {
+  window.SineParticles = SineParticles;
+  document.addEventListener('DOMContentLoaded', () => {
+    window.particles = new SineParticles(document.getElementById('particles'), 500);
+    window.particles.start();
+  });
+} else {
+  module.exports.SineParticles = SineParticles;
+}
