@@ -2,11 +2,13 @@ $length: 30vw
 $width: $length / 3 * 2
 $height: $length / 30
 
-$silver-1: #fbfbfc
-$silver-2: #ededf2
-$silver-3: #c3c4c9
-$silver-4: #babbc0
-$silver-5: #a8a8ad
+$base-color: #c3c4c9
+
+$silver-1: lighten($base-color, 30%)
+$silver-2: lighten($base-color, 15%)
+$silver-3: $base-color
+$silver-4: darken($base-color, 5%)
+$silver-5: darken($base-color, 10%)
 
 .laptops-container
   perspective: 3500px
