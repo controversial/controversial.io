@@ -71,6 +71,7 @@ class SineParticles {
     this.ctx = canvas.getContext('2d');
     this.particles = [];
     this.fps = 30;
+    this.trailLength = 10;
     this.minProgress = 0;
     this.maxProgress = 1;
 
@@ -92,7 +93,15 @@ class SineParticles {
   }
 
   draw() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    if (this.trailLength <= 1) {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    } else {
+      this.ctx.globalCompositeOperation = 'copy';
+      this.ctx.globalAlpha = 1 - (1 / this.trailLength);
+      this.ctx.drawImage(this.canvas, 0, 0);
+      this.ctx.globalAlpha = 1;
+      this.ctx.globalCompositeOperation = 'source-over';
+    }
     this.particles.forEach((p) => {
       const x = ((p.x + 1) / 2) * this.canvas.width;
       let y = ((p.y + 1) / 2) * this.canvas.height;
