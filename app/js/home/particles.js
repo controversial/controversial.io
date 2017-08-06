@@ -18,7 +18,7 @@ class Particle {
     this.anim = anim;
     // Position and movement
 
-    this.progress = Math.random();
+    this.progress = randrange(this.anim.minProgress, this.anim.maxProgress, false);
     this.speed = randrange(1, 4, false);
     this.frequency = 5;
     this.amplitude = randrange(-0.5, 0.5, false, true, 4);
@@ -30,6 +30,15 @@ class Particle {
   }
 
   get opacity() {
+    // If there is a cutoff, particles fade as they approach it (the final 0.1 progress)
+    const fadePeriod = 0.1;
+    if (this.progress > this.anim.maxProgress - fadePeriod) {
+      const distanceToMax = (this.anim.maxProgress - this.progress);
+      return this.baseOpacity * (1 / fadePeriod) * distanceToMax;
+    } else if (this.progress < this.anim.minProgress + fadePeriod) {
+      const distanceToMin = (this.progress - this.anim.minProgress);
+      return this.baseOpacity * (1 / fadePeriod) * distanceToMin;
+    }
     return this.baseOpacity;
   }
   // Polar coordinates are used in calculation of x and y
@@ -62,6 +71,8 @@ class SineParticles {
     this.ctx = canvas.getContext('2d');
     this.particles = [];
     this.fps = 30;
+    this.minProgress = 0;
+    this.maxProgress = 1;
 
     this.resize();
     window.addEventListener('resize', () => this.resize());
