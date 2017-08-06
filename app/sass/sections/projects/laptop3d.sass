@@ -1,6 +1,6 @@
 $length: 30vw
 $width: $length / 3 * 2
-$height: $length / 30
+$height: $length / 50
 
 $base-color: #4e4e4e
 
@@ -46,7 +46,7 @@ $silver-5: darken($base-color, 10%)
       width: $width
       height: $height
       background: linear-gradient(to left, $silver-2, $silver-4)
-      border-radius: 0 0 0 .5 * $height
+      border-radius: 0 0 0 $height * .9
       transform-origin: top left
       transform: rotateZ(90deg) rotateX(-90deg) rotateY(0)
 
@@ -71,7 +71,7 @@ $silver-5: darken($base-color, 10%)
       width: $width
       height: $height
       background: linear-gradient(to right, $silver-2, $silver-4)
-      border-radius: 0 0 .5 * $height 0
+      border-radius: 0 0 $height * .9 0
       transform-origin: top left
       transform: translateY($width) translateX($length) rotateX(-90deg) rotateY(90deg)
 
