@@ -106,6 +106,8 @@ class Laptop {
 
 
 class LaptopCarousel {
+  static get rotLimit() { return 75; }
+
   constructor(container, laptops) {
     this.container = container;
     this.laptops = laptops;
@@ -132,9 +134,8 @@ class LaptopCarousel {
 
   // Force a number to be inside (-rotLimit, rotLimit)
   static boundRotation(rot) {
-    const rotLimit = 75;
     const sign = Math.sign(rot);
-    return sign * Math.min(Math.abs(rot), rotLimit);
+    return sign * Math.min(Math.abs(rot), LaptopCarousel.rotLimit);
   }
 
   // Each 1 position value represents centering the next laptop. Position x will result in the
