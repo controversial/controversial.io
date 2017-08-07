@@ -24,6 +24,14 @@ $silver-5: darken($base-color, 10%)
   pointer-events: none
 
   .wrapper
+    // Radius for laptops' rotation ends up being 350% of $width, because:
+         1. $width is the height of .base, which determines the size of its parent's parent (.laptop3d).
+            Therefore, .laptop3d's height is $width.
+         2. A transform-origin-y of -350% is interpreted as -350% of the height of the first parent
+            without position: static. In the case of .wrapper, this element is .laptop3d.
+         3. .wrapper's transform-origin-y is -350% of .laptop3d's height, or -350% of $width.
+         4. Since rotations are performed around this point, the radius of the rotations is 350% of $width.
+
     transform-origin: 50% -350% 0
     transform-style: preserve-3d
     pointer-events: all
