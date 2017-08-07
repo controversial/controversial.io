@@ -87,24 +87,28 @@ class SineParticles {
   resize() {
     const factor = window.devicePixelRatio || 1;
     this.canvas.width = this.canvas.offsetWidth * factor;
-    this.canvas.height = this.canvas.offsetHeight * factor;
+    this.canvas.height = this.canvas.offsetWidth * factor;
+    this.ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
     this.draw();
   }
 
   draw() {
     if (this.trailLength <= 1) {
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.clearRect(
+        -this.canvas.width / 2, -this.canvas.height / 2,
+        this.canvas.width, this.canvas.height
+      );
     } else {
       this.ctx.globalCompositeOperation = 'copy';
       this.ctx.globalAlpha = 1 - (1 / this.trailLength);
-      this.ctx.drawImage(this.canvas, 0, 0);
+      this.ctx.drawImage(this.canvas, -this.canvas.width / 2, -this.canvas.height / 2);
       this.ctx.globalAlpha = 1;
       this.ctx.globalCompositeOperation = 'source-over';
     }
     this.particles.forEach((p) => {
-      const x = ((p.x + 1) / 2) * this.canvas.width;
-      let y = ((p.y + 1) / 2) * this.canvas.height;
-      y -= this.canvas.height / 2;
+      const factor = window.devicePixelRatio || 1;
+      const x = p.x * (window.innerWidth / 2) * factor;
+      const y = p.y * (window.innerHeight / 2) * factor;
       // Draw circle
       this.ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
       this.ctx.beginPath();
