@@ -188,7 +188,6 @@ function onscroll() {
 
   const lastLaptopRot = +window.carousel.laptopsByIndex[window.carousel.maxIndex].rotateZ.replace('deg', '');
   const lastLaptopProgress = (lastLaptopRot + rotLimit) / (2 * rotLimit);
-  console.log(lastLaptopProgress);
   window.particles.minProgress = lastLaptopProgress;
 }
 
