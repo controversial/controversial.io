@@ -140,7 +140,7 @@ class SineParticles {
 if (typeof window !== 'undefined') {
   window.SineParticles = SineParticles;
   document.addEventListener('DOMContentLoaded', () => {
-    window.particles = new SineParticles(document.getElementById('particles'), 500);
+    window.particles = new SineParticles(document.getElementById('particles'), 1000);
   });
 } else {
   module.exports.SineParticles = SineParticles;
