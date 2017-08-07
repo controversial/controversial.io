@@ -162,6 +162,8 @@ class LaptopCarousel {
   }
 }
 
+window.Laptop = Laptop;
+window.LaptopCarousel = LaptopCarousel;
 
 // Set up laptop scene
 document.addEventListener('DOMContentLoaded', () => {
