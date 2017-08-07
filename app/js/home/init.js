@@ -169,7 +169,7 @@ function onscroll() {
 
   const largerScreenDimension = Math.max(window.innerWidth, window.innerHeight);
 
-  // And adjust carousel position
+  // Adjust carousel position
   const start = elem.laptopsStretcher.offsetTop;
   const end = start + (largerScreenDimension * 1.5);
 
@@ -177,6 +177,19 @@ function onscroll() {
   requestAnimationFrame(() => {
     window.carousel.position = carouselProgress * window.carousel.maxIndex;
   });
+
+  // Adjust min and max progress of particles
+
+  const rotLimit = window.LaptopCarousel.rotLimit;
+
+  const firstLaptopRot = +window.carousel.laptopsByIndex[0].rotateZ.replace('deg', '');
+  const firstLaptopProgress = (firstLaptopRot + rotLimit) / (2 * rotLimit);
+  window.particles.maxProgress = firstLaptopProgress;
+
+  const lastLaptopRot = +window.carousel.laptopsByIndex[window.carousel.maxIndex].rotateZ.replace('deg', '');
+  const lastLaptopProgress = (lastLaptopRot + rotLimit) / (2 * rotLimit);
+  console.log(lastLaptopProgress);
+  window.particles.minProgress = lastLaptopProgress;
 }
 
 
