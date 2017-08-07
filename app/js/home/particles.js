@@ -107,8 +107,9 @@ class SineParticles {
     }
     this.particles.forEach((p) => {
       const factor = window.devicePixelRatio || 1;
-      const x = p.x * (window.innerWidth / 2) * factor;
-      const y = p.y * (window.innerHeight / 2) * factor;
+      const x = p.x * ((window.innerWidth * 0.8) / 1) * factor;
+      let y = p.y * ((window.innerWidth * 0.8) / 1) * factor;
+      y -= this.canvas.height / 2;
       // Draw circle
       this.ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
       this.ctx.beginPath();

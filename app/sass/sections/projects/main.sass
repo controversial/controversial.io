@@ -16,3 +16,16 @@
     div
       width: 100%
       height: 100%
+
+#particles
+  position: fixed
+  left: 50vw
+  top: 50vw
+  width: 130vw
+  height: 100vw
+  transform-origin: center top
+  background: rgba(0, 0, 0, 0.1)
+  // Alignment below is 350% of
+  //        |    keep centered    |  perspective |    Alignment    |
+  transform: translate(-50%, -50%) rotateX(80deg) translateY(-70vw)
+  z-index: -1
