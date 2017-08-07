@@ -1,5 +1,7 @@
 // Convert an element into a 3D laptop, moving its contents into the screen.
 
+window.sassLengthVariable = 30;
+window.sassWidthVariable = (window.sassLengthVariable / 3) * 2;
 
 class Laptop {
   static get defaultLidAngle() { return 100; }
@@ -61,7 +63,7 @@ class Laptop {
       `translateY(${this._translateY})`,
       `translateZ(${this._translateZ})`,
     ].join(' ');
-    this.lid.style.transform = `translateY(-40vw) rotateX(${-180 + this._lidAngle}deg)`;
+    this.lid.style.transform = `translateY(-${window.sassWidthVariable * 2}vw) rotateX(${-180 + this._lidAngle}deg)`;
   }
 
 
