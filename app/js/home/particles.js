@@ -85,8 +85,7 @@ class SineParticles {
   }
 
   resize() {
-    let factor = 1;
-    factor = window.devicePixelRatio || 1;
+    const factor = window.devicePixelRatio || 1;
     this.canvas.width = this.canvas.offsetWidth * factor;
     this.canvas.height = this.canvas.offsetHeight * factor;
     this.draw();
