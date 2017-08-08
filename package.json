@@ -10,6 +10,10 @@
     "test": "ava -v",
     "docs": "jsdoc app -r -d docs -t node_modules/minami --verbose"
   },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "smoothscroll-polyfill": "^0.3.6"
+  },
   "devDependencies": {
     "ava": "^0.16.0",
     "babel-preset-es2015": "^6.16.0",

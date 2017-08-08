@@ -53,6 +53,13 @@ gulp.task('js', () => {
   buildScriptsForPage('app/js/emailsent', 'emailsent.js');
   // Scripts for the 404 page
   buildScriptsForPage('app/404', '404/404.js');
+
+  // Build polyfills into a single file
+  gulp.src(['./node_modules/babel-polyfill/dist/polyfill.js', './node_modules/smoothscroll-polyfill/dist/smoothscroll.js'])
+    .pipe(concat('polyfills.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist'))
+    .pipe(browserSync.reload({ stream: true }));
 });
 
 // Compile everything at once
