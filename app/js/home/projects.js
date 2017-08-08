@@ -171,11 +171,11 @@ window.Laptop = Laptop;
 window.LaptopCarousel = LaptopCarousel;
 
 // Set up laptop scene
-document.addEventListener('DOMContentLoaded', () => {
+window.setupLaptops = () => {
   // Convert all elements with the class 'laptop3d' into laptops
   const laptopsContainer = document.getElementsByClassName('laptops-container')[0];
   const laptopElems = [...laptopsContainer.getElementsByClassName('laptop3d')];
   const laptops = laptopElems.map((l, i) => new Laptop(l, i));
 
   window.carousel = new LaptopCarousel(laptopsContainer, laptops);
-});
+};

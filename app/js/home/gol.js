@@ -449,16 +449,13 @@ class GameRenderer {
 
 // Only if we're in a browser
 if (typeof window !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', () => {
+  window.setupGol = () => {
     window.gol = new GameRenderer('#gol');
     window.gol.start();
-    // Update canvas when resized (behavior may not apply to all situations, so this isn't default
-    // behavior)
-    window.addEventListener(
-      'resize',
-      () => { window.gol.needsSizeUpdate = true; }
-    );
-  });
+    // Update canvas when resized (this isn't the default behavior because not all uses involve
+    // canvases whose size changes when the window is resized)
+    window.addEventListener('resize', () => { window.gol.needsSizeUpdate = true; });
+  };
 } else {
   module.exports.Game = Game;
 }

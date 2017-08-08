@@ -141,9 +141,9 @@ class SineParticles {
 // Only if we're in a browser
 if (typeof window !== 'undefined') {
   window.SineParticles = SineParticles;
-  document.addEventListener('DOMContentLoaded', () => {
+  window.setupParticles = () => {
     window.particles = new SineParticles(document.getElementById('particles'), 1000);
-  });
+  };
 } else {
   module.exports.SineParticles = SineParticles;
 }
