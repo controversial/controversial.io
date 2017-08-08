@@ -146,6 +146,9 @@ class LaptopCarousel {
   set position(pos) {
     const offsetAngle = 30; // Laptops are 30 degrees from eachother
     this._position = pos;
+    // Sometimes laptops accidentally still have transitions on from a hover. This causes them to
+    // lag behind while other laptops move normally, which looks horrible.
+    this.setTransitionTime(0);
     this.laptops.forEach((laptop) => {
       const initialRot = laptop.index * -offsetAngle; // Basic laptop rotation
       // Adjust laptop rotation given carousel position
