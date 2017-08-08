@@ -101,7 +101,7 @@ function updateBackgroundColor(progress) {
   const grad1B = window.parseColor('#736EFE');
 
   const grad2A = window.parseColor('#16222A');
-  const grad2B = window.parseColor('#3A6073');
+  const grad2B = window.parseColor('#4A5070');
 
   const interpolate = (a, b, amount) => ({
     r: Math.floor((a.r * (1 - progress)) + (b.r * amount)),
