@@ -21,7 +21,7 @@ class Particle {
     this.progress = randrange(this.anim.minProgress, this.anim.maxProgress, false);
     this.speed = randrange(1, 4, false);
     this.frequency = 5;
-    this.amplitude = randrange(-0.33, 0.33, false, true, 6);
+    this.amplitude = randrange(-0.25, 0.25, false, true, 6);
     this.shift = randrange(-Math.PI, Math.PI, false, true, 7);
     // Appearance
 
