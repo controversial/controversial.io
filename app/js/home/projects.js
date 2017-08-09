@@ -39,8 +39,8 @@ class Laptop {
     // Add all former children to the new screen element
     children.forEach(child => this.screen.appendChild(child));
 
-    // Lift up a bit on hover
     if (!this.dummy) {
+      // Lift up a bit on hover
       const performWithTransitionTime = (func, time) => {
         const oldTime = this.transitionTime; this.transitionTime = time;
         func();
@@ -48,11 +48,34 @@ class Laptop {
       };
       this.wrapper.addEventListener('mouseenter', () => performWithTransitionTime(() => { this.translateZ = '1vw'; }, 0.25));
       this.wrapper.addEventListener('mouseleave', () => performWithTransitionTime(() => { this.translateZ = 0; }, 0.25));
+
+      // Center self on click
+      this.wrapper.addEventListener('click', () => this.centerSelf());
     }
 
     this._applyTransform();
   }
 
+  centerSelf() {
+    if (this.carousel) {
+      const largerScreenDimension = Math.max(window.innerWidth, window.innerHeight);
+      const start = document.getElementsByClassName('laptops-stretcher')[0].offsetTop;
+      const end = start + (largerScreenDimension * 1.5);
+      /*
+        This equation found by solving equation in scroll.js for 'scroll'
+
+        Initial equation from scroll.js for calculating position based on scroll:
+                 scroll - start
+          pos = ————————————————  *  carousel.maxIndex
+                  end - start
+
+        Rearranged equation for solving for scroll based on position:
+          scroll = pos ÷ carousel.maxIndex * (end - start) + start
+      */
+      const scroll = ((this.index / this.carousel.maxIndex) * (end - start)) + start;
+      window.scrollTo({ top: scroll, behavior: 'smooth' });
+    }
+  }
 
   _applyTransform() {
     this.wrapper.style.transform = [
