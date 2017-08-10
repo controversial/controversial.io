@@ -41,36 +41,40 @@ function updateHeaderElements(progress) {
 
   // FIT MAIN HEADER TO LAPTOP SCREEN
 
+  const transform = [];
 
-  // Values for tweening. [x, y, w, h]. All values are viewport-relative.
+  const posA = {
+    left: 0,
+    top: 0,
+    right: window.innerWidth,
+    bottom: window.innerHeight,
+    width: window.innerWidth,
+    height: window.innerHeight,
+  };
+  const posB = elem.laptopContent.getBoundingClientRect();
 
-  const initialPos = [50, 50, 100, 100]; // The starting position (fixed)
-  const destinationPos = [               // The shrunk position (still fixed)
-    50,
-    50 - ((100 * elem.laptopBase.offsetHeight) / window.innerHeight / 2),
-    (100 * elem.laptopContent.offsetWidth) / window.innerWidth,
-    (100 * elem.laptopContent.offsetHeight) / window.innerHeight,
-  ];
-  const restingPos = [                   // The shrunk position (absolute now)
-    50,
-    destinationPos[1] + 50,
-    destinationPos[2],
-    destinationPos[3],
-  ];
+  // Calculate translation
 
-  // NOTE: Left is ignored since it's constant
+  // Use centers for calculating translation because the element will be scaled around its center
+  const centerA = { x: (posA.left + posA.right) / 2, y: (posA.top + posA.bottom) / 2 };
+  const centerB = { x: (posB.left + posB.right) / 2, y: (posB.top + posB.bottom) / 2 };
+  const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
 
-  const fixedTop = tween(initialPos[1], destinationPos[1]);
-  const top = progress < 1 ? fixedTop : restingPos[1];
-  elem.header.style.top = `${top}vh`;
+  // Calculate scale
 
-  const width = tween(initialPos[2], destinationPos[2]);
-  elem.header.style.width = `${width}vw`;
+  const scaleNeeded = {
+    x: posB.width / posA.width,
+    y: posB.height / posA.height,
+  };
 
-  const height = tween(initialPos[3], destinationPos[3]);
-  elem.header.style.height = `${height}vh`;
 
-  elem.header.style.position = progress < 1 ? 'fixed' : 'absolute';
+  // Apply transformations
+  transform.push(`translateX(${tween(0, translationNeeded.x)}px)`);
+  transform.push(`translateY(${tween(0, translationNeeded.y)}px)`);
+
+  transform.push(`scaleX(${tween(1, scaleNeeded.x)})`);
+  transform.push(`scaleY(${tween(1, scaleNeeded.y)})`);
+  elem.header.style.transform = transform.join(' ');
 
 
   // MISCELLANEOUS
