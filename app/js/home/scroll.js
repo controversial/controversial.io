@@ -176,20 +176,6 @@ function onscroll() {
   const carouselProgress = (scroll - start) / (end - start);
   requestAnimationFrame(() => {
     window.carousel.position = carouselProgress * window.carousel.maxIndex;
-
-    // Adjust min and max progress of particles
-
-    const bound = n => Math.max(Math.min(n, 1), 0); // Clip a value within (0, 1)
-
-    const rotLimit = window.LaptopCarousel.rotLimit;
-
-    const firstLaptopRot = +window.carousel.laptopsByIndex[0].rotateZ.replace('deg', '');
-    const firstLaptopProgress = (firstLaptopRot + rotLimit) / (2 * rotLimit);
-    window.particles.maxProgress = bound(firstLaptopProgress);
-
-    const lastLaptopRot = +window.carousel.laptopsByIndex[window.carousel.maxIndex].rotateZ.replace('deg', '');
-    const lastLaptopProgress = (lastLaptopRot + rotLimit) / (2 * rotLimit);
-    window.particles.minProgress = bound(lastLaptopProgress);
   });
 }
 
