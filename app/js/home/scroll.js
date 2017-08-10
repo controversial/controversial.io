@@ -38,39 +38,30 @@ function updateHeaderElements(progress) {
     return a + ((b - a) * progress);
   }
 
-
   // FIT MAIN HEADER TO LAPTOP SCREEN
 
   // Beginning and end positions
   const w = window.innerWidth; const h = window.innerHeight;
   const posA = { left: 0, top: 0, right: w, bottom: h, width: w, height: h };
   const posB = elem.laptopContent.getBoundingClientRect();
-
   // Calculate translation
   // Center is used for calculating translation because element is scaled about the center)
   const centerA = { x: (posA.left + posA.right) / 2, y: (posA.top + posA.bottom) / 2 };
   const centerB = { x: (posB.left + posB.right) / 2, y: (posB.top + posB.bottom) / 2 };
   const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
-
   // Calculate scale
-  const scaleNeeded = {
-    x: posB.width / posA.width,
-    y: posB.height / posA.height,
-  };
-
+  const scaleNeeded = { x: posB.width / posA.width, y: posB.height / posA.height };
   // Apply transformations
-  const transform = [];
-  // Translations
-  transform.push(`translateX(${tween(0, translationNeeded.x)}px)`);
-  transform.push(`translateY(${tween(0, translationNeeded.y)}px)`);
-  // Scale
-  transform.push(`scaleX(${tween(1, scaleNeeded.x)})`);
-  transform.push(`scaleY(${tween(1, scaleNeeded.y)})`);
-  elem.header.style.transform = transform.join(' ');
-
+  elem.header.style.transform = [
+    // Translate
+    `translateX(${tween(0, translationNeeded.x)}px)`,
+    `translateY(${tween(0, translationNeeded.y)}px)`,
+    // Scale
+    `scaleX(${tween(1, scaleNeeded.x)})`,
+    `scaleY(${tween(1, scaleNeeded.y)})`,
+  ].join(' ');
 
   // MISCELLANEOUS
-
 
   // Update opacity of down indicator
   elem.downIndicator.style.opacity = 1 - progress;
