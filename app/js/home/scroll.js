@@ -83,7 +83,7 @@ function updateHeaderElements(progress) {
   // Update opacity of down indicator
   elem.downIndicator.style.opacity = 1 - progress;
   // Reduce font size of my name
-  elem.headerTitle.style.fontSize = `${tween(5, 3.5)}vw`;
+  elem.headerTitle.style.transform = `translate(-50%, -50%) scale(${tween(1, 0.7)})`;
 
 
   // ADJUST CANVAS SETTINGS
