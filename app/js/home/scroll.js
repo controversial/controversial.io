@@ -19,6 +19,7 @@ const elem = {
   laptopsStretcher: document.getElementsByClassName('laptops-stretcher')[0],
 };
 
+let headerIsInLaptop = false;
 
 // HEADER TRANSITION LOGIC =========================================================================
 
@@ -42,8 +43,11 @@ function updateHeaderElements(progress) {
   // FIT MAIN HEADER TO LAPTOP SCREEN
 
   if (progress < 1) {
-    elem.header.style.position = 'fixed';
-    elem.headerWrapper.appendChild(elem.header);
+    if (headerIsInLaptop) {
+      elem.header.style.position = 'fixed';
+      elem.headerWrapper.appendChild(elem.header);
+      headerIsInLaptop = false;
+    }
     // Beginning and end positions
     const w = window.innerWidth; const h = window.innerHeight;
     const posA = { left: 0, top: 0, right: w, bottom: h, width: w, height: h };
@@ -64,10 +68,11 @@ function updateHeaderElements(progress) {
       `scaleX(${tween(1, scaleNeeded.x)})`,
       `scaleY(${tween(1, scaleNeeded.y)})`,
     ].join(' ');
-  } else {
+  } else if (!headerIsInLaptop) {
     elem.header.style.position = 'absolute';
     elem.header.style.transform = '';
     elem.laptopContent.appendChild(elem.header);
+    headerIsInLaptop = true;
   }
 
   // MISCELLANEOUS
