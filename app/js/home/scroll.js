@@ -85,11 +85,13 @@ function updateHeaderElements(progress) {
 
   // ADJUST CANVAS SETTINGS
 
-  const canvasScale = ( // Mean of X scale difference and Y scale difference
-    (window.gol.elem.offsetWidth / window.innerWidth) +
-    (window.gol.elem.offsetHeight / window.innerHeight)
-  ) / 2;
-  window.gol.idealCellSize = 20 * canvasScale;
+  const canvasRect = window.gol.elem.getBoundingClientRect();
+  // How much canvas has been downscaled overall? Averages X and Y scale factors to get a holistic
+  // scale factor
+  const horizontalScaleFactor = (canvasRect.width / window.innerWidth);
+  const verticalScaleFactor = (canvasRect.height / window.innerHeight);
+  const averageScaleFactor = (horizontalScaleFactor + verticalScaleFactor) / 2;
+  window.gol.idealCellSize = 20 * averageScaleFactor;
   window.gol.needsSizeUpdate = true;
 }
 

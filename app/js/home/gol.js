@@ -331,8 +331,9 @@ class GameRenderer {
    */
   updateSize() {
     // Update canvas coordinate system
-    const width = this.elem.offsetWidth;
-    const height = this.elem.offsetHeight;
+    const rect = this.elem.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
 
     // Update tile size by finding the dimensions that will both evenly fill
     // the canvas and be close closest to the idealCellSize.
