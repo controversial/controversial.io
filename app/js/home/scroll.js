@@ -6,6 +6,7 @@
 const elem = {
   body: document.body,
 
+  headerWrapper: document.getElementById('header-wrapper'),
   header: document.getElementsByTagName('header')[0],
   headerTitle: document.getElementsByTagName('h1')[0],
   downIndicator: document.getElementsByClassName('down-indicator')[0],
@@ -40,26 +41,34 @@ function updateHeaderElements(progress) {
 
   // FIT MAIN HEADER TO LAPTOP SCREEN
 
-  // Beginning and end positions
-  const w = window.innerWidth; const h = window.innerHeight;
-  const posA = { left: 0, top: 0, right: w, bottom: h, width: w, height: h };
-  const posB = elem.laptopContent.getBoundingClientRect();
-  // Calculate translation
-  // Center is used for calculating translation because element is scaled about the center)
-  const centerA = { x: (posA.left + posA.right) / 2, y: (posA.top + posA.bottom) / 2 };
-  const centerB = { x: (posB.left + posB.right) / 2, y: (posB.top + posB.bottom) / 2 };
-  const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
-  // Calculate scale
-  const scaleNeeded = { x: posB.width / posA.width, y: posB.height / posA.height };
-  // Apply transformations
-  elem.header.style.transform = [
-    // Translate
-    `translateX(${tween(0, translationNeeded.x)}px)`,
-    `translateY(${tween(0, translationNeeded.y)}px)`,
-    // Scale
-    `scaleX(${tween(1, scaleNeeded.x)})`,
-    `scaleY(${tween(1, scaleNeeded.y)})`,
-  ].join(' ');
+  if (progress < 1) {
+    elem.header.style.position = 'fixed';
+    elem.headerWrapper.appendChild(elem.header);
+    // Beginning and end positions
+    const w = window.innerWidth; const h = window.innerHeight;
+    const posA = { left: 0, top: 0, right: w, bottom: h, width: w, height: h };
+    const posB = elem.laptopContent.getBoundingClientRect();
+    // Calculate translation
+    // Center is used for calculating translation because element is scaled about the center)
+    const centerA = { x: (posA.left + posA.right) / 2, y: (posA.top + posA.bottom) / 2 };
+    const centerB = { x: (posB.left + posB.right) / 2, y: (posB.top + posB.bottom) / 2 };
+    const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
+    // Calculate scale
+    const scaleNeeded = { x: posB.width / posA.width, y: posB.height / posA.height };
+    // Apply transformations
+    elem.header.style.transform = [
+      // Translate
+      `translateX(${tween(0, translationNeeded.x)}px)`,
+      `translateY(${tween(0, translationNeeded.y)}px)`,
+      // Scale
+      `scaleX(${tween(1, scaleNeeded.x)})`,
+      `scaleY(${tween(1, scaleNeeded.y)})`,
+    ].join(' ');
+  } else {
+    elem.header.style.position = 'absolute';
+    elem.header.style.transform = '';
+    elem.laptopContent.appendChild(elem.header);
+  }
 
   // MISCELLANEOUS
 
