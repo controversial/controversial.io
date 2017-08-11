@@ -297,7 +297,7 @@ class GameRenderer {
    * controlled manually. If true, the game will be initally randomized and all new territory will
    * be randomized as well.
    */
-  constructor(selector, fps, cellSize, cellColor, randomize) {
+  constructor(selector, fps = 15, cellSize = 20, cellColor = '#37474f', randomize = true) {
     this.game = new Game();
 
     this.elem = document.querySelector(selector);
@@ -307,11 +307,11 @@ class GameRenderer {
     this.context = this.elem.getContext('2d');
 
     // Store options
-    this.fps = fps || 15;
-    this.idealCellSize = cellSize || 20;
+    this.fps = fps;
+    this.idealCellSize = cellSize;
     this.cellSize = [this.idealCellSize, this.idealCellSize]; // Updated to fit game to canvas
-    this.cellColor = cellColor || '#37474f';
-    this.isRandom = typeof randomize === 'undefined' ? true : randomize;
+    this.cellColor = cellColor;
+    this.isRandom = randomize;
 
     this.needsSizeUpdate = true;
     if (this.isRandom) this.game.randomize();
