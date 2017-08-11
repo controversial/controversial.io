@@ -11,9 +11,9 @@ const elem = {
   headerTitle: document.getElementsByTagName('h1')[0],
   downIndicator: document.getElementsByClassName('down-indicator')[0],
 
-  laptop: document.getElementsByClassName('laptop')[0],
-  laptopContent: document.getElementsByClassName('laptop-content')[0],
-  laptopBase: document.getElementsByClassName('laptop-base')[0],
+  laptop: document.getElementsByClassName('laptop3d')[0].parentNode,
+  // Won't be initialized by the time elem is evaluated so we use a getter
+  get laptopContent() { return this.laptop.getElementsByClassName('screen')[0]; },
 
   laptopsContainer: document.getElementsByClassName('laptops-container')[0],
   laptopsStretcher: document.getElementsByClassName('laptops-stretcher')[0],
