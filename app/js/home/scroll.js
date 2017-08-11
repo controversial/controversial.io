@@ -41,6 +41,8 @@ function updateHeaderElements(progress) {
   }
 
   // FIT MAIN HEADER TO LAPTOP SCREEN
+  let translationNeeded;
+  let scaleNeeded;
 
   if (progress < 1) {
     if (headerIsInLaptop) {
@@ -56,9 +58,9 @@ function updateHeaderElements(progress) {
     // Center is used for calculating translation because element is scaled about the center)
     const centerA = { x: (posA.left + posA.right) / 2, y: (posA.top + posA.bottom) / 2 };
     const centerB = { x: (posB.left + posB.right) / 2, y: (posB.top + posB.bottom) / 2 };
-    const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
+    translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
     // Calculate scale
-    const scaleNeeded = { x: posB.width / posA.width, y: posB.height / posA.height };
+    scaleNeeded = { x: posB.width / posA.width, y: posB.height / posA.height };
     // Apply transformations
     elem.header.style.transform = [
       // Translate
@@ -80,7 +82,14 @@ function updateHeaderElements(progress) {
   // Update opacity of down indicator
   elem.downIndicator.style.opacity = 1 - progress;
   // Reduce font size of my name
-  elem.headerTitle.style.transform = `translate(-50%, -50%) scale(${tween(1, 0.7)})`;
+  if (progress < 1) {
+    elem.headerTitle.style.transform = [
+      'translate(-50%, -50%)',
+      `translateX(${tween(0, translationNeeded.x)}px)`,
+      `translateY(${tween(0, translationNeeded.y)}px)`,
+      `scale(${tween(1, 0.5)})`,
+    ].join(' ');
+  }
 
 
   // ADJUST CANVAS SETTINGS
