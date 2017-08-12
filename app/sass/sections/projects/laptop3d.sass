@@ -121,21 +121,21 @@ $silver-5: darken($base-color, 10%)
       left: 0
       width: $length
       height: $width
-      background: $black
       border: .3vw solid
       border-image: linear-gradient(to bottom right, $silver-3, $silver-5)
       border-image-slice: 1
-      transform-style: preserve-3d
+      background: $black
+      $screen-bezel: .85 * $height
+      padding: $screen-bezel $screen-bezel $screen-bezel * 1.5
 
       // Screen
       .screen
-        position: absolute
+        position: relative
         background: lighten($black, 20)
-        $screen-bezel: .85 * $height
-        top: $screen-bezel
-        left: $screen-bezel
-        right: $screen-bezel
-        bottom: $screen-bezel * 1.5
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
 
     // Back (seen when lid closes)
     .back
