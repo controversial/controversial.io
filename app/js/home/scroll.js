@@ -39,10 +39,12 @@ function updateHeaderElements(progress) {
   function tween(a, b) {
     return a + ((b - a) * progress);
   }
+  // Returns the center of a passed ClientRect object (or similar)
+  function getCenter(rect) {
+    return { x: (rect.left + rect.right) / 2, y: (rect.top + rect.bottom) / 2 };
+  }
 
   // FIT MAIN HEADER TO LAPTOP SCREEN
-  let translationNeeded;
-  let scaleNeeded;
 
   if (progress < 1) {
     if (headerIsInLaptop) {
@@ -58,11 +60,10 @@ function updateHeaderElements(progress) {
     const posB = elem.laptopContent.getBoundingClientRect();
     // Calculate translation
     // Center is used for calculating translation because element is scaled about the center)
-    const centerA = { x: (posA.left + posA.right) / 2, y: (posA.top + posA.bottom) / 2 };
-    const centerB = { x: (posB.left + posB.right) / 2, y: (posB.top + posB.bottom) / 2 };
-    translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
+    const centerA = getCenter(posA); const centerB = getCenter(posB);
+    const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
     // Calculate scale
-    scaleNeeded = { x: posB.width / posA.width, y: posB.height / posA.height };
+    const scaleNeeded = { x: posB.width / posA.width, y: posB.height / posA.height };
     // Apply transformations
     elem.header.style.transform = [
       // Translate
@@ -90,14 +91,15 @@ function updateHeaderElements(progress) {
   // Update opacity of down indicator
   elem.downIndicator.style.opacity = 1 - progress;
   // Reduce font size of my name
-  if (progress < 1) {
-    elem.headerTitle.style.transform = [
-      'translate(-50%, -50%)',
-      `translateX(${tween(0, translationNeeded.x)}px)`,
-      `translateY(${tween(0, translationNeeded.y)}px)`,
-      `scale(${tween(1, 0.5)})`,
-    ].join(' ');
-  }
+  const centerA = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  const centerB = getCenter(elem.laptopContent.getBoundingClientRect());
+  const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
+  elem.headerTitle.style.transform = [
+    'translate(-50%, -50%)',
+    `translateX(${tween(0, translationNeeded.x)}px)`,
+    `translateY(${tween(0, translationNeeded.y)}px)`,
+    `scale(${tween(1, 0.5)})`,
+  ].join(' ');
 
 
   // ADJUST CANVAS SETTINGS
