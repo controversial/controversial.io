@@ -47,6 +47,8 @@ function updateHeaderElements(progress) {
   if (progress < 1) {
     if (headerIsInLaptop) {
       elem.header.style.position = 'fixed';
+      elem.header.style.top = elem.header.style.left = 0;
+      elem.header.style.width = '100vw'; elem.header.style.height = '100vh';
       elem.headerWrapper.appendChild(elem.header);
       headerIsInLaptop = false;
     }
@@ -73,6 +75,12 @@ function updateHeaderElements(progress) {
   } else if (!headerIsInLaptop) {
     elem.header.style.position = 'absolute';
     elem.header.style.transform = '';
+    // This should be easy but Blink insists on rendering .front behind .back if I give
+    // position: relative to .screen, so .header has to be manually positioned relative to .front
+    const screenBezel = window.sassHeightVariable * 0.85;
+    elem.header.style.top = elem.header.style.left = `${screenBezel}vw`;
+    elem.header.style.width = `${window.sassLengthVariable - (2 * screenBezel) - 0.6}vw`; // 0.6 is border width
+    elem.header.style.height = `${window.sassWidthVariable - (2.5 * screenBezel) - 0.6}vw`; // 2.5 because bottom bezel is bigger
     elem.laptopContent.appendChild(elem.header);
     headerIsInLaptop = true;
   }

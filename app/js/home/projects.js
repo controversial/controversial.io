@@ -2,6 +2,7 @@
 
 window.sassLengthVariable = 30;
 window.sassWidthVariable = (window.sassLengthVariable / 3) * 2;
+window.sassHeightVariable = (window.sassLengthVariable / 50);
 
 class Laptop {
   static get defaultLidAngle() { return 100; }
