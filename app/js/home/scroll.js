@@ -23,17 +23,6 @@ let headerIsInLaptop = false;
 
 // HEADER TRANSITION LOGIC =========================================================================
 
-
-function setHeaderElementsPinned(fixed) {
-  // Switch between fixed and absolute, pinning elements in the appropriate place
-  [elem.headerTitle, elem.laptop].forEach((element) => {
-    /* eslint-disable no-param-reassign */
-    element.style.position = fixed ? 'fixed' : 'absolute';
-    element.style.top = fixed ? '50vh' : `${window.innerHeight}px`;
-    /* eslint-enable no-param-reassign */
-  });
-}
-
 function updateHeaderElements(progress) {
   // Blends two values based on "progress" made between them.
   function tween(a, b) {
@@ -86,11 +75,8 @@ function updateHeaderElements(progress) {
     headerIsInLaptop = true;
   }
 
-  // MISCELLANEOUS
+  // FIT NAME TO LAPTOP SCREEN
 
-  // Update opacity of down indicator
-  elem.downIndicator.style.opacity = 1 - progress;
-  // Reduce font size of my name
   const centerA = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
   const centerB = getCenter(elem.laptopContent.getBoundingClientRect());
   const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
@@ -101,6 +87,13 @@ function updateHeaderElements(progress) {
     `scale(${tween(1, 0.5)})`,
   ].join(' ');
 
+  // MISCELLANEOUS
+
+  // Pin / unpin laptop
+  elem.laptop.style.position = progress < 1 ? 'fixed' : 'absolute';
+  elem.laptop.style.top = progress < 1 ? '50vh' : `${window.innerHeight}px`;
+  // Update opacity of down indicator
+  elem.downIndicator.style.opacity = 1 - progress;
 
   // ADJUST CANVAS SETTINGS
 
@@ -148,25 +141,10 @@ function onscroll() {
 
   // Header
 
-  switch (true) {
-    case (scroll < 5): {
-      setHeaderElementsPinned(true);
-      requestAnimationFrame(() => updateHeaderElements(0));
-      break;
-    }
-
-    case (scroll < window.innerHeight / 2): {
-      setHeaderElementsPinned(true);
-      const headerProgress = scroll / (window.innerHeight / 2);
-      requestAnimationFrame(() => updateHeaderElements(headerProgress));
-      break;
-    }
-
-    default: {
-      setHeaderElementsPinned(false);
-      requestAnimationFrame(() => updateHeaderElements(1));
-    }
-  }
+  const headerProgress = scroll / (window.innerHeight / 2);
+  if (scroll < 5) requestAnimationFrame(() => updateHeaderElements(0));
+  else if (scroll > window.innerHeight / 2) requestAnimationFrame(() => updateHeaderElements(1));
+  else requestAnimationFrame(() => updateHeaderElements(headerProgress));
 
   // Background
 
