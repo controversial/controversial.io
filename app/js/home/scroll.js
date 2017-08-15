@@ -19,9 +19,10 @@ const elem = {
   laptopsStretcher: document.getElementsByClassName('laptops-stretcher')[0],
 };
 
-let headerIsInLaptop = false;
-
 // HEADER TRANSITION LOGIC =========================================================================
+
+let headerIsInLaptop = false;
+let textIsInLaptop = false;
 
 function updateHeaderElements(progress) {
   // Blends two values based on "progress" made between them.
@@ -77,15 +78,27 @@ function updateHeaderElements(progress) {
 
   // FIT NAME TO LAPTOP SCREEN
 
-  const centerA = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-  const centerB = getCenter(elem.laptopContent.getBoundingClientRect());
-  const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
-  elem.headerTitle.style.transform = [
-    'translate(-50%, -50%)',
-    `translateX(${tween(0, translationNeeded.x)}px)`,
-    `translateY(${tween(0, translationNeeded.y)}px)`,
-    `scale(${tween(1, 0.5)})`,
-  ].join(' ');
+  if (progress < 1) {
+    if (textIsInLaptop) {
+      elem.headerTitle.style.position = 'fixed';
+      elem.headerWrapper.appendChild(elem.headerTitle);
+      textIsInLaptop = false;
+    }
+    const centerA = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const centerB = getCenter(elem.laptopContent.getBoundingClientRect());
+    const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
+    elem.headerTitle.style.transform = [
+      'translate(-50%, -50%)',
+      `translateX(${tween(0, translationNeeded.x)}px)`,
+      `translateY(${tween(0, translationNeeded.y)}px)`,
+      `scale(${tween(1, 0.5)})`,
+    ].join(' ');
+  } else if (!textIsInLaptop) {
+    elem.headerTitle.style.position = 'absolute';
+    elem.headerTitle.style.transform = 'translate(-50%, -50%) scale(0.5)';
+    elem.laptopContent.appendChild(elem.headerTitle);
+    textIsInLaptop = true;
+  }
 
   // MISCELLANEOUS
 
