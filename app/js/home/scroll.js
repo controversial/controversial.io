@@ -96,6 +96,9 @@ function updateHeaderElements(progress) {
   } else if (!textIsInLaptop) {
     elem.headerTitle.style.position = 'absolute';
     elem.headerTitle.style.transform = 'translate(-50%, -50%) scale(0.5)';
+    // CSS animations replay on every appendChild. It only needs to play once (when the page loads),
+    // so we just remove it before it has a chance to play again the first time it's appended
+    elem.headerTitle.style.animation = 'none';
     elem.laptopContent.appendChild(elem.headerTitle);
     textIsInLaptop = true;
   }
