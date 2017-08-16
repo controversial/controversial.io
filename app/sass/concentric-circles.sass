@@ -1,0 +1,73 @@
+// Background animation with dots moving along 3 circular rings
+
+$background-color: #131313
+
+$num-rings: 3
+$dots-per-ring: 5
+
+$base-ring-size: 65vh
+$ring-size-step: 10vh
+
+$base-ring-opacity: .075
+$ring-opacity-step: -1 / 50
+
+@keyframes spin
+  from
+    transform: translate(-50%, -50%) rotate(0deg)
+
+  to
+    transform: translate(-50%, -50%) rotate(360deg)
+
+
+// Properties for rings
+
+
+.ring
+  position: absolute
+  top: 50vh
+  left: 50vw
+  transform: translate(-50%, -50%)
+  border: .25vh solid $white
+  border-radius: 50%
+
+  // Some properties change between rings
+  @for $i from 0 to $num-rings
+    &:nth-child(#{$i + 1})
+      $size: $base-ring-size + $ring-size-step * $i
+      width: $size
+      height: $size
+      opacity: $base-ring-opacity + $ring-opacity-step * $i
+      // Animations
+      animation: spin linear infinite
+      animation-duration: 80s - 15s * $i
+      // Even go forward; odd backwards
+      animation-direction: if($i % 2 == 0, normal, reverse)
+
+
+// Dots
+
+
+.dot
+  position: absolute
+  left: 50%
+  top: 0
+  // Outer rings have smaller dots
+  width: calc(3.5vh - 2.5%)
+  height: calc(3.5vh - 2.5%)
+  // This was 1000% when width and height were 5%. Once I changed width and height to calc()
+  // functions this new value was entirely guesswork
+  transform-origin: 0%  calc(70vh - 2000%)
+  // Shouldn't be able to see the ring underneath
+  background: $background-color
+  // Outlines don't go circular and borders increase element size, so box-shadow it is. If it
+  // wasn't inset the shadow would overlap with the underlying ring and cause a lighter square
+  // at the intersection.
+  box-shadow: inset 0 0 0 .25vh $white
+  // Round :)
+  border-radius: 50%
+
+  // Dots should be evenly spaced along their ring.
+  @for $i from 0 to $dots-per-ring
+    &:nth-child(#{$i + 1})
+      // translation centers the dots on their rings
+      transform: rotate(#{(360 / $dots-per-ring) * $i}deg) translate(-50%, -50%)
