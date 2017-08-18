@@ -4,8 +4,6 @@
 // ScrollMagic does except without the bugs.
 
 const elem = {
-  body: document.body,
-
   headerWrapper: document.getElementById('header-wrapper'),
   header: document.getElementsByTagName('header')[0],
   headerTitle: document.getElementsByTagName('h1')[0],
@@ -124,31 +122,6 @@ function updateHeaderElements(progress) {
 }
 
 
-// BACKGROUND TRANSITION LOGIC =====================================================================
-
-
-function updateBackgroundColor(progress) {
-  const grad1A = window.parseColor('#5EFCE8');
-  const grad1B = window.parseColor('#736EFE');
-
-  const grad2A = window.parseColor('#16222A');
-  const grad2B = window.parseColor('#4A5070');
-
-  const interpolate = (a, b, amount) => ({
-    r: Math.floor((a.r * (1 - progress)) + (b.r * amount)),
-    g: Math.floor((a.g * (1 - progress)) + (b.g * amount)),
-    b: Math.floor((a.b * (1 - progress)) + (b.b * amount)),
-  });
-
-  const getCssGradString = (a, b, deg = 135) =>
-    `linear-gradient(${deg}deg, rgb(${a.r}, ${a.g}, ${a.b}), rgb(${b.r}, ${b.g}, ${b.b}))`;
-
-  const calcA = interpolate(grad1A, grad2A, progress);
-  const calcB = interpolate(grad1B, grad2B, progress);
-  elem.body.style.backgroundImage = getCssGradString(calcA, calcB);
-}
-
-
 // SCROLL LISTENER =================================================================================
 
 
@@ -161,25 +134,6 @@ function onscroll() {
   if (scroll < 5) requestAnimationFrame(() => updateHeaderElements(0));
   else if (scroll > window.innerHeight / 2) requestAnimationFrame(() => updateHeaderElements(1));
   else requestAnimationFrame(() => updateHeaderElements(headerProgress));
-
-  // Background
-
-  switch (true) {
-    case (scroll < window.innerHeight * 0.75): {
-      updateBackgroundColor(0);
-      break;
-    }
-
-    case (scroll > window.innerHeight * 1.25): {
-      updateBackgroundColor(1);
-      break;
-    }
-
-    default: {
-      const bgProgress = (scroll - (window.innerHeight * 0.75)) / (window.innerHeight * 0.5);
-      updateBackgroundColor(bgProgress);
-    }
-  }
 
   // Carousel
 

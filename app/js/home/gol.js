@@ -297,7 +297,7 @@ class GameRenderer {
    * controlled manually. If true, the game will be initally randomized and all new territory will
    * be randomized as well.
    */
-  constructor(selector, fps = 15, cellSize = 20, cellColor = '#37474f', randomize = true) {
+  constructor(selector, fps = 15, cellSize = 20, cellColor = '#232327', randomize = true) {
     this.game = new Game();
 
     this.elem = document.querySelector(selector);
