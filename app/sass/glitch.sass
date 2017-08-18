@@ -1,0 +1,89 @@
+// Effect for a "glitch" effect on text
+
+.glitch
+  $anim: transform 7s infinite, distort 8s infinite, flicker 9s infinite
+  position: relative
+  color: $accent
+  animation: $anim
+  animation-timing-function: step-end // No transition between animation frames
+
+  // This covers up the $accent colored text with white so that the $accent color only shows through
+  // during the 'transform' or 'glitch' animations
+  &::after
+    content: 'Luke Deen\ATaylor'
+    white-space: pre
+
+    position: absolute
+    width: 100%
+    top: 0
+    left: 0
+
+    color: $white
+    animation: $anim
+    animation-timing-function: step-end
+
+
+// Effect 1: very brief flashes to another position
+
+@keyframes transform
+  0%
+    transform: translate(-5%, -5%) skew(-10deg) scale(1.05)
+
+  1%
+    transform: none
+
+  88%
+    transform: none
+
+  89%
+    transform: translate(5%, 10%) scale(1.05)
+
+  90%
+    transform: none
+
+// Effect 2: distortion around the edges of the text.
+
+@keyframes distort
+  45%
+    filter: none
+
+  46%
+    filter: url('#distort-1')
+
+  47%
+    filter: url('#sharp-distort')
+
+  48%
+    filter: url('#distort-2')
+
+  50%
+    filter: none
+
+  95%
+    filter: none
+
+  96%
+    filter: url('#sharp-distort')
+
+  97%
+    filter: url('#distort-2')
+
+
+@keyframes flicker
+  20.5%
+    opacity: 0
+
+  21%
+    opacity: 1
+
+  22%
+    opacity: 0
+
+  23%
+    opacity: 1
+
+  75%
+    opacity: 0
+
+  76%
+    opacity: 1
