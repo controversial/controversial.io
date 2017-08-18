@@ -129,12 +129,17 @@ $silver-5: darken($base-color, 5%)
       background: $black
       $screen-bezel: .85 * $height
       padding: $screen-bezel $screen-bezel $screen-bezel * 1.5
+      // overflow: hidden won't work on .screen for positioned elements because .screen isn't
+      // positioned. Clipping to .front is the next best thing in case the offending element is
+      // positioned
+      overflow: hidden
 
       // Screen
       .screen
         background: lighten($black, 20)
         width: 100%
         height: 100%
+        overflow: hidden
 
     // Back (seen when lid closes)
     .back
