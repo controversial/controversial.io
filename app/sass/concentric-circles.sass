@@ -60,11 +60,14 @@ $ring-opacity-step: -1 / 100
   left: 50%
   top: 0
   // Outer rings have smaller dots
-  width: calc(3.25vw - 2.5%)
-  height: calc(3.25vw - 2.5%)
-  // This was 1000% when width and height were 5%. Once I changed width and height to calc()
-  // functions this new value was entirely guesswork
-  transform-origin: 0%  calc(65vw - 2000%)
+  $a: 3.25vw // Baseline size
+  $b: 2.5    // % of ring size to subtract from baseline size
+  $size: calc(#{$a} - #{$b + 0%})
+  width: $size
+  height: $size
+  // This evaluates to 50% of parent element's size by deconstructing $size to get the value of 1%
+  // of the parent's size
+  transform-origin: 0% calc(-1 * (100% - #{$a}) / #{$b} * 50)
   // Shouldn't be able to see the ring underneath
   background: $background-color
   // Outlines don't go circular and borders increase element size, so box-shadow it is. If it
