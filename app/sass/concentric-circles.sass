@@ -2,14 +2,14 @@
 
 $background-color: #131313
 
-$num-rings: 3
+$num-rings: 4
 $dots-per-ring: 5
 
-$base-ring-size: 65vh
-$ring-size-step: 10vh
+$base-ring-size: 60vw
+$ring-size-step: 12vw
 
-$base-ring-opacity: .075
-$ring-opacity-step: -1 / 50
+$base-ring-opacity: .05
+$ring-opacity-step: -1 / 100
 
 @keyframes spin
   from
@@ -60,11 +60,11 @@ $ring-opacity-step: -1 / 50
   left: 50%
   top: 0
   // Outer rings have smaller dots
-  width: calc(3.5vh - 2.5%)
-  height: calc(3.5vh - 2.5%)
+  width: calc(3.25vw - 2.5%)
+  height: calc(3.25vw - 2.5%)
   // This was 1000% when width and height were 5%. Once I changed width and height to calc()
   // functions this new value was entirely guesswork
-  transform-origin: 0%  calc(70vh - 2000%)
+  transform-origin: 0%  calc(65vw - 2000%)
   // Shouldn't be able to see the ring underneath
   background: $background-color
   // Outlines don't go circular and borders increase element size, so box-shadow it is. If it
