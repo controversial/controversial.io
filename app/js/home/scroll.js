@@ -130,7 +130,7 @@ function onscroll() {
   const headerProgress = scroll / (window.innerHeight / 2);
   if (scroll < 5) requestAnimationFrame(() => updateHeaderElements(0));
   else if (scroll > window.innerHeight / 2) requestAnimationFrame(() => updateHeaderElements(1));
-  else requestAnimationFrame(() => updateHeaderElements(headerProgress));
+  else requestAnimationFrame(() => updateHeaderElements(window.ease.outSin(headerProgress)));
 
   // Carousel
 
