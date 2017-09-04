@@ -143,6 +143,16 @@ function onscroll() {
   const carouselProgress = (scroll - start) / (end - start);
   requestAnimationFrame(() => {
     window.carousel.position = carouselProgress * window.carousel.maxIndex;
+
+    // Dynamically add or remove the header laptop from the carousel
+    const laptopIsInCarousel = window.carousel.indices.includes(-1);
+    if (window.carousel.position >= -1 && !laptopIsInCarousel) {
+      window.carousel.addLaptop(window.headerLaptop);
+    } else if (window.carousel.position < -1 && laptopIsInCarousel) {
+      window.carousel.removeLaptop(window.headerLaptop);
+      window.headerLaptop.rotateZ = 0;
+      window.headerLaptop.lidAngle = window.Laptop.defaultLidAngle;
+    }
   });
 }
 
