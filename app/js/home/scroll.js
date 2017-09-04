@@ -103,9 +103,6 @@ function updateHeaderElements(progress) {
 
   // MISCELLANEOUS
 
-  // Pin / unpin laptop
-  elem.laptop.style.position = progress < 1 ? 'fixed' : 'absolute';
-  elem.laptop.style.top = progress < 1 ? '50vh' : `${window.innerHeight}px`;
   // Update opacity of down indicator
   elem.downIndicator.style.opacity = 1 - progress;
 
