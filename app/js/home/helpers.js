@@ -12,3 +12,15 @@ window.parseColor = function parseColor(color) {
   const rgb = rgbColor.split('(')[1].split(')')[0].split(',');
   return { r: +rgb[0], g: +rgb[1], b: +rgb[2] };
 };
+
+
+// Easing functions return eased values of x for the range [0, 1] => [0, 1]
+window.ease = {
+  linear: x => x,
+  // Quadratic easing
+  in: x => x ** 2,
+  out: x => 1 - window.ease.in(1 - x),
+  // Sinusoidal easing
+  inSin: x => 1 - (0.5 * Math.PI * Math.cos(x)),
+  outSin: x => 0.5 * Math.PI * Math.sin(x),
+};
