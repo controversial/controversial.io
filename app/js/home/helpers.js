@@ -21,6 +21,6 @@ window.ease = {
   in: x => x ** 2,
   out: x => 1 - window.ease.in(1 - x),
   // Sinusoidal easing
-  inSin: x => 1 - (0.5 * Math.PI * Math.cos(x)),
-  outSin: x => 0.5 * Math.PI * Math.sin(x),
+  inSin: x => 1 - Math.cos(0.5 * Math.PI * x),
+  outSin: x => Math.sin(0.5 * Math.PI * x),
 };
