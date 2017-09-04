@@ -199,6 +199,13 @@ class LaptopCarousel {
     // Record in laptopsByIndex object
     this.laptopsByIndex[laptop.index] = laptop;
   }
+
+  removeLaptop(laptop) {
+    // Remove from laptopsByIndex
+    this.laptopsByIndex[laptop.index] = undefined;
+    // Remove from laptops array. Array will still be sorted after removal
+    if (this.laptops.indexOf(laptop) !== -1) this.laptops.splice(this.laptops.indexOf(laptop), 1);
+  }
 }
 
 window.Laptop = Laptop;
