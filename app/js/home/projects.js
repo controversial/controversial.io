@@ -189,6 +189,16 @@ class LaptopCarousel {
   setTransitionTime(secs) {
     this.laptops.forEach((l) => { l.transitionTime = secs; });
   }
+
+  addLaptop(laptop) {
+    // Prevent index overlap
+    if (this.indices.includes(laptop.index)) throw new Error(`A laptop with index ${laptop.index} is already present`);
+    // Add to laptops array and re-sort
+    this.laptops.push(laptop);
+    this.laptops.sort((a, b) => a.index - b.index);
+    // Record in laptopsByIndex object
+    this.laptopsByIndex[laptop.index] = laptop;
+  }
 }
 
 window.Laptop = Laptop;
