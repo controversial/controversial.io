@@ -133,6 +133,7 @@ $silver-5: darken($base-color, 5%)
       // positioned. Clipping to .front is the next best thing in case the offending element is
       // positioned
       overflow: hidden
+      transform-style: preserve-3d
 
       // Screen
       .screen
@@ -140,6 +141,7 @@ $silver-5: darken($base-color, 5%)
         width: 100%
         height: 100%
         overflow: hidden
+        backface-visibility: hidden
 
         & > .full
           width: 100%
