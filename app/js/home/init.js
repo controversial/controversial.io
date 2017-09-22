@@ -4,4 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.headerLaptop = new window.Laptop(document.getElementById('header-wrapper').getElementsByClassName('laptop3d')[0], -1);
 
   window.onscroll();
+
+  window.browserCheck();
 });
