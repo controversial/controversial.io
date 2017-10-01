@@ -5,5 +5,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.onscroll();
 
-  window.browserCheck();
+  setTimeout(window.browserCheck, 1000);
 });
