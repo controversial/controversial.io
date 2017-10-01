@@ -19,8 +19,11 @@ Object.defineProperty(window, 'isFirefox', {
 function browserCheck() {
   if (!window.isChromium) {
     if (window.isSafari || window.isFirefox) {
+      const popup = document.getElementById('browser-partially-supported');
       // Show gentle popup
-      document.getElementById('browser-partially-supported').classList.add('visible');
+      popup.classList.add('visible');
+      // Enable dismiss button
+      popup.getElementsByTagName('button')[0].addEventListener('click', () => popup.classList.remove('visible'));
     } else {
       // Show serious popup
       document.getElementById('browser-unsupported').classList.add('visible');
