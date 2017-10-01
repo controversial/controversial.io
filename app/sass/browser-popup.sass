@@ -12,8 +12,12 @@ $popup-background: #323232
   width: 568px
   max-width: 100%
 
-  // Initially hidden until shown by JS
-  display: none
+  transition: transform .25s ease-out
+  // Initially hidden until shown by adding the .visible class
+  transform: translateY(100%)
+
+  &.visible
+    transform: none
 
 
   .card
