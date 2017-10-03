@@ -40,6 +40,7 @@ function updateHeaderElements(progress) {
       elem.header.style.top = elem.header.style.left = 0;
       elem.header.style.width = '100vw'; elem.header.style.height = '100vh';
       elem.headerWrapper.appendChild(elem.header);
+      elem.downIndicator.style.display = '';
       headerIsInLaptop = false;
     }
     // Beginning and end positions
@@ -71,6 +72,7 @@ function updateHeaderElements(progress) {
     elem.header.style.width = `${window.sassLengthVariable - (2 * screenBezel) - 0.6}vw`; // 0.6 is border width
     elem.header.style.height = `${window.sassWidthVariable - (2.5 * screenBezel) - 0.6}vw`; // 2.5 because bottom bezel is bigger
     elem.laptopContent.appendChild(elem.header);
+    elem.downIndicator.style.display = 'none';
     headerIsInLaptop = true;
   }
 
