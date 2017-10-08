@@ -38,6 +38,7 @@ gulp.task('js', () => {
   function buildScriptsForPage(dir, path) {
     gulp.src(`${dir}/*.js`)
       .pipe(sourcemaps.init())
+      .pipe(plumber())
       .pipe(babel({ presets: ['es2015', 'es2016'] }))
       .pipe(concat(path))
       .pipe(uglify())
