@@ -12,13 +12,9 @@ $popup-background: #323232
   width: 568px
   max-width: 100%
 
-  transition: transform .4s ease-out
-  // Initially hidden until shown by adding the .visible class
-  transform: translateY(100%)
-
-  &.visible
-    transform: none
-
+  display: none
+  transition: transform .4s
+  animation: popup-slide .4s ease-out
 
   .card
     background: $popup-background
@@ -72,3 +68,8 @@ $popup-background: #323232
       &:active
         transition: none
         background: transparentize($light-text-primary, .85)
+
+
+@keyframes popup-slide
+  from
+    transform: translateY(100%)
