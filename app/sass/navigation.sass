@@ -1,0 +1,31 @@
+.navigation
+  position: fixed
+  z-index: 1001
+  top: 0
+  left: 50%
+  transform: translateX(-50%)
+
+  margin: 0
+  list-style: none
+  display: flex
+
+  overflow: hidden
+
+  li
+    display: inline-block
+    overflow: hidden
+
+    a
+      display: inline-block
+
+      font-family: Montserrat
+      font-size: 1.2em
+      color: $white
+      font-weight: 300
+      letter-spacing: .16666em
+      text-transform: uppercase
+
+      padding: 1em 1.5em
+
+      &.selected
+        font-weight: 600
