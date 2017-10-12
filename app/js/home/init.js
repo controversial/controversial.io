@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   window.setupGol();
+  window.navUpdate();
   window.setupLaptops();
   // Initialize the top laptop
   window.headerLaptop = new window.Laptop(document.getElementById('header-wrapper').getElementsByClassName('laptop3d')[0], -1);
