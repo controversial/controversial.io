@@ -78,6 +78,7 @@ gulp.task('serve', () => {
     server: {
       baseDir: './dist',
     },
+    port: 8080,
   });
 
   gulp.watch(
