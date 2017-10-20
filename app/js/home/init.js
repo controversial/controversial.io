@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(window.browserCheck, 1000);
+
   window.setupGol();
   window.navUpdate(true);
   window.setupLaptops();
@@ -6,8 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.headerLaptop = new window.Laptop(document.getElementById('header-wrapper').getElementsByClassName('laptop3d')[0], -1);
 
   window.onscroll();
-
-  setTimeout(window.browserCheck, 1000);
 
   // Configure scrolling when down indicator clicked
   document.getElementsByClassName('down-indicator')[0].addEventListener('click', () => {
