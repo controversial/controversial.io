@@ -2,7 +2,7 @@ function navigate(hash) {
   console.log(hash);
 }
 
-function navUpdate(initial=false) {
+function navUpdate(initial = false) {
   const hash = window.location.hash.startsWith('#')
                  ? window.location.hash.substring(1)
                  : window.location.hash;
