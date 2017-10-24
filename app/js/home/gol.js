@@ -293,9 +293,9 @@ class GameRenderer {
    * @param {number} cellSize - the optimal size (in pixels) for game cells which the renderer
    * should strive to use. This will be stretched slightly in order to completely fill the canvas.
    * @param {string} cellColor - a hex string for the color that should be used to draw cells
-   * @param {boolean} randomize - whether the board is randomized (as in the header of my site) or
-   * controlled manually. If true, the game will be initally randomized and all new territory will
-   * be randomized as well.
+   * @param {boolean} randomize - whether the board is randomized (as in the main page of my site)
+   * or controlled manually. If true, the game will be initally randomized and all new territory
+   * will be randomized as well.
    */
   constructor(selector, fps = 15, cellSize = 20, cellColor = '#232327', randomize = true) {
     this.game = new Game();

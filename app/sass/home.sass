@@ -1,6 +1,6 @@
-// Styles for everything in the header
+// Styles for everything in the home page
 
-#header-wrapper
+#home-wrapper
   color: $light-text-primary
   width: 100%
   height: 150vw
@@ -16,11 +16,11 @@
     pointer-events: all
 
 
-#header-wrapper,
+#home-wrapper,
 .laptops-container
   h1
-    // h1 is outside of header because header jumps around during animation and
-    // moving text makes that more obvious.
+    // h1 is outside of .container because .container is scaled during transformation in a way that
+    // would distort text
 
     margin: 0
 
@@ -45,7 +45,7 @@
 
 
 
-  header
+  .container
     height: 100%
     width: 100%
     background-color: $dark-2

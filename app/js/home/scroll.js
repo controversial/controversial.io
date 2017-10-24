@@ -4,10 +4,21 @@
 // ScrollMagic does except without the bugs.
 
 const elem = {
-  headerWrapper: document.getElementById('header-wrapper'),
-  header: document.getElementsByTagName('header')[0],
-  headerTitle: document.getElementsByTagName('h1')[0],
-  downIndicator: document.getElementsByClassName('down-indicator')[0],
+  homeWrapper: document.getElementById('home-wrapper'),
+  homeContainer: document.querySelector('#home-wrapper .container'),
+  // These properties are computed based on properties previously defined, so they have to be in
+  // getters, but they still become static properties after their first call because of
+  // Object.defineProperty
+  get homeTitle() {
+    // Override after first call to ensure it consistently refers to the same element
+    Object.defineProperty(this, 'homeTitle', { value: this.homeWrapper.getElementsByTagName('h1')[0] });
+    return this.homeTitle;
+  },
+  get downIndicator() {
+    // Override after first call to ensure it consistently refers to the same element
+    Object.defineProperty(this, 'downIndicator', { value: this.homeContainer.getElementsByClassName('down-indicator')[0] });
+    return this.downIndicator;
+  },
 
   laptop(hash) {
     // 'home' -> ''
@@ -20,12 +31,11 @@ const elem = {
   laptopsStretcher: document.getElementsByClassName('laptops-stretcher')[0],
 };
 
-// HEADER TRANSITION LOGIC =========================================================================
+// HOME TRANSITION LOGIC =========================================================================
 
-let headerIsInLaptop = false;
+let homePageIsInLaptop = false;
 let textIsInLaptop = false;
-
-function updateHeaderElements(progress) {
+function updatePageShrink(progress) {
   // Blends two values based on "progress" made between them.
   function tween(a, b) {
     return a + ((b - a) * progress);
@@ -35,16 +45,16 @@ function updateHeaderElements(progress) {
     return { x: (rect.left + rect.right) / 2, y: (rect.top + rect.bottom) / 2 };
   }
 
-  // FIT MAIN HEADER TO LAPTOP SCREEN
+  // FIT HOME PAGE TO LAPTOP SCREEN
 
   if (progress < 1) {
-    if (headerIsInLaptop) {
-      elem.header.style.position = 'fixed';
-      elem.header.style.top = elem.header.style.left = 0;
-      elem.header.style.width = '100vw'; elem.header.style.height = '100vh';
-      elem.headerWrapper.appendChild(elem.header);
+    if (homePageIsInLaptop) {
+      elem.homeContainer.style.position = 'fixed';
+      elem.homeContainer.style.top = elem.homeContainer.style.left = 0;
+      elem.homeContainer.style.width = '100vw'; elem.homeContainer.style.height = '100vh';
+      elem.homeWrapper.appendChild(elem.homeContainer);
       elem.downIndicator.style.display = '';
-      headerIsInLaptop = false;
+      homePageIsInLaptop = false;
     }
     // Beginning and end positions
     const w = window.innerWidth; const h = window.innerHeight;
@@ -57,7 +67,7 @@ function updateHeaderElements(progress) {
     // Calculate scale
     const scaleNeeded = { x: posB.width / posA.width, y: posB.height / posA.height };
     // Apply transformations
-    elem.header.style.transform = [
+    elem.homeContainer.style.transform = [
       // Translate
       `translateX(${tween(0, translationNeeded.x)}px)`,
       `translateY(${tween(0, translationNeeded.y)}px)`,
@@ -65,44 +75,44 @@ function updateHeaderElements(progress) {
       `scaleX(${tween(1, scaleNeeded.x)})`,
       `scaleY(${tween(1, scaleNeeded.y)})`,
     ].join(' ');
-  } else if (!headerIsInLaptop) {
-    elem.header.style.position = 'absolute';
-    elem.header.style.transform = '';
+  } else if (!homePageIsInLaptop) {
+    elem.homeContainer.style.position = 'absolute';
+    elem.homeContainer.style.transform = '';
     // This should be easy but Blink insists on rendering .front behind .back if I give
-    // position: relative to .screen, so .header has to be manually positioned relative to .front
+    // position: relative to .screen, so .container has to be manually positioned relative to .front
     const screenBezel = window.sassHeightVariable * 0.85;
-    elem.header.style.top = elem.header.style.left = `${screenBezel}vw`;
-    elem.header.style.width = `${window.sassLengthVariable - (2 * screenBezel) - 0.6}vw`; // 0.6 is border width
-    elem.header.style.height = `${window.sassWidthVariable - (2.5 * screenBezel) - 0.6}vw`; // 2.5 because bottom bezel is bigger
-    elem.laptopContent('home').appendChild(elem.header);
+    elem.homeContainer.style.top = elem.homeContainer.style.left = `${screenBezel}vw`;
+    elem.homeContainer.style.width = `${window.sassLengthVariable - (2 * screenBezel) - 0.6}vw`; // 0.6 is border width
+    elem.homeContainer.style.height = `${window.sassWidthVariable - (2.5 * screenBezel) - 0.6}vw`; // 2.5 because bottom bezel is bigger
+    elem.laptopContent('home').appendChild(elem.homeContainer);
     elem.downIndicator.style.display = 'none';
-    headerIsInLaptop = true;
+    homePageIsInLaptop = true;
   }
 
   // FIT NAME TO LAPTOP SCREEN
 
   if (progress < 1) {
     if (textIsInLaptop) {
-      elem.headerTitle.style.position = 'fixed';
-      elem.headerWrapper.appendChild(elem.headerTitle);
+      elem.homeTitle.style.position = 'fixed';
+      elem.homeWrapper.appendChild(elem.homeTitle);
       textIsInLaptop = false;
     }
     const centerA = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const centerB = getCenter(elem.laptopContent('home').getBoundingClientRect());
     const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
-    elem.headerTitle.style.transform = [
+    elem.homeTitle.style.transform = [
       'translate(-50%, -50%)',
       `translateX(${tween(0, translationNeeded.x)}px)`,
       `translateY(${tween(0, translationNeeded.y)}px)`,
       `scale(${tween(1, 0.5)})`,
     ].join(' ');
   } else if (!textIsInLaptop) {
-    elem.headerTitle.style.position = 'absolute';
-    elem.headerTitle.style.transform = 'translate(-50%, -50%) scale(0.5)';
+    elem.homeTitle.style.position = 'absolute';
+    elem.homeTitle.style.transform = 'translate(-50%, -50%) scale(0.5)';
     // CSS animations replay on every appendChild. It only needs to play once (when the page loads),
     // so we just remove it before it has a chance to play again the first time it's appended
-    elem.headerTitle.style.animation = 'none';
-    elem.laptopContent('home').appendChild(elem.headerTitle);
+    elem.homeTitle.style.animation = 'none';
+    elem.laptopContent('home').appendChild(elem.homeTitle);
     textIsInLaptop = true;
   }
 
@@ -130,12 +140,12 @@ function updateHeaderElements(progress) {
 function onscroll() {
   const scroll = window.scrollY;
 
-  // Header
+  // Pages shrinking into laptops
 
-  const headerProgress = scroll / (window.innerHeight / 2);
-  if (scroll < 5) requestAnimationFrame(() => updateHeaderElements(0));
-  else if (scroll > window.innerHeight / 2) requestAnimationFrame(() => updateHeaderElements(1));
-  else requestAnimationFrame(() => updateHeaderElements(window.ease.outSin(headerProgress)));
+  const shrinkProgress = scroll / (window.innerHeight / 2);
+  if (scroll < 5) requestAnimationFrame(() => updatePageShrink(0));
+  else if (scroll > window.innerHeight / 2) requestAnimationFrame(() => updatePageShrink(1));
+  else requestAnimationFrame(() => updatePageShrink(window.ease.outSin(shrinkProgress)));
 
   // Carousel
 
