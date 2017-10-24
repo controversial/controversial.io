@@ -48,9 +48,7 @@ gulp.task('js', () => {
   }
 
   // Scripts for the front page
-  buildScriptsForPage('app/js/home', 'home.js');
-  // Scrips for the "email sent" page
-  buildScriptsForPage('app/js/emailsent', 'emailsent.js');
+  buildScriptsForPage('app/js', 'main.js');
   // Scripts for the 404 page
   buildScriptsForPage('app/404', '404/404.js');
 
