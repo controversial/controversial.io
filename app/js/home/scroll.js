@@ -9,9 +9,12 @@ const elem = {
   headerTitle: document.getElementsByTagName('h1')[0],
   downIndicator: document.getElementsByClassName('down-indicator')[0],
 
-  laptop: document.getElementsByClassName('laptop3d')[0].parentNode,
-  // Won't be initialized by the time elem is evaluated so we use a getter
-  get laptopContent() { return this.laptop.getElementsByClassName('screen')[0]; },
+  laptop(hash) {
+    // 'home' -> ''
+    const h = hash === 'home' ? '' : hash;
+    return document.querySelector(`.laptop3d[data-laptop-hash='${h}']`);
+  },
+  laptopContent(hash) { return this.laptop(hash).getElementsByClassName('screen')[0]; },
 
   laptopsContainer: document.getElementsByClassName('laptops-container')[0],
   laptopsStretcher: document.getElementsByClassName('laptops-stretcher')[0],
@@ -46,7 +49,7 @@ function updateHeaderElements(progress) {
     // Beginning and end positions
     const w = window.innerWidth; const h = window.innerHeight;
     const posA = { left: 0, top: 0, right: w, bottom: h, width: w, height: h };
-    const posB = elem.laptopContent.getBoundingClientRect();
+    const posB = elem.laptopContent('home').getBoundingClientRect();
     // Calculate translation
     // Center is used for calculating translation because element is scaled about the center)
     const centerA = getCenter(posA); const centerB = getCenter(posB);
@@ -71,7 +74,7 @@ function updateHeaderElements(progress) {
     elem.header.style.top = elem.header.style.left = `${screenBezel}vw`;
     elem.header.style.width = `${window.sassLengthVariable - (2 * screenBezel) - 0.6}vw`; // 0.6 is border width
     elem.header.style.height = `${window.sassWidthVariable - (2.5 * screenBezel) - 0.6}vw`; // 2.5 because bottom bezel is bigger
-    elem.laptopContent.appendChild(elem.header);
+    elem.laptopContent('home').appendChild(elem.header);
     elem.downIndicator.style.display = 'none';
     headerIsInLaptop = true;
   }
@@ -85,7 +88,7 @@ function updateHeaderElements(progress) {
       textIsInLaptop = false;
     }
     const centerA = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    const centerB = getCenter(elem.laptopContent.getBoundingClientRect());
+    const centerB = getCenter(elem.laptopContent('home').getBoundingClientRect());
     const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
     elem.headerTitle.style.transform = [
       'translate(-50%, -50%)',
@@ -99,7 +102,7 @@ function updateHeaderElements(progress) {
     // CSS animations replay on every appendChild. It only needs to play once (when the page loads),
     // so we just remove it before it has a chance to play again the first time it's appended
     elem.headerTitle.style.animation = 'none';
-    elem.laptopContent.appendChild(elem.headerTitle);
+    elem.laptopContent('home').appendChild(elem.headerTitle);
     textIsInLaptop = true;
   }
 
@@ -144,17 +147,7 @@ function onscroll() {
 
   const carouselProgress = (scroll - start) / (end - start);
   requestAnimationFrame(() => {
-    window.carousel.position = carouselProgress * window.carousel.maxIndex;
-
-    // Dynamically add or remove the header laptop from the carousel
-    const laptopIsInCarousel = window.carousel.indices.includes(-1);
-    if (window.carousel.position >= -1 && !laptopIsInCarousel) {
-      window.carousel.addLaptop(window.headerLaptop);
-    } else if (window.carousel.position < -1 && laptopIsInCarousel) {
-      window.carousel.removeLaptop(window.headerLaptop);
-      window.headerLaptop.rotateZ = 0;
-      window.headerLaptop.lidAngle = window.Laptop.defaultLidAngle;
-    }
+    // window.carousel.position = carouselProgress * window.carousel.maxIndex;
   });
 }
 
