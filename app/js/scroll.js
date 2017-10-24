@@ -159,6 +159,10 @@ function onscroll() {
   requestAnimationFrame(() => {
     // window.carousel.position = carouselProgress * window.carousel.maxIndex;
   });
+
+  // Update navigation bar opacity
+  const navProgress = scroll / (window.innerHeight / 2);
+  document.getElementById('navigation').style.opacity = (shrinkProgress * 0.75) + 0.25;
 }
 
 
