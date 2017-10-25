@@ -7,11 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.onscroll();
 
-  // Configure scrolling when down indicator clicked or when navigation trigger clicked
-  [
-    document.getElementsByClassName('down-indicator')[0],
-    document.getElementById('navigation-trigger'),
-  ].forEach(elem => elem.addEventListener('click', () => {
+  // Configure scrolling when navigation trigger clicked
+  document.getElementById('navigation-trigger').addEventListener('click', () => {
     window.scrollTo({ top: window.innerHeight / 2, behavior: 'smooth' });
-  }));
+  });
 });

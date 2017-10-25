@@ -14,11 +14,6 @@ const elem = {
     Object.defineProperty(this, 'homeTitle', { value: this.homeWrapper.getElementsByTagName('h1')[0] });
     return this.homeTitle;
   },
-  get downIndicator() {
-    // Override after first call to ensure it consistently refers to the same element
-    Object.defineProperty(this, 'downIndicator', { value: this.homeContainer.getElementsByClassName('down-indicator')[0] });
-    return this.downIndicator;
-  },
 
   laptop(hash) {
     // 'home' -> ''
@@ -53,7 +48,6 @@ function updatePageShrink(progress) {
       elem.homeContainer.style.top = elem.homeContainer.style.left = 0;
       elem.homeContainer.style.width = '100vw'; elem.homeContainer.style.height = '100vh';
       elem.homeWrapper.appendChild(elem.homeContainer);
-      elem.downIndicator.style.display = '';
       homePageIsInLaptop = false;
     }
     // Beginning and end positions
@@ -85,7 +79,6 @@ function updatePageShrink(progress) {
     elem.homeContainer.style.width = `${window.sassLengthVariable - (2 * screenBezel) - 0.6}vw`; // 0.6 is border width
     elem.homeContainer.style.height = `${window.sassWidthVariable - (2.5 * screenBezel) - 0.6}vw`; // 2.5 because bottom bezel is bigger
     elem.laptopContent('home').appendChild(elem.homeContainer);
-    elem.downIndicator.style.display = 'none';
     homePageIsInLaptop = true;
   }
 
@@ -117,9 +110,6 @@ function updatePageShrink(progress) {
   }
 
   // MISCELLANEOUS
-
-  // Update opacity of down indicator
-  elem.downIndicator.style.opacity = 1 - progress;
 
   // ADJUST CANVAS SETTINGS
 
