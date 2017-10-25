@@ -11,14 +11,14 @@
     "docs": "jsdoc app -r -d docs -t node_modules/minami --verbose"
   },
   "dependencies": {
-    "babel-polyfill": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "smoothscroll-polyfill": "^0.3.6"
   },
   "devDependencies": {
     "ava": "^0.16.0",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-es2016": "^6.24.1",
-    "browser-sync": "^2.15.0",
+    "browser-sync": "^2.18.13",
     "eslint": "^3.8.0",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^1.16.0",
@@ -32,9 +32,9 @@
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
-    "jsdoc": "^3.4.2",
+    "jsdoc": "^3.5.5",
     "minami": "^1.1.1",
-    "sass-lint": "^1.9.1"
+    "sass-lint": "^1.12.1"
   },
   "description": "This is my website. There are many like it, but this one is mine.",
   "version": "0.16.0",
