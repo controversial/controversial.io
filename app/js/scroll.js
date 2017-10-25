@@ -153,6 +153,8 @@ function onscroll() {
   // Update navigation bar opacity
   const navProgress = scroll / (window.innerHeight / 2);
   document.getElementById('navigation').style.opacity = (shrinkProgress * 0.75) + 0.25;
+  // Update navigation trigger opacity in the opposite direction
+  document.getElementById('navigation-trigger').style.opacity = 1 - (shrinkProgress * 0.75);
 }
 
 
