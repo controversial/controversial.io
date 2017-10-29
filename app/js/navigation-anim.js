@@ -16,7 +16,7 @@ const elem = {
   laptop(hash) {
     // 'home' -> ''
     const h = hash === 'home' ? '' : hash;
-    return document.querySelector(`.laptop3d[data-laptop-hash='${h}']`);
+    return document.querySelector(`.laptop3d[data-laptop3d-hash='${h}']`);
   },
   laptopContent(hash) { return this.laptop(hash).getElementsByClassName('screen')[0]; },
 

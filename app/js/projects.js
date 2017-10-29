@@ -10,6 +10,7 @@ class Laptop {
   constructor(elem, index) {
     this.elem = elem;
     this.index = index;
+    this.hash = this.elem.getAttribute('data-laptop3d-hash');
 
     this._translateX = this._translateY = this._translateZ = 0;
     this._rotateX = this._rotateY = this._rotateZ = 0;
