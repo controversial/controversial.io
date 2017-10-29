@@ -1,7 +1,5 @@
-// Magic scroll things.
-// This binds cool animations to the scroll level in such a way that the
-// animations' progress can be controlled by scrolling. This does what
-// ScrollMagic does except without the bugs.
+// Navigation animation code
+// JS-powered animation for shrinking pages into laptop screens
 
 const elem = {
   homeWrapper: document.getElementById('home-wrapper'),
@@ -26,7 +24,9 @@ const elem = {
   laptopsStretcher: document.getElementsByClassName('laptops-stretcher')[0],
 };
 
+
 // HOME TRANSITION LOGIC =========================================================================
+
 
 let homePageIsInLaptop = false;
 let textIsInLaptop = false;
@@ -124,40 +124,18 @@ function updatePageShrink(progress) {
 }
 
 
-// SCROLL LISTENER =================================================================================
+// MAIN ============================================================================================
 
 
-function onscroll() {
-  const scroll = window.scrollY;
-
-  // Pages shrinking into laptops
-
-  const shrinkProgress = scroll / (window.innerHeight / 2);
-  if (scroll < 5) requestAnimationFrame(() => updatePageShrink(0));
-  else if (scroll > window.innerHeight / 2) requestAnimationFrame(() => updatePageShrink(1));
-  else requestAnimationFrame(() => updatePageShrink(window.ease.outSin(shrinkProgress)));
-
-  // Carousel
-
-  const largerScreenDimension = Math.max(window.innerWidth, window.innerHeight);
-
-  // Adjust carousel position
-  const start = elem.laptopsStretcher.offsetTop;
-  const end = start + (largerScreenDimension * 1.5);
-
-  const carouselProgress = (scroll - start) / (end - start);
-  requestAnimationFrame(() => {
-    // window.carousel.position = carouselProgress * window.carousel.maxIndex;
-  });
-
+function update(progress) {
+  // Page shrinking into laptop
+  requestAnimationFrame(() => updatePageShrink(window.ease.outSin(progress)));
   // Update navigation bar opacity
-  document.getElementById('navigation').style.opacity = (shrinkProgress * 0.75) + 0.25;
+  document.getElementById('navigation').style.opacity = (progress * 0.75) + 0.25;
   // Update navigation trigger opacity in the opposite direction
-  document.getElementById('navigation-trigger').style.opacity = Math.max(0.25, 1 - (shrinkProgress * 0.75));
+  document.getElementById('navigation-trigger').style.opacity = Math.max(0.25, 1 - (progress * 0.75));
 }
 
 
-window.onscroll = onscroll;
-
-document.addEventListener('scroll', onscroll);
-window.addEventListener('resize', onscroll);
+window.transitionUpdate = update;
+window.addEventListener('resize', update);

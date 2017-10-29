@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.navUpdate(true);
   window.setupLaptops();
 
-  window.onscroll();
+  window.transitionUpdate(0);
 
   // Configure scrolling when navigation trigger clicked
   document.getElementById('navigation-trigger').addEventListener('click', () => {
