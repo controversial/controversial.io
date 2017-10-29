@@ -7,10 +7,9 @@ window.sassHeightVariable = (window.sassLengthVariable / 50);
 class Laptop {
   static get defaultLidAngle() { return 100; }
 
-  constructor(elem, index, dummy = false) {
+  constructor(elem, index) {
     this.elem = elem;
     this.index = index;
-    this.dummy = dummy;
 
     this._translateX = this._translateY = this._translateZ = 0;
     this._rotateX = this._rotateY = this._rotateZ = 0;
@@ -18,7 +17,6 @@ class Laptop {
     this._transitionTime = 0;
 
     this.elem.classList.add('laptop3d');
-    if (this.dummy) this.elem.classList.add('dummy');
     if (typeof this.index !== 'undefined') this.elem.setAttribute('data-laptop3d-index', this.index);
 
     const children = [...this.elem.childNodes];
@@ -40,19 +38,17 @@ class Laptop {
     // Add all former children to the new screen element
     children.forEach(child => this.screen.appendChild(child));
 
-    if (!this.dummy) {
-      // Lift up a bit on hover
-      const performWithTransitionTime = (func, time) => {
-        const oldTime = this.transitionTime; this.transitionTime = time;
-        func();
-        setTimeout(() => { this.transitionTime = oldTime; }, this.transitionTime);
-      };
-      this.wrapper.addEventListener('mouseenter', () => performWithTransitionTime(() => { this.translateZ = '1vw'; }, 0.25));
-      this.wrapper.addEventListener('mouseleave', () => performWithTransitionTime(() => { this.translateZ = 0; }, 0.25));
+    // Lift up a bit on hover
+    const performWithTransitionTime = (func, time) => {
+      const oldTime = this.transitionTime; this.transitionTime = time;
+      func();
+      setTimeout(() => { this.transitionTime = oldTime; }, this.transitionTime);
+    };
+    this.wrapper.addEventListener('mouseenter', () => performWithTransitionTime(() => { this.translateZ = '1vw'; }, 0.25));
+    this.wrapper.addEventListener('mouseleave', () => performWithTransitionTime(() => { this.translateZ = 0; }, 0.25));
 
-      // Center self on click
-      this.wrapper.addEventListener('click', () => this.centerSelf());
-    }
+    // Center self on click
+    this.wrapper.addEventListener('click', () => this.centerSelf());
 
     this._applyTransform();
   }
