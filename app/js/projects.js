@@ -58,24 +58,7 @@ class Laptop {
   }
 
   centerSelf() {
-    if (this.carousel) {
-      const largerScreenDimension = Math.max(window.innerWidth, window.innerHeight);
-      const start = document.getElementsByClassName('laptops-stretcher')[0].offsetTop;
-      const end = start + (largerScreenDimension * 1.5);
-      /*
-        This equation found by solving equation in scroll.js for 'scroll'
-
-        Initial equation from scroll.js for calculating position based on scroll:
-                 scroll - start
-          pos = ————————————————  *  carousel.maxIndex
-                  end - start
-
-        Rearranged equation for solving for scroll based on position:
-          scroll = pos ÷ carousel.maxIndex * (end - start) + start
-      */
-      const scroll = ((this.index / this.carousel.maxIndex) * (end - start)) + start;
-      window.scrollTo({ top: scroll, behavior: 'smooth' });
-    }
+    if (this.carousel) this.carousel.position = this.index;
   }
 
   _applyTransform() {
@@ -170,9 +153,7 @@ class LaptopCarousel {
   set position(pos) {
     const offsetAngle = 30; // Laptops are 30 degrees from eachother
     this._position = pos;
-    // Sometimes laptops accidentally still have transitions on from a hover. This causes them to
-    // lag behind while other laptops move normally, which looks horrible.
-    this.setTransitionTime(0);
+    this.setTransitionTime(0.25);
     this.laptops.forEach((laptop) => {
       const initialRot = laptop.index * -offsetAngle; // Basic laptop rotation
       // Adjust laptop rotation given carousel position
@@ -184,6 +165,7 @@ class LaptopCarousel {
       const closedAmount = Math.max(Math.min(distFromCenter - 0.25, 1), 0);
       laptop.lidAngle = (1 - closedAmount) * 100;
     });
+    setTimeout(() => this.setTransitionTime(0), 0.25);
   }
 
   setTransitionTime(secs) {
