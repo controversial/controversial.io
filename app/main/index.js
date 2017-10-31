@@ -5,8 +5,6 @@ require('./main.sass');
 require('./browsercheck.js');
 require('./helpers.js');
 require('./init.js');
-require('./navigation-anim.js');
-require('./navigation.js');
 
 // Files to be copied
 require('./index.html');
