@@ -4,7 +4,7 @@ window.sassLengthVariable = 30;
 window.sassWidthVariable = (window.sassLengthVariable / 3) * 2;
 window.sassHeightVariable = (window.sassLengthVariable / 50);
 
-class Laptop {
+export class Laptop {
   static get defaultLidAngle() { return 100; }
 
   constructor(elem, index) {
@@ -106,7 +106,7 @@ class Laptop {
 }
 
 
-class LaptopCarousel {
+export class LaptopCarousel {
   static get rotLimit() { return 75; }
 
   constructor(container, laptops) {
@@ -191,16 +191,3 @@ class LaptopCarousel {
     if (this.laptops.indexOf(laptop) !== -1) this.laptops.splice(this.laptops.indexOf(laptop), 1);
   }
 }
-
-window.Laptop = Laptop;
-window.LaptopCarousel = LaptopCarousel;
-
-// Set up laptop scene
-window.setupLaptops = () => {
-  // Convert all elements with the class 'laptop3d' into laptops
-  const laptopsContainer = document.getElementsByClassName('laptops-container')[0];
-  const laptopElems = [...laptopsContainer.getElementsByClassName('laptop3d')];
-  const laptops = laptopElems.map((l, i) => new Laptop(l, i - 1));
-
-  window.carousel = new LaptopCarousel(laptopsContainer, laptops);
-};
