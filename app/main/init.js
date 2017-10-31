@@ -1,7 +1,13 @@
+import { GameRenderer } from './gol';
+
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(window.browserCheck, 1000);
 
-  window.setupGol();
+  // Set up game of life
+  window.gol = new GameRenderer('#gol');
+  window.gol.start();
+  window.addEventListener('resize', () => { window.gol.needsSizeUpdate = true; });
+
   window.navUpdate(true);
   window.setupLaptops();
 
