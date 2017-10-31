@@ -2,7 +2,6 @@
 require('./main.sass');
 
 // Scripts
-require('./browsercheck.js');
 require('./helpers.js');
 require('./init.js');
 
