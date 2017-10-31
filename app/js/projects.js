@@ -15,7 +15,7 @@ class Laptop {
     this._translateX = this._translateY = this._translateZ = 0;
     this._rotateX = this._rotateY = this._rotateZ = 0;
     this._lidAngle = Laptop.defaultLidAngle;
-    this._transitionTime = 0;
+    this._transitionTime = 0.25;
 
     this.elem.classList.add('laptop3d');
     if (typeof this.index !== 'undefined') this.elem.setAttribute('data-laptop3d-index', this.index);
@@ -40,13 +40,8 @@ class Laptop {
     children.forEach(child => this.screen.appendChild(child));
 
     // Lift up a bit on hover
-    const performWithTransitionTime = (func, time) => {
-      const oldTime = this.transitionTime; this.transitionTime = time;
-      func();
-      setTimeout(() => { this.transitionTime = oldTime; }, this.transitionTime);
-    };
-    this.wrapper.addEventListener('mouseenter', () => performWithTransitionTime(() => { this.translateZ = '1vw'; }, 0.25));
-    this.wrapper.addEventListener('mouseleave', () => performWithTransitionTime(() => { this.translateZ = 0; }, 0.25));
+    this.wrapper.addEventListener('mouseenter', () => { this.translateZ = '1vw'; }, 0.25);
+    this.wrapper.addEventListener('mouseleave', () => { this.translateZ = 0; }, 0.25);
 
     // Center self on click
     this.wrapper.addEventListener('click', () => this.centerSelf());
@@ -127,6 +122,7 @@ class LaptopCarousel {
     // Build map of laptops by index
     this.laptopsByIndex = {};
     laptops.forEach((l) => { this.laptopsByIndex[l.index] = l; });
+    // Set up keybindings
 
     this.position = 0;
   }
@@ -150,7 +146,6 @@ class LaptopCarousel {
   set position(pos) {
     const offsetAngle = 30; // Laptops are 30 degrees from eachother
     this._position = pos;
-    this.setTransitionTime(0.25);
     this.laptops.forEach((laptop) => {
       const initialRot = laptop.index * -offsetAngle; // Basic laptop rotation
       // Adjust laptop rotation given carousel position
@@ -162,7 +157,13 @@ class LaptopCarousel {
       const closedAmount = Math.max(Math.min(distFromCenter - 0.25, 1), 0);
       laptop.lidAngle = (1 - closedAmount) * 100;
     });
-    setTimeout(() => this.setTransitionTime(0), 0.25);
+  }
+
+  left() {
+    if (this.position > this.minIndex) this.position -= 1;
+  }
+  right() {
+    if (this.position < this.maxIndex) this.position += 1;
   }
 
   setTransitionTime(secs) {

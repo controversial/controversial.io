@@ -39,6 +39,8 @@ $silver-5: darken($base-color, 5%)
     transform-style: preserve-3d
     pointer-events: all
 
+    transition: transform .25s
+
   .base
     position: relative
     width: $length
@@ -92,6 +94,8 @@ $silver-5: darken($base-color, 5%)
     transform-origin: 0 $width
     transform: translateY(-2 * $width) rotateX(-90deg)
     transform-style: preserve-3d
+
+    transition: transform .25s
 
     // Top
     &::before
