@@ -1,9 +1,9 @@
 {
   "name": "controversial.io",
   "scripts": {
-    "start": "gulp",
-    "build": "gulp build",
-    "watch": "gulp watch",
+    "start": "webpack-dev-server --inline --open",
+    "build": "webpack",
+    "watch": "webpack --watch",
     "lint-sass": "sass-lint 'app/**/*.sass' -v",
     "lint-js": "eslint .",
     "lint": "npm run -s lint-sass && npm run -s lint-js",
