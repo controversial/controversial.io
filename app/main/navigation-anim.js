@@ -155,4 +155,4 @@ function navToggle() {
 
 window.navTransitionUpdate = update;
 window.navToggle = navToggle;
-window.addEventListener('resize', update);
+window.addEventListener('resize', () => update(window.navShown ? 1 : 0));
