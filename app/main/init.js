@@ -1,5 +1,7 @@
 import { GameRenderer } from './gol';
 import { Laptop, LaptopCarousel } from './projects';
+import { navBarUpdate } from './navigation';
+import { update as navTransitionUpdate, navToggle } from './navigation-anim';
 
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(window.browserCheck, 1000);
@@ -9,8 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
   window.gol.start();
   window.addEventListener('resize', () => { window.gol.needsSizeUpdate = true; });
 
-  window.navUpdate(true);
-  window.navTransitionUpdate(0);
+  navBarUpdate(true);
+  window.addEventListener('hashchange', navBarUpdate);
+  navTransitionUpdate(0);
+  window.addEventListener('resize', () => navTransitionUpdate(window.navShown ? 1 : 0));
 
   // Set up laptops
   // Convert all elements with the class 'laptop3d' into laptops
@@ -21,5 +25,5 @@ document.addEventListener('DOMContentLoaded', () => {
   window.carousel = new LaptopCarousel(laptopsContainer, laptops);
 
   // Configure navigation trigger clicked
-  document.getElementById('navigation-trigger').addEventListener('click', window.navToggle);
+  document.getElementById('navigation-trigger').addEventListener('click', navToggle);
 });
