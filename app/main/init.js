@@ -1,10 +1,11 @@
+import browserCheck from './browsercheck';
 import { GameRenderer } from './gol';
 import { Laptop, LaptopCarousel } from './projects';
 import { navBarUpdate } from './navigation';
 import { update as navTransitionUpdate, navToggle } from './navigation-anim';
 
 document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(window.browserCheck, 1000);
+  setTimeout(browserCheck, 1000);
 
   // Set up game of life
   window.gol = new GameRenderer('#gol');
