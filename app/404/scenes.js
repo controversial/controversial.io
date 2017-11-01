@@ -6,7 +6,7 @@
 
 /* eslint-disable no-unused-vars */
 
-const scenes = {
+export default {
   rome: {
     lat: 41.89659124583866,
     lng: 12.505531311035156,
