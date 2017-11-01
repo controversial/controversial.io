@@ -2,7 +2,12 @@
 
 // Helper to generate the kind of coordinate pairs I'm using to store cities
 
-/* global L, scenes */ // These come from other scripts
+/* global L */
+import scenes from './scenes';
+
+require('./index.html');
+require('./style.css');
+
 
 L.mapbox.accessToken = 'pk.eyJ1IjoiY29udHJvdmVyc2lhbCIsImEiOiJjaXMwaXEwYjUwM2l6MnpwOHdodTh6Y24xIn0.JOD0uX_n_KXqhJ7ERnK0Lg';
 const map = L.mapbox.map('map', 'mapbox.pencil', {

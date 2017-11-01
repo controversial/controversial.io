@@ -1,8 +1,8 @@
-function navigate(hash) {
+export function navigate(hash) {
   console.log(hash);
 }
 
-function navUpdate(initial = false) {
+export function navBarUpdate(initial = false) {
   const hash = window.location.hash.startsWith('#')
                  ? window.location.hash.substring(1)
                  : window.location.hash;
@@ -15,7 +15,3 @@ function navUpdate(initial = false) {
   // No navigation animation necessary on page load
   if (initial !== true) navigate(hash);
 }
-
-window.navUpdate = navUpdate;
-
-window.addEventListener('hashchange', navUpdate);

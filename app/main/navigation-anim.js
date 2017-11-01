@@ -127,7 +127,7 @@ function updatePageShrink(progress) {
 // MAIN ============================================================================================
 
 
-function update(progress) {
+export function update(progress) {
   // Page shrinking into laptop
   requestAnimationFrame(() => updatePageShrink(progress));
   // Update navigation bar opacity
@@ -136,7 +136,7 @@ function update(progress) {
   document.getElementById('navigation-trigger').style.opacity = Math.max(0.25, 1 - (progress * 0.75));
 }
 
-function navToggle() {
+export function navToggle() {
   const duration = 300;
   const os = window.ease.outSin;
 
@@ -152,7 +152,3 @@ function navToggle() {
 
   window.navShown = !window.navShown;
 }
-
-window.navTransitionUpdate = update;
-window.navToggle = navToggle;
-window.addEventListener('resize', update);

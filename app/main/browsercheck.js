@@ -16,7 +16,7 @@ Object.defineProperty(window, 'isFirefox', {
   configurable: true,
 });
 
-function browserCheck() {
+export default function browserCheck() {
   if (!window.isChromium) {
     const willWork = window.isSafari || window.isFirefox;
     // Different popups if the browser is partially supported or entirely unsupported
@@ -33,4 +33,3 @@ function browserCheck() {
     popup.style.display = 'block';
   }
 }
-window.browserCheck = browserCheck;

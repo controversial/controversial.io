@@ -18,7 +18,7 @@ if (!Array.prototype.fill) {
 
 
 /** Controls the logic for a Game of Life simulation. */
-class Game {
+export class Game {
   /**
    * Create a new Game of Life simulation.
    * @param {number} width - the width (in cells) of the game board
@@ -285,7 +285,7 @@ class Game {
 
 
 /** Binds a Game instance to a canvas to display it to a user. */
-class GameRenderer {
+export class GameRenderer {
   /**
    * Bind a Game to a canvas. Initiaizatin requires DOM.
    * @param {string} selector - a selector for the canvas element to bind to.
@@ -445,18 +445,4 @@ class GameRenderer {
       clearTimeout(this.timeout);
     }
   }
-}
-
-
-// Only if we're in a browser
-if (typeof window !== 'undefined') {
-  window.setupGol = () => {
-    window.gol = new GameRenderer('#gol');
-    window.gol.start();
-    // Update canvas when resized (this isn't the default behavior because not all uses involve
-    // canvases whose size changes when the window is resized)
-    window.addEventListener('resize', () => { window.gol.needsSizeUpdate = true; });
-  };
-} else {
-  module.exports.Game = Game;
 }
