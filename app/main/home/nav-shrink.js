@@ -1,8 +1,8 @@
 // Behavior for the 'shrink into laptop' animation for the home page
-import NavigationScaleBase from '../navigation-scale-base';
+import NavigationBase from '../navigation-animation-base';
 
 
-export default class HomeNavigationScale extends NavigationScaleBase {
+export default class HomeNavigationAnimation extends NavigationBase {
   constructor() {
     super();
     // Add elements to this.elem
@@ -27,28 +27,28 @@ export default class HomeNavigationScale extends NavigationScaleBase {
     const posB = laptopScreenCoordinates;
     // Calculate translation needed
     // (Center is used for calculating translation because element is scaled about the center)
-    const centerA = NavigationScaleBase.getCenter(posA);
-    const centerB = NavigationScaleBase.getCenter(posB);
+    const centerA = NavigationBase.getCenter(posA);
+    const centerB = NavigationBase.getCenter(posB);
     const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
     // Calculate scale
     const scaleNeeded = { x: posB.width / posA.width, y: posB.height / posA.height };
     // Apply transformations
     this.elem.container.style.transform = [
       // Translate
-      `translateX(${NavigationScaleBase.tween(0, translationNeeded.x, progress)}px)`,
-      `translateY(${NavigationScaleBase.tween(0, translationNeeded.y, progress)}px)`,
+      `translateX(${NavigationBase.tween(0, translationNeeded.x, progress)}px)`,
+      `translateY(${NavigationBase.tween(0, translationNeeded.y, progress)}px)`,
       // Scale
-      `scaleX(${NavigationScaleBase.tween(1, scaleNeeded.x, progress)})`,
-      `scaleY(${NavigationScaleBase.tween(1, scaleNeeded.y, progress)})`,
+      `scaleX(${NavigationBase.tween(1, scaleNeeded.x, progress)})`,
+      `scaleY(${NavigationBase.tween(1, scaleNeeded.y, progress)})`,
     ].join(' ');
 
     // 2. Fit name to laptop screen
 
     this.elem.title.style.transform = [
       'translate(-50%, -50%)',
-      `translateX(${NavigationScaleBase.tween(0, translationNeeded.x, progress)}px)`,
-      `translateY(${NavigationScaleBase.tween(0, translationNeeded.y, progress)}px)`,
-      `scale(${NavigationScaleBase.tween(1, 0.5, progress)})`,
+      `translateX(${NavigationBase.tween(0, translationNeeded.x, progress)}px)`,
+      `translateY(${NavigationBase.tween(0, translationNeeded.y, progress)}px)`,
+      `scale(${NavigationBase.tween(1, 0.5, progress)})`,
     ].join(' ');
 
     // 3. Adjust canvas settings

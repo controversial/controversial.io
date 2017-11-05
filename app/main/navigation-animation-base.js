@@ -1,5 +1,5 @@
 // Base class for each page to implement custom scaling behavior
-export default class NavigationScaleBase {
+export default class NavigationAnimationBase {
   // Helper methods
 
   static tween(a, b, progress) {
