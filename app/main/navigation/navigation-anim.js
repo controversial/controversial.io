@@ -1,6 +1,6 @@
 // Navigation animation code
 // JS-powered animation for shrinking pages into laptop screens
-import Home from './home/nav-shrink';
+import Home from '../home/nav-shrink';
 
 const home = new Home();
 

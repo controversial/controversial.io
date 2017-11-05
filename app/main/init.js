@@ -1,8 +1,8 @@
 import browserCheck from './browsercheck';
-import { GameRenderer } from './gol';
-import { Laptop, LaptopCarousel } from './projects';
-import { navBarUpdate } from './navigation';
-import { update as navTransitionUpdate, navToggle } from './navigation-anim';
+import { GameRenderer } from './home/gol';
+import { Laptop, LaptopCarousel } from './navigation/projects';
+import { navBarUpdate } from './navigation/navigation';
+import { update as navTransitionUpdate, navToggle } from './navigation/navigation-anim';
 
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(browserCheck, 1000);
