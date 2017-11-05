@@ -9,6 +9,7 @@ module.exports = {
     // different directory from the files copied by file-loader
     main: path.join(__dirname, 'app/main'),
     404: path.join(__dirname, 'app/404'),
+    '': path.join(__dirname, 'app'),
   },
 
   module: {
