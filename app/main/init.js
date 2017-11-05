@@ -1,5 +1,5 @@
 import browserCheck from './browsercheck';
-import { GameRenderer } from './home/gol';
+import homeInit from './home';
 import { Laptop, LaptopCarousel } from './navigation/projects';
 import { navBarUpdate } from './navigation/navigation';
 import { update as navTransitionUpdate, navToggle } from './navigation/navigation-anim';
@@ -7,10 +7,7 @@ import { update as navTransitionUpdate, navToggle } from './navigation/navigatio
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(browserCheck, 1000);
 
-  // Set up game of life
-  window.gol = new GameRenderer('#gol');
-  window.gol.start();
-  window.addEventListener('resize', () => { window.gol.needsSizeUpdate = true; });
+  homeInit();
 
   navBarUpdate(true);
   window.addEventListener('hashchange', navBarUpdate);
