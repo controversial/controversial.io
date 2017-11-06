@@ -1,5 +1,5 @@
 import { Laptop, LaptopCarousel } from './projects';
-import { update as navTransitionUpdate, navToggle } from './navigation-anim';
+import { update as navTransitionUpdate, navToggle } from './anim';
 
 export function navigate(hash) {
   console.log(hash);

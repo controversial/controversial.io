@@ -1,5 +1,5 @@
 // Behavior for the 'shrink into laptop' animation for the home page
-import NavigationBase from '../navigation/navigation-animation-base';
+import NavigationBase from '../navigation/anim-base';
 
 
 export default class HomeNavigationAnimation extends NavigationBase {
