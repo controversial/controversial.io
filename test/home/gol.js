@@ -3,7 +3,7 @@
 /* eslint-disable no-console */
 
 const test = require('ava');
-const gol = require('../../app/js/home/gol.js');
+const gol = require('../../app/main/home/gol.js');
 
 test('Game of life is properly initialized', (t) => {
   const g = new gol.Game(15, 15);
