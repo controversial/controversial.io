@@ -2,18 +2,19 @@
 
 /* eslint-disable no-console */
 
+import { Game } from '../../app/main/home/gol';
+
 const test = require('ava');
-const gol = require('../../app/main/home/gol.js');
 
 test('Game of life is properly initialized', (t) => {
-  const g = new gol.Game(15, 15);
-  t.true(g instanceof gol.Game);
+  const g = new Game(15, 15);
+  t.true(g instanceof Game);
   t.is(g.board.length, 15);
   t.is(g.board[0].length, 15);
 });
 
 test('Game of life boardSize works', (t) => {
-  const g = new gol.Game(15, 15);
+  const g = new Game(15, 15);
   // Check basic boardSize
   t.deepEqual(g.boardSize, [15, 15]);
   // Check that boardSize changes when a new row is added
@@ -29,7 +30,7 @@ test('Game of life boardSize works', (t) => {
 
 test('Game of life logic works', (t) => {
   // Test game of life with a glider
-  const g = new gol.Game(6, 7);
+  const g = new Game(6, 7);
   // Create a glider
   g.turnOn([
             [2, 1],
@@ -52,7 +53,7 @@ test('Game of life logic works', (t) => {
 });
 
 test('Game of life helper methods work', (t) => {
-  const g = new gol.Game(2, 2);
+  const g = new Game(2, 2);
   // test getBlankBoard
   t.deepEqual(g.getBlankBoard(), [[false, false], [false, false]]);
   // test getRandomRow
@@ -62,7 +63,7 @@ test('Game of life helper methods work', (t) => {
 });
 
 test('Game of life manipulation methods work', (t) => {
-  const g = new gol.Game(3, 3);
+  const g = new Game(3, 3);
   // test turnOn
   g.turnOn(1, 1);
   t.deepEqual(g.board, [[false, false, false], [false, true, false], [false, false, false]]);
