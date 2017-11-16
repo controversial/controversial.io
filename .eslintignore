@@ -1,3 +1,3 @@
 # node-modules is ignored by default
-dist/*
+build/*
 docs/*
