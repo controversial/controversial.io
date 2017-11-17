@@ -190,4 +190,8 @@ export class LaptopCarousel {
     // Remove from laptops array. Array will still be sorted after removal
     if (this.laptops.indexOf(laptop) !== -1) this.laptops.splice(this.laptops.indexOf(laptop), 1);
   }
+
+  getLaptopWithHash(hash) {
+    return this.laptops.filter(n => n.hash === hash)[0];
+  }
 }
