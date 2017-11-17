@@ -44,7 +44,10 @@ export class Laptop {
     this.wrapper.addEventListener('mouseleave', () => { this.translateZ = 0; }, 0.25);
 
     // Center self on click
-    this.wrapper.addEventListener('click', () => this.centerSelf());
+    this.wrapper.addEventListener('click', () => {
+      this.centerSelf();
+      window.location.hash = this.hash;
+    });
 
     this._applyTransform();
   }
