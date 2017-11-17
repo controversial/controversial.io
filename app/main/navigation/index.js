@@ -1,8 +1,10 @@
 import { Laptop, LaptopCarousel } from './projects';
 import { update as navTransitionUpdate, navToggle } from './anim';
 
-export function navigate(hash) {
-  console.log(hash);
+export async function navigate(hash, animated = true) {
+  const laptop = window.carousel.getLaptopWithHash(hash);
+  if (!window.navShown) await navToggle();
+  laptop.centerSelf();
 }
 
 export function navBarUpdate(initial = false) {
