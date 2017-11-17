@@ -1,4 +1,4 @@
-import { Laptop, LaptopCarousel } from './projects';
+import { Laptop, LaptopCarousel } from './laptops';
 import { update as navTransitionUpdate, navToggle } from './anim';
 
 export async function navigate(hash, animated = true) {
