@@ -53,7 +53,12 @@ export class Laptop {
   }
 
   centerSelf() {
-    if (this.carousel) this.carousel.position = this.index;
+    return new Promise((resolve) => {
+      if (this.carousel) {
+        this.carousel.position = this.index;
+        setTimeout(resolve, this.transitionTime * 1000);
+      }
+    });
   }
 
   _applyTransform() {
