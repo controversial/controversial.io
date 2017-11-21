@@ -125,8 +125,8 @@ class Navigation {
 export default function init() {
   window.nav = window.navigation = new Navigation(
     window.carousel,
-    new HomeAnim(),
     new AboutAnim(),
+    new HomeAnim(),
     new WorkAnim()
   );
 }
