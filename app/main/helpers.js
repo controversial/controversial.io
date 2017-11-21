@@ -1,4 +1,4 @@
-// Parse a color by letting CSS parse it
+/** Parse a color by letting CSS parse it */
 export function parseColor(color) {
   // Make a div, assign a color, and see what CSS parses it as. The div must temporarily be added to
   // the DOM sothat getComputedStyle works.
@@ -14,7 +14,7 @@ export function parseColor(color) {
 }
 
 
-// Easing functions return eased values of x for the range [0, 1] => [0, 1]
+/** Easing functions return eased values of x for the range [0, 1] => [0, 1] */
 export const ease = {
   linear: x => x,
   // Quadratic easing
@@ -26,7 +26,7 @@ export const ease = {
 };
 
 
-// Sleep for async functions
+/** Sleep for async functions */
 export function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
