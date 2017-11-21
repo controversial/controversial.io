@@ -54,10 +54,8 @@ export class Navigation {
 
   /** Switch to a new page */
   async navigateTo(hash) {
-    const laptop = this.carousel.getLaptopWithHash(hash);
-
     await this.open();
-    await laptop.centerSelf();
+    await this.carousel.getLaptopWithHash(hash).centerSelf();
     await this.close();
   }
 
