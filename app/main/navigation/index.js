@@ -9,7 +9,7 @@ const os = window.ease.outSin;
 
 
 /** Coordinates navigation */
-class Navigation {
+export class Navigation {
 
 
   constructor(carousel, ...pages) {
