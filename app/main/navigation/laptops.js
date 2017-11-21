@@ -44,10 +44,7 @@ export class Laptop {
     this.wrapper.addEventListener('mouseleave', () => { this.translateZ = 0; }, 0.25);
 
     // Center self on click
-    this.wrapper.addEventListener('click', () => {
-      this.centerSelf();
-      window.location.hash = this.hash;
-    });
+    this.wrapper.addEventListener('click', () => this.centerSelf());
 
     this._applyTransform();
   }
@@ -169,6 +166,8 @@ export class LaptopCarousel {
       const closedAmount = Math.max(Math.min(distFromCenter - 0.25, 1), 0);
       laptop.lidAngle = (1 - closedAmount) * 100;
     });
+    // Make sure window hash and top nav bar reflect currently selected laptop
+    window.location.hash = this.laptopsByIndex[pos].hash;
   }
 
   left() {
