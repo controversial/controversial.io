@@ -24,3 +24,9 @@ export const ease = {
   inSin: x => 1 - Math.cos(0.5 * Math.PI * x),
   outSin: x => Math.sin(0.5 * Math.PI * x),
 };
+
+
+// Sleep for async functions
+export function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
