@@ -54,10 +54,10 @@ export class Laptop {
 
   centerSelf() {
     return new Promise((resolve) => {
-      if (this.carousel) {
+      if (this.carousel && this.index !== this.carousel.position) {
         this.carousel.position = this.index;
         setTimeout(resolve, this.transitionTime * 1000);
-      }
+      } else resolve();
     });
   }
 
