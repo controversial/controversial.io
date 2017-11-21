@@ -12,29 +12,3 @@ export function update(progress) {
   // Update navigation trigger opacity in the opposite direction
   document.getElementById('navigation-trigger').style.opacity = Math.max(0.25, 1 - (progress * 0.75));
 }
-
-
-export function navToggle() {
-  return new Promise((resolve) => {
-    const duration = 300;
-    const os = window.ease.outSin;
-
-    // Open
-    if (!window.navShown) {
-      for (let i = 0; i < 1; i += (1 / 60)) setTimeout(() => update(os(i)), i * duration);
-      setTimeout(() => {
-        update(1);
-        resolve();
-      }, duration);
-    // Close
-    } else {
-      for (let i = 0; i < 1; i += (1 / 60)) setTimeout(() => update(1 - os(i)), i * duration);
-      setTimeout(() => {
-        update(0);
-        resolve();
-      }, duration);
-    }
-
-    window.navShown = !window.navShown;
-  });
-}
