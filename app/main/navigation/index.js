@@ -57,6 +57,7 @@ export class Navigation {
 
     await this.open();
     await laptop.centerSelf();
+    await this.close();
   }
 
 
