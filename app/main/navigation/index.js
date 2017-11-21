@@ -21,6 +21,10 @@ export class Navigation {
 
     Navigation.navBarUpdate();
     window.addEventListener('hashchange', Navigation.navBarUpdate);
+    // Navigate on top bar clicked
+    Array.from(document.getElementById('navigation').getElementsByTagName('a')).forEach((e) => {
+      e.addEventListener('click', () => this.navigateTo(e.getAttribute('href').substring(1)));
+    });
 
     this.transitionUpdate(0);
     // Jump to either open or closed on resize
