@@ -12,7 +12,7 @@ export default class AboutNavigationAnimation extends NavigationBase {
   }
 
   removeFromLaptop() {
-    super.putInLaptop();
+    super.removeFromLaptop();
     console.log('About removed from laptop');
   }
 }
