@@ -53,12 +53,15 @@ export class Navigation {
 
 
   /** Switch to a new page */
-  async navigateTo(hash) {
-    if (hash !== Navigation.hash) {
-      await this.open();
-      await this.carousel.getLaptopWithHash(hash).centerSelf();
-      await this.close();
-    }
+  navigateTo(hash) {
+    return new Promise(async (resolve) => {
+      if (hash !== Navigation.hash) {
+        await this.open();
+        await this.carousel.getLaptopWithHash(hash).centerSelf();
+        await this.close();
+        resolve();
+      } else resolve();
+    });
   }
 
 
