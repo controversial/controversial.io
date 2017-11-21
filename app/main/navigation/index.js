@@ -1,5 +1,4 @@
 import { Laptop, LaptopCarousel } from './laptops';
-import { update as navTransitionUpdate, navToggle } from './anim';
 
 // Subclasses of NavigationAnimationBase
 import HomeAnim from '../home/nav-shrink';
