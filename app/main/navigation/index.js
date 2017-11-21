@@ -92,7 +92,7 @@ export class Navigation {
         }
         // When we're finished
         setTimeout(
-          () => { this.transitionUpdate(1); resolve(); },
+          async () => { await this.transitionUpdate(1); resolve(); },
           this.navTransitionDuration
         );
         this.shown = true;
@@ -117,7 +117,7 @@ export class Navigation {
         }
         // When we're finished
         setTimeout(
-          () => { this.transitionUpdate(0); resolve(); },
+          async () => { await this.transitionUpdate(0); resolve(); },
           this.navTransitionDuration
         );
         this.shown = false;
