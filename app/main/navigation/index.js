@@ -19,7 +19,7 @@ class Navigation {
     this.shown = false;
     this.navTransitionDuration = 300;
 
-    this.navBarUpdate();
+    Navigation.navBarUpdate();
     window.addEventListener('hashchange', Navigation.navBarUpdate);
 
     this.transitionUpdate(0);
@@ -57,7 +57,7 @@ class Navigation {
 
 
   /** Move to a specific point in the shrink animation */
-  update(progress) {
+  transitionUpdate(progress) {
     // Page shrinking into laptop
     requestAnimationFrame(() => this.pages[1].update(progress));
     // Update navigation bar opacity
@@ -71,20 +71,20 @@ class Navigation {
   open() {
     return new Promise((resolve) => {
       // Only needs to happen if it's not already open
-      if (!this.open) {
+      if (!this.shown) {
         // Set up each animation frame for its correct time
         for (let i = 0; i < 1; i += (1 / 60)) {
           setTimeout(
-            () => this.update(os(i)),       // Update to proper progress
+            () => this.transitionUpdate(os(i)),       // Update to proper progress
             i * this.navTransitionDuration  // at proper time
           );
         }
         // When we're finished
         setTimeout(
-          () => { this.update(1); resolve(); },
+          () => { this.transitionUpdate(1); resolve(); },
           this.navTransitionDuration
         );
-        window.navShown = true;
+        this.shown = true;
       // If it's already open, resolve immediately
       } else {
         resolve();
@@ -96,20 +96,20 @@ class Navigation {
   close() {
     return new Promise((resolve) => {
       // Only needs to happen if it's not already open
-      if (!this.open) {
+      if (this.shown) {
         // Set up each animation frame for its correct time
         for (let i = 0; i < 1; i += (1 / 60)) {
           setTimeout(
-            () => this.update(1 - os(i)),   // Update to proper progress
+            () => this.transitionUpdate(1 - os(i)),   // Update to proper progress
             i * this.navTransitionDuration  // at proper time
           );
         }
         // When we're finished
         setTimeout(
-          () => { this.update(0); resolve(); },
+          () => { this.transitionUpdate(0); resolve(); },
           this.navTransitionDuration
         );
-        window.navShown = false;
+        this.shown = false;
       // If it's already open, resolve immediately
       } else {
         resolve();
@@ -119,7 +119,7 @@ class Navigation {
 
   /** Toggle navigation */
   toggle() {
-    if (this.open) return this.close();
+    if (this.shown) return this.close();
     return this.open();
   }
 
