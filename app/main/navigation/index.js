@@ -11,6 +11,8 @@ const os = window.ease.outSin;
 
 /** Coordinates navigation */
 class Navigation {
+
+
   constructor(carousel, ...pages) {
     this.carousel = carousel;
     this.pages = Array.from(pages);
@@ -38,6 +40,7 @@ class Navigation {
   }
 
 
+  /** Get the current page hash without the # */
   static get hash() {
     return window.location.hash.startsWith('#')
       ? window.location.hash.substring(1)
@@ -111,6 +114,7 @@ class Navigation {
   }
 
 
+  /** Update the top nav bar to reflect the currently active page */
   static navBarUpdate() {
     const linkToHere = document.getElementById('navigation').querySelector(`a[href='#${Navigation.hash}']`);
     // un-highlight all the links
