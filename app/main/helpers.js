@@ -1,5 +1,5 @@
 // Parse a color by letting CSS parse it
-window.parseColor = function parseColor(color) {
+export function parseColor(color) {
   // Make a div, assign a color, and see what CSS parses it as. The div must temporarily be added to
   // the DOM sothat getComputedStyle works.
   const elem = document.createElement('div');
@@ -11,11 +11,11 @@ window.parseColor = function parseColor(color) {
   // Parse the rgb(r, g, b) color that getComputedStyle returns
   const rgb = rgbColor.split('(')[1].split(')')[0].split(',');
   return { r: +rgb[0], g: +rgb[1], b: +rgb[2] };
-};
+}
 
 
 // Easing functions return eased values of x for the range [0, 1] => [0, 1]
-window.ease = {
+export const ease = {
   linear: x => x,
   // Quadratic easing
   in: x => x ** 2,

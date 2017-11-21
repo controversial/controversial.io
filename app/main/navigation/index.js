@@ -5,8 +5,9 @@ import HomeAnim from '../home/nav-shrink';
 import AboutAnim from '../about/nav-shrink';
 import WorkAnim from '../work/nav-shrink';
 
-const os = window.ease.outSin;
+import { ease } from '../helpers';
 
+const os = ease.outSin;
 
 /** Coordinates navigation */
 export class Navigation {
