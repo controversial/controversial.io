@@ -59,7 +59,7 @@ export class Navigation {
   /** Move to a specific point in the shrink animation */
   transitionUpdate(progress) {
     // Page shrinking into laptop
-    requestAnimationFrame(() => this.pages[1].update(progress));
+    requestAnimationFrame(() => this.pages[this.carousel.position + 1].update(progress));
     // Update navigation bar opacity
     document.getElementById('navigation').style.opacity = (progress * 0.75) + 0.25;
     // Update navigation trigger opacity in the opposite direction
