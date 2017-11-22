@@ -3,16 +3,15 @@ import NavigationBase from '../navigation/anim-base';
 export default class WorkNavigationAnimation extends NavigationBase {
   scale(laptopScreenCoordinates, progress) {
     super.scale(laptopScreenCoordinates, progress);
-    console.log(`Work scaled to ${progress}`);
+    if (progress === 0) console.log('work grew');
+    else if (progress === 1) console.log('work shrunk');
   }
 
   putInLaptop() {
     super.putInLaptop();
-    console.log('Work in laptop');
   }
 
   removeFromLaptop() {
     super.removeFromLaptop();
-    console.log('Work removed from laptop');
   }
 }
