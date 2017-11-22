@@ -127,13 +127,16 @@ export class LaptopCarousel {
     // Build map of laptops by index
     this.laptopsByIndex = {};
     laptops.forEach((l) => { this.laptopsByIndex[l.index] = l; });
-    // Set up keybindings
+
+    this.position = 0;
+  }
+
+  /** Set up keybindings */
+  keyBind() {
     window.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight') this.right();
       if (e.key === 'ArrowLeft') this.left();
     });
-
-    this.position = 0;
   }
 
   // All indices represented
