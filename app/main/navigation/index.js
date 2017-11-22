@@ -45,8 +45,15 @@ export class Navigation {
     const laptops = laptopElems.map((l, i) => new Laptop(l, i - 1));
     // Create laptop carousel
     this.carousel = new LaptopCarousel(laptopsContainer, laptops);
+
+    // Key bindings
+
+    this.keyBind();
   }
 
+  keyBind() {
+    this.carousel.keyBind();
+  }
 
   /** Get the current page hash without the # */
   static get hash() {
