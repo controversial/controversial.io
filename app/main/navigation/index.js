@@ -52,9 +52,6 @@ export class Navigation {
   }
 
   keyBind() {
-    // LaptopCarousel keybindings (left/right)
-    this.carousel.keyBind();
-    // Others
     window.addEventListener('keydown', (e) => {
       // Open navigation when down is pressed
       if (e.key === 'ArrowDown') this.open();
@@ -62,6 +59,11 @@ export class Navigation {
       if (e.key === 'Escape' || e.key === 'ArrowUp' || e.key === 'Enter') this.close();
       // Toggle navigation when space is pressed
       if (e.key === ' ') this.toggle();
+      // Carousel left/right when navigation shown
+      if (this.shown) {
+        if (e.key === 'ArrowRight') this.right();
+        if (e.key === 'ArrowLeft') this.left();
+      }
     });
   }
 

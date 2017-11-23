@@ -131,14 +131,6 @@ export class LaptopCarousel {
     this.position = 0;
   }
 
-  /** Set up keybindings */
-  keyBind() {
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') this.right();
-      if (e.key === 'ArrowLeft') this.left();
-    });
-  }
-
   // All indices represented
   get indices() { return this.laptops.map(l => l.index); }
   // Minimum index represented
