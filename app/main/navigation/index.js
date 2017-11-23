@@ -70,9 +70,9 @@ export class Navigation {
 
   /** Sets up promise to be resolved */
   animationStarted() {
-    // This promise will be resolved when an animation completes.
-    // This promise can be awaited to prevent animation overlap
     if (typeof this.safeToAnimate === 'undefined') {
+      // This promise will be resolved when an animation completes.
+      // This promise can be awaited to prevent animation overlap
       this.safeToAnimate = new Promise((resolve) => {
         this.animationFinished = () => {
           resolve();
