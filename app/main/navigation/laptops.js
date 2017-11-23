@@ -114,9 +114,10 @@ export class Laptop {
 export class LaptopCarousel {
   static get rotLimit() { return 75; }
 
-  constructor(container, laptops) {
+  constructor(container, laptops, navigation) {
     this.container = container;
     this.laptops = laptops;
+    this.navigation = navigation; // passing a Navigation instance is optional
     // Sort by index
     this.laptops.sort((a, b) => a.index - b.index);
     // Check that there are no overlapping indices

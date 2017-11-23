@@ -44,7 +44,7 @@ export class Navigation {
     const laptopElems = [...laptopsContainer.getElementsByClassName('laptop3d')];
     const laptops = laptopElems.map((l, i) => new Laptop(l, i - 1));
     // Create laptop carousel
-    this.carousel = new LaptopCarousel(laptopsContainer, laptops);
+    this.carousel = new LaptopCarousel(laptopsContainer, laptops, this);
 
     // Key bindings
 
