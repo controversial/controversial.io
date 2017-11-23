@@ -149,21 +149,28 @@ export class LaptopCarousel {
   // the laptop with index x being centered
   get position() { return this._position; }
   set position(pos) {
-    const offsetAngle = 30; // Laptops are 30 degrees from eachother
-    this._position = pos;
-    this.laptops.forEach((laptop) => {
-      const initialRot = laptop.index * -offsetAngle; // Basic laptop rotation
-      // Adjust laptop rotation given carousel position
-      const finalRot = initialRot + (this.position * offsetAngle);
-      laptop.rotateZ = LaptopCarousel.boundRotation(finalRot);
-      // Adjust lid closed given carousel position. Lid starts closing when position is 0.5 away
-      // from the center and becomes fully closed when position is 1.5 away from the center.
-      const distFromCenter = Math.abs(laptop.index - this.position);
-      const closedAmount = Math.max(Math.min(distFromCenter - 0.25, 1), 0);
-      laptop.lidAngle = (1 - closedAmount) * 100;
-    });
-    // Make sure window hash and top nav bar reflect currently selected laptop
-    window.location.hash = this.laptopsByIndex[pos].hash;
+    (async () => {
+      if (this.navigation) {
+        await this.navigation.safeToAnimate;
+        this.navigation.animationStarted();
+      }
+      const offsetAngle = 30; // Laptops are 30 degrees from eachother
+      this._position = pos;
+      this.laptops.forEach((laptop) => {
+        const initialRot = laptop.index * -offsetAngle; // Basic laptop rotation
+        // Adjust laptop rotation given carousel position
+        const finalRot = initialRot + (this.position * offsetAngle);
+        laptop.rotateZ = LaptopCarousel.boundRotation(finalRot);
+        // Adjust lid closed given carousel position. Lid starts closing when position is 0.5 away
+        // from the center and becomes fully closed when position is 1.5 away from the center.
+        const distFromCenter = Math.abs(laptop.index - this.position);
+        const closedAmount = Math.max(Math.min(distFromCenter - 0.25, 1), 0);
+        laptop.lidAngle = (1 - closedAmount) * 100;
+      });
+      setTimeout(() => this.navigation.animationFinished(), this.laptops[0].transitionTime * 1000);
+      // Make sure window hash and top nav bar reflect currently selected laptop
+      window.location.hash = this.laptopsByIndex[pos].hash;
+    })();
   }
 
   left() {
