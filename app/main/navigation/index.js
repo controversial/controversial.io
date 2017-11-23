@@ -61,8 +61,8 @@ export class Navigation {
       if (e.key === ' ') this.toggle();
       // Carousel left/right when navigation shown
       if (this.shown) {
-        if (e.key === 'ArrowRight') this.right();
-        if (e.key === 'ArrowLeft') this.left();
+        if (e.key === 'ArrowRight') this.carousel.right();
+        if (e.key === 'ArrowLeft') this.carousel.left();
       }
     });
   }
