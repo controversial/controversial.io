@@ -52,7 +52,17 @@ export class Navigation {
   }
 
   keyBind() {
+    // LaptopCarousel keybindings (left/right)
     this.carousel.keyBind();
+    // Others
+    window.addEventListener('keydown', (e) => {
+      // Open navigation when down is pressed
+      if (e.key === 'ArrowDown') this.open();
+      // Close navigation when escape, up, or enter is pressed
+      if (e.key === 'Escape' || e.key === 'ArrowUp' || e.key === 'Enter') this.close();
+      // Toggle navigation when space is pressed
+      if (e.key === ' ') this.toggle();
+    });
   }
 
   /** Get the current page hash without the # */
