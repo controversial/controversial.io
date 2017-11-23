@@ -19,6 +19,8 @@ export class Navigation {
 
     this.shown = false;
     this.navTransitionDuration = 300;
+    this.animating = false;
+    this.animationCallbacks = [];
 
     // Navigation bar
 
@@ -67,6 +69,26 @@ export class Navigation {
     });
   }
 
+  /**
+   * Resolves immediately unless an animation is in progress, in which case it resolves when the
+   * animation finishes.
+   *
+   * A promise is created which will be resolved automatically when the animation finishes
+   */
+  safeToAnimate() {
+    return new Promise((resolve) => {
+      if (this.animating) this.animationCallbacks.push(resolve);
+      else resolve();
+    });
+  }
+  /** Called when an animation finishes, automatically resolves all safeToAnimate promises */
+  animationFinished() {
+    this.animating = false;
+    while (this.animationCallbacks.length) {
+      this.animationCallbacks.pop()();
+    }
+  }
+
   /** Get the current page hash without the # */
   static get hash() {
     return window.location.hash.startsWith('#')
@@ -105,10 +127,12 @@ export class Navigation {
 
 
   /** Show navigation */
-  open() {
+  async open() {
+    await this.safeToAnimate();
     return new Promise((resolve) => {
       // Only needs to happen if it's not already open
       if (!this.shown) {
+        this.animating = true;
         // Set up each animation frame for its correct time
         for (let i = 0; i < 1; i += (1 / 60)) {
           setTimeout(
@@ -118,7 +142,7 @@ export class Navigation {
         }
         // When we're finished
         setTimeout(
-          async () => { await this.transitionUpdate(1); resolve(); },
+          async () => { await this.transitionUpdate(1); this.animationFinished(); resolve(); },
           this.navTransitionDuration
         );
         this.shown = true;
@@ -130,10 +154,12 @@ export class Navigation {
   }
 
   /** Hide navigation */
-  close() {
+  async close() {
+    await this.safeToAnimate();
     return new Promise((resolve) => {
       // Only needs to happen if it's not already open
       if (this.shown) {
+        this.animating = true;
         // Set up each animation frame for its correct time
         for (let i = 0; i < 1; i += (1 / 60)) {
           setTimeout(
@@ -143,7 +169,7 @@ export class Navigation {
         }
         // When we're finished
         setTimeout(
-          async () => { await this.transitionUpdate(0); resolve(); },
+          async () => { await this.transitionUpdate(0); this.animationFinished(); resolve(); },
           this.navTransitionDuration
         );
         this.shown = false;
