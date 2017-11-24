@@ -5,6 +5,7 @@ import NavigationBase from '../navigation/anim-base';
 export default class HomeNavigationAnimation extends NavigationBase {
   constructor() {
     super();
+    this.hash = 'home';
     // Add elements to this.elem
     Object.assign(this.elem, {
       wrapper: document.getElementById('home-wrapper'),

@@ -32,7 +32,7 @@ export default class NavigationAnimationBase {
   update(progress) {
     // Adjust scale
     this.scale(
-      this.elem.laptopContent('home').getBoundingClientRect(),
+      this.elem.laptopContent(this.hash).getBoundingClientRect(),
       progress
     );
     // Change position in DOM when appropriate
