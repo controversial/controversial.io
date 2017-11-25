@@ -31,12 +31,6 @@ export class Navigation {
     // Configure navigation trigger clicked
     document.getElementById('navigation-trigger').addEventListener('click', () => this.toggle());
 
-    // Set up initial state of transition
-
-    this.transitionUpdate(0);
-    // Jump to either open or closed on resize
-    window.addEventListener('resize', () => this.transitionUpdate(this.shown)); // this.shown is 1 if shown, 0 if not
-
     // Set up laptops
 
     // Convert all elements with the class 'laptop3d' into laptops
@@ -45,6 +39,13 @@ export class Navigation {
     const laptops = laptopElems.map((l, i) => new Laptop(l, i - 1));
     // Create laptop carousel
     this.carousel = new LaptopCarousel(laptopsContainer, laptops, this);
+
+    // Set up initial state of transition
+
+    this.pages.forEach(page => page.update(1));
+    this.transitionUpdate(0);
+    // Jump to either open or closed on resize
+    window.addEventListener('resize', () => this.transitionUpdate(this.shown)); // this.shown is 1 if shown, 0 if not
 
     // Key bindings
 
