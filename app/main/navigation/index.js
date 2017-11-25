@@ -40,9 +40,13 @@ export class Navigation {
     this.carousel = new LaptopCarousel(laptopsContainer, laptops, this);
 
     // Set up initial state of transition
-
-    this.pages.forEach(page => page.update(1));
+    const currentpage = this.pages[this.carousel.position + 1];
+    // Shrink other pages
+    const otherpages = this.pages.filter(n => n !== currentpage);
+    otherpages.forEach(page => page.update(1.0));
+    // Make sure current page is correctly scaled, and that all other navigation UI is proper
     this.transitionUpdate(0);
+
     // Jump to either open or closed on resize
     window.addEventListener('resize', () => this.transitionUpdate(this.shown)); // this.shown is 1 if shown, 0 if not
 
