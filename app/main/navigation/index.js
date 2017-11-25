@@ -13,8 +13,7 @@ const os = ease.outSin;
 export class Navigation {
 
 
-  constructor(carousel, ...pages) {
-    this.carousel = carousel;
+  constructor(...pages) {
     this.pages = Array.from(pages);
 
     this.shown = false;
@@ -198,7 +197,6 @@ export class Navigation {
 
 export default function init() {
   window.nav = window.navigation = new Navigation(
-    window.carousel,
     new AboutAnim(),
     new HomeAnim(),
     new WorkAnim()
