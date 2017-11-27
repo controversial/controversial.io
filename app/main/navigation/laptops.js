@@ -43,8 +43,13 @@ export class Laptop {
     this.wrapper.addEventListener('mouseenter', () => { this.translateZ = '1vw'; }, 0.25);
     this.wrapper.addEventListener('mouseleave', () => { this.translateZ = 0; }, 0.25);
 
-    // Center self on click
-    this.wrapper.addEventListener('click', () => this.centerSelf());
+    // Center self or close navigation on click
+    this.wrapper.addEventListener('click', () => {
+      if (this.carousel) {
+        if (this.index !== this.carousel.position) this.centerSelf();
+        else if (this.carousel.navigation) this.carousel.navigation.close();
+      }
+    });
 
     this._applyTransform();
   }
