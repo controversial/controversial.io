@@ -39,10 +39,8 @@ export class Navigation {
     // Create laptop carousel
     this.carousel = new LaptopCarousel(laptopsContainer, laptops, this);
 
-    // Set up initial state of transition
-    const currentpage = this.pages[this.carousel.position + 1];
     // Shrink other pages
-    const otherpages = this.pages.filter(n => n !== currentpage);
+    const otherpages = this.pages.filter(n => n !== this.currentPage);
     otherpages.forEach(page => page.update(1.0));
     // Make sure current page is correctly scaled, and that all other navigation UI is proper
     this.transitionUpdate(0);
@@ -94,6 +92,11 @@ export class Navigation {
   }
 
 
+  get currentPage() {
+    return this.pages[this.carousel.position + 1];
+  }
+
+
   /** Switch to a new page */
   navigateTo(hash) {
     return new Promise(async (resolve) => {
@@ -116,7 +119,7 @@ export class Navigation {
       document.getElementById('navigation-trigger').style.opacity = Math.max(0.25, 1 - (progress * 0.75));
       // Page shrinking into laptop
       requestAnimationFrame(() => {
-        this.pages[this.carousel.position + 1].update(progress);
+        this.currentPage.update(progress);
         resolve();
       });
     });
