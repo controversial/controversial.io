@@ -47,9 +47,6 @@ export class Navigation {
     // Make sure current page is correctly scaled, and that all other navigation UI is proper
     this.transitionUpdate(0);
 
-    // Jump to either open or closed on resize
-    window.addEventListener('resize', () => this.transitionUpdate(this.shown)); // this.shown is 1 if shown, 0 if not
-
     // Key bindings
 
     this.keyBind();
