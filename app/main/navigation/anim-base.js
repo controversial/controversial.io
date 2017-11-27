@@ -47,7 +47,33 @@ export default class NavigationAnimationBase {
   // These methods should be implemented by all subclasses
 
   scale(laptopScreenCoordinates, progress) {
+    // 1. Fit container to laptop screen
+
+    // Establish starting and ending positions for page
+    const w = window.innerWidth; const h = window.innerHeight;
+    const posA = { left: 0, top: 0, right: w, bottom: h, width: w, height: h };
+    const posB = laptopScreenCoordinates;
+
+    // Calculate translation needed
+    // (Center is used for calculating translation because element is scaled about the center)
+    const centerA = NavigationAnimationBase.getCenter(posA);
+    const centerB = NavigationAnimationBase.getCenter(posB);
+    const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
+    // Calculate scale
+    const scaleNeeded = { x: posB.width / posA.width, y: posB.height / posA.height };
+    // Apply transformations
+    this.elem.container.style.transform = [
+      // Translate
+      `translateX(${NavigationAnimationBase.tween(0, translationNeeded.x, progress)}px)`,
+      `translateY(${NavigationAnimationBase.tween(0, translationNeeded.y, progress)}px)`,
+      // Scale
+      `scaleX(${NavigationAnimationBase.tween(1, scaleNeeded.x, progress)})`,
+      `scaleY(${NavigationAnimationBase.tween(1, scaleNeeded.y, progress)})`,
+    ].join(' ');
+
     this.currentProgress = progress;
+
+    return [translationNeeded, scaleNeeded];
   }
 
   putInLaptop() {

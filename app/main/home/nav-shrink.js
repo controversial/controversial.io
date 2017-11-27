@@ -22,26 +22,8 @@ export default class HomeNavigationAnimation extends NavigationBase {
   scale(laptopScreenCoordinates, progress) {
     // 1. Fit container to laptop screen
 
-    // Establish starting and ending positions for page
     const w = window.innerWidth; const h = window.innerHeight;
-    const posA = { left: 0, top: 0, right: w, bottom: h, width: w, height: h };
-    const posB = laptopScreenCoordinates;
-    // Calculate translation needed
-    // (Center is used for calculating translation because element is scaled about the center)
-    const centerA = NavigationBase.getCenter(posA);
-    const centerB = NavigationBase.getCenter(posB);
-    const translationNeeded = { x: centerB.x - centerA.x, y: centerB.y - centerA.y };
-    // Calculate scale
-    const scaleNeeded = { x: posB.width / posA.width, y: posB.height / posA.height };
-    // Apply transformations
-    this.elem.container.style.transform = [
-      // Translate
-      `translateX(${NavigationBase.tween(0, translationNeeded.x, progress)}px)`,
-      `translateY(${NavigationBase.tween(0, translationNeeded.y, progress)}px)`,
-      // Scale
-      `scaleX(${NavigationBase.tween(1, scaleNeeded.x, progress)})`,
-      `scaleY(${NavigationBase.tween(1, scaleNeeded.y, progress)})`,
-    ].join(' ');
+    const translationNeeded = super.scale(laptopScreenCoordinates, progress)[0];
 
     // 2. Fit name to laptop screen
 
