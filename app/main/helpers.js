@@ -32,8 +32,11 @@ export function sleep(ms) {
 }
 
 
-/** Change hash without firing hashchange */
-export function sneakyHashChange(newHash) {
+/**
+ * Change hash without firing hashchange. If push is true, it will be pushed to, rather than
+ * replaced on, the history stack.
+ */
+export function sneakyHashChange(newHash, push = false) {
   const hash = newHash.startsWith('#') ? newHash : `#${newHash}`;
-  window.history.pushState({}, '', hash);
+  window.history[push ? 'pushState' : 'replaceState']({}, '', hash);
 }
