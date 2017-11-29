@@ -140,6 +140,8 @@ export class LaptopCarousel {
     this._position = 0;
     // Trigger immediate layout of laptops
     this.position = this._position;
+
+    this.shouldPushState = false;
   }
 
   // All indices represented
@@ -178,9 +180,12 @@ export class LaptopCarousel {
         laptop.lidAngle = (1 - closedAmount) * 100;
       });
       setTimeout(() => this.navigation.animationFinished(), this.laptops[0].transitionTime * 1000);
+
       // Make sure window hash and top nav bar reflect currently selected laptop
-      sneakyHashChange(this.laptopsByIndex[pos].hash);
+      sneakyHashChange(this.laptopsByIndex[pos].hash, this.shouldPushState);
       Navigation.navBarUpdate();
+      // Reset shouldPushState (should only push once until explicitly set to push again)
+      if (this.shouldPushState) this.shouldPushState = false;
     })();
   }
 

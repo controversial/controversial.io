@@ -18,11 +18,14 @@ export class Navigation {
 
     this.shown = false;
     this.navTransitionDuration = 300;
+    this.forbidPush = false;
+
+    window.addEventListener('popstate', () => { this.forbidPush = true; });
+    window.addEventListener('hashchange', () => this.navigateTo(Navigation.hash));
 
     // Navigation bar
 
     Navigation.navBarUpdate();
-    window.addEventListener('hashchange', () => this.navigateTo(Navigation.hash));
     // Configure navigation trigger clicked
     document.getElementById('navigation-trigger').addEventListener('click', () => this.toggle());
 
@@ -123,6 +126,13 @@ export class Navigation {
   /** Show navigation */
   async open() {
     await this.safeToAnimate;
+
+    // Navigation should be pushed onto the history stack for the first navigation of every visit to
+    // the navigation screen, UNLESS we got there by using the back/forward buttons or with the top
+    // navigation bar
+    if (!this.forbidPush) this.carousel.shouldPushState = true;
+    else this.forbidPush = false;
+
     return new Promise((resolve) => {
       // Only needs to happen if it's not already open
       if (!this.shown) {
