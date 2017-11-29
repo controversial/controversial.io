@@ -22,11 +22,7 @@ export class Navigation {
     // Navigation bar
 
     Navigation.navBarUpdate();
-    window.addEventListener('hashchange', Navigation.navBarUpdate);
-    // Navigate when top bar clicked
-    Array.from(document.getElementById('navigation').getElementsByTagName('a')).forEach((e) => {
-      e.addEventListener('click', () => this.navigateTo(e.getAttribute('href').substring(1)));
-    });
+    window.addEventListener('hashchange', () => this.navigateTo(Navigation.hash));
     // Configure navigation trigger clicked
     document.getElementById('navigation-trigger').addEventListener('click', () => this.toggle());
 
@@ -100,12 +96,10 @@ export class Navigation {
   /** Switch to a new page */
   navigateTo(hash) {
     return new Promise(async (resolve) => {
-      if (hash !== Navigation.hash) {
-        await this.open();
-        await this.carousel.getLaptopWithHash(hash).centerSelf();
-        await this.close();
-        resolve();
-      } else resolve();
+      await this.open();
+      await this.carousel.getLaptopWithHash(hash).centerSelf();
+      await this.close();
+      resolve();
     });
   }
 

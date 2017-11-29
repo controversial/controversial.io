@@ -1,5 +1,8 @@
 // Convert an element into a 3D laptop, moving its contents into the screen.
 
+import { sneakyHashChange } from '../helpers';
+import { Navigation } from '.';
+
 window.sassLengthVariable = 30;
 window.sassWidthVariable = (window.sassLengthVariable / 3) * 2;
 window.sassHeightVariable = (window.sassLengthVariable / 50);
@@ -176,7 +179,8 @@ export class LaptopCarousel {
       });
       setTimeout(() => this.navigation.animationFinished(), this.laptops[0].transitionTime * 1000);
       // Make sure window hash and top nav bar reflect currently selected laptop
-      window.location.hash = this.laptopsByIndex[pos].hash;
+      sneakyHashChange(this.laptopsByIndex[pos].hash);
+      Navigation.navBarUpdate();
     })();
   }
 
