@@ -30,3 +30,10 @@ export const ease = {
 export function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+
+/** Change hash without firing hashchange */
+export function sneakyHashChange(newHash) {
+  const hash = newHash.startsWith('#') ? newHash : `#${newHash}`;
+  window.history.pushState({}, '', hash);
+}
