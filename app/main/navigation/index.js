@@ -20,7 +20,9 @@ export class Navigation {
     this.navTransitionDuration = 300;
     this.forbidPush = false;
 
+    // Shouldn't push new state if state was arrived at by back button
     window.addEventListener('popstate', () => { this.forbidPush = true; });
+    // Navigate whenever hash changes
     window.addEventListener('hashchange', () => this.navigateTo(Navigation.hash));
 
     // Navigation bar
