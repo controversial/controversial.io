@@ -63,5 +63,4 @@ export default class HomeNavigationAnimation extends NavigationBase {
     this.elem.title.style.position = 'fixed';
     this.elem.wrapper.appendChild(this.elem.title);
   }
-
 }
