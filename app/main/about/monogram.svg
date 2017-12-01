@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" stroke-miterlimit="1.41" viewBox="0 0 500 500" clip-rule="evenodd" stroke-linejoin="round">
+  <path fill="#fff" d="M325 370h-25V190h-90v-25h90v-10h-90v-25h90l60 60v180h-25V165l-10-10v215z"/>
+  <path fill="#D9D9D9" d="M285 190v-25h15v25h-15zm15-35h-15v-25h15v25z"/>
+  <path fill="#fff" d="M450 130v60h-90l-25-25h115v-10H325l-25-25h150z"/>
+  <path fill="#D9D9D9" d="M375 165l25 25h-40l-25-25h40zm-10-10h-40l-25-25h40l25 25z"/>
+  <path fill="#fff" d="M120 310h120v25H120v10h120v25H120l-25-25V130h25v180zM60 130h25v205l-25-25V130z"/>
+  <path fill="#D9D9D9" d="M120 345h15v25h-15v-25zm0-10v-25h15v25h-15z"/>
+</svg>
