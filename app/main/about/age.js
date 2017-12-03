@@ -1,6 +1,8 @@
 export default class AgeRenderer {
-  constructor(elem, date) {
+  constructor(elem, date, accuracy = 9) {
+    this.elem = elem;
     this.date = date;
+    this.accuracy = accuracy;
   }
 
   getMs() {
@@ -25,5 +27,13 @@ export default class AgeRenderer {
 
   getYears() {
     return this.getDays() / 365;
+  }
+
+  render() {
+    this.elem.innerText = this.getYears().toFixed(this.accuracy);
+  }
+
+  loop() {
+    setInterval(() => this.render(), 30);
   }
 }
