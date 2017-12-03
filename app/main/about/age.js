@@ -1,4 +1,4 @@
-export default class DateRenderer {
+export default class AgeRenderer {
   constructor(elem, date) {
     this.date = date;
   }
