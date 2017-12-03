@@ -39,7 +39,6 @@ $gradient-2: #e96d71
   transform: translate(-50%, -50%)
 
   color: $white
-  font-size: 4vw // Inhereted only by ::before (so that it can be controlled by JS)
 
   .border
     position: absolute
@@ -60,15 +59,14 @@ $gradient-2: #e96d71
     &::after
       right: 0
 
-  &::before
-    content: 'LT'
+  .monogram
     position: absolute
     top: 0
     left: 50%
     transform: translate(-50%, -50%)
     font-family: 'Montserrat'
     font-weight: 600
-    font-size: inherit  // Has to be inherited so that it can be controlled by JS
+    font-size: 4vw
     letter-spacing: .33em
     padding-left: .33em
 
