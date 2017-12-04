@@ -17,4 +17,4 @@ A growing list of what I need to accomplish before the redesign is done
 - Improve performance
   - [ ] Implement a `derender` event on `NavigationAnimationBase` *Added 2017-12-03*
     - Can be used to halt expensive tasks when laptop contents are not visible
-  - [ ] Implement `will-change` everywhere *Added 2017-12-03*
+  - [x] Implement `will-change` everywhere *Added 2017-12-03*
