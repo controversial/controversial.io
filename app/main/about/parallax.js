@@ -32,12 +32,9 @@ export default class Parallax3D {
 
 
   disable() {
-    this.mousePos = { x: 0, y: 0 };
-    this.rotate();
     this.disabled = true;
   }
   enable() {
     this.disabled = false;
-    this.rotate();
   }
 }

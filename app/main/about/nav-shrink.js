@@ -19,6 +19,13 @@ export default class AboutNavigationAnimation extends NavigationBase {
   }
 
 
+  scale(laptopScreenCoordinates, progress) {
+    super.scale(laptopScreenCoordinates, progress);
+
+    window.parallax.rotmax = 10 - (progress * 10);
+    window.parallax.rotate();
+  }
+
   putInLaptop() {
     super.putInLaptop();
     // Calculate appropriate font size scale

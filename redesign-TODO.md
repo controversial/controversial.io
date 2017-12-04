@@ -5,7 +5,7 @@ A growing list of what I need to accomplish before the redesign is done
 
 
 - "About" page improvements
-  - [ ] Improved jump from 3D to flat while scaling
+  - [x] Improved jump from 3D to flat while scaling
     - Gradually reduce `rotmax` to 0 while shrinking and call `rotate` repeatedly
 
 
