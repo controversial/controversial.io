@@ -10,16 +10,21 @@ A growing list of what I need to accomplish before the redesign is done
 
 
 - `LaptopCarousel` improvements
-  - [ ] Close laptops completely and make animation more complex *Added 2017-12-03*
+  - [ ] Close laptops completely and make animation more complex
     - When shifting:
       1. Close current laptop
       2. Rotate
       3. Open new laptop
     - decouples hinge from rotation
-  - [ ] Open when attempting to scroll down (Listen for `mousewheel`) *Added 2017-12-03*
+  - [ ] Open when attempting to scroll down (Listen for `mousewheel`)
+
+
+- Navigation improvements
+  - [ ] Prevent Work page from flickering above other pages during page load
+    - Put a solid gray div over the page that is removed when initial navigation is completed
 
 
 - Improve performance
-  - [ ] Implement a `derender` event on `NavigationAnimationBase` *Added 2017-12-03*
+  - [ ] Implement a `derender` event on `NavigationAnimationBase`
     - Can be used to halt expensive tasks when laptop contents are not visible
-  - [x] Implement `will-change` everywhere *Added 2017-12-03*
+  - [x] Implement `will-change` everywhere
