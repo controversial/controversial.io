@@ -137,7 +137,8 @@ export class LaptopCarousel {
     this.laptopsByIndex = {};
     laptops.forEach((l) => { this.laptopsByIndex[l.index] = l; });
 
-    this._position = 0;
+    if (this.navigation) this._position = this.getLaptopWithHash(Navigation.hash).index;
+    else this._position = 0;
     // Trigger immediate layout of laptops
     this.position = this._position;
 
