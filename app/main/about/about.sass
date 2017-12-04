@@ -90,16 +90,20 @@ $gradient-2: #e96d71
     line-height: 1.5em
 
     a
+      display: inline-block
+
       color: inherit
       font-weight: 700
       text-decoration: none
 
-      background-color: transparentize($white, .75)
-      transition: background-color .25s
+      background-color: transparentize($white, .85)
+      transition: background-color .25s, transform .25s ease-out
       padding: 0 .3em .1em
+      transform: translateZ(10px)
 
       &:hover
-        background-color: transparentize($white, .6)
+        background-color: transparentize($white, .77)
+        transform: translateZ(40px)
 
 
 #age
