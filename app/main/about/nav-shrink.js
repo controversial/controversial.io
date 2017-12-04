@@ -28,6 +28,8 @@ export default class AboutNavigationAnimation extends NavigationBase {
       const [key, value] = pair;
       this.elem[key].style.fontSize = `calc(${value} * ${this.scaleX})`;
     });
+    // Turn off parallax effect
+    window.parallax.disable();
   }
 
 
@@ -37,5 +39,7 @@ export default class AboutNavigationAnimation extends NavigationBase {
     Array.from(Object.keys(this.fontSize)).forEach((n) => {
       this.elem[n].style.fontSize = '';
     });
+    // Re-enable parallax effect
+    window.parallax.enable();
   }
 }
