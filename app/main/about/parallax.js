@@ -31,7 +31,18 @@ export default class Parallax3D {
 
   /** Update rotation from a mouse event */
   update(e) {
-    // Flip mouse position and rotate by that amount
-    this.rotate(...Parallax3D.getMouse(e).map(n => -n).reverse());
+    if (!this.disabled) {
+      // Flip mouse position and rotate by that amount
+      this.rotate(...Parallax3D.getMouse(e).map(n => -n).reverse());
+    }
+  }
+
+
+  disable() {
+    this.disabled = true;
+    this.rotate(0, 0);
+  }
+  enable() {
+    this.disabled = false;
   }
 }
