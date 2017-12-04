@@ -29,7 +29,7 @@ export default class AboutNavigationAnimation extends NavigationBase {
       this.elem[key].style.fontSize = `calc(${value} * ${this.scaleX})`;
     });
     // Turn off parallax effect
-    window.parallax.disable();
+    if (window.parallax) window.parallax.disable();
   }
 
 
@@ -40,6 +40,6 @@ export default class AboutNavigationAnimation extends NavigationBase {
       this.elem[n].style.fontSize = '';
     });
     // Re-enable parallax effect
-    window.parallax.enable();
+    if (window.parallax) window.parallax.enable();
   }
 }
