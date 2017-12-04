@@ -30,6 +30,11 @@ $gradient-2: #e96d71
 
     z-index: 100
 
+    perspective: 1500
+
+    *
+      transform-style: preserve-3d
+
 
 .info
   width: 75%
@@ -48,6 +53,8 @@ $gradient-2: #e96d71
     border: 2px solid $white
     border-top: 0
 
+    transform: translateZ(-75px)
+
     &::before,
     &::after
       content: ''
@@ -63,7 +70,7 @@ $gradient-2: #e96d71
     position: absolute
     top: 0
     left: 50%
-    transform: translate(-50%, -50%)
+    transform: translate3d(-50%, -50%, 50px)
     font-family: 'Montserrat'
     font-weight: 600
     font-size: 4vw
