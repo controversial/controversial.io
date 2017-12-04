@@ -4,6 +4,11 @@ A growing list of what I need to accomplish before the redesign is done
 - "Work" page
 
 
+- "About" page improvements
+  - [ ] Improved jump from 3D to flat while scaling
+    - Gradually reduce `rotmax` to 0 while shrinking and call `rotate` repeatedly
+
+
 - `LaptopCarousel` improvements
   - [ ] Close laptops completely and make animation more complex *Added 2017-12-03*
     - When shifting:
