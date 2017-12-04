@@ -5,7 +5,7 @@ import HomeAnim from '../home/nav-shrink';
 import AboutAnim from '../about/nav-shrink';
 import WorkAnim from '../work/nav-shrink';
 
-import { ease } from '../helpers';
+import { ease, sleep } from '../helpers';
 
 const os = ease.outSin;
 
@@ -102,7 +102,9 @@ export class Navigation {
   navigateTo(hash) {
     return new Promise(async (resolve) => {
       await this.open();
+      await sleep(150);
       await this.carousel.getLaptopWithHash(hash).centerSelf();
+      await sleep(150);
       await this.close();
       resolve();
     });
