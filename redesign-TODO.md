@@ -28,3 +28,9 @@ A growing list of what I need to accomplish before the redesign is done
   - [ ] Implement a `derender` event on `NavigationAnimationBase`
     - Can be used to halt expensive tasks when laptop contents are not visible
   - [x] Implement `will-change` everywhere
+
+
+- Mobile optimization
+  - Improve responsive design
+    - [ ] Eventually maybe change laptops for smartphones on mobile devices?
+  - [ ] Support device accelerometer for about page
