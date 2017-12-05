@@ -52,6 +52,8 @@ export class Navigation {
   }
 
   keyBind() {
+    // Key controls
+
     window.addEventListener('keydown', (e) => {
       // Open navigation when down is pressed
       if (e.key === 'ArrowDown') this.open();
@@ -64,6 +66,19 @@ export class Navigation {
         if (e.key === 'ArrowRight') this.carousel.right();
         if (e.key === 'ArrowLeft') this.carousel.left();
       }
+    });
+
+    // Trackpad/scroll controls
+
+    window.addEventListener('wheel', (e) => {
+      // Vertical scroll
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        if (e.deltaY > 2) this.open();
+        if (e.deltaY < -2) this.close();
+      }
+
+      e.preventDefault();
+      return false;
     });
   }
 

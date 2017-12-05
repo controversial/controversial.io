@@ -16,7 +16,7 @@ A growing list of what I need to accomplish before the redesign is done
       2. Rotate
       3. Open new laptop
     - decouples hinge from rotation
-  - [ ] Open when attempting to scroll down (Listen for `mousewheel`)
+  - [x] Open when attempting to scroll down (Listen for `mousewheel`)
 
 
 - Navigation improvements
