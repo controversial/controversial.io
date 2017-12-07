@@ -89,7 +89,9 @@ export class Laptop {
   set translateY(val) { this._translateY = val; this._applyTransform(); }
   set translateZ(val) { this._translateZ = val; this._applyTransform(); }
 
+
   // Rotation
+
   get rotateX() { return this._rotateX; }
   get rotateY() { return this._rotateY; }
   get rotateZ() { return this._rotateZ; }
@@ -104,12 +106,32 @@ export class Laptop {
   set rotateX(val) { this._setRotate('X', val); }
   set rotateY(val) { this._setRotate('Y', val); }
   set rotateZ(val) { this._setRotate('Z', val); }
+  // Promise versions
+  _setRotatePromise(axis, val) {
+    return new Promise((resolve) => {
+      this._setRotate(axis, val);
+      setTimeout(resolve, this.transitionTime * 1000);
+    });
+  }
+  setRotateX(val) { return this._setRotatePromise('X', val); }
+  setRotateY(val) { return this._setRotatePromise('Y', val); }
+  setRotateZ(val) { return this._setRotatePromise('Z', val); }
+
 
   // Lid
+
   get lidAngle() { return this._lidAngle; }
   set lidAngle(val) { this._lidAngle = val; this._applyTransform(); }
+  setLidAngle(val) { // promise version
+    return new Promise((resolve) => {
+      this.lidAngle = val;
+      setTimeout(resolve, this.transitionTime * 1000);
+    });
+  }
+
 
   // Transition time
+
   get transitionTime() { return this._transitionTime; }
   set transitionTime(secs) {
     this._transitionTime = secs;
