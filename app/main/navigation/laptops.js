@@ -1,6 +1,6 @@
 // Convert an element into a 3D laptop, moving its contents into the screen.
 
-import { sneakyHashChange, sleep } from '../helpers';
+import { sneakyHashChange } from '../helpers';
 import { Navigation } from '.';
 
 window.sassLengthVariable = 30;
@@ -148,6 +148,7 @@ export class LaptopCarousel {
     this.container = container;
     this.laptops = laptops;
     this.navigation = navigation; // passing a Navigation instance is optional
+    this.offsetAngle = 30; // Laptops are 30 degrees from eachother
     // Sort by index
     this.laptops.sort((a, b) => a.index - b.index);
     // Check that there are no overlapping indices
@@ -185,23 +186,30 @@ export class LaptopCarousel {
   get position() { return this._position; }
   set position(pos) {
     (async () => {
+      // Wait for safe to animate if this is part of a Navigation
       if (this.navigation) {
-        await this.navigation.safeToAnimate;
-        this.navigation.animationStarted();
+        await this.navigation.safeToAnimate; // Wait for it to be safe to animate
+        this.navigation.animationStarted(); // Register that an animation is in progress
       }
-      const offsetAngle = 30; // Laptops are 30 degrees from eachother
+
+      // Close laptops
+      const lidsClosed = this.laptops.map(laptop => laptop.setLidAngle(0));
+      await Promise.all(lidsClosed); // Wait for all to close
+
+      // Update internal position value
       this._position = pos;
-      this.laptops.forEach((laptop) => {
-        const initialRot = laptop.index * -offsetAngle; // Basic laptop rotation
-        // Adjust laptop rotation given carousel position
-        const finalRot = initialRot + (this.position * offsetAngle);
-        laptop.rotateZ = LaptopCarousel.boundRotation(finalRot);
-        // Adjust lid closed given carousel position. Lid starts closing when position is 0.5 away
-        // from the center and becomes fully closed when position is 1.5 away from the center.
-        const distFromCenter = Math.abs(laptop.index - this.position);
-        const closedAmount = Math.max(Math.min(distFromCenter, 1), 0);
-        laptop.lidAngle = (1 - closedAmount) * 100;
+
+      // Rotate laptops
+      const rotations = this.laptops.map((laptop) => {
+        const baseRot = laptop.index * -this.offsetAngle; // laptop rotation when position is 0
+        const finalRot = baseRot + (this.position * this.offsetAngle); // Adjust for position
+        return laptop.setRotateZ(LaptopCarousel.boundRotation(finalRot)); // Set rotation
       });
+      await Promise.all(rotations); // Wait for all to rotate
+
+      if (this.position in this.laptopsByIndex) {
+        await this.laptopsByIndex[this.position].setLidAngle(100);
+      }
 
       // Make sure window hash and top nav bar reflect currently selected laptop
       sneakyHashChange(this.laptopsByIndex[pos].hash, this.shouldPushState);
@@ -209,7 +217,6 @@ export class LaptopCarousel {
       // Reset shouldPushState (should only push once until explicitly set to push again)
       if (this.shouldPushState) this.shouldPushState = false;
 
-      await sleep(this.laptops[0].transitionTime * 1000);
       this.navigation.animationFinished();
     })();
   }

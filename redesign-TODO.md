@@ -10,7 +10,7 @@ A growing list of what I need to accomplish before the redesign is done
 
 
 - `LaptopCarousel` improvements
-  - [ ] Close laptops completely and make animation more complex
+  - [x] Close laptops completely and make animation more complex
     - When shifting:
       1. Close current laptop
       2. Rotate
