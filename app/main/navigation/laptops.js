@@ -197,25 +197,29 @@ export class LaptopCarousel {
       await Promise.all(lidsClosed); // Wait for all to close
 
       // Update internal position value
+      const delta = Math.abs(this._position - pos);
       this._position = pos;
 
+      // Navigation things
+      sneakyHashChange(this.laptopsByIndex[pos].hash, this.shouldPushState); // change URL hash
+      Navigation.navBarUpdate(); // Change top bar appearance
+      // Reset shouldPushState (should only push once until explicitly set to push again)
+      if (this.shouldPushState) this.shouldPushState = false;
+
       // Rotate laptops
+      const oldTransitionTime = this.laptops[0].transitionTime;
       const rotations = this.laptops.map((laptop) => {
         const baseRot = laptop.index * -this.offsetAngle; // laptop rotation when position is 0
         const finalRot = baseRot + (this.position * this.offsetAngle); // Adjust for position
+        laptop.transitionTime = delta * oldTransitionTime;
         return laptop.setRotateZ(LaptopCarousel.boundRotation(finalRot)); // Set rotation
       });
       await Promise.all(rotations); // Wait for all to rotate
+      this.laptops.forEach((laptop) => { laptop.transitionTime = oldTransitionTime; });
 
       if (this.position in this.laptopsByIndex) {
         await this.laptopsByIndex[this.position].setLidAngle(100);
       }
-
-      // Make sure window hash and top nav bar reflect currently selected laptop
-      sneakyHashChange(this.laptopsByIndex[pos].hash, this.shouldPushState);
-      Navigation.navBarUpdate();
-      // Reset shouldPushState (should only push once until explicitly set to push again)
-      if (this.shouldPushState) this.shouldPushState = false;
 
       this.navigation.animationFinished();
     })();
