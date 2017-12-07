@@ -211,7 +211,7 @@ export class LaptopCarousel {
       const rotations = this.laptops.map((laptop) => {
         const baseRot = laptop.index * -this.offsetAngle; // laptop rotation when position is 0
         const finalRot = baseRot + (this.position * this.offsetAngle); // Adjust for position
-        laptop.transitionTime = delta * oldTransitionTime;
+        laptop.transitionTime = (1 + ((delta - 1) * 0.5)) * oldTransitionTime;
         return laptop.setRotateZ(LaptopCarousel.boundRotation(finalRot)); // Set rotation
       });
       await Promise.all(rotations); // Wait for all to rotate
