@@ -43,8 +43,8 @@ export class Laptop {
     children.forEach(child => this.screen.appendChild(child));
 
     // Lift up a bit on hover
-    this.wrapper.addEventListener('mouseenter', () => { this.translateZ = '1vw'; }, 0.25);
-    this.wrapper.addEventListener('mouseleave', () => { this.translateZ = 0; }, 0.25);
+    this.wrapper.addEventListener('mouseenter', () => { this.translateZ = '1vw'; });
+    this.wrapper.addEventListener('mouseleave', () => { this.translateZ = 0; });
 
     // Center self or close navigation on click
     this.wrapper.addEventListener('click', () => {
@@ -192,6 +192,7 @@ export class LaptopCarousel {
         this.navigation.animationStarted(); // Register that an animation is in progress
       }
 
+      this.laptops.forEach((laptop) => { laptop.translateZ = 0; });
       // Close laptops
       const lidsClosed = this.laptops.map(laptop => laptop.setLidAngle(0));
       await Promise.all(lidsClosed); // Wait for all to close
