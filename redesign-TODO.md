@@ -1,7 +1,7 @@
 # To-Do List for Redesign
 A growing list of what I need to accomplish before the redesign is done
 
-- "Work" page
+- [ ] "Work" page
 
 
 - "About" page improvements
