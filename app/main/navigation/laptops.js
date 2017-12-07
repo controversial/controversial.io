@@ -1,6 +1,6 @@
 // Convert an element into a 3D laptop, moving its contents into the screen.
 
-import { sneakyHashChange } from '../helpers';
+import { sneakyHashChange, sleep } from '../helpers';
 import { Navigation } from '.';
 
 window.sassLengthVariable = 30;
@@ -180,13 +180,15 @@ export class LaptopCarousel {
         const closedAmount = Math.max(Math.min(distFromCenter, 1), 0);
         laptop.lidAngle = (1 - closedAmount) * 100;
       });
-      setTimeout(() => this.navigation.animationFinished(), this.laptops[0].transitionTime * 1000);
 
       // Make sure window hash and top nav bar reflect currently selected laptop
       sneakyHashChange(this.laptopsByIndex[pos].hash, this.shouldPushState);
       Navigation.navBarUpdate();
       // Reset shouldPushState (should only push once until explicitly set to push again)
       if (this.shouldPushState) this.shouldPushState = false;
+
+      await sleep(this.laptops[0].transitionTime * 1000);
+      this.navigation.animationFinished();
     })();
   }
 
