@@ -18,7 +18,6 @@ export class Laptop {
     this._translateX = this._translateY = this._translateZ = 0;
     this._rotateX = this._rotateY = this._rotateZ = 0;
     this._lidAngle = Laptop.defaultLidAngle;
-    this._transitionTime = 0.3;
 
     this.elem.classList.add('laptop3d');
     if (typeof this.index !== 'undefined') this.elem.setAttribute('data-laptop3d-index', this.index);
@@ -41,6 +40,9 @@ export class Laptop {
     });
     // Add all former children to the new screen element
     children.forEach(child => this.screen.appendChild(child));
+
+    // Set transition time
+    this.transitionTime = this.baseTransitionTime = 0.3;
 
     // Lift up a bit on hover
     this.wrapper.addEventListener('mouseenter', () => { this.translateZ = '1vw'; });
@@ -208,15 +210,14 @@ export class LaptopCarousel {
       if (this.shouldPushState) this.shouldPushState = false;
 
       // Rotate laptops
-      const oldTransitionTime = this.laptops[0].transitionTime;
       const rotations = this.laptops.map((laptop) => {
         const baseRot = laptop.index * -this.offsetAngle; // laptop rotation when position is 0
         const finalRot = baseRot + (this.position * this.offsetAngle); // Adjust for position
-        laptop.transitionTime = (1 + ((delta - 1) * 0.5)) * oldTransitionTime;
+        laptop.transitionTime = (1 + ((delta - 1) * 0.5)) * this.baseTransitionTime;
         return laptop.setRotateZ(LaptopCarousel.boundRotation(finalRot)); // Set rotation
       });
       await Promise.all(rotations); // Wait for all to rotate
-      this.setTransitionTime(oldTransitionTime);
+      this.transitionTime = this.baseTransitionTime;
 
       if (this.position in this.laptopsByIndex) {
         await this.laptopsByIndex[this.position].setLidAngle(100);
@@ -233,8 +234,22 @@ export class LaptopCarousel {
     if (this.position < this.maxIndex) this.position += 1;
   }
 
-  setTransitionTime(secs) {
+  set transitionTime(secs) {
     this.laptops.forEach((l) => { l.transitionTime = secs; });
+  }
+
+  get transitionTime() {
+    const answer = this.laptops[0].transitionTime;
+    // Warn if not every laptop has the same transitionTime
+    if (!this.laptops.every(laptop => laptop.transitionTime === answer)) console.warn('LaptopCarousel.transitionTime called but transitionTime of laptops is inconsistent');
+    return answer;
+  }
+
+  get baseTransitionTime() {
+    const answer = this.laptops[0].baseTransitionTime;
+    // Warn if not every laptop has the same baseTransitionTime
+    if (!this.laptops.every(laptop => laptop.baseTransitionTime === answer)) console.warn('LaptopCarousel.baseTransitionTime called but baseTransitionTime of laptops is inconsistent');
+    return answer;
   }
 
   addLaptop(laptop) {
