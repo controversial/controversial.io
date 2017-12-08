@@ -216,7 +216,7 @@ export class LaptopCarousel {
         return laptop.setRotateZ(LaptopCarousel.boundRotation(finalRot)); // Set rotation
       });
       await Promise.all(rotations); // Wait for all to rotate
-      this.laptops.forEach((laptop) => { laptop.transitionTime = oldTransitionTime; });
+      this.setTransitionTime(oldTransitionTime);
 
       if (this.position in this.laptopsByIndex) {
         await this.laptopsByIndex[this.position].setLidAngle(100);
