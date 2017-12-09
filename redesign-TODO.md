@@ -1,37 +1,35 @@
 # To-Do List for Redesign
 A growing list of what I need to accomplish before the redesign is done
 
-- [ ] "Work" page
 
+#### Home page
 
-- "About" page improvements
-  - [x] Improved jump from 3D to flat while scaling
-    - Gradually reduce `rotmax` to 0 while shrinking and call `rotate` repeatedly
-  - [ ] Reveal social icons when "find me online" clicked
-    - 3d "flip" animation around X axis?
+#### About page
+- [x] Improved jump from 3D to flat while scaling
+  - Gradually reduce `rotmax` to 0 while shrinking and call `rotate` repeatedly
+- [ ] Reveal social icons when "find me online" clicked
+  - 3d "flip" animation around X axis?
 
+#### Work page
+- [ ] the whole thing
 
-- `LaptopCarousel` improvements
-  - [x] Close laptops completely and make animation more complex
-    - When shifting:
-      1. Close current laptop
-      2. Rotate
-      3. Open new laptop
-    - decouples hinge from rotation
-  - [x] Open when attempting to scroll down (Listen for `mousewheel`)
-  - [x] Don't fuck up animations when triggering too many animations at once
+#### Navigation
+- [x] Close laptops completely and make animation more complex
+  - When shifting:
+    1. Close current laptop
+    2. Rotate
+    3. Open new laptop
+  - decouples hinge from rotation
+- [x] Open when attempting to scroll down (Listen for `mousewheel`)
+- [x] Don't fuck up animations when triggering too many animations at once
+- [ ] Prevent Work page from flickering above other pages during page load
+  - Put a solid gray div over the page that is removed when initial navigation is completed
 
-
-- Navigation improvements
-  - [ ] Prevent Work page from flickering above other pages during page load
-    - Put a solid gray div over the page that is removed when initial navigation is completed
-
-
-- Improve performance
+#### Misc
+- Performance improvements
   - [ ] Implement a `derender` event on `NavigationAnimationBase`
     - Can be used to halt expensive tasks when laptop contents are not visible
   - [x] Implement `will-change` everywhere
-
 
 - Mobile optimization
   - Improve responsive design
