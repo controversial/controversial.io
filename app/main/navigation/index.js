@@ -83,15 +83,31 @@ export class Navigation {
   }
 
 
+  /** Returns a Promise that will resolve when it's safe to animate. Only the first animation to
+    * await safeToAnimate should get back a functional Promise. If multiple animations awaited
+    * safeToAnimate and each was given a functional Promise, each animation would execute at the
+    * same time when the Promise resolved. Instead, we return new Promise(() => {}) to all but the
+    * first function to access safeToAnimate, which will never return, ensuring that only the first
+    * animation to await safeToAnimate ever gets played, preventing overlap while also preventing
+    * long chains of built-up animations playing in sequence in a queue.
+    */
+  get safeToAnimate() {
+    if (this._safeToAnimate) {
+      const promise = this._safeToAnimate;
+      this._safeToAnimate = new Promise(() => {});
+      return promise;
+    }
+    return undefined;
+  }
   /** Sets up promise to be resolved */
   animationStarted() {
-    if (typeof this.safeToAnimate === 'undefined') {
+    if (typeof this._safeToAnimate === 'undefined') {
       // This promise will be resolved when an animation completes.
       // This promise can be awaited to prevent animation overlap
-      this.safeToAnimate = new Promise((resolve) => {
+      this._safeToAnimate = new Promise((resolve) => {
         this.animationFinished = () => {
           resolve();
-          this.safeToAnimate = undefined;
+          this._safeToAnimate = undefined;
         };
       });
     } else {

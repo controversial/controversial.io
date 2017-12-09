@@ -19,6 +19,7 @@ A growing list of what I need to accomplish before the redesign is done
       3. Open new laptop
     - decouples hinge from rotation
   - [x] Open when attempting to scroll down (Listen for `mousewheel`)
+  - [x] Don't fuck up animations when triggering too many animations at once
 
 
 - Navigation improvements
