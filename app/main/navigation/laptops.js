@@ -7,9 +7,18 @@ window.sassLengthVariable = 30;
 window.sassWidthVariable = (window.sassLengthVariable / 3) * 2;
 window.sassHeightVariable = (window.sassLengthVariable / 50);
 
+/** Represents a CSS 3D laptop, and allows easy control over all of its attributes */
 export class Laptop {
   static get defaultLidAngle() { return 100; }
 
+  /**
+   * Manipulate the provided elment's HTML structure and CSS classes in order to convert it into a
+   * laptop.
+   * @param {HTMLElement} elem - the element to be converted into a laptop. Its contents will be
+   * replaced by a 3D laptop, and any pre-existing contents will be moved into the screen of the
+   * laptop.
+   * @param {number} index - the position in a LaptopCarousel that this laptop should occupy.
+   */
   constructor(elem, index) {
     this.elem = elem;
     this.index = index;
@@ -59,6 +68,11 @@ export class Laptop {
     this._applyTransform();
   }
 
+  /**
+   * Move a LaptopCarousel so that this laptop is the one in the central position
+   * @return {Promise} A promise that will resolve after the shifting animation is finished (unless
+   * there is no carousel attached, in which case it will reject immediately).
+   */
   centerSelf() {
     return new Promise((resolve, reject) => {
       // Requires a carousel to be attached
@@ -77,6 +91,10 @@ export class Laptop {
     });
   }
 
+  /**
+   * Update the HTML laptop's CSS in order to reflect changes that were made to its JS
+   * representation.
+   */
   _applyTransform() {
     this.wrapper.style.transform = [
       `rotateX(${this._rotateX})`,
@@ -107,6 +125,11 @@ export class Laptop {
   get rotateY() { return this._rotateY; }
   get rotateZ() { return this._rotateZ; }
 
+  /**
+   * Set the rotation for a specific axis to a specific value
+   * @param {string} axis - either X, Y, or Z
+   * @param {number|string} - either a number of degrees or a string ending in `deg`
+   */
   _setRotate(axis, val) {
     if (!['X', 'Y', 'Z'].includes(axis)) throw new Error('Axis must be one of X Y or Z'); // val must be XYZ
     const prop = `_rotate${axis}`; // Property that we're setting
@@ -118,6 +141,12 @@ export class Laptop {
   set rotateY(val) { this._setRotate('Y', val); }
   set rotateZ(val) { this._setRotate('Z', val); }
   // Promise versions
+  /**
+   * Set the rotation for a specific axis to a specific value
+   * @param {string} axis - either X, Y, or Z
+   * @param {number|string} - either a number of degrees or a string ending in `deg`
+   * @return {Promise} A promise that will resolve when rotation is complete
+   */
   _setRotatePromise(axis, val) {
     return new Promise((resolve) => {
       // Resolve instantly if nothing is changing
@@ -138,6 +167,11 @@ export class Laptop {
 
   get lidAngle() { return this._lidAngle; }
   set lidAngle(val) { this._lidAngle = val; this._applyTransform(); }
+  /**
+   * Set the angle of the lid
+   * @param {number} val - the number of degrees to set the lid to (0 is closed)
+   * @return {Promise} A promise that will resolve when the angle adjustment animation is completed
+   */
   setLidAngle(val) { // promise version
     return new Promise((resolve) => {
       // Resolve instantly if nothing is changing
