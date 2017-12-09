@@ -268,9 +268,6 @@ export class Navigation {
 }
 
 
-/** Sets up a Navigation object with AboutAnim, HomeAnim, and WorkAnim as its pages, and assigns it
-  * to window.navigation and window.nav
-  */
 export default function init() {
   window.nav = window.navigation = new Navigation(
     new AboutAnim(),
