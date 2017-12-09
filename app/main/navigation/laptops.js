@@ -194,7 +194,9 @@ export class LaptopCarousel {
         this.navigation.animationStarted(); // Register that an animation is in progress
       }
 
+      // Cancel hover effect
       this.laptops.forEach((laptop) => { laptop.translateZ = 0; });
+
       // Close laptops
       const lidsClosed = this.laptops.map(laptop => laptop.setLidAngle(0));
       await Promise.all(lidsClosed); // Wait for all to close
@@ -219,6 +221,7 @@ export class LaptopCarousel {
       await Promise.all(rotations); // Wait for all to rotate
       this.transitionTime = this.baseTransitionTime;
 
+      // Open the selected laptop
       if (this.position in this.laptopsByIndex) {
         await this.laptopsByIndex[this.position].setLidAngle(100);
       }
