@@ -3,12 +3,10 @@
 .glitch
   $anim: transform 7s infinite, distort 8s infinite, flicker 9s infinite
   position: relative
-  color: $accent
+  color: $white
   animation: $anim
   animation-timing-function: step-end // No transition between animation frames
 
-  // This covers up the $accent colored text with white so that the $accent color only shows through
-  // during the 'transform' or 'glitch' animations
   &::after
     content: 'Luke Deen Taylor'
 
@@ -16,8 +14,9 @@
     width: 100%
     top: 0
     left: 0
+    z-index: -1
 
-    color: $white
+    color: $accent
     animation: $anim
     animation-timing-function: step-end
 
