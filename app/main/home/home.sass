@@ -44,9 +44,11 @@
     padding-left: 2vw
     line-height: 150%
 
+    animation: flicker-in 2s linear
+
     .glitch,
     .glitch::after
-      animation-delay: 2s
+      animation-delay: 2.5s
 
 
 
@@ -70,3 +72,79 @@
       left: 0
       width: 100%
       height: 100%
+
+
+// Flickering entrance
+
+@keyframes flicker-in
+  0%
+    opacity: 0
+
+  20%
+    opacity: 0
+
+  20.1%
+    opacity: 1
+
+  25%
+    opacity: 1
+
+  25.1%
+    opacity: 0
+
+  32%
+    opacity: 0
+
+  32.1%
+    opacity: 1
+
+  40%
+    opacity: 1
+
+  40.1%
+    opacity: 0
+
+  42%
+    opacity: 0
+
+  42.1%
+    opacity: 1
+
+  45%
+    opacity: 1
+
+  45.1%
+    opacity: 0
+
+  55%
+    opacity: 0
+
+  55.1%
+    opacity: 1
+
+  65%
+    opacity: 1
+
+  65.1%
+    opacity: 0
+
+  67%
+    opacity: 0
+
+  67.1%
+    opacity: 1
+
+  80%
+    opacity: 1
+
+  80.1%
+    opacity: 0
+
+  81%
+    opacity: 0
+
+  81.1%
+    opacity: 1
+
+  100%
+    opacity: 1
