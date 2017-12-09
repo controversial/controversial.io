@@ -12,7 +12,10 @@ const os = ease.outSin;
 /** Coordinates navigation */
 export class Navigation {
 
-
+  /**
+   * Initialize
+   * @param {...NavigationAnimationBase} pages - the pages to include in this Navigation
+   */
   constructor(...pages) {
     this.pages = Array.from(pages);
 
@@ -51,6 +54,7 @@ export class Navigation {
     this.keyBind();
   }
 
+  /** Set up miscellaneous key/scroll bindings for controlling navigation easily */
   keyBind() {
     // Key controls
 
@@ -83,14 +87,15 @@ export class Navigation {
   }
 
 
-  /** Returns a Promise that will resolve when it's safe to animate. Only the first animation to
-    * await safeToAnimate should get back a functional Promise. If multiple animations awaited
-    * safeToAnimate and each was given a functional Promise, each animation would execute at the
-    * same time when the Promise resolved. Instead, we return new Promise(() => {}) to all but the
-    * first function to access safeToAnimate, which will never return, ensuring that only the first
-    * animation to await safeToAnimate ever gets played, preventing overlap while also preventing
-    * long chains of built-up animations playing in sequence in a queue.
-    */
+  /**
+   * Returns a Promise that will resolve when it's safe to animate. Only the first animation to
+   * await safeToAnimate should get back a functional Promise. If multiple animations awaited
+   * safeToAnimate and each was given a functional Promise, each animation would execute at the
+   * same time when the Promise resolved. Instead, we return new Promise(() => {}) to all but the
+   * first function to access safeToAnimate, which will never return, ensuring that only the first
+   * animation to await safeToAnimate ever gets played, preventing overlap while also preventing
+   * long chains of built-up animations playing in sequence in a queue.
+   */
   get safeToAnimate() {
     if (this._safeToAnimate) {
       const promise = this._safeToAnimate;
@@ -99,7 +104,10 @@ export class Navigation {
     }
     return undefined;
   }
-  /** Sets up promise to be resolved */
+  /**
+   * Registers that an animation is in progress and that others should wait (by storing
+   * safeToAnimate promise)
+   */
   animationStarted() {
     if (typeof this._safeToAnimate === 'undefined') {
       // This promise will be resolved when an animation completes.
@@ -116,7 +124,7 @@ export class Navigation {
   }
 
 
-  /** Get the current page hash without the # */
+  /** Returns the current URL hash without the # */
   static get hash() {
     return window.location.hash.startsWith('#')
       ? window.location.hash.substring(1)
@@ -124,12 +132,20 @@ export class Navigation {
   }
 
 
+  /**
+   * Gets the active page (the page centered on this.carousel)
+   * @return {NavigationAnimationBase} the NavigationAnimationBase subclass that corresponds to the
+   * page currently centered on the carousel.
+   */
   get currentPage() {
     return this.pages[this.carousel.position + 1];
   }
 
 
-  /** Switch to a new page */
+  /**
+   * Switch to a different page
+   * @param {String} hash - the hash (without a leading #) to navigate to
+   */
   navigateTo(hash) {
     return new Promise(async (resolve) => {
       await this.open();
@@ -142,7 +158,10 @@ export class Navigation {
   }
 
 
-  /** Move to a specific point in the shrink animation */
+  /**
+   * Move to a specific point in the shrink animation
+   * @param {number} progress - progress in animation (0 being full size, 1 being fully shrunk)
+   */
   transitionUpdate(progress) {
     return new Promise((resolve) => {
       // Update navigation bar opacity
@@ -158,7 +177,10 @@ export class Navigation {
   }
 
 
-  /** Show navigation */
+  /**
+   * Show navigation
+   * @return {Promise} a promise that will resolve when the opening animation has finished.
+   */
   async open() {
     await this.safeToAnimate;
 
@@ -192,7 +214,10 @@ export class Navigation {
     });
   }
 
-  /** Hide navigation */
+  /**
+   * Hide navigation
+   * @return {Promise} a promise that will resolve when the closing animation has finished.
+   */
   async close() {
     await this.safeToAnimate;
     return new Promise((resolve) => {
@@ -219,7 +244,10 @@ export class Navigation {
     });
   }
 
-  /** Toggle navigation */
+  /**
+   * Toggle navigation
+   * @return {Promise} the promise returned by this.open or this.close
+   */
   toggle() {
     if (this.shown) return this.close();
     return this.open();
@@ -238,6 +266,9 @@ export class Navigation {
 }
 
 
+/** Sets up a Navigation object with AboutAnim, HomeAnim, and WorkAnim as its pages, and assigns it
+  * to window.navigation and window.nav
+  */
 export default function init() {
   window.nav = window.navigation = new Navigation(
     new AboutAnim(),
