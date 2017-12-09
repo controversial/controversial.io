@@ -1,3 +1,5 @@
+/** @module WorkNavigationAnimation */
+
 import NavigationBase from '../navigation/anim-base';
 
 /**

@@ -1,3 +1,5 @@
+/** @module Laptops */
+
 // Convert an element into a 3D laptop, moving its contents into the screen.
 
 import { sneakyHashChange } from '../helpers';

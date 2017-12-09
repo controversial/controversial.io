@@ -1,3 +1,5 @@
+/** @module HomeNavigationAnimation */
+
 // Behavior for the 'shrink into laptop' animation for the home page
 import NavigationBase from '../navigation/anim-base';
 

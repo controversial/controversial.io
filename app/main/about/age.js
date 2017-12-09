@@ -1,3 +1,5 @@
+/** @module AgeRenderer */
+
 /** Displays an age in years in an HTML element */
 export default class AgeRenderer {
   /**

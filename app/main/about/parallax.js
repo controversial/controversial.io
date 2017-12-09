@@ -1,3 +1,5 @@
+/** @module Parallax3D */
+
 /** An effect that will rotate a scene in 3D based on mouse position, using CSS transforms */
 export default class Parallax3D {
   /**

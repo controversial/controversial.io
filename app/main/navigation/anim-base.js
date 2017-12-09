@@ -1,3 +1,5 @@
+/** @module NavigationAnimationBase */
+
 // Base class for each page to implement custom scaling behavior
 export default class NavigationAnimationBase {
   // Helper methods

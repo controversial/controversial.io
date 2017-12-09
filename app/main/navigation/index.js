@@ -1,3 +1,5 @@
+/** @module Navigation */
+
 import { Laptop, LaptopCarousel } from './laptops';
 
 // Subclasses of NavigationAnimationBase

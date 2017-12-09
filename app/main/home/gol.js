@@ -1,3 +1,5 @@
+/** @module Life */
+
 /* Conway's Game of Life */
 
 // [].fill polyfill (by me).
