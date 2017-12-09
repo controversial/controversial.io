@@ -15,5 +15,5 @@ export default function init() {
   // Disable if not shown
   if (Navigation.hash !== 'about') window.parallax.disable();
   // Set up age renderer
-  new AgeRenderer(document.getElementById('age'), '11/03/2001 17:23').loop();
+  new AgeRenderer(document.getElementById('age'), Date.parse('11/03/2001 17:23')).loop();
 }

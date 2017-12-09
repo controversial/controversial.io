@@ -6,7 +6,7 @@ export default class AgeRenderer {
   }
 
   getMs() {
-    return (new Date() - Date.parse(this.date));
+    return (new Date() - this.date);
   }
 
   getSeconds() {
