@@ -60,11 +60,20 @@ export class Laptop {
   }
 
   centerSelf() {
-    return new Promise((resolve) => {
-      if (this.carousel && this.index !== this.carousel.position) {
-        this.carousel.position = this.index;
-        setTimeout(resolve, this.transitionTime * 1000);
-      } else resolve();
+    return new Promise((resolve, reject) => {
+      // Requires a carousel to be attached
+      if (this.carousel) {
+        // Resolve instantly if nothing is changing
+        if (this.index === this.carousel.position) resolve();
+        // Otherwise change and resolve when CSS animation will have finished
+        else {
+          this.carousel.position = this.index;
+          setTimeout(resolve, this.transitionTime * 1000);
+        }
+      // If there isn't a carousel, reject
+      } else {
+        reject('No carousel connected');
+      }
     });
   }
 
@@ -111,8 +120,13 @@ export class Laptop {
   // Promise versions
   _setRotatePromise(axis, val) {
     return new Promise((resolve) => {
-      this._setRotate(axis, val);
-      setTimeout(resolve, this.transitionTime * 1000);
+      // Resolve instantly if nothing is changing
+      if (this[`_rotate${axis}`] === val) resolve();
+      // Otherwise change and resolve when CSS animation will have finished
+      else {
+        this._setRotate(axis, val);
+        setTimeout(resolve, this.transitionTime * 1000);
+      }
     });
   }
   setRotateX(val) { return this._setRotatePromise('X', val); }
@@ -126,8 +140,13 @@ export class Laptop {
   set lidAngle(val) { this._lidAngle = val; this._applyTransform(); }
   setLidAngle(val) { // promise version
     return new Promise((resolve) => {
-      this.lidAngle = val;
-      setTimeout(resolve, this.transitionTime * 1000);
+      // Resolve instantly if nothing is changing
+      if (this.lidAngle === val) resolve();
+      // Otherwise change and resolve when CSS animation will have finished
+      else {
+        this.lidAngle = val;
+        setTimeout(resolve, this.transitionTime * 1000);
+      }
     });
   }
 
