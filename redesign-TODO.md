@@ -1,7 +1,8 @@
 # To-Do List for Redesign
 A growing list of what I need to accomplish before the redesign is done
 
-
+---
+## Features to implement
 #### Home page
 
 #### About page
@@ -21,9 +22,6 @@ A growing list of what I need to accomplish before the redesign is done
     3. Open new laptop
   - decouples hinge from rotation
 - [x] Open when attempting to scroll down (Listen for `mousewheel`)
-- [x] Don't fuck up animations when triggering too many animations at once
-- [ ] Prevent Work page from flickering above other pages during page load
-  - Put a solid gray div over the page that is removed when initial navigation is completed
 
 #### Misc
 - Performance improvements
@@ -35,3 +33,17 @@ A growing list of what I need to accomplish before the redesign is done
   - Improve responsive design
     - [ ] Eventually maybe change laptops for smartphones on mobile devices?
   - [ ] Support device accelerometer for about page
+
+---
+
+## Bugs to fix
+
+#### Home page
+#### About page
+#### Work page
+#### Navigation
+- [x] Don't fuck up animations when triggering too many animations at once
+- [ ] Prevent Work page from flickering above other pages during page load
+  - Put a solid gray div over the page that is removed when initial navigation is completed
+- [ ] Flicker of pages being too small when opening
+  - Scale is applied before element is removed, perhaps?
