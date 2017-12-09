@@ -2,10 +2,21 @@
 export default class NavigationAnimationBase {
   // Helper methods
 
+  /**
+   * Interpolation of a value given a start, an end, and progress
+   * @param {number} a - the start value
+   * @param {number} b - the end value
+   * @param {number} progress - how far between the start and end
+   */
   static tween(a, b, progress) {
     return a + ((b - a) * progress);
   }
 
+  /**
+   * Returns the center of an object that resembles a DOMRect object
+   * @param {DomRect} rect - the rectangle to find the center of
+   * @return {object} - an object `{ x: x, y: y }` representing the center
+   */
   static getCenter(rect) {
     return { x: (rect.left + rect.right) / 2, y: (rect.top + rect.bottom) / 2 };
   }
@@ -29,6 +40,11 @@ export default class NavigationAnimationBase {
   }
 
 
+  /**
+   * Make all changes necessary to go to a specific progress value, including scaling and addition/
+   * removal from laptop.
+   * @param {number} progress - progress in animation (0 being full size, 1 being fully shrunk)
+   */
   update(progress) {
     // Adjust scale
     this.scale(
@@ -46,6 +62,12 @@ export default class NavigationAnimationBase {
 
   // These methods should be implemented by all subclasses
 
+  /**
+   * Adjust scale of page
+   * @param {DomRect} laptopScreenCoordinates - the coordinates of the laptop screen into which
+   * we're scaling
+   * @param {number} progress - progress in animation (0 being full size, 1 being fully shrunk)
+   */
   scale(laptopScreenCoordinates, progress) {
     // 1. Fit container to laptop screen
 
@@ -76,6 +98,9 @@ export default class NavigationAnimationBase {
     return [translationNeeded, scaleNeeded];
   }
 
+  /**
+   * Move the page in DOM from its wrapper to the laptop screen.
+   */
   putInLaptop() {
     this.elem.container.style.position = 'absolute';
     this.elem.container.style.transform = '';
@@ -90,6 +115,9 @@ export default class NavigationAnimationBase {
     this.inLaptop = true;
   }
 
+  /**
+   * Move the page in DOM from the laptop screen to its wrapper.
+   */
   removeFromLaptop() {
     this.elem.container.style.position = 'fixed';
     this.elem.container.style.top = this.elem.container.style.left = 0;
