@@ -8,7 +8,8 @@
     "lint-js": "eslint .",
     "lint": "npm run -s lint-sass && npm run -s lint-js",
     "test": "ava -v",
-    "docs": "jsdoc app -r -d docs -t node_modules/minami --verbose"
+    "docs": "jsdoc app -r -d docs -t node_modules/minami --verbose",
+    "deploy": "npm run -s build && now deploy build/main --alias luke.now.sh"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0"
@@ -34,6 +35,7 @@
     "jsdoc": "^3.5.5",
     "minami": "^1.1.1",
     "node-sass": "^4.5.3",
+    "now": "^8.5.4",
     "postcss-loader": "^2.0.8",
     "sass-lint": "^1.12.1",
     "sass-loader": "^6.0.6",
@@ -73,5 +75,8 @@
         "es2016"
       ]
     }
+  },
+  "now": {
+    "files": [ "build/main" ]
   }
 }
