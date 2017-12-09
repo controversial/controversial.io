@@ -1,5 +1,12 @@
+/** An effect that will rotate a scene in 3D based on mouse position, using CSS transforms */
 export default class Parallax3D {
-
+  /**
+   * Initialize
+   * @param {HTMLElement} element - the element to be rotated. This should contain children with
+   * varying 3D transformations so that a 3D parallax effect is created.
+   * @param {String} initialTransform - the CSS transformations to be preserved on the object when
+   * 3D transformation is adjusted.
+   */
   constructor(element, initialTransform) {
     this.elem = element;
     this.initialTransform = initialTransform;
@@ -10,6 +17,12 @@ export default class Parallax3D {
   }
 
 
+  /**
+   * Update internal storage of mouse position based on a mouse event. Mouse position is stored as
+   * an object `{ x: xpos, y: ypos }` where xpos and ypos are both values in the range [-1, 1] and
+   * (0, 0) is the center of the screen.
+   * @param {MouseEvent} e - passed from the event listener
+   */
   mouse(e) {
     const w = window.innerWidth; const h = window.innerHeight;
     const halfw = w / 2; const halfh = h / 2;
@@ -19,7 +32,7 @@ export default class Parallax3D {
   }
 
 
-  /** Adjust rotation based on values from -1 to 1 */
+  /** Adjust 3D rotation based on the values stored in `this.mousePos` */
   rotate() {
     if (!this.disabled) {
       this.elem.style.transform = [
@@ -31,9 +44,11 @@ export default class Parallax3D {
   }
 
 
+  /** Interrupt changes to rotation */
   disable() {
     this.disabled = true;
   }
+  /** Resume changes to rotation */
   enable() {
     this.disabled = false;
   }
