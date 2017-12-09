@@ -1,5 +1,9 @@
 import NavigationBase from '../navigation/anim-base';
 
+/**
+ * A class implementing scale behavior for the Work page
+ * @extends NavigationAnimationBase
+ */
 export default class WorkNavigationAnimation extends NavigationBase {
   constructor() {
     super();

@@ -1,7 +1,10 @@
 // Behavior for the 'shrink into laptop' animation for the home page
 import NavigationBase from '../navigation/anim-base';
 
-
+/**
+ * A class implementing scale behavior for the Home page
+ * @extends NavigationAnimationBase
+ */
 export default class HomeNavigationAnimation extends NavigationBase {
   constructor() {
     super();

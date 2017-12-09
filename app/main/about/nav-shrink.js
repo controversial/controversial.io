@@ -1,5 +1,9 @@
 import NavigationBase from '../navigation/anim-base';
 
+/**
+ * A class implementing scale behavior for the About page
+ * @extends NavigationAnimationBase
+ */
 export default class AboutNavigationAnimation extends NavigationBase {
   constructor() {
     super();
