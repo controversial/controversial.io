@@ -24,7 +24,7 @@ export default class Parallax3D {
     if (!this.disabled) {
       this.elem.style.transform = [
         this.initialTransform,
-        `rotateX(${-this.mousePos.y * this.rotmax}deg)`,
+        `rotateX(${this.mousePos.y * this.rotmax}deg)`,
         `rotateY(${-this.mousePos.x * this.rotmax}deg)`,
       ].join(' ');
     }
