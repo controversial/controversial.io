@@ -29,7 +29,7 @@ export default class AboutNavigationAnimation extends NavigationBase {
     super.scale(laptopScreenCoordinates, progress);
 
     if (window.parallax) {
-      window.parallax.rotmax = 10 - (progress * 10);
+      window.parallax.rotmax = (1 - progress) * 7.5;
       window.parallax.rotate();
     }
   }
