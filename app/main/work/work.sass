@@ -37,14 +37,14 @@
     padding-left: 2vw
     line-height: 150%
 
-    .glitch
-      &::after
-        content: 'Coming Soon'
+    .glitch::after
+      content: 'Coming Soon'
+      color: transparentize($white, .5)
 
   .container
     height: 100%
     width: 100%
-    background-color: $dark-2
+    background: linear-gradient(to bottom right, $gradient-4a 10%, $gradient-4b 90%)
 
     position: fixed
     left: 0
