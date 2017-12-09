@@ -68,7 +68,7 @@ export class Laptop {
         // Otherwise change and resolve when CSS animation will have finished
         else {
           this.carousel.position = this.index;
-          setTimeout(resolve, this.transitionTime * 1000);
+          setTimeout(resolve, this.carousel.getTimeToPos(this.index));
         }
       // If there isn't a carousel, reject
       } else {
@@ -247,6 +247,16 @@ export class LaptopCarousel {
 
       this.navigation.animationFinished();
     })();
+  }
+
+  /** Return the number of milliseconds it would take to transition to a given position */
+  getTimeToPos(pos) {
+    let total = 0;
+    const delta = Math.abs(this._position - pos);
+    total += this.transitionTime; // Close laptops
+    total += (1 + ((delta - 1) * 0.5)) * this.baseTransitionTime; // Rotate laptops
+    total += this.baseTransitionTime; // Open selected laptop
+    return total * 1000;
   }
 
   left() {
