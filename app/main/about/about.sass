@@ -69,7 +69,8 @@ $gradient-5b: #764ba2
     border: 2px solid $white
     border-top: 0
 
-    transform: translateZ(-50px)
+    transform: translateZ(-50px) rotateY(0)
+    transition: transform .75s
 
     &::before,
     &::after
@@ -102,6 +103,8 @@ $gradient-5b: #764ba2
     padding: 3em
     font-size: calc(13px + .75vw)
     line-height: 1.5em
+    transform: rotateY(0deg)
+    transition: transform .75s
 
     a
       display: inline-block
@@ -119,6 +122,12 @@ $gradient-5b: #764ba2
         background-color: transparentize($white, .77)
         transform: translateZ(45px)
 
+  &.flipped
+    .border
+      transform: translateZ(-50px) rotateY(180deg)
+
+    .content
+      transform: rotateY(180deg)
 
 #age
   will-change: contents
