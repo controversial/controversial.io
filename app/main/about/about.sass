@@ -105,6 +105,7 @@ $gradient-5b: #764ba2
     line-height: 1.5em
     transform: rotateY(0deg)
     transition: transform .75s
+    backface-visibility: hidden
 
     a
       display: inline-block
@@ -117,6 +118,7 @@ $gradient-5b: #764ba2
       transition: background-color .25s, transform .25s ease-out
       padding: 0 .3em .1em
       transform: translateZ(15px)
+      backface-visibility: hidden
 
       &:hover
         background-color: transparentize($white, .77)
