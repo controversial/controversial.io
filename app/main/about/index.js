@@ -18,5 +18,7 @@ export default function init() {
   new AgeRenderer(document.getElementById('age'), Date.parse('11/03/2001 17:23')).loop();
 
   // Set up flipping
-  document.getElementById('social-trigger').addEventListener('click', () => elem.classList.toggle('flipped'));
+  ['social-trigger', 'social-close'].forEach(
+    id => document.getElementById(id).addEventListener('click', () => elem.classList.toggle('flipped'))
+  );
 }
