@@ -98,12 +98,12 @@ $gradient-5b: #764ba2
         content: 'LT'
         color: transparentize($white, .5)
 
-  .content
+  .content,
+  .content-back
     width: 100%
     padding: 3em
     font-size: calc(13px + .75vw)
     line-height: 1.5em
-    transform: rotateY(0deg)
     transition: transform .75s
     backface-visibility: hidden
 
@@ -124,12 +124,25 @@ $gradient-5b: #764ba2
         background-color: transparentize($white, .77)
         transform: translateZ(45px)
 
+  .content
+    transform: rotateY(0deg)
+
+  .content-back
+    position: absolute
+    top: 0
+    left: 0
+    transform: rotateY(-180deg)
+
+
   &.flipped
     .border
       transform: translateZ(-50px) rotateY(180deg)
 
     .content
       transform: rotateY(180deg)
+
+    .content-back
+      transform: rotateY(0deg)
 
 #age
   will-change: contents
