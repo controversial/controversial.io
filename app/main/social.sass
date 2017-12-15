@@ -4,7 +4,7 @@ $stack-overflow: #f69c55
 $dribbble: #ea4c89
 
 
-.social
+.social-container
   position: fixed
   bottom: 0
   right: 0
@@ -17,96 +17,96 @@ $dribbble: #ea4c89
   padding: calc((15px + 1vw) / 2)
 
 
-  li
+.social
+  overflow: visible
+
+  i
+    display: inline-block
+    padding: calc(5px + .6vw) calc(7px + .75vw)
+
+    color: $light-text-primary
+    transition: color .2s ease
     overflow: visible
 
-    i
+    &::after
+      content: ''
       display: inline-block
-      padding: calc(5px + .6vw) calc(7px + .75vw)
+      background-color: $white
+      // Round
+      border-radius: 50%
+      width: 45px
+      height: 45px
+      // Shouldn't take up space
+      position: absolute
+      // radial growth will animate
+      transition: transform .2s ease-out, opacity .2s ease-out
+      opacity: 0
+      z-index: 1
 
-      color: $light-text-primary
-      transition: color .2s ease
-      overflow: visible
+    // Make sure that the icons appear on top of their backgrounds
+    &::before
+      position: relative
+      z-index: 2
+
+    &:hover
+      &::after
+        opacity: 1
+
+
+    // Specific styles for each different logo. Transforms need to be different
+      for each bubble because each icon is differently sized and centered
+
+
+    &.fa-github
+      font-size: 29px
 
       &::after
-        content: ''
-        display: inline-block
-        background-color: $white
-        // Round
-        border-radius: 50%
-        width: 45px
-        height: 45px
-        // Shouldn't take up space
-        position: absolute
-        // radial growth will animate
-        transition: transform .2s ease-out, opacity .2s ease-out
-        opacity: 0
-        z-index: 1
-
-      // Make sure that the icons appear on top of their backgrounds
-      &::before
-        position: relative
-        z-index: 2
+        transform: translateX(-35px) translateY(-8px) scale(.25, .25)
 
       &:hover
-        &::after
-          opacity: 1
-
-
-      // Specific styles for each different logo. Transforms need to be different
-        for each bubble because each icon is differently sized and centered
-
-
-      &.fa-github
-        font-size: 29px
+        color: $github
 
         &::after
-          transform: translateX(-35px) translateY(-8px) scale(.25, .25)
-
-        &:hover
-          color: $github
-
-          &::after
-            transform: translateX(-35px) translateY(-8px)
+          transform: translateX(-35px) translateY(-8px)
 
 
-      &.fa-stack-overflow
-        font-size: 23px
-        line-height: 27px
-        vertical-align: baseline
+    &.fa-stack-overflow
+      font-size: 23px
+      line-height: 27px
+      vertical-align: baseline
 
-        &::after
-          transform: translateX(-32px) translateY(-7.5px) scale(.25, .25)
+      &::after
+        transform: translateX(-32px) translateY(-7.5px) scale(.25, .25)
 
-        &:hover
-          color: $stack-overflow
-
-          &::after
-            transform: translateX(-32px) translateY(-7.5px)
-
-
-      &.fa-twitter
-        font-size: 26.5px
-        transform: translateY(.07em)
+      &:hover
+        color: $stack-overflow
 
         &::after
-          transform: translateX(-36px) translateY(-10px) scale(.25, .25)
-
-        &:hover
-          color: $twitter
-
-          &::after
-            transform: translateX(-36px) translateY(-10px)
+          transform: translateX(-32px) translateY(-7.5px)
 
 
-      &.fa-dribbble
-        font-size: 28px
+    &.fa-twitter
+      font-size: 26.5px
+      transform: translateY(.07em)
+
+      &::after
+        transform: translateX(-36px) translateY(-10px) scale(.25, .25)
+
+      &:hover
+        color: $twitter
 
         &::after
-          transform: translateX(-34.5px) translateY(-8.5px) scale(.25, .25)
+          transform: translateX(-36px) translateY(-10px)
 
-        &:hover
-          color: $dribbble
 
-          &::after
-            transform: translateX(-34.5px) translateY(-8.5px)
+    &.fa-dribbble
+      font-size: 28px
+
+      &::after
+        transform: translateX(-34.5px) translateY(-8.5px) scale(.25, .25)
+
+      &:hover
+        color: $dribbble
+
+        &::after
+          transform: translateX(-34.5px) translateY(-8.5px)
