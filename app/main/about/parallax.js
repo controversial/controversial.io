@@ -12,7 +12,7 @@ export default class Parallax3D {
   constructor(element, initialTransform) {
     this.elem = element;
     this.initialTransform = initialTransform;
-    this.rotmax = 7.5;
+    this.rotmax = 10;
 
     this.mousePos = { x: 0, y: 0 };
     window.addEventListener('mousemove', (e) => { this.mouse(e); this.rotate(); });
