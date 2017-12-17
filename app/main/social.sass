@@ -16,13 +16,16 @@ $dribbble: #ea4c89
   list-style: none
   margin: 0
   padding: calc((15px + 1vw) / 2)
+  text-align: center
 
 
 .social
   overflow: visible
+  text-align: center
 
   i
     display: inline-block
+    position: relative
     padding: calc(5px + .6vw) calc(7px + .75vw)
 
     color: $light-text-primary
@@ -39,10 +42,14 @@ $dribbble: #ea4c89
       height: 45px
       // Shouldn't take up space
       position: absolute
-      // radial growth will animate
-      transition: transform .2s ease-out, opacity .2s ease-out
-      opacity: 0
+      top: 50%
+      left: 50%
+
       z-index: 1
+
+      transform: translate(-50%, -50%) scale(.25, .25)
+      opacity: 0
+      transition: transform .2s ease-out, opacity .2s ease-out
 
     // Make sure that the icons appear on top of their backgrounds
     &::before
@@ -52,62 +59,44 @@ $dribbble: #ea4c89
     &:hover
       &::after
         opacity: 1
+        transform: translate(-50%, -50%) scale(1)
 
 
     // Specific styles for each different logo. Transforms need to be different
-      for each bubble because each icon is differently sized and centered
+       for some bubbles because some icons have uneven visual weight
 
 
     &.fa-github
       font-size: 29px
 
-      &::after
-        transform: translateX(-35px) translateY(-8px) scale(.25, .25)
-
       &:hover
         color: $github
-
-        &::after
-          transform: translateX(-35px) translateY(-8px)
 
 
     &.fa-stack-overflow
       font-size: 23px
-      line-height: 27px
-      vertical-align: baseline
-
-      &::after
-        transform: translateX(-32px) translateY(-7.5px) scale(.25, .25)
 
       &:hover
         color: $stack-overflow
 
+        // Bottom of icon has much more visual weight than top so the circle appears centered when it's farther down relative to the icon
         &::after
-          transform: translateX(-32px) translateY(-7.5px)
+          transform: translateY(.05em) translate(-50%, -50%) scale(1)
 
 
     &.fa-twitter
       font-size: 26.5px
-      transform: translateY(.07em)
-
-      &::after
-        transform: translateX(-36px) translateY(-10px) scale(.25, .25)
 
       &:hover
         color: $twitter
 
+        // Visual weight is uneven so we reposition circle
         &::after
-          transform: translateX(-36px) translateY(-10px)
+          transform: translate(-.03em, -.03em) translate(-50%, -50%) scale(1)
 
 
     &.fa-dribbble
       font-size: 28px
 
-      &::after
-        transform: translateX(-34.5px) translateY(-8.5px) scale(.25, .25)
-
       &:hover
         color: $dribbble
-
-        &::after
-          transform: translateX(-34.5px) translateY(-8.5px)
