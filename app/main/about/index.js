@@ -19,6 +19,9 @@ export default function init() {
 
   // Set up flipping
   ['social-trigger', 'social-close'].forEach(
-    id => document.getElementById(id).addEventListener('click', () => elem.classList.toggle('flipped'))
+    id => document.getElementById(id).addEventListener('click', () => {
+      elem.classList.toggle('flipped');
+      document.getElementById('social-container').classList.toggle('hidden');
+    })
   );
 }
