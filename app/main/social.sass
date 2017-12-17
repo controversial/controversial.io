@@ -66,37 +66,40 @@ $dribbble: #ea4c89
        for some bubbles because some icons have uneven visual weight
 
 
-    &.fa-github
-      font-size: .96666em
-
-      &:hover
-        color: $github
+    &.fa-github:hover
+      color: $github
 
 
-    &.fa-stack-overflow
-      font-size: .76666em
+    &.fa-stack-overflow:hover
+      color: $stack-overflow
 
-      &:hover
-        color: $stack-overflow
-
-        // Bottom of icon has much more visual weight than top so the circle appears centered when it's farther down relative to the icon
-        &::after
-          transform: translateY(.05em) translate(-50%, -50%) scale(1)
+      // Bottom of icon has much more visual weight than top so the circle appears centered when it's farther down relative to the icon
+      &::after
+        transform: translateY(.05em) translate(-50%, -50%) scale(1)
 
 
-    &.fa-twitter
-      font-size: .88333em
+    &.fa-twitter:hover
+      color: $twitter
 
-      &:hover
-        color: $twitter
-
-        // Visual weight is uneven so we reposition circle
-        &::after
-          transform: translate(-.03em, -.03em) translate(-50%, -50%) scale(1)
+      // Visual weight is uneven so we reposition circle
+      &::after
+        transform: translate(-.03em, -.03em) translate(-50%, -50%) scale(1)
 
 
-    &.fa-dribbble
-      font-size: .93333em
+    &.fa-dribbble:hover
+      color: $dribbble
 
-      &:hover
-        color: $dribbble
+
+// These make icon sizes a bit more uniform-looking
+
+.fa-github
+  font-size: .96666em
+
+.fa-stack-overflow
+  font-size: .76666em
+
+.fa-twitter
+  font-size: .88333em
+
+.fa-dribbble
+  font-size: .93333em
