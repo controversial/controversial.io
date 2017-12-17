@@ -46,7 +46,7 @@ export default class AboutNavigationAnimation extends NavigationBase {
     });
     // Adjust border width so that it doesn't jump to thicker when 'transform: scale' is removed
     // Has a lower bound of 1px to ensure border still renders
-    this.elem.border.style.borderWidth = `${Math.max(1, 2 * scaleX)}px`;
+    this.elem.border.style.borderWidth = `${Math.max(3 * scaleX, 1)}px`;
     // Turn off parallax effect
     if (window.parallax) window.parallax.disable();
   }
