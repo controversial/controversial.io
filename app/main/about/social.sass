@@ -1,0 +1,27 @@
+#social-diamond
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  font-size: 28px
+  cursor: pointer
+
+  a
+    display: inline-block
+    $size: 60px
+    width: $size
+    height: $size
+    margin: 7px
+
+    background-color: transparentize($white, .85)
+    transition: background-color .25s
+
+    line-height: $size
+    text-align: center
+    vertical-align: middle
+
+    &:hover
+      background-color: transparentize($white, .77)
+
+    .fa-stack-overflow
+      transform: translateY(-.08em)
