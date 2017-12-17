@@ -18,26 +18,30 @@
     margin: 7px
 
     background-color: transparentize($white, .85)
-    transition: background-color .5s
+    transition: transform .5s, background-color .5s
 
     line-height: $size
     text-align: center
     vertical-align: middle
 
-  // Different color backgrounds on hover
+    &:hover
+      background-color: transparentize($white, .75)
+
+  // translation directions on hover
+
   div:first-child
     a:first-child:hover
-      background: transparentize(lighten($github, 25), .75)
+      transform: translate(-10%, -10%)
 
     a:last-child:hover
-      background: transparentize(lighten($dribbble, 10), .75)
+      transform: translate(10%, -10%)
 
   div:last-child
     a:first-child:hover
-      background: transparentize(lighten($stack-overflow, 10), .75)
+      transform: translate(-10%, 10%)
 
     a:last-child:hover
-      background: transparentize(lighten($twitter, 10), .75)
+      transform: translate(10%, 10%)
 
     // Adjust for visual weight
 
