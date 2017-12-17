@@ -2,7 +2,7 @@
   position: absolute
   top: 50%
   left: 50%
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%) rotate(45deg)
   font-size: 28px
   cursor: pointer
 
@@ -24,5 +24,10 @@
     &:hover
       background-color: transparentize($white, .77)
 
+    i
+      transform: rotate(-45deg) translateZ(10px)
+
+    // Adjust for visual weight
+
     .fa-stack-overflow
-      transform: translateY(-.08em)
+      transform: rotate(-45deg) translate3d(0, -.1em, 10px)
