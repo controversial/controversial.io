@@ -6,6 +6,9 @@
   font-size: 28px
   cursor: pointer
 
+  i
+    transform: rotate(-45deg) translateZ(10px)
+
   a
     display: block
     float: left
@@ -21,11 +24,20 @@
     text-align: center
     vertical-align: middle
 
-    &:hover
-      background-color: transparentize($white, .77)
+  // Different color backgrounds on hover
+  div:first-child
+    a:first-child:hover
+      background: transparentize(lighten($github, 20), .75)
 
-    i
-      transform: rotate(-45deg) translateZ(10px)
+    a:last-child:hover
+      background: transparentize(lighten($dribbble, 10), .75)
+
+  div:last-child
+    a:first-child:hover
+      background: transparentize(lighten($stack-overflow, 10), .75)
+
+    a:last-child:hover
+      background: transparentize(lighten($twitter, 10), .75)
 
     // Adjust for visual weight
 
