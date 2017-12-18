@@ -112,25 +112,18 @@ $dribbble: #ea4c89
 
 #email
   position: fixed
-  bottom: 0
+  bottom: calc(14.5px + 1.25vw)
+  left: calc(14.5px + 1.25vw + 1em)
   z-index: 1000
+
+  transform-origin: bottom left
+  transform: rotate(-90deg)
 
   color: $light-text-primary
 
-  margin: 0
-  padding: calc(14.5px + 1.25vw)
-
   transition: opacity .4s
 
-  &.hidden
-    opacity: 0
-
   a
-    display: block
-    margin-left: 1em
-    transform-origin: bottom left
-    transform: rotate(-90deg)
-
     // Underline
     &::after
       content: ''
@@ -148,3 +141,6 @@ $dribbble: #ea4c89
 
     &:hover::after
       transform: scaleX(1)
+
+  &.hidden
+    opacity: 0
