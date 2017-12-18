@@ -8,7 +8,7 @@ A growing list of what I need to accomplish before the redesign is done
 #### About page
 - [x] Improved jump from 3D to flat while scaling
   - Gradually reduce `rotmax` to 0 while shrinking and call `rotate` repeatedly
-- [ ] Reveal social icons when "find me online" clicked
+- [x] Reveal social icons when "find me online" clicked
   - 3d "flip" animation around X axis?
 
 #### Work page
