@@ -125,3 +125,21 @@ $dribbble: #ea4c89
     margin-left: 1em
     transform-origin: bottom left
     transform: rotate(-90deg)
+
+    // Underline
+    &::after
+      content: ''
+      background: $white
+
+      position: absolute
+      bottom: .1em
+      left: 0
+      height: 1px
+      width: 100%
+
+      transform-origin: left
+      transform: scaleX(0)
+      transition: transform .5s
+
+    &:hover::after
+      transform: scaleX(1)
