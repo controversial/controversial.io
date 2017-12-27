@@ -167,9 +167,9 @@ export class Navigation {
   transitionUpdate(progress) {
     return new Promise((resolve) => {
       // Update navigation bar opacity
-      document.getElementById('navigation').style.opacity = (progress * 0.5) + 0.5;
+      document.getElementById('navigation').style.opacity = 0.5 + (progress / 2);
       // Update navigation trigger opacity in the opposite direction
-      document.getElementById('navigation-trigger').style.opacity = Math.max(0.25, 1 - (progress * 0.75));
+      document.getElementById('navigation-trigger').style.opacity = 1 - (progress / 2);
       // Page shrinking into laptop
       requestAnimationFrame(() => {
         this.currentPage.update(progress);
