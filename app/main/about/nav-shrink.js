@@ -45,6 +45,8 @@ export default class AboutNavigationAnimation extends NavigationBase {
   putInLaptop() {
     super.putInLaptop();
 
+    this.elem.laptopContent('about').appendChild(this.elem.infoWrapper);
+
     // Turn off parallax effect
     if (window.parallax) window.parallax.disable();
   }
@@ -52,6 +54,8 @@ export default class AboutNavigationAnimation extends NavigationBase {
 
   removeFromLaptop() {
     super.removeFromLaptop();
+
+    this.elem.wrapper.appendChild(this.elem.infoWrapper);
 
     // Re-enable parallax effect
     if (window.parallax) window.parallax.enable();
