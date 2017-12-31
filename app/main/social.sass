@@ -50,16 +50,12 @@ $dribbble: #ea4c89
       top: 50%
       left: 50%
 
-      z-index: 1
+      // Make sure that the icons appear on top of their backgrounds
+      z-index: -1
 
       transform: translate(-50%, -50%) scale(.25, .25)
       opacity: 0
       transition: transform .2s ease-out, opacity .2s ease-out
-
-    // Make sure that the icons appear on top of their backgrounds
-    &::before
-      position: relative
-      z-index: 2
 
     &:hover
       &::after
