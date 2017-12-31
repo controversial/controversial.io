@@ -11,6 +11,14 @@ A growing list of what I need to accomplish before the redesign is done
 - [x] Reveal social icons when "find me online" clicked
   - 3d "flip" animation around X axis?
   - [ ] Add email to back
+- [ ] Revamp scaling
+  - Change units from percentages to viewport units
+  - Leave `transform: scale` applied to element when element added to laptop instead of relying on
+  - percentage units for size adjustment
+  - Fixes:
+    - issues with scaling on back side
+    - issues with aspect ratio jump
+- [ ] Different size card on back???
 
 #### Work page
 - [ ] the whole thing
