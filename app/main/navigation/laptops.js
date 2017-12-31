@@ -198,6 +198,7 @@ export class Laptop {
 }
 
 
+/** Collects and orchestrates multiple Laptops */
 export class LaptopCarousel {
   static get rotLimit() { return 75; }
 
