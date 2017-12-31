@@ -109,33 +109,37 @@ $dribbble: #ea4c89
   position: fixed
   bottom: calc(14.5px + 1.25vw)
   left: calc(14.5px + 1.25vw + 1em)
+  height: 1.5em
+  overflow: hidden
   z-index: 1000
 
   transform-origin: bottom left
   transform: rotate(-90deg)
 
   color: $light-text-primary
+  // This is a REALLY hacky approach to make two single words justify to the same width. Spaces are
+     placed between each letter, then are effectively removed by negative letter spacing. Since the
+     spaces are still "there," text-align: justify can adjust the spaces between each character
+  text-align: justify
+  text-align-last: justify
+  letter-spacing: -.125em
 
   transition: opacity .4s
 
-  a
-    // Underline
+  span
+    display: block
+    top: 0
+    left: 0
+    transition: transform .25s
+
     &::after
-      content: ''
-      background: $white
+      content: attr(data-text)
 
-      position: absolute
-      bottom: .1em
-      left: 0
-      height: 1px
-      width: 100%
+      display: block
+      font-weight: 700
 
-      transform-origin: left
-      transform: scaleX(0)
-      transition: transform .5s
-
-    &:hover::after
-      transform: scaleX(1)
+  &:hover span
+    transform: translateY(-1.5em)
 
   &.hidden
     opacity: 0
