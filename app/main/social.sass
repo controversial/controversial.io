@@ -85,6 +85,13 @@ $dribbble: #ea4c89
     &.fa-dribbble:hover
       color: $dribbble
 
+    &.material-icons:hover
+      color: $dark-2
+
+      // Right of icon has much
+      &::after
+        transform: translateX(-.13em) translate(-50%, -50%) scale(1)
+
 
 // These make icon sizes a bit more uniform-looking
 
@@ -100,42 +107,6 @@ $dribbble: #ea4c89
 .fa-dribbble
   font-size: .93333em
 
-
-#email
-  position: fixed
-  bottom: calc(14.5px + 1.25vw)
-  left: calc(14.5px + 1.25vw + 1em)
-  height: 1.5em
-  overflow: hidden
-  z-index: 1000
-
-  transform-origin: bottom left
-  transform: rotate(-90deg)
-
-  color: $light-text-primary
-  // This is a REALLY hacky approach to make two single words justify to the same width. Spaces are
-     placed between each letter, then are effectively removed by negative letter spacing. Since the
-     spaces are still "there," text-align: justify can adjust the spaces between each character
-  text-align: justify
-  text-align-last: justify
-  letter-spacing: -.125em
-
-  transition: opacity .4s
-
-  span
-    display: block
-    top: 0
-    left: 0
-    transition: transform .25s
-
-    &::after
-      content: attr(data-text)
-
-      display: block
-      font-weight: 700
-
-  &:hover span
-    transform: translateY(-1.5em)
-
-  &.hidden
-    opacity: 0
+.social .material-icons
+  transform: translateX(.2em) rotate(-45deg)
+  font-size: .83333em
