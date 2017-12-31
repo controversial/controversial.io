@@ -10,6 +10,7 @@ A growing list of what I need to accomplish before the redesign is done
   - Gradually reduce `rotmax` to 0 while shrinking and call `rotate` repeatedly
 - [x] Reveal social icons when "find me online" clicked
   - 3d "flip" animation around X axis?
+  - [ ] Add email to back
 
 #### Work page
 - [ ] the whole thing
@@ -28,6 +29,9 @@ A growing list of what I need to accomplish before the redesign is done
   - [ ] Implement a `derender` event on `NavigationAnimationBase`
     - Can be used to halt expensive tasks when laptop contents are not visible
   - [x] Implement `will-change` everywhere
+
+- [ ] New animation on bottom right social icons
+- [ ] Hover animation on top right hamburger button
 
 - Mobile optimization
   - Improve responsive design
