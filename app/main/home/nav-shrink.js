@@ -14,7 +14,7 @@ export default class HomeNavigationAnimation extends NavigationBase {
     // Add elements to this.elem
     Object.assign(this.elem, {
       wrapper: document.getElementById('home-wrapper'),
-      container: document.querySelector('#home-wrapper .container'),
+      background: document.querySelector('#home-wrapper .background'),
       canvas: document.getElementById('gol'),
       get title() {
         // Override after first call to ensure it consistently refers to the same element
@@ -25,7 +25,7 @@ export default class HomeNavigationAnimation extends NavigationBase {
   }
 
   scale(laptopScreenCoordinates, progress) {
-    // 1. Fit container to laptop screen
+    // 1. Fit background to laptop screen
 
     const w = window.innerWidth; const h = window.innerHeight;
     const translationNeeded = super.scale(laptopScreenCoordinates, progress)[0];

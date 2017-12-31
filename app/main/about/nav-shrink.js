@@ -13,7 +13,7 @@ export default class AboutNavigationAnimation extends NavigationBase {
     // Add objects to this.elem
     Object.assign(this.elem, {
       wrapper: document.getElementById('about-wrapper'),
-      container: document.querySelector('#about-wrapper .container'),
+      background: document.querySelector('#about-wrapper .background'),
       monogram: document.querySelector('#about-wrapper .monogram'),
       content: document.querySelector('#about-wrapper .content'),
       border: document.querySelector('#about-wrapper .border'),
@@ -38,7 +38,7 @@ export default class AboutNavigationAnimation extends NavigationBase {
   putInLaptop() {
     super.putInLaptop();
     // Calculate appropriate font size scale
-    const scaleX = this.elem.container.getBoundingClientRect().width / window.innerWidth;
+    const scaleX = this.elem.background.getBoundingClientRect().width / window.innerWidth;
     // Scale font sizes using CSS `calc`
     Object.entries(this.fontSize).forEach((pair) => {
       const [key, value] = pair;

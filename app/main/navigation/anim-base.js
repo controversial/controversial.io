@@ -71,7 +71,7 @@ export default class NavigationAnimationBase {
    * @param {number} progress - progress in animation (0 being full size, 1 being fully shrunk)
    */
   scale(laptopScreenCoordinates, progress) {
-    // 1. Fit container to laptop screen
+    // 1. Fit background to laptop screen
 
     // Establish starting and ending positions for page
     const w = window.innerWidth; const h = window.innerHeight;
@@ -86,7 +86,7 @@ export default class NavigationAnimationBase {
     // Calculate scale
     const scaleNeeded = { x: posB.width / posA.width, y: posB.height / posA.height };
     // Apply transformations
-    this.elem.container.style.transform = [
+    this.elem.background.style.transform = [
       // Translate
       `translateX(${NavigationAnimationBase.tween(0, translationNeeded.x, progress)}px)`,
       `translateY(${NavigationAnimationBase.tween(0, translationNeeded.y, progress)}px)`,
@@ -104,15 +104,16 @@ export default class NavigationAnimationBase {
    * Move the page in DOM from its wrapper to the laptop screen.
    */
   putInLaptop() {
-    this.elem.container.style.position = 'absolute';
-    this.elem.container.style.transform = '';
+    this.elem.background.style.position = 'absolute';
+    this.elem.background.style.transform = '';
     // This should be easy but Blink insists on rendering .front behind .back if I give
-    // position: relative to .screen, so .container has to be manually positioned relative to .front
+    // position: relative to .screen, so .background has to be manually positioned relative to
+    // .front
     const screenBezel = window.sassHeightVariable * 0.85;
-    this.elem.container.style.top = this.elem.container.style.left = `${screenBezel}vw`;
-    this.elem.container.style.width = `${window.sassLengthVariable - (2 * screenBezel) - 0.6}vw`; // 0.6 is border width
-    this.elem.container.style.height = `${window.sassWidthVariable - (2.5 * screenBezel) - 0.6}vw`; // 2.5 because bottom bezel is bigger
-    this.elem.laptopContent(this.hash).appendChild(this.elem.container);
+    this.elem.background.style.top = this.elem.background.style.left = `${screenBezel}vw`;
+    this.elem.background.style.width = `${window.sassLengthVariable - (2 * screenBezel) - 0.6}vw`; // 0.6 is border width
+    this.elem.background.style.height = `${window.sassWidthVariable - (2.5 * screenBezel) - 0.6}vw`; // 2.5 because bottom bezel is bigger
+    this.elem.laptopContent(this.hash).appendChild(this.elem.background);
 
     this.inLaptop = true;
   }
@@ -121,11 +122,11 @@ export default class NavigationAnimationBase {
    * Move the page in DOM from the laptop screen to its wrapper.
    */
   removeFromLaptop() {
-    this.elem.container.style.position = 'fixed';
-    this.elem.container.style.top = this.elem.container.style.left = 0;
-    this.elem.container.style.width = '100vw';
-    this.elem.container.style.height = '100vh';
-    this.elem.wrapper.appendChild(this.elem.container);
+    this.elem.background.style.position = 'fixed';
+    this.elem.background.style.top = this.elem.background.style.left = 0;
+    this.elem.background.style.width = '100vw';
+    this.elem.background.style.height = '100vh';
+    this.elem.wrapper.appendChild(this.elem.background);
 
     this.inLaptop = false;
   }

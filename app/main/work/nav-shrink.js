@@ -13,7 +13,7 @@ export default class WorkNavigationAnimation extends NavigationBase {
     // Add objects to this.elem
     Object.assign(this.elem, {
       wrapper: document.getElementById('work-wrapper'),
-      container: document.querySelector('#work-wrapper .container'),
+      background: document.querySelector('#work-wrapper .background'),
     });
   }
 }
