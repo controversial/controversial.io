@@ -77,6 +77,8 @@
     }
   },
   "now": {
-    "files": [ "build/main" ]
+    "files": [
+      "build/main"
+    ]
   }
 }
