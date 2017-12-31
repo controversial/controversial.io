@@ -35,9 +35,6 @@
 
     perspective: 1500px
 
-    *
-      transform-style: preserve-3d
-
 
 .info
   width: 75%
@@ -46,9 +43,13 @@
   top: 50%
   left: 50%
   transform: translate(-50%, -50%)
+  transform-style: preserve-3d
 
   font-size: calc(13px + .75vw)
   color: $white
+
+  *
+    transform-style: preserve-3d
 
   .border
     position: absolute
