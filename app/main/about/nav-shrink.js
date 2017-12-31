@@ -34,6 +34,10 @@ export default class AboutNavigationAnimation extends NavigationBase {
     }
     const translate = NavigationBase.tween(0, translationNeeded.y, progress);
     const scale = NavigationBase.tween(1, scaleNeeded, progress);
+    // Store as attributes for use later
+    this.elem.infoWrapper.dataset.translate = translate;
+    this.elem.infoWrapper.dataset.scale = scale;
+
     this.elem.infoWrapper.style.transform = `translateY(${translate}px) scale(${scale})`;
 
     if (window.parallax) {
@@ -45,6 +49,7 @@ export default class AboutNavigationAnimation extends NavigationBase {
   putInLaptop() {
     super.putInLaptop();
 
+    this.elem.infoWrapper.style.transform = `scale(${this.elem.infoWrapper.dataset.scale})`;
     this.elem.laptopContent('about').appendChild(this.elem.infoWrapper);
 
     // Turn off parallax effect
