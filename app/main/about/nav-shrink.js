@@ -14,6 +14,7 @@ export default class AboutNavigationAnimation extends NavigationBase {
     Object.assign(this.elem, {
       wrapper: document.getElementById('about-wrapper'),
       background: document.querySelector('#about-wrapper .background'),
+      infoWrapper: document.querySelector('#about-wrapper .info-wrapper'),
       info: document.querySelector('#about-wrapper .info'),
     });
   }
