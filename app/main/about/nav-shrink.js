@@ -21,7 +21,20 @@ export default class AboutNavigationAnimation extends NavigationBase {
 
 
   scale(laptopScreenCoordinates, progress) {
-    super.scale(laptopScreenCoordinates, progress);
+    const scaleInfo = super.scale(laptopScreenCoordinates, progress);
+    const translationNeeded = scaleInfo[0];
+
+    const windowAspect = window.innerWidth / window.innerHeight;
+    const laptopAspect = laptopScreenCoordinates.width / laptopScreenCoordinates.height;
+    let scaleNeeded;
+    if (windowAspect >= laptopAspect) { // window aspect is wider than laptop; have to fit to width
+      scaleNeeded = laptopScreenCoordinates.width / window.innerWidth;
+    } else {                           // window aspect is taller than laptop; have to fit to height
+      scaleNeeded = laptopScreenCoordinates.height / window.innerHeight;
+    }
+    const translate = NavigationBase.tween(0, translationNeeded.y, progress);
+    const scale = NavigationBase.tween(1, scaleNeeded, progress);
+    this.elem.infoWrapper.style.transform = `translateY(${translate}px) scale(${scale})`;
 
     if (window.parallax) {
       window.parallax.rotmax = (1 - progress) * 10;
