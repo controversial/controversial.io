@@ -1,13 +1,12 @@
-// Styles
-require('./main.sass');
-
 // Polyfills
-require('babel-polyfill');
-require('smoothscroll-polyfill');
+import 'babel-polyfill';
+import 'smoothscroll-polyfill';
+
+// Styles
+import './main.sass';
 
 // Scripts
-require('./helpers.js');
-require('./init.js');
-
+import './helpers';
+import './init';
 // Files to be copied
-require('./index.html');
+import './index.html';

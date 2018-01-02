@@ -1,1 +1,1 @@
-require('./index.html');
+import './index.html';
