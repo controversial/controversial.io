@@ -102,41 +102,7 @@
   <!-- Webpack bundle -->
   <script type="text/javascript" src="index.js"></script>
 
-
-
-  <!-- SVG filters for glitch effect -->
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" baseProfile="full" style="display: none">
-    <defs>
-
-      <filter id="distort-1">
-        <!-- Random noise -->
-        <feTurbulence baseFrequency="0.02" numOctaves="8"></feTurbulence>
-        <!-- Distort SourceGraphic based on noise -->
-        <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
-      </filter>
-
-      <filter id="distort-2">
-        <!-- Another random noise pattern -->
-        <feTurbulence baseFrequency="0.01" numOctaves="6"></feTurbulence>
-        <!-- Distort SourceGraphic based on noise -->
-        <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
-      </filter>
-
-      <filter id="sharp-distort">
-        <!-- Very fine random noise -->
-        <feTurbulence baseFrequency="0.2" numOctaves="8"></feTurbulence>
-        <!-- Apply a sharpening effect to the noise. Convolution kernel taken from https://en.wikipedia.org/wiki/Kernel_(image_processing) -->
-        <feConvolveMatrix kernelMatrix="
-           0  -1   0
-          -1   5  -1
-           0  -1   0
-        "></feConvolveMatrix>
-        <!-- Distort SourceGraphic based on sharpened noise -->
-        <feDisplacementMap in="SourceGraphic" scale="10"></feDisplacementMap>
-      </filter>
-
-    </defs>
-  </svg>
+  ${require('!raw-loader!./glitch-filter.svg')}
 
 
 </body>
