@@ -29,50 +29,43 @@
 
 <body>
 
-  ${require('!raw-loader!./browser-popups.html')}
+  <!-- Top navigation bar -->
+  ${require('!raw-loader!./navigation/links.html')}
 
+  <!-- Bottom right social links-->
   ${require('!raw-loader!./social.html')}
-
-
-
 
   <!-- HOME PAGE -->
   <div id="home-wrapper">
     ${require('!raw-loader!./home/home.html')}
   </div>
 
-
-
-
   <!-- ABOUT PAGE (loaded from about.html) -->
   <div id="about-wrapper">
     ${require('!raw-loader!./about/about.html')}
   </div>
-
-
-
 
   <!-- WORK PAGE (loaded from work.html) -->
   <div id="work-wrapper">
     ${require('!raw-loader!./work/work.html')}
   </div>
 
-
-  ${require('!raw-loader!./navigation/links.html')}
-
-
+  <!-- NAVIGATION PAGE -->
+  <!-- The laptops -->
   ${require('!raw-loader!./navigation/laptops.html')}
-
-
-
+  <!-- The rings that spin in the background of the navigation page -->
   ${require('!raw-loader!./navigation/background-rings.html')}
+
+  <!-- Popups for unsupported browsers -->
+  ${require('!raw-loader!./browser-popups.html')}
+
+  <!-- SVG filters for part of the glitch effect -->
+  ${require('!raw-loader!./glitch-filter.svg')}
 
 
 
   <!-- Webpack bundle -->
   <script type="text/javascript" src="index.js"></script>
-
-  ${require('!raw-loader!./glitch-filter.svg')}
 
 
 </body>
