@@ -12,7 +12,8 @@
     "deploy": "npm run -s build && now deploy build/main --alias luke.now.sh"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0"
+    "babel-polyfill": "^6.26.0",
+    "smoothscroll-polyfill": "^0.3.6"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.6",
@@ -39,7 +40,6 @@
     "postcss-loader": "^2.0.8",
     "sass-lint": "^1.12.1",
     "sass-loader": "^6.0.6",
-    "smoothscroll-polyfill": "^0.3.6",
     "style-loader": "^0.19.0",
     "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
