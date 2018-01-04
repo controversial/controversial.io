@@ -22,7 +22,7 @@ export default class AboutNavigationAnimation extends NavigationBase {
 
   scale(laptopScreenCoordinates, progress) {
     const scaleInfo = super.scale(laptopScreenCoordinates, progress);
-    const translationNeeded = scaleInfo[0];
+    const [translationNeeded] = scaleInfo;
 
     const windowAspect = window.innerWidth / window.innerHeight;
     const laptopAspect = laptopScreenCoordinates.width / laptopScreenCoordinates.height;
