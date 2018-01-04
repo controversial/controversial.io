@@ -14,6 +14,24 @@ export default class WorkNavigationAnimation extends NavigationBase {
     Object.assign(this.elem, {
       wrapper: document.getElementById('work-wrapper'),
       background: document.querySelector('#work-wrapper .background'),
+      tags: document.querySelector('#work-wrapper .tags'),
     });
+  }
+
+  scale(laptopScreenCoordinates, progress) {
+    const scaleInfo = super.scale(laptopScreenCoordinates, progress);
+    const [, scaleNeeded] = scaleInfo;
+
+    const tagsScale = laptopScreenCoordinates.width / window.innerWidth;
+    const targetTop = laptopScreenCoordinates.top + (scaleNeeded.y * this.elem.tags.offsetTop);
+    const tagsTranslate = targetTop - this.elem.tags.offsetTop;
+
+
+    const translate = NavigationBase.tween(0, tagsTranslate, progress);
+    const scale = NavigationBase.tween(1, tagsScale, progress);
+    // Store as attributes for use later
+    this.elem.tags.dataset.translate = translate;
+    this.elem.tags.dataset.scale = scale;
+    this.elem.tags.style.transform = `translateY(${translate}px) scale(${scale})`;
   }
 }
