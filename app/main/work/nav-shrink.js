@@ -32,6 +32,19 @@ export default class WorkNavigationAnimation extends NavigationBase {
     // Store as attributes for use later
     this.elem.tags.dataset.translate = translate;
     this.elem.tags.dataset.scale = scale;
-    this.elem.tags.style.transform = `translateY(${translate}px) scale(${scale})`;
+    this.elem.tags.style.transform = `translateX(-50%) translateY(${translate}px) scale(${scale})`;
+  }
+
+  putInLaptop() {
+    super.putInLaptop();
+
+    this.elem.tags.style.transform = `translateX(-50%) scale(${this.elem.tags.dataset.scale})`;
+    this.elem.laptopContent('work').appendChild(this.elem.tags);
+  }
+
+  removeFromLaptop() {
+    super.removeFromLaptop();
+
+    this.elem.wrapper.appendChild(this.elem.tags);
   }
 }
