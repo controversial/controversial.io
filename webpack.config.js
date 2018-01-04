@@ -37,7 +37,7 @@ module.exports = {
         loaders: [
           'file-loader?name=[path][name].html&context=app',
           'extract-loader',
-          'html-loader',
+          'html-loader?interpolate',
         ],
       },
       // Files that require no compilation or processing
