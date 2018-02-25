@@ -1,7 +1,9 @@
 /** Represents a single project in the work carousel */
 export class CarouselCard {
-  constructor(elem) {
+  constructor(elem, tags) {
     this.elem = elem;
+    this.tags = tags || elem.dataset.tags.split(',').map(t => t.trim());
+
     this.elem.classList.add('carousel-card');
   }
 }
