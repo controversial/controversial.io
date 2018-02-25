@@ -4,14 +4,16 @@
   // 16:9
   width: 40vw
   height: 22.5vw
+  padding: .75vw
   background: transparentize($white, .85)
   box-shadow: 0 .4vw 2vw -.2vw transparentize($black, .5)
   transform: translate(-50%, -50%)
-  padding: .75vw
+  transform-style: preserve-3d
 
   h1
     position: absolute
     z-index: 1
+    transform: translateZ(25px)
     top: 1.25vw
     left: -3.5vw
     margin: 0
@@ -32,3 +34,4 @@
     width: 100%
     height: 100%
     opacity: .85
+    transform: translateZ(5px)
