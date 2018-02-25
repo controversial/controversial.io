@@ -1,5 +1,5 @@
 import AgeRenderer from './age';
-import Parallax3D from './parallax';
+import Parallax3D from '../parallax';
 import { Navigation } from '../navigation';
 
 export default function init() {
