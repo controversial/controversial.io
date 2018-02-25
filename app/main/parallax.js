@@ -34,13 +34,19 @@ export default class Parallax3D {
   }
 
 
+  get rotation() {
+    return [
+      `rotateX(${this.mousePos.y * this.rotmax}deg)`,
+      `rotateY(${this.mousePos.x * this.rotmax}deg)`,
+    ];
+  }
+
   /** Adjust 3D rotation based on the values stored in `this.mousePos` */
   rotate() {
     if (!this.disabled) {
       this.elem.style.transform = [
         this.initialTransform,
-        `rotateX(${this.mousePos.y * this.rotmax}deg)`,
-        `rotateY(${-this.mousePos.x * this.rotmax}deg)`,
+        ...this.rotation,
       ].join(' ');
     }
   }
