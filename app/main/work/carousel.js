@@ -17,6 +17,22 @@ export class CarouselCard {
     this.parallax = new Parallax3D(this.elem);
   }
 
+  /**
+   * Update the card wrapper's CSS in order to reflect changes that were made to its JS
+   * representation.
+   */
+  _applyTransform() {
+    this.wrapper.style.transform = [
+      'translate(-50%, -50%)',
+      `translateX(${this._translate})`,
+    ].join(' ');
+  }
+
+  // Translation
+
+  get translate() { return this._translate; }
+  set translate(val) { this._translate = val; this._applyTransform(); }
+
   // Transition time
 
   get transitionTime() { return this._transitionTime; }
