@@ -12,7 +12,7 @@ export class CarouselCard {
     this.wrapper.appendChild(this.elem);
 
     this.tags = tags || elem.dataset.tags.split(',').map(t => t.trim());
-    this.title = elem.getElementsByTagName('h1')[0];
+    this.titleElem = elem.getElementsByTagName('h1')[0];
 
     this.parallax = new Parallax3D(this.elem);
   }
