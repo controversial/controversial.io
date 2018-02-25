@@ -16,6 +16,15 @@ export class CarouselCard {
 
     this.parallax = new Parallax3D(this.elem);
   }
+
+  // Transition time
+
+  get transitionTime() { return this._transitionTime; }
+  set transitionTime(secs) {
+    this._transitionTime = secs;
+    this.wrapper.style.transition = `transform ${secs}s`;
+    this.titleElem.style.transition = `transform ${secs}s, opacity ${secs}s`;
+  }
 }
 
 /** Collects and orchestrates multiple CarouselCards */
