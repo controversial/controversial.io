@@ -9,10 +9,10 @@ export default class Parallax3D {
    * @param {String} initialTransform - the CSS transformations to be preserved on the object when
    * 3D transformation is adjusted.
    */
-  constructor(element, initialTransform) {
+  constructor(element, initialTransform = '', rotmax = 10) {
     this.elem = element;
     this.initialTransform = initialTransform;
-    this.rotmax = 10;
+    this.rotmax = rotmax;
 
     this.mousePos = { x: 0, y: 0 };
     window.addEventListener('mousemove', (e) => { this.mouse(e); this.rotate(); });
