@@ -15,6 +15,27 @@ export class CarouselCard {
     this.titleElem = elem.getElementsByTagName('h1')[0];
 
     this.parallax = new Parallax3D(this.elem);
+
+
+    // Title manipulation interface
+
+    const _this2 = this;
+    /**
+     * Interface for updating styles on the title.
+     * Examples:
+     *   this.title.translate = '-10px'
+     *   this.title.opacity = 0.5
+     */
+    this.title = {
+      _apply() {
+        _this2.titleElem.style.transform = `translateZ(25px) translateX(${this._translate})`;
+        _this2.titleElem.style.opacity = this._opacity;
+      },
+      get translate() { return this._translate; },
+      set translate(t) { this._translate = t; this._apply(); },
+      get opacity() { return this._opacity; },
+      set opacity(o) { this._opacity = o; this._apply(); },
+    };
   }
 
   /**
