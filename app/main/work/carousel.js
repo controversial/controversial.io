@@ -5,9 +5,16 @@ export class CarouselCard {
   constructor(elem, tags) {
     this.elem = elem;
     this.elem.classList.add('carousel-card');
-    this.tags = tags || elem.dataset.tags.split(',').map(t => t.trim());
+    // Move elem into a wrapper div
+    this.wrapper = document.createElement('div');
+    this.wrapper.className = 'carousel-card-wrapper';
+    this.elem.parentNode.insertBefore(this.wrapper, this.elem);
+    this.wrapper.appendChild(this.elem);
 
-    this.parallax = new Parallax3D(this.elem, 'translate(-50%, -50%)');
+    this.tags = tags || elem.dataset.tags.split(',').map(t => t.trim());
+    this.title = elem.getElementsByTagName('h1')[0];
+
+    this.parallax = new Parallax3D(this.elem);
   }
 }
 
