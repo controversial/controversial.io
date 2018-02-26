@@ -102,7 +102,7 @@ export class Carousel {
 
     this.cards.forEach((card, index) => {
       const cardPosition = index - pos;
-      const cardTranslation = `${45 * cardPosition}vw`;
+      const cardTranslation = `${48 * cardPosition}vw`;
       card.translate = cardTranslation;
       if (cardPosition === 0) {
         card.title.opacity = 1;
