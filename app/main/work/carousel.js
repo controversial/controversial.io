@@ -63,6 +63,26 @@ export class CarouselCard {
     this.wrapper.style.transition = `transform ${secs}s`;
     this.titleElem.style.transition = `transform ${secs}s, opacity ${secs}s`;
   }
+
+  setEnabled(enable = true) {
+    const totalTime = this.transitionTime * 1000;
+    const startTime = new Date();
+
+    function step(parallax) {
+      const timeElapsed = new Date() - startTime;
+      // Still going
+      if (timeElapsed < totalTime) {
+        const progress = (timeElapsed / totalTime);
+        if (enable) parallax.rotmax = progress * 10;
+        else parallax.rotmax = (1 - progress) * 10;
+        parallax.rotate();
+        requestAnimationFrame(() => step(parallax));
+      } else {
+        parallax.rotmax = enable ? 10 : 0;
+      }
+    }
+    step(this.parallax);
+  }
 }
 
 /** Collects and orchestrates multiple CarouselCards */
