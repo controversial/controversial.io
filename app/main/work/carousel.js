@@ -14,7 +14,7 @@ export class CarouselCard {
     this.tags = tags || elem.dataset.tags.split(',').map(t => t.trim());
     this.titleElem = elem.getElementsByTagName('h1')[0];
 
-    this.transitionTime = this.baseTransitionTime = 0.3;
+    this.transitionTime = this.baseTransitionTime = 0.5;
     this.parallax = new Parallax3D(this.elem);
 
 
@@ -104,6 +104,13 @@ export class Carousel {
       const cardPosition = index - pos;
       const cardTranslation = `${45 * cardPosition}vw`;
       card.translate = cardTranslation;
+      if (cardPosition === 0) {
+        card.title.opacity = 1;
+        card.title.translate = 0;
+      } else {
+        card.title.opacity = 0;
+        card.title.translate = (pos > this._position) ? '5vw' : '-5vw';
+      }
     });
 
     this._position = pos;
