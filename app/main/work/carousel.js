@@ -70,6 +70,8 @@ export class Carousel {
   constructor(cards) {
     this.cards = cards;
     this._position = 0;
+    // Trigger immediate layout of cards
+    this.position = this._position;
   }
 
   // Transition time logic
@@ -89,9 +91,21 @@ export class Carousel {
   set transitionTime(secs) {
     this.cards.forEach((c) => { c.transitionTime = secs; });
   }
+
+  // Rearrange
+
   get position() { return this._position; }
   set position(pos) {
-    // Move
+    const delta = Math.abs(this._position - pos);
+    // mx + b
+    this.transitionTime = ((0.5 * this.baseTransitionTime) * (delta - 1)) + this.baseTransitionTime;
+
+    this.cards.forEach((card, index) => {
+      const cardPosition = index - pos;
+      const cardTranslation = `${45 * cardPosition}vw`;
+      card.translate = cardTranslation;
+    });
+
     this._position = pos;
   }
 }
