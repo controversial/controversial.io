@@ -14,6 +14,7 @@ export class CarouselCard {
     this.tags = tags || elem.dataset.tags.split(',').map(t => t.trim());
     this.titleElem = elem.getElementsByTagName('h1')[0];
 
+    this.carousel = undefined; // Will be set when added to a carousel
     this.transitionTime = this.baseTransitionTime = 0.5;
     this.parallax = new Parallax3D(this.elem);
 
@@ -84,15 +85,20 @@ export class CarouselCard {
     }
     step(this.parallax);
   }
-
   disable() { this.setEnabled(false); }
   enable() { this.setEnabled(true); }
+
+
+  centerSelf() {
+    this.carousel.position = this.carousel.cards.indexOf(this);
+  }
 }
 
 /** Collects and orchestrates multiple CarouselCards */
 export class Carousel {
   constructor(cards) {
     this.cards = cards;
+    this.cards.forEach((c) => { c.carousel = this; });
     this._position = 0;
     // Trigger immediate layout of cards
     this.position = this._position;
