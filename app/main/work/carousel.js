@@ -72,6 +72,23 @@ export class Carousel {
     this._position = 0;
   }
 
+  // Transition time logic
+
+  get baseTransitionTime() {
+    const answer = this.cards[0].baseTransitionTime;
+    // Warn if not every card has the same baseTransitionTime
+    if (!this.cards.every(card => card.baseTransitionTime === answer)) console.warn('Carousel.baseTransitionTime called but baseTransitionTime of cards is inconsistent');
+    return answer;
+  }
+  get transitionTime() {
+    const answer = this.cards[0].transitionTime;
+    // Warn if not every card has the same transitionTime
+    if (!this.cards.every(card => card.transitionTime === answer)) console.warn('Carousel.transitionTime called but transitionTime of cards is inconsistent');
+    return answer;
+  }
+  set transitionTime(secs) {
+    this.cards.forEach((c) => { c.transitionTime = secs; });
+  }
   get position() { return this._position; }
   set position(pos) {
     // Move
