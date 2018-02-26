@@ -14,6 +14,7 @@ export class CarouselCard {
     this.tags = tags || elem.dataset.tags.split(',').map(t => t.trim());
     this.titleElem = elem.getElementsByTagName('h1')[0];
 
+    this.transitionTime = this.baseTransitionTime = 0.3;
     this.parallax = new Parallax3D(this.elem);
 
 
