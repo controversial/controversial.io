@@ -68,6 +68,7 @@ export class CarouselCard {
     const totalTime = this.transitionTime * 1000;
     const startTime = new Date();
 
+    // Recursively adjust using setAnimationFrame until transitionTime is reached
     function step(parallax) {
       const timeElapsed = new Date() - startTime;
       // Still going
@@ -83,6 +84,9 @@ export class CarouselCard {
     }
     step(this.parallax);
   }
+
+  disable() { this.setEnabled(false); }
+  enable() { this.setEnabled(true); }
 }
 
 /** Collects and orchestrates multiple CarouselCards */
@@ -124,12 +128,16 @@ export class Carousel {
       const cardPosition = index - pos;
       const cardTranslation = `${48 * cardPosition}vw`;
       card.translate = cardTranslation;
+      // Center card
       if (cardPosition === 0) {
         card.title.opacity = 1;
         card.title.translate = 0;
+        card.enable();
+      // Not center card
       } else {
         card.title.opacity = 0;
         card.title.translate = (pos > this._position) ? '5vw' : '-5vw';
+        card.disable();
       }
     });
 
