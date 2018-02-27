@@ -108,6 +108,16 @@ export class Carousel {
     this._position = 0;
     // Trigger immediate layout of cards
     this.position = this._position;
+
+    window.addEventListener('keydown', (e) => {
+      // Carousel left/right with arrow keys, but only if carousel is expanded.
+      // Carousel is expanded when the parent is #work-wrapper, the parent is .screen if it's not
+      const projectsContainer = document.getElementsByClassName('projects-container')[0];
+      if (projectsContainer.parentNode.id === 'work-wrapper') {
+        if (e.key === 'ArrowRight') this.right();
+        if (e.key === 'ArrowLeft') this.left();
+      }
+    });
   }
 
   // Transition time logic
