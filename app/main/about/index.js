@@ -22,7 +22,6 @@ export default function init() {
     id => document.getElementById(id).addEventListener('click', () => {
       elem.classList.toggle('flipped');
       document.getElementById('social-container').classList.toggle('hidden');
-      document.getElementById('email').classList.toggle('hidden');
     }),
   );
 }
