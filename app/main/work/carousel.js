@@ -102,6 +102,7 @@ export class Carousel {
     this.cards = cards;
     this.cards.forEach((c) => { c.carousel = this; });
     this._position = 0;
+    this.cards[this._position].title._elem.style.animationName = 'in';
     // Trigger immediate layout of cards
     this.position = this._position;
 

@@ -72,3 +72,13 @@ $translate-amount: 10vw
 
   to
     transform: translate($translate-amount)
+
+// Used on first card so that I don't have to worry about modifying styles like opacity or animation
+   duration. Kind of a hack.
+
+@keyframes in
+  from
+    opacity: 1
+
+  to
+    opacity: 1
