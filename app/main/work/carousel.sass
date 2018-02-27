@@ -30,6 +30,10 @@
     color: transparentize($white, .15)
     text-shadow: 0 4px 10px transparentize($black, .9)
 
+    opacity: 0
+    animation-fill-mode: forwards
+    animation-duration: .55s // Takes ever-so-slightly longer than carousel shift
+
   .graphic
     position: relative
     z-index: 0
@@ -37,3 +41,34 @@
     height: 100%
     opacity: .85
     transform: translateZ(5px)
+
+
+$translate-amount: 10vw
+
+@keyframes fadeInLeft
+  from
+    transform: translate(-$translate-amount)
+
+  to
+    opacity: 1
+
+@keyframes fadeInRight
+  from
+    transform: translate($translate-amount)
+
+  to
+    opacity: 1
+
+@keyframes fadeOutLeft
+  from
+    opacity: 1
+
+  to
+    transform: translate(-$translate-amount)
+
+@keyframes fadeOutRight
+  from
+    opacity: 1
+
+  to
+    transform: translate($translate-amount)
