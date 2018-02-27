@@ -318,7 +318,7 @@ export class GameRenderer {
     this.needsSizeUpdate = true;
     if (this.isRandom) this.game.randomize();
 
-    document.addEventListener('mousemove', e => this.mouse(e.clientX, e.clientY));
+    this.elem.addEventListener('mousemove', e => this.mouse(e.clientX, e.clientY));
   }
 
 
