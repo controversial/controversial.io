@@ -18,6 +18,10 @@ export class CarouselCard {
     this.transitionTime = this.baseTransitionTime = 0.5;
     this.parallax = new Parallax3D(this.elem);
 
+    this.elem.addEventListener('click', () => {
+      if (this.carousel) this.centerSelf();
+    });
+
 
     // Title manipulation interface
 
