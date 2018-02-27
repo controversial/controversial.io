@@ -33,14 +33,11 @@ export class CarouselCard {
      *   this.title.opacity = 0.5
      */
     this.title = {
-      _apply() {
-        _this2.titleElem.style.transform = `translateZ(25px) translateX(${this._translate})`;
-        _this2.titleElem.style.opacity = this._opacity;
-      },
-      get translate() { return this._translate; },
-      set translate(t) { this._translate = t; this._apply(); },
-      get opacity() { return this._opacity; },
-      set opacity(o) { this._opacity = o; this._apply(); },
+      _elem: _this2.titleElem,
+      fadeInLeft() { this._elem.style.animationName = 'fadeInLeft'; },
+      fadeInRight() { this._elem.style.animationName = 'fadeInRight'; },
+      fadeOutLeft() { this._elem.style.animationName = 'fadeOutLeft'; },
+      fadeOutRight() { this._elem.style.animationName = 'fadeOutRight'; },
     };
   }
 
@@ -66,7 +63,6 @@ export class CarouselCard {
   set transitionTime(secs) {
     this._transitionTime = secs;
     this.wrapper.style.transition = `transform ${secs}s`;
-    this.titleElem.style.transition = `transform ${secs}s, opacity ${secs}s`;
   }
 
   setEnabled(enable = true) {
@@ -148,18 +144,24 @@ export class Carousel {
 
     this.cards.forEach((card, index) => {
       const cardPosition = index - pos;
+      const oldPosition = index - this._position;
       const cardTranslation = `${48 * cardPosition}vw`;
       card.translate = cardTranslation;
-      // Center card
-      if (cardPosition === 0) {
+
+      if (cardPosition === 0) { // Center card
         card.title.opacity = 1;
-        card.title.translate = 0;
         card.enable();
-      // Not center card
-      } else {
+      } else { // Not center card
         card.title.opacity = 0;
-        card.title.translate = (pos > this._position) ? '5vw' : '-5vw';
         card.disable();
+      }
+
+      if (cardPosition === 0) { // Center card
+        if (oldPosition < 0) card.title.fadeInLeft(); // coming from left
+        if (oldPosition > 0) card.title.fadeInRight(); // coming from right
+      } else if (oldPosition === 0) {
+        if (cardPosition < 0) card.title.fadeOutLeft(); // going left
+        if (cardPosition > 0) card.title.fadeOutRight(); // going right
       }
     });
 
