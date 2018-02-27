@@ -89,8 +89,10 @@ export class CarouselCard {
   enable() { this.setEnabled(true); }
 
 
+  // Move the carousel so that this card is in the center
   centerSelf() {
-    this.carousel.position = this.carousel.cards.indexOf(this);
+    const thisIndex = this.carousel.cards.indexOf(this);
+    if (this.carousel.position !== thisIndex) this.carousel.position = thisIndex;
   }
 }
 
