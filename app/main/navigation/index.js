@@ -49,6 +49,7 @@ export class Navigation {
     const otherpages = this.pages.filter(n => n !== this.currentPage);
     otherpages.forEach(page => page.update(1.0));
     // Make sure current page is correctly scaled, and that all other navigation UI is proper
+    this.close();
     this.transitionUpdate(0);
 
     // Key bindings
@@ -192,6 +193,9 @@ export class Navigation {
     if (!this.forbidPush) this.carousel.shouldPushState = true;
     else this.forbidPush = false;
 
+    // Remove 'active' attribute from current page
+    if (this.currentPage.elem.wrapper) this.currentPage.elem.wrapper.removeAttribute('active');
+
     return new Promise((resolve) => {
       // Only needs to happen if it's not already open
       if (!this.shown) {
@@ -222,6 +226,10 @@ export class Navigation {
    */
   async close() {
     await this.safeToAnimate;
+
+    // Add active tag to current page
+    if (this.currentPage.elem.wrapper) this.currentPage.elem.wrapper.setAttribute('active', '');
+
     return new Promise((resolve) => {
       // Only needs to happen if it's not already open
       if (this.shown) {
