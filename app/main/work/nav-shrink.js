@@ -40,15 +40,11 @@ export default class WorkNavigationAnimation extends NavigationBase {
 
     this.elem.tags.style.transform = `translateX(-50%) scale(${this.elem.tags.dataset.scale})`;
     this.elem.laptopContent('work').appendChild(this.elem.tags);
-
-    document.getElementById('social-container').classList.remove('hidden');
   }
 
   removeFromLaptop() {
     super.removeFromLaptop();
 
     this.elem.wrapper.appendChild(this.elem.tags);
-
-    document.getElementById('social-container').classList.add('hidden');
   }
 }
