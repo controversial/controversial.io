@@ -12,6 +12,14 @@
   background: transparentize($white, .85)
   box-shadow: 0 .4vw 2vw -.2vw transparentize($black, .5)
   transform-style: preserve-3d
+  transition: width .5s
+
+  &.expanded
+    width: 65vw
+    min-height: 22.5vw
+
+    .graphic
+      height: 21vw // min-height minus padding (image keeps same height)
 
   h1
     position: absolute

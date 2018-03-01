@@ -94,6 +94,10 @@ export class CarouselCard {
     const thisIndex = this.carousel.cards.indexOf(this);
     if (this.carousel.position !== thisIndex) this.carousel.position = thisIndex;
   }
+
+  // Bigger!
+  expand() { this.elem.classList.add('expanded'); }
+  collapse() { this.elem.classList.remove('expanded'); }
 }
 
 /** Collects and orchestrates multiple CarouselCards */
