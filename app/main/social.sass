@@ -132,7 +132,7 @@ $dribbble: #ea4c89
   color: $light-text-secondary
   background: transparentize($white, .95)
 
-  transition: color .5s, letter-spacing .6s
+  transition: color .5s, letter-spacing .6s, opacity .5s
 
   overflow: hidden
 
@@ -153,3 +153,7 @@ $dribbble: #ea4c89
 
     &::after
       transform: translate(-50%, -50%) rotate(-60deg) scale(1)
+
+  &.hidden
+    opacity: 0
+    pointer-events: none
