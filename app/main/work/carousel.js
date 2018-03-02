@@ -131,6 +131,9 @@ export class CarouselCard {
   toggleExpand() {
     this[this.expanded ? 'collapse' : 'expand']();
   }
+
+  fade() { this.elem.style.opacity = 0.5; }
+  opacify() { this.elem.style.opacity = 1; }
 }
 
 
@@ -223,11 +226,15 @@ export class Carousel {
   expanded(card) {
     this.expandedIndex = this.cards.indexOf(card);
     this.position = this.position; // Re-layout
+    this.cards.forEach((c) => {
+      if (c !== card) c.fade();
+    });
   }
   collapsed() {
     this.expandedIndex = undefined;
     setTimeout(() => {
       this.position = this.position; // Re-layout
+      this.cards.forEach(c => c.opacify());
     }, 500);
   }
 
