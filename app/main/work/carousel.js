@@ -110,7 +110,10 @@ export class CarouselCard {
     this.elem.classList.add('expanded-x');
     this.titleElem.style.animationName = 'down';
     this.disable();
-    this._expansionTimeout = setTimeout(() => this.elem.classList.add('expanded-y'), 500);
+    this._expansionTimeout = setTimeout(() => {
+      this.elem.classList.add('expanded-y');
+      document.getElementById('email').classList.add('hidden');
+    }, 500);
 
     this.expanded = true;
     if (this.carousel) this.carousel.expanded(this);
@@ -119,6 +122,7 @@ export class CarouselCard {
     clearInterval(this._expansionTimeout);
 
     this.elem.classList.remove('expanded-y');
+    document.getElementById('email').classList.remove('hidden');
     this._expansionTimeout = setTimeout(() => {
       this.elem.classList.remove('expanded-x');
       this.titleElem.style.animationName = 'up';
