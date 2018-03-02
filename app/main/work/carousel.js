@@ -19,7 +19,13 @@ export class CarouselCard {
     this.parallax = new Parallax3D(this.elem);
 
     this.elem.addEventListener('click', () => {
-      if (this.carousel) this.centerSelf();
+      if (this.carousel) {
+        const thisIndex = this.carousel.cards.indexOf(this);
+        if (this.carousel.position !== thisIndex) this.centerSelf();
+        else this.toggleExpand();
+      } else {
+        this.toggleExpand();
+      }
     });
 
 
@@ -92,7 +98,7 @@ export class CarouselCard {
   // Move the carousel so that this card is in the center
   centerSelf() {
     const thisIndex = this.carousel.cards.indexOf(this);
-    if (this.carousel.position !== thisIndex) this.carousel.position = thisIndex;
+    this.carousel.position = thisIndex;
   }
 
   // Bigger!
