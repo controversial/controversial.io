@@ -53,7 +53,7 @@ export class CarouselCard {
    */
   _applyTransform() {
     this.wrapper.style.transform = [
-      'translate(-50%, -11.25vw)',
+      'translateX(-50%)',
       `translateX(${this._translate})`,
     ].join(' ');
   }
