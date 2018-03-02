@@ -184,7 +184,7 @@ export class Carousel {
       const cardTranslation = `${48 * cardPosition}vw`;
       card.translate = cardTranslation;
 
-      if (cardPosition === 0) { // Center card
+      if (cardPosition === 0 && !card.expanded) { // Center card
         card.title.opacity = 1;
         card.enable();
       } else { // Not center card
