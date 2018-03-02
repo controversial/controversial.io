@@ -102,6 +102,7 @@ export class CarouselCard {
     this.disable();
 
     setTimeout(() => this.elem.classList.add('expanded-y'), 500);
+    this.expanded = true;
   }
   collapse() {
     this.elem.classList.remove('expanded-y');
@@ -111,6 +112,10 @@ export class CarouselCard {
       this.titleElem.style.animationName = 'up';
       this.enable();
     }, 500);
+    this.expanded = false;
+  }
+  toggleExpand() {
+    this[this.expanded ? 'collapse' : 'expand']();
   }
 }
 
