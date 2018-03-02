@@ -113,6 +113,7 @@ export class CarouselCard {
     this._expansionTimeout = setTimeout(() => {
       this.elem.classList.add('expanded-y');
       document.getElementById('email').classList.add('hidden');
+      window.nav.disableScrollBinding = true;
     }, 500);
 
     this.expanded = true;
@@ -123,6 +124,8 @@ export class CarouselCard {
 
     this.elem.classList.remove('expanded-y');
     document.getElementById('email').classList.remove('hidden');
+    window.nav.disableScrollBinding = false;
+
     this._expansionTimeout = setTimeout(() => {
       this.elem.classList.remove('expanded-x');
       this.titleElem.style.animationName = 'up';
