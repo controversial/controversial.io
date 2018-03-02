@@ -2,24 +2,25 @@
   position: absolute
   top: 50%
   left: 50%
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -11.25vw)
 
 .carousel-card
   // 16:9
   width: 40vw
-  height: 22.5vw
+  min-height: 22.5vw
+  max-height: 22.5vw
   padding: .75vw
   background: transparentize($white, .85)
   box-shadow: 0 .4vw 2vw -.2vw transparentize($black, .5)
   transform-style: preserve-3d
-  transition: width .5s
+  transition: width .5s, max-height .5s
 
-  &.expanded
+  &.expanded-x
     width: 65vw
     min-height: 22.5vw
 
-    .graphic
-      height: 21vw // min-height minus padding (image keeps same height)
+  &.expanded-y
+    max-height: calc(50vh + 11.25vw)
 
   h1
     position: absolute
@@ -47,7 +48,8 @@
     position: relative
     z-index: 0
     width: 100%
-    height: 100%
+    // height minus padding (not 100% so that image doesn't get taller if card expands)
+    height: 21vw
     object-fit: cover
     opacity: .85
     transform: translateZ(5px)

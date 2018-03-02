@@ -47,7 +47,7 @@ export class CarouselCard {
    */
   _applyTransform() {
     this.wrapper.style.transform = [
-      'translate(-50%, -50%)',
+      'translate(-50%, -11.25vw)',
       `translateX(${this._translate})`,
     ].join(' ');
   }
@@ -97,14 +97,20 @@ export class CarouselCard {
 
   // Bigger!
   expand() {
-    this.elem.classList.add('expanded');
+    this.elem.classList.add('expanded-x');
     this.titleElem.style.animationName = 'down';
     this.disable();
+
+    setTimeout(() => this.elem.classList.add('expanded-y'), 500);
   }
   collapse() {
-    this.elem.classList.remove('expanded');
-    this.titleElem.style.animationName = 'up';
-    this.enable();
+    this.elem.classList.remove('expanded-y');
+
+    setTimeout(() => {
+      this.elem.classList.remove('expanded-x');
+      this.titleElem.style.animationName = 'up';
+      this.enable();
+    }, 500);
   }
 }
 
