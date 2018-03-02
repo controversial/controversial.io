@@ -88,19 +88,44 @@ $translate-amount: 10vw
   from
     opacity: 1
 
+  39%
+    opacity: 0
+    top: 1.25vw
+    left: -3.5vw
+    transform: translate3d(0, 0, 25px)
+
+  40%
+    opacity: 0
+    top: 21.75vw
+    left: 50%
+    transform: translate3d(-50%, -100%, 25px)
+
   to
     opacity: 1
-    left: 50%
     top: 21.75vw
+    left: 50%
     transform: translate3d(-50%, -50%, 25px)
+
 
 // Go back up to the default location
 @keyframes up
   from
     opacity: 1
-    left: 50%
     top: 21.75vw
+    left: 50%
     transform: translate3d(-50%, -50%, 25px)
+
+  39%
+    opacity: 0
+    top: 21.75vw
+    left: 50%
+    transform: translate3d(-50%, -50%, 25px)
+
+  40%
+    opacity: 0
+    top: 1.25vw
+    left: -3.5vw
+    transform: translate3d(0, 0, 25px)
 
   to
     opacity: 1
