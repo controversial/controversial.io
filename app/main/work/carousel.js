@@ -175,8 +175,9 @@ export class Carousel {
   get position() { return this._position; }
   set position(pos) {
     const delta = Math.abs(this._position - pos);
+    const btt = this.baseTransitionTime;
     // mx + b
-    this.transitionTime = ((0.5 * this.baseTransitionTime) * (delta - 1)) + this.baseTransitionTime;
+    this.transitionTime = ((0.5 * btt) * ((delta || 1) - 1)) + btt;
 
     this.cards.forEach((card, index) => {
       const cardPosition = index - pos;
