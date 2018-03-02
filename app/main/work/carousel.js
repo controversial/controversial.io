@@ -99,10 +99,12 @@ export class CarouselCard {
   expand() {
     this.elem.classList.add('expanded');
     this.titleElem.style.animationName = 'down';
+    this.disable();
   }
   collapse() {
     this.elem.classList.remove('expanded');
     this.titleElem.style.animationName = 'up';
+    this.enable();
   }
 }
 
