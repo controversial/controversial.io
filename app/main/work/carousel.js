@@ -177,38 +177,44 @@ export class Carousel {
 
   get position() { return this._position; }
   set position(pos) {
-    const delta = Math.abs(this._position - pos);
-    const btt = this.baseTransitionTime;
-    // mx + b
-    this.transitionTime = ((0.5 * btt) * ((delta || 1) - 1)) + btt;
+    (async () => {
+      const delta = Math.abs(this._position - pos);
 
-    this.cards.forEach((card, index) => {
-      const cardPosition = index - pos;
-      const oldPosition = index - this._position;
-      let cardOffset = 0;
-      if (index > this.expandedIndex) cardOffset = 12.5;
-      if (index < this.expandedIndex) cardOffset = -12.5;
-      const cardTranslation = `${(48 * cardPosition) + cardOffset}vw`;
-      card.translate = cardTranslation;
+      const btt = this.baseTransitionTime;
+      this.transitionTime = ((0.5 * btt) * ((delta || 1) - 1)) + btt;
 
-      if (cardPosition === 0 && !card.expanded) { // Center card
-        card.title.opacity = 1;
-        card.enable();
-      } else { // Not center card
-        card.title.opacity = 0;
-        card.disable();
+      if (delta > 0 && typeof this.expandedIndex !== 'undefined') {
+        this.cards[this.expandedIndex].collapse();
+        await new Promise(resolve => setTimeout(resolve, 1000));
       }
 
-      if (cardPosition === 0) { // Center card
-        if (oldPosition < 0) card.title.fadeInLeft(); // coming from left
-        if (oldPosition > 0) card.title.fadeInRight(); // coming from right
-      } else if (oldPosition === 0) {
-        if (cardPosition < 0) card.title.fadeOutLeft(); // going left
-        if (cardPosition > 0) card.title.fadeOutRight(); // going right
-      }
-    });
+      this.cards.forEach((card, index) => {
+        const cardPosition = index - pos;
+        const oldPosition = index - this._position;
+        let cardOffset = 0;
+        if (index > this.expandedIndex) cardOffset = 12.5;
+        if (index < this.expandedIndex) cardOffset = -12.5;
+        const cardTranslation = `${(48 * cardPosition) + cardOffset}vw`;
+        card.translate = cardTranslation;
 
-    this._position = pos;
+        if (cardPosition === 0 && !card.expanded) { // Center card
+          card.title.opacity = 1;
+          card.enable();
+        } else { // Not center card
+          card.title.opacity = 0;
+          card.disable();
+        }
+
+        if (cardPosition === 0) { // Center card
+          if (oldPosition < 0) card.title.fadeInLeft(); // coming from left
+          if (oldPosition > 0) card.title.fadeInRight(); // coming from right
+        } else if (oldPosition === 0) {
+          if (cardPosition < 0) card.title.fadeOutLeft(); // going left
+          if (cardPosition > 0) card.title.fadeOutRight(); // going right
+        }
+      });
+      this._position = pos;
+    })();
   }
 
   expanded(card) {
