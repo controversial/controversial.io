@@ -78,14 +78,15 @@ export class Navigation {
     // Trackpad/scroll controls
 
     window.addEventListener('wheel', (e) => {
-      // Vertical scroll
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        if (e.deltaY > 2) this.open();
-        if (e.deltaY < -2) this.close();
-      }
+      if (!this.disableScrollBinding) {
+        // Vertical scroll
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          if (e.deltaY > 2) this.open();
+          if (e.deltaY < -2) this.close();
+        }
 
-      e.preventDefault();
-      return false;
+        e.preventDefault();
+      }
     });
   }
 
