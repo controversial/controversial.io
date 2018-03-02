@@ -45,15 +45,20 @@
     animation-duration: .55s // Takes ever-so-slightly longer than carousel shift
 
   .graphic
-    position: relative
+    position: absolute
     z-index: 0
-    width: 100%
+    width: calc(100% - 1.5vw)
     // height minus padding (not 100% so that image doesn't get taller if card expands)
     height: 21vw
     object-fit: cover
     opacity: .85
     transform: translateZ(5px)
 
+  .content
+    position: relative
+    padding-top: 24vw
+    max-height: inherit
+    overflow: hidden
 
 $translate-amount: 10vw
 
