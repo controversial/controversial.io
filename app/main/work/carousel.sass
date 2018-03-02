@@ -83,6 +83,28 @@ $translate-amount: 10vw
   to
     transform: translate($translate-amount)
 
+// Go down to the expanded location
+@keyframes down
+  from
+    opacity: 1
+
+  to
+    opacity: 1
+    left: 50%
+    top: 21.75vw
+    transform: translate3d(-50%, -50%, 25px)
+
+// Go back up to the default location
+@keyframes up
+  from
+    opacity: 1
+    left: 50%
+    top: 21.75vw
+    transform: translate3d(-50%, -50%, 25px)
+
+  to
+    opacity: 1
+
 // Used on first card so that I don't have to worry about modifying styles like opacity or animation
    duration. Kind of a hack.
 

@@ -96,8 +96,14 @@ export class CarouselCard {
   }
 
   // Bigger!
-  expand() { this.elem.classList.add('expanded'); }
-  collapse() { this.elem.classList.remove('expanded'); }
+  expand() {
+    this.elem.classList.add('expanded');
+    this.titleElem.style.animationName = 'down';
+  }
+  collapse() {
+    this.elem.classList.remove('expanded');
+    this.titleElem.style.animationName = 'up';
+  }
 }
 
 /** Collects and orchestrates multiple CarouselCards */
