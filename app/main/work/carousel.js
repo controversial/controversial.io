@@ -103,21 +103,27 @@ export class CarouselCard {
 
   // Bigger!
   expand() {
+    // Prevents incorrect result when expanding and collapsing rapidly. Ensures that a pre-existing
+    // timeout won't remove the expanded-x class after it's been added by this method.
+    clearInterval(this._expansionTimeout);
+
     this.elem.classList.add('expanded-x');
     this.titleElem.style.animationName = 'down';
     this.disable();
+    this._expansionTimeout = setTimeout(() => this.elem.classList.add('expanded-y'), 500);
 
-    setTimeout(() => this.elem.classList.add('expanded-y'), 500);
     this.expanded = true;
   }
   collapse() {
-    this.elem.classList.remove('expanded-y');
+    clearInterval(this._expansionTimeout);
 
-    setTimeout(() => {
+    this.elem.classList.remove('expanded-y');
+    this._expansionTimeout = setTimeout(() => {
       this.elem.classList.remove('expanded-x');
       this.titleElem.style.animationName = 'up';
       this.enable();
     }, 500);
+
     this.expanded = false;
   }
   toggleExpand() {
