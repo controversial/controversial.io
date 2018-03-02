@@ -113,6 +113,7 @@ export class CarouselCard {
     this._expansionTimeout = setTimeout(() => this.elem.classList.add('expanded-y'), 500);
 
     this.expanded = true;
+    if (this.carousel) this.carousel.expanded(this);
   }
   collapse() {
     clearInterval(this._expansionTimeout);
@@ -125,11 +126,13 @@ export class CarouselCard {
     }, 500);
 
     this.expanded = false;
+    if (this.carousel) this.carousel.collapsed(this);
   }
   toggleExpand() {
     this[this.expanded ? 'collapse' : 'expand']();
   }
 }
+
 
 /** Collects and orchestrates multiple CarouselCards */
 export class Carousel {
@@ -182,7 +185,10 @@ export class Carousel {
     this.cards.forEach((card, index) => {
       const cardPosition = index - pos;
       const oldPosition = index - this._position;
-      const cardTranslation = `${48 * cardPosition}vw`;
+      let cardOffset = 0;
+      if (index > this.expandedIndex) cardOffset = 12.5;
+      if (index < this.expandedIndex) cardOffset = -12.5;
+      const cardTranslation = `${(48 * cardPosition) + cardOffset}vw`;
       card.translate = cardTranslation;
 
       if (cardPosition === 0 && !card.expanded) { // Center card
@@ -203,6 +209,17 @@ export class Carousel {
     });
 
     this._position = pos;
+  }
+
+  expanded(card) {
+    this.expandedIndex = this.cards.indexOf(card);
+    this.position = this.position; // Re-layout
+  }
+  collapsed() {
+    this.expandedIndex = undefined;
+    setTimeout(() => {
+      this.position = this.position; // Re-layout
+    }, 500);
   }
 
   get minIndex() { return 0; } // eslint-disable-line class-methods-use-this
