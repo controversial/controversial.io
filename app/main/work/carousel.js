@@ -180,26 +180,33 @@ export class Carousel {
     (async () => {
       const delta = Math.abs(this._position - pos);
 
+      // Adjust transition time based on how many cards we're jumping
       const btt = this.baseTransitionTime;
       this.transitionTime = ((0.5 * btt) * ((delta || 1) - 1)) + btt;
 
+      // If any card is open, collapse it and wait
       if (delta > 0 && typeof this.expandedIndex !== 'undefined') {
         this.cards[this.expandedIndex].collapse();
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
 
+      // Apply certain changes to each card
       this.cards.forEach((card, index) => {
         const cardPosition = index - pos;
         const oldPosition = index - this._position;
+        // Calculate an offset based on position relative to any expanded card
         let cardOffset = 0;
         if (index > this.expandedIndex) cardOffset = 12.5;
         if (index < this.expandedIndex) cardOffset = -12.5;
+        // Set translation
         const cardTranslation = `${(48 * cardPosition) + cardOffset}vw`;
         card.translate = cardTranslation;
 
+        // Expand / disable cards based on whether they're centered
         if (cardPosition === 0 && !card.expanded) card.enable();
         else card.disable(); // Not center card
 
+        // Apply animations to titles
         if (cardPosition === 0) { // Center card
           if (oldPosition < 0) card.title.fadeInLeft(); // coming from left
           if (oldPosition > 0) card.title.fadeInRight(); // coming from right
@@ -208,6 +215,7 @@ export class Carousel {
           if (cardPosition > 0) card.title.fadeOutRight(); // going right
         }
       });
+      // Update internally-stored position tracker
       this._position = pos;
     })();
   }
