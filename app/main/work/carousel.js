@@ -197,13 +197,8 @@ export class Carousel {
         const cardTranslation = `${(48 * cardPosition) + cardOffset}vw`;
         card.translate = cardTranslation;
 
-        if (cardPosition === 0 && !card.expanded) { // Center card
-          card.title.opacity = 1;
-          card.enable();
-        } else { // Not center card
-          card.title.opacity = 0;
-          card.disable();
-        }
+        if (cardPosition === 0 && !card.expanded) card.enable();
+        else card.disable(); // Not center card
 
         if (cardPosition === 0) { // Center card
           if (oldPosition < 0) card.title.fadeInLeft(); // coming from left
