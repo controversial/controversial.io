@@ -16,7 +16,7 @@ export class CarouselTag {
 
 
 export class CarouselCard {
-  constructor(elem, tags) {
+  constructor(elem, tagNames) {
     this.elem = elem;
     this.elem.classList.add('carousel-card');
     // Move elem into a wrapper div
@@ -25,7 +25,7 @@ export class CarouselCard {
     this.elem.parentNode.insertBefore(this.wrapper, this.elem);
     this.wrapper.appendChild(this.elem);
 
-    this.tags = tags || elem.dataset.tags.split(',').map(t => t.trim());
+    this.tagNames = tagNames || elem.dataset.tags.split(',').map(t => t.trim());
     this.titleElem = elem.getElementsByTagName('h1')[0];
 
     this.carousel = undefined; // Will be set when added to a carousel
@@ -290,7 +290,7 @@ export class Carousel {
   }
 
   filter(tag) {
-    const cards = this.cards.filter(c => c.tags.includes(tag.name));
+    const cards = this.cards.filter(c => c.tagNames.includes(tag.name));
     console.log(cards);
   }
 }
