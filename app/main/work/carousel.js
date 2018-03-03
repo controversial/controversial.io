@@ -27,6 +27,7 @@ export class CarouselCard {
         this.toggleExpand();
       }
     });
+    this.wrapper.addEventListener('scroll', () => this.scrollHandler());
 
 
     // Title manipulation interface
@@ -144,6 +145,16 @@ export class CarouselCard {
 
   fade() { this.elem.style.opacity = 0.5; }
   opacify() { this.elem.style.opacity = 1; }
+
+  scrollHandler() {
+    const transitionDistance = window.innerHeight / 10;
+    const progress = Math.min(this.wrapper.scrollTop / transitionDistance, 1);
+
+    const nav = document.getElementById('navigation');
+    const tags = document.querySelector('.tags');
+    nav.style.opacity = 0.5 * (1 - progress);
+    tags.style.opacity = 1 - progress;
+  }
 }
 
 
