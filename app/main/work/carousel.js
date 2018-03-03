@@ -1,6 +1,20 @@
 /** Represents a single project in the work carousel */
 import Parallax3D from '../parallax';
 
+
+export class CarouselTag {
+  constructor(elem) {
+    this.elem = elem;
+    this.name = elem.textContent;
+    this.carousel = undefined; // Will be set when added to a carousel
+
+    this.elem.addEventListener('click', () => this.select());
+  }
+
+  select() { if (this.carousel) this.carousel.filter(this); }
+}
+
+
 export class CarouselCard {
   constructor(elem, tags) {
     this.elem = elem;
@@ -160,9 +174,12 @@ export class CarouselCard {
 
 /** Collects and orchestrates multiple CarouselCards */
 export class Carousel {
-  constructor(cards) {
+  constructor(cards, tags) {
+    this.tags = tags;
+    this.tags.forEach((t) => { t.carousel = this; });
     this.cards = cards;
     this.cards.forEach((c) => { c.carousel = this; });
+
     this._position = 0;
     this.cards[this._position].title._elem.style.animationName = 'in';
     // Trigger immediate layout of cards
@@ -267,5 +284,10 @@ export class Carousel {
   }
   right() {
     if (this.position < this.maxIndex) this.position += 1;
+  }
+
+  filter(tag) {
+    const cards = this.cards.filter(c => c.tags.includes(tag.name));
+    console.log(cards);
   }
 }
