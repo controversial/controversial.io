@@ -168,6 +168,9 @@ export class CarouselCard {
     const tags = document.querySelector('.tags');
     nav.style.opacity = 0.5 * (1 - progress);
     tags.style.opacity = 1 - progress;
+
+    // Turn off pointer events when halfway faded
+    nav.style.pointerEvents = tags.style.pointerEvents = progress < 0.5 ? '' : 'none';
   }
 }
 
