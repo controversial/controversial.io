@@ -62,16 +62,16 @@
       animation-name: in
 
     &.in-from-left
-      animation-name: fadeInLeft
+      animation-name: in-from-left
 
     &.in-from-right
-      animation-name: fadeInRight
+      animation-name: in-from-right
 
     &.out-to-left
-      animation-name: fadeOutLeft
+      animation-name: out-to-left
 
     &.out-to-right
-      animation-name: fadeOutRight
+      animation-name: out-to-right
 
     &.down
       animation-name: down
@@ -99,28 +99,28 @@
 
 $translate-amount: 10vw
 
-@keyframes fadeInLeft
+@keyframes in-from-left
   from
     transform: translate(-$translate-amount)
 
   to
     opacity: 1
 
-@keyframes fadeInRight
+@keyframes in-from-right
   from
     transform: translate($translate-amount)
 
   to
     opacity: 1
 
-@keyframes fadeOutLeft
+@keyframes out-to-left
   from
     opacity: 1
 
   to
     transform: translate(-$translate-amount)
 
-@keyframes fadeOutRight
+@keyframes out-to-right
   from
     opacity: 1
 
