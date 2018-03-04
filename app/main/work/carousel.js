@@ -59,6 +59,8 @@ export class CarouselCard {
       fadeInRight() { this._elem.style.animationName = 'fadeInRight'; },
       fadeOutLeft() { this._elem.style.animationName = 'fadeOutLeft'; },
       fadeOutRight() { this._elem.style.animationName = 'fadeOutRight'; },
+      down() { this._elem.style.animationName = 'down'; },
+      up() { this._elem.style.animationName = 'up'; },
     };
   }
 
@@ -123,7 +125,7 @@ export class CarouselCard {
     clearInterval(this._expansionTimeout);
 
     this.elem.classList.add('expanded-x');
-    this.titleElem.style.animationName = 'down';
+    this.title.down();
     this.disable();
     this._expansionTimeout = setTimeout(() => {
       this.elem.classList.add('expanded-y');
@@ -146,7 +148,7 @@ export class CarouselCard {
 
     this._expansionTimeout = setTimeout(() => {
       this.elem.classList.remove('expanded-x');
-      this.titleElem.style.animationName = 'up';
+      this.title.up();
       this.enable();
     }, 500);
 
