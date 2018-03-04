@@ -55,12 +55,13 @@ export class CarouselCard {
      */
     this.title = {
       _elem: _this2.titleElem,
-      fadeInLeft() { this._elem.style.animationName = 'fadeInLeft'; },
-      fadeInRight() { this._elem.style.animationName = 'fadeInRight'; },
-      fadeOutLeft() { this._elem.style.animationName = 'fadeOutLeft'; },
-      fadeOutRight() { this._elem.style.animationName = 'fadeOutRight'; },
-      down() { this._elem.style.animationName = 'down'; },
-      up() { this._elem.style.animationName = 'up'; },
+      display() { this._elem.className = 'in-initial'; },
+      fadeInLeft() { this._elem.className = 'in-from-left'; },
+      fadeInRight() { this._elem.className = 'in-from-right'; },
+      fadeOutLeft() { this._elem.className = 'out-to-left'; },
+      fadeOutRight() { this._elem.className = 'out-to-right'; },
+      moveDown() { this._elem.className = 'down'; },
+      moveUp() { this._elem.className = 'up'; },
     };
   }
 
@@ -125,7 +126,7 @@ export class CarouselCard {
     clearInterval(this._expansionTimeout);
 
     this.elem.classList.add('expanded-x');
-    this.title.down();
+    this.title.moveDown();
     this.disable();
     this._expansionTimeout = setTimeout(() => {
       this.elem.classList.add('expanded-y');
@@ -148,7 +149,7 @@ export class CarouselCard {
 
     this._expansionTimeout = setTimeout(() => {
       this.elem.classList.remove('expanded-x');
-      this.title.up();
+      this.title.moveUp();
       this.enable();
     }, 500);
 
@@ -186,7 +187,7 @@ export class Carousel {
     this.cards.forEach((c) => { c.carousel = this; });
 
     this._position = 0;
-    this.cards[this._position].title._elem.style.animationName = 'in';
+    this.cards[this._position].title.display();
     // Trigger immediate layout of cards
     this.position = this._position;
 
