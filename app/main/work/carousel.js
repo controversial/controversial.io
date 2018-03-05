@@ -33,16 +33,7 @@ export class CarouselCard {
     this.transitionTime = this.baseTransitionTime = 0.5;
     this.parallax = new Parallax3D(this.elem);
 
-    this.elem.addEventListener('click', () => {
-      if (this.carousel) {
-        const i1 = this.carousel.cards.indexOf(this);
-        const i2 = this.carousel.adjustIndex(i1);
-        if (this.carousel.position !== i2) this.centerSelf();
-        else this.toggleExpand();
-      } else {
-        this.toggleExpand();
-      }
-    });
+    this.elem.addEventListener('click', () => this.clickHandler());
     this.wrapper.addEventListener('scroll', () => this.scrollHandler());
 
 
@@ -174,6 +165,17 @@ export class CarouselCard {
 
   fade() { this.elem.style.opacity = 0.5; }
   opacify() { this.elem.style.opacity = 1; }
+
+  clickHandler() {
+    if (this.carousel) {
+      const i1 = this.carousel.cards.indexOf(this);
+      const i2 = this.carousel.adjustIndex(i1);
+      if (this.carousel.position !== i2) this.centerSelf();
+      else this.toggleExpand();
+    } else {
+      this.toggleExpand();
+    }
+  }
 
   scrollHandler() {
     const transitionDistance = window.innerHeight / 10;
