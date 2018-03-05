@@ -62,6 +62,7 @@ export class CarouselCard {
       fadeInRight() { this._elem.className = 'in-from-right'; },
       fadeOutLeft() { this._elem.className = 'out-to-left'; },
       fadeOutRight() { this._elem.className = 'out-to-right'; },
+      fadeOutTop() { this._elem.className = 'out-to-top'; },
       moveDown() { this._elem.className = 'down'; },
       moveUp() { this._elem.className = 'up'; },
     };

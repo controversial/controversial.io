@@ -79,6 +79,9 @@
     &.out-to-right
       animation-name: out-to-right
 
+    &.out-to-top
+      animation-name: out-to-top
+
     &.down
       animation-name: down
 
@@ -132,6 +135,14 @@ $translate-amount: 10vw
 
   to
     transform: translate3d($translate-amount, 0, 25px)
+
+@keyframes out-to-top
+  from
+    opacity: 1
+
+  to
+    transform: translate3d(0, -100%, 25px)
+
 
 // Go down to the expanded location
 @keyframes down
