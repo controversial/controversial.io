@@ -325,6 +325,11 @@ export class Carousel {
 
     this.hiddenIndices = cardsToRemove.map(c => this.cards.indexOf(c));
     this.position = this.position; // Re-layout
+
+    if (this.position > this.maxIndex) {
+      await delay(750); // 250ms of space after first adjustment is completed
+      this.position = this.maxIndex;
+    }
   }
 
   async clearFilter() {
