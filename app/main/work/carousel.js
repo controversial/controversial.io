@@ -119,7 +119,7 @@ export class CarouselCard {
   // Move the carousel so that this card is in the center
   centerSelf() {
     const thisIndex = this.carousel.cards.indexOf(this);
-    this.carousel.position = thisIndex;
+    this.carousel.position = this.carousel.adjustIndex(thisIndex);
   }
 
   // Bigger!
@@ -226,6 +226,11 @@ export class Carousel {
 
   // Rearrange
 
+  // Adjust an index based on the number of hidden cards that come before it
+  adjustIndex(index) {
+    return index - this.hiddenIndices.filter(i => i < index).length;
+  }
+
   get position() { return this._position; }
   set position(pos) {
     (async () => {
@@ -243,9 +248,8 @@ export class Carousel {
 
       // Apply certain changes to each card
       this.cards.forEach((card, index) => {
-        let cardPosition = index - pos;
-        // Subtract position for every preceding card that is hidden
-        this.hiddenIndices.forEach((i) => { if (i < index) cardPosition -= 1; });
+        const adj = i => this.adjustIndex(i);
+        const cardPosition = adj(index) - pos;
         const oldPosition = cardPosition - (this._position - pos);
         // Calculate an offset based on position relative to any expanded card
         let cardOffset = 0;
