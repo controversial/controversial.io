@@ -12,7 +12,12 @@ export class CarouselTag {
     this.elem.addEventListener('click', () => this.select());
   }
 
-  select() { if (this.carousel) this.carousel.filter(this); }
+  select() {
+    if (this.carousel) this.carousel.filter(this);
+  }
+  deselect() {
+    if (this.carousel) this.carousel.clearFilter();
+  }
 }
 
 
