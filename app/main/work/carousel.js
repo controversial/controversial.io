@@ -314,9 +314,12 @@ export class Carousel {
     this.position = this.position; // Re-layout
   }
 
-  clearFilter() {
-    this.cards.forEach(c => c.elem.classList.remove('removed'));
-    this.hiddenIndices = [];
-    this.position = this.position; // Re-layout
+  async clearFilter() {
+    if (this.hiddenIndices.length) {
+      this.hiddenIndices = [];
+      this.position = this.position; // Re-layout
+      await new Promise(resolve => setTimeout(resolve, 500));
+      this.cards.forEach(c => c.elem.classList.remove('removed'));
+    }
   }
 }
