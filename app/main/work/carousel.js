@@ -34,8 +34,9 @@ export class CarouselCard {
 
     this.elem.addEventListener('click', () => {
       if (this.carousel) {
-        const thisIndex = this.carousel.cards.indexOf(this);
-        if (this.carousel.position !== thisIndex) this.centerSelf();
+        const i1 = this.carousel.cards.indexOf(this);
+        const i2 = this.carousel.adjustIndex(i1);
+        if (this.carousel.position !== i2) this.centerSelf();
         else this.toggleExpand();
       } else {
         this.toggleExpand();
@@ -253,8 +254,8 @@ export class Carousel {
         const oldPosition = cardPosition - (this._position - pos);
         // Calculate an offset based on position relative to any expanded card
         let cardOffset = 0;
-        if (index > this.expandedIndex) cardOffset = 12.5;
-        if (index < this.expandedIndex) cardOffset = -12.5;
+        if (adj(index) > adj(this.expandedIndex)) cardOffset = 12.5;
+        if (adj(index) < adj(this.expandedIndex)) cardOffset = -12.5;
         // Set translation
         const cardTranslation = `${(48 * cardPosition) + cardOffset}vw`;
         card.translate = cardTranslation;
