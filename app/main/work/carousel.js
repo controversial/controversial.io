@@ -118,10 +118,10 @@ export class CarouselCard {
   enable() { this.setEnabled(true); }
 
   hide() {
-    this.elem.classList.add('removed');
+    this.elem.classList.add('hidden');
   }
   show() {
-    this.elem.classList.remove('removed');
+    this.elem.classList.remove('hidden');
   }
 
 

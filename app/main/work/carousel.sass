@@ -104,7 +104,7 @@
     mask-image: linear-gradient(to bottom, $black 49%, transparent 49.1%)
     transition: mask-position .5s
 
-  .removed-indicator
+  .hidden-indicator
     display: block
     position: absolute
     top: 50%
@@ -122,7 +122,7 @@
     max-height: inherit
     overflow: hidden
 
-  &.removed
+  &.hidden
     box-shadow: none
 
     h1
@@ -132,7 +132,7 @@
     .graphic
       mask-position: 0 -21.1vw // Slightly more than should be necessary in order to prevent error
 
-    .removed-indicator
+    .hidden-indicator
       opacity: .25
 
 
