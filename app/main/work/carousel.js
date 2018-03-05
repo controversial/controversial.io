@@ -188,6 +188,7 @@ export class Carousel {
     this.tags.forEach((t) => { t.carousel = this; });
     this.cards = cards;
     this.cards.forEach((c) => { c.carousel = this; });
+    this.hiddenIndices = [];
 
     this._position = 0;
     this.cards[this._position].title.display();
@@ -242,8 +243,10 @@ export class Carousel {
 
       // Apply certain changes to each card
       this.cards.forEach((card, index) => {
-        const cardPosition = index - pos;
-        const oldPosition = index - this._position;
+        let cardPosition = index - pos;
+        // Subtract position for every preceding card that is hidden
+        this.hiddenIndices.forEach((i) => { if (i < index) cardPosition -= 1; });
+        const oldPosition = cardPosition - (this._position - pos);
         // Calculate an offset based on position relative to any expanded card
         let cardOffset = 0;
         if (index > this.expandedIndex) cardOffset = 12.5;
@@ -295,8 +298,20 @@ export class Carousel {
     if (this.position < this.maxIndex) this.position += 1;
   }
 
-  filter(tag) {
-    const cards = this.cards.filter(c => c.tagNames.includes(tag.name));
-    console.log(cards);
+  async filter(tag) {
+    const cardsToRemove = this.cards.filter(c => !c.tagNames.includes(tag.name));
+    this.cards.forEach(c => c.elem.classList.remove('removed')); // Clean slate
+    cardsToRemove.forEach(c => c.elem.classList.add('removed')); // Play removed animation on affected cards
+
+    if (cardsToRemove.length) await new Promise(resolve => setTimeout(resolve, 500));
+
+    this.hiddenIndices = cardsToRemove.map(c => this.cards.indexOf(c));
+    this.position = this.position; // Re-layout
+  }
+
+  clearFilter() {
+    this.cards.forEach(c => c.elem.classList.remove('removed'));
+    this.hiddenIndices = [];
+    this.position = this.position; // Re-layout
   }
 }
