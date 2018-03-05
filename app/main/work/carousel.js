@@ -1,6 +1,7 @@
 /** Represents a single project in the work carousel */
 import Parallax3D from '../parallax';
 
+function delay(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
 
 export class CarouselTag {
   constructor(elem) {
@@ -244,7 +245,7 @@ export class Carousel {
       // If any card is open, collapse it and wait
       if (delta > 0 && typeof this.expandedIndex !== 'undefined') {
         this.cards[this.expandedIndex].collapse();
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await delay(1000);
       }
 
       // Apply certain changes to each card
@@ -308,7 +309,7 @@ export class Carousel {
     this.cards.forEach(c => c.elem.classList.remove('removed')); // Clean slate
     cardsToRemove.forEach(c => c.elem.classList.add('removed')); // Play removed animation on affected cards
 
-    if (cardsToRemove.length) await new Promise(resolve => setTimeout(resolve, 500));
+    if (cardsToRemove.length) await delay(500);
 
     this.hiddenIndices = cardsToRemove.map(c => this.cards.indexOf(c));
     this.position = this.position; // Re-layout
@@ -318,7 +319,7 @@ export class Carousel {
     if (this.hiddenIndices.length) {
       this.hiddenIndices = [];
       this.position = this.position; // Re-layout
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await delay(500);
       this.cards.forEach(c => c.elem.classList.remove('removed'));
     }
   }
