@@ -293,7 +293,7 @@ export class Carousel {
   }
 
   get minIndex() { return 0; } // eslint-disable-line class-methods-use-this
-  get maxIndex() { return this.cards.length - 1; }
+  get maxIndex() { return this.cards.length - this.hiddenIndices.length - 1; }
 
   left() {
     if (this.position > this.minIndex) this.position -= 1;
