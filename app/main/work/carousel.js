@@ -117,6 +117,13 @@ export class CarouselCard {
   disable() { this.setEnabled(false); }
   enable() { this.setEnabled(true); }
 
+  hide() {
+    this.elem.classList.add('removed');
+  }
+  show() {
+    this.elem.classList.remove('removed');
+  }
+
 
   // Move the carousel so that this card is in the center
   centerSelf() {
@@ -306,8 +313,8 @@ export class Carousel {
 
   async filter(tag) {
     const cardsToRemove = this.cards.filter(c => !c.tagNames.includes(tag.name));
-    this.cards.forEach(c => c.elem.classList.remove('removed')); // Clean slate
-    cardsToRemove.forEach(c => c.elem.classList.add('removed')); // Play removed animation on affected cards
+    this.cards.forEach(c => c.show()); // Clean slate
+    cardsToRemove.forEach(c => c.hide()); // Play removed animation on affected cards
 
     if (cardsToRemove.length) await delay(500);
 
@@ -320,7 +327,7 @@ export class Carousel {
       this.hiddenIndices = [];
       this.position = this.position; // Re-layout
       await delay(500);
-      this.cards.forEach(c => c.elem.classList.remove('removed'));
+      this.cards.forEach(c => c.show());
     }
   }
 }
