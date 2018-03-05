@@ -107,14 +107,14 @@ $translate-amount: 10vw
 
 @keyframes in-from-left
   from
-    transform: translate(-$translate-amount)
+    transform: translate3d(-$translate-amount, 0, 25px)
 
   to
     opacity: 1
 
 @keyframes in-from-right
   from
-    transform: translate($translate-amount)
+    transform: translate3d($translate-amount, 0, 25px)
 
   to
     opacity: 1
@@ -124,14 +124,14 @@ $translate-amount: 10vw
     opacity: 1
 
   to
-    transform: translate(-$translate-amount)
+    transform: translat3d(-$translate-amount, 0, 25px)
 
 @keyframes out-to-right
   from
     opacity: 1
 
   to
-    transform: translate($translate-amount)
+    transform: translate3d($translate-amount, 0, 25px)
 
 // Go down to the expanded location
 @keyframes down
