@@ -14,7 +14,7 @@
 
   box-shadow: 0 .3em 1.5em -.75em $shadow-color
   cursor: pointer
-  transition: box-shadow .25s, background-color .25s, transform .25s
+  transition: box-shadow .25s, background-color .25s, transform .25s, opacity .25s
 
   &:hover
     box-shadow: 0 .8em 1.9em -.9em $shadow-color
@@ -31,6 +31,12 @@
     background: transparentize($white, .75)
     margin-right: .75em
     transition: .5s
+
+  &.faded
+    opacity: .5
+
+    &:hover
+      opacity: 1
 
 #work-wrapper .tag
   pointer-events: inherit

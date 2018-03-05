@@ -26,6 +26,9 @@ export class CarouselTag {
   toggle() {
     this[this.selected ? 'deselect' : 'select']();
   }
+
+  fade() { this.elem.classList.add('faded'); }
+  opacify() { this.elem.classList.remove('faded'); }
 }
 
 
@@ -330,6 +333,8 @@ export class Carousel {
   }
 
   async filter(tag) {
+    tag.opacify();
+    this.tags.filter(t => t !== tag).forEach(t => t.fade());
     const cardsToRemove = this.cards.filter(c => !c.tagNames.includes(tag.name));
     this.cards.forEach(c => c.show()); // Clean slate
     cardsToRemove.forEach(c => c.hide()); // Play removed animation on affected cards
@@ -346,6 +351,7 @@ export class Carousel {
   }
 
   async clearFilter() {
+    this.tags.forEach(t => t.opacify());
     if (this.hiddenIndices.length) {
       this.hiddenIndices = [];
       this.position = this.position; // Re-layout
