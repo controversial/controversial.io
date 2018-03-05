@@ -279,13 +279,19 @@ export class Carousel {
       // Apply certain changes to each card
       this.cards.forEach((card, index) => {
         const adj = i => this.adjustIndex(i);
-        const cardPosition = adj(index) - pos;
-        const oldPosition = cardPosition - (this._position - pos);
         // Calculate an offset based on position relative to any expanded card
         let cardOffset = 0;
         if (adj(index) > adj(this.expandedIndex)) cardOffset = 12.5;
         if (adj(index) < adj(this.expandedIndex)) cardOffset = -12.5;
-        // Set translation
+        // Calculate position we're going to, and parse old position from old transform
+        const cardPosition = adj(index) - pos;
+        const oldTranslation = (card.translate || `${index * 48}vw`).slice(0, -2);
+        const oldPosition = [
+          oldTranslation / 48, // Could be in its normal location
+          (oldTranslation - 12.5) / 48, // Could be to the right of an expanded card
+          (oldTranslation + 12.5) / 48, // Could be to the left of an expanded card
+        ].find(i => Math.floor(i) === i); // Whichever case yields an integer solution for position
+        // Set new translation
         const cardTranslation = `${(48 * cardPosition) + cardOffset}vw`;
         card.translate = cardTranslation;
 
