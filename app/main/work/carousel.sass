@@ -21,7 +21,7 @@
   background: transparentize($white, .85)
   box-shadow: 0 .4vw 2vw -.2vw transparentize($black, .5)
   transform-style: preserve-3d
-  transition: width .5s, max-height .5s, opacity .5s
+  transition: width .5s, max-height .5s, opacity .5s, box-shadow .5s
 
   &.expanded-x
     width: 65vw
@@ -98,6 +98,22 @@
     object-fit: cover
     opacity: .85
     transform: translateZ(5px)
+    // Mask for animated wipe up
+    mask-position: 0 0
+    mask-size: 100vw 43vw // Slightly taller than twice the height of .graphic
+    mask-image: linear-gradient(to bottom, $black 49%, transparent 49.1%)
+    transition: mask-position .5s
+
+  .removed-indicator
+    display: block
+    position: absolute
+    top: 50%
+    left: 50%
+    font-size: 5vw
+    transform: translate(-50%, -50%)
+    opacity: 0
+    transition: opacity .3s .15s
+
 
   .content
     position: relative
@@ -105,6 +121,22 @@
     padding-top: 25.25vw
     max-height: inherit
     overflow: hidden
+
+  &.removed
+    box-shadow: none
+
+    h1
+      transform: translateZ(25px)
+      animation-name: out-to-top
+
+    .graphic
+      mask-position: 0 -21.1vw // Slightly more than should be necessary in order to prevent error
+
+    .removed-indicator
+      opacity: .25
+
+
+
 
 $translate-amount: 10vw
 
