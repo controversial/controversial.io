@@ -30,6 +30,7 @@ export class CarouselCard {
     this.titleElem = elem.getElementsByTagName('h1')[0];
 
     this.carousel = undefined; // Will be set when added to a carousel
+    this.hidden = false;
     this.transitionTime = this.baseTransitionTime = 0.5;
     this.parallax = new Parallax3D(this.elem);
 
@@ -109,9 +110,11 @@ export class CarouselCard {
   enable() { this.setEnabled(true); }
 
   hide() {
+    this.hidden = true;
     this.elem.classList.add('hidden');
   }
   show() {
+    this.hidden = false;
     this.elem.classList.remove('hidden');
   }
 
@@ -167,12 +170,12 @@ export class CarouselCard {
   opacify() { this.elem.style.opacity = 1; }
 
   clickHandler() {
-    if (this.carousel) {
+    if (this.carousel && !this.hidden) {
       const i1 = this.carousel.cards.indexOf(this);
       const i2 = this.carousel.adjustIndex(i1);
       if (this.carousel.position !== i2) this.centerSelf();
       else this.toggleExpand();
-    } else {
+    } else if (!this.hidden) {
       this.toggleExpand();
     }
   }
