@@ -18,8 +18,10 @@ export class CarouselTag {
     if (this.carousel) this.carousel.filter(this);
   }
   deselect() {
-    this.selected = false;
-    if (this.carousel) this.carousel.clearFilter();
+    if (this.selected) {
+      this.selected = false;
+      if (this.carousel) this.carousel.clearFilter();
+    }
   }
   toggle() {
     this[this.selected ? 'deselect' : 'select']();
