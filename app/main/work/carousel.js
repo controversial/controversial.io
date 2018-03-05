@@ -8,15 +8,21 @@ export class CarouselTag {
     this.elem = elem;
     this.name = elem.textContent;
     this.carousel = undefined; // Will be set when added to a carousel
+    this.selected = false;
 
-    this.elem.addEventListener('click', () => this.select());
+    this.elem.addEventListener('click', () => this.toggle());
   }
 
   select() {
+    this.selected = true;
     if (this.carousel) this.carousel.filter(this);
   }
   deselect() {
+    this.selected = false;
     if (this.carousel) this.carousel.clearFilter();
+  }
+  toggle() {
+    this[this.selected ? 'deselect' : 'select']();
   }
 }
 
