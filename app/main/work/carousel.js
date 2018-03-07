@@ -363,14 +363,23 @@ export class Carousel {
   async clearFilter() {
     this.tags.forEach(t => t.opacify());
     if (this.hiddenIndices.length) {
+      // Collapse all cards
       if (typeof this.expandedIndex !== 'undefined') {
         this.cards[this.expandedIndex].collapse();
         await delay(1000);
       }
-      const newPos = this.position + this.hiddenIndices.filter(i => i <= this.position).length;
+      // Adjust position to prevent shift when showing cards, unless EVERY card is hidden
+      let newPos;
+      if (this.hiddenIndices.length !== this.cards.length) {
+        newPos = this.position + this.hiddenIndices.filter(i => i <= this.position).length;
+      } else {
+        newPos = this.position;
+      }
+      // Re-layout assuming no cards are hidden
       this.hiddenIndices = [];
-      this.position = newPos; // Re-layout
+      this.position = newPos;
       await delay(500);
+      // Actually visually reveal the previously hidden cards
       this.cards.forEach(c => c.show());
     }
   }
