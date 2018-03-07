@@ -106,21 +106,22 @@ export class CarouselCard {
     const totalTime = this.transitionTime * 1000;
     const startTime = new Date();
 
+    const existingRot = this.parallax.rotmax;
+    const goal = enable ? 10 : 0;
+    const changeNeeded = goal - existingRot;
+
     // Recursively adjust using setAnimationFrame until transitionTime is reached
     function step(parallax) {
       const timeElapsed = new Date() - startTime;
       // Still going
       if (timeElapsed < totalTime) {
         const progress = (timeElapsed / totalTime);
-        if (enable) parallax.rotmax = progress * 10;
-        else parallax.rotmax = (1 - progress) * 10;
+        parallax.rotmax = existingRot + (progress * changeNeeded);
         parallax.rotate();
         requestAnimationFrame(() => step(parallax));
-      } else {
-        parallax.rotmax = enable ? 10 : 0;
-      }
+      } else parallax.rotmax = goal;
     }
-    step(this.parallax);
+    step(this.parallax); // Start
   }
   disable() { this.setEnabled(false); }
   enable() { this.setEnabled(true); }
