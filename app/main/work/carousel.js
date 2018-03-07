@@ -129,6 +129,9 @@ export class CarouselCard {
   hide() {
     this.hidden = true;
     this.elem.classList.add('hidden');
+    // If this is centered
+    const thisIndex = this.carousel.cards.indexOf(this);
+    if (this.carousel.position === this.carousel.adjustIndex(thisIndex)) this.title.fadeOutTop();
   }
   show() {
     this.hidden = false;
