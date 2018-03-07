@@ -345,7 +345,7 @@ export class Carousel {
 
   async filter(tag) {
     tag.opacify();
-    this.tags.filter(t => t !== tag).forEach(t => t.fade());
+    this.tags.filter(t => t !== tag).forEach((t) => { t.selected = false; t.fade(); });
     const cardsToRemove = this.cards.filter(c => !c.tagNames.includes(tag.name));
     // If the expanded card needs to be hidden, collapse it first
     if (typeof this.expandedIndex !== 'undefined') {
