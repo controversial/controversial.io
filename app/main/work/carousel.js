@@ -184,7 +184,7 @@ export class CarouselCard {
   }
 
   fade() { this.elem.style.opacity = 0.5; }
-  opacify() { this.elem.style.opacity = 1; }
+  opacify() { this.elem.style.opacity = ''; }
 
   clickHandler() {
     if (this.carousel && !this.hidden) {
