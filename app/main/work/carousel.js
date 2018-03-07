@@ -358,11 +358,6 @@ export class Carousel {
     // Re-layout
     this.hiddenIndices = cardsToRemove.map(c => this.cards.indexOf(c));
     this.position = this.adjustIndex(this.position);
-    // If the user is now in an illegal position, shift the carousel back into view
-    if (this.position > this.maxIndex) {
-      await delay(750); // 250ms of space after first adjustment is completed
-      this.position = this.maxIndex;
-    }
   }
 
   async clearFilter() {
