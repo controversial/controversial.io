@@ -365,6 +365,10 @@ export class Carousel {
   async clearFilter() {
     this.tags.forEach(t => t.opacify());
     if (this.hiddenIndices.length) {
+      if (typeof this.expandedIndex !== 'undefined') {
+        this.cards[this.expandedIndex].collapse();
+        await delay(1000);
+      }
       const newPos = this.position + this.hiddenIndices.filter(i => i <= this.position).length;
       this.hiddenIndices = [];
       this.position = newPos; // Re-layout
