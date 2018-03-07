@@ -342,14 +342,19 @@ export class Carousel {
     tag.opacify();
     this.tags.filter(t => t !== tag).forEach(t => t.fade());
     const cardsToRemove = this.cards.filter(c => !c.tagNames.includes(tag.name));
+    // If the expanded card needs to be hidden, collapse it first
+    if (typeof this.expandedIndex !== 'undefined') {
+      this.cards[this.expandedIndex].collapse();
+      await delay(1000);
+    }
+    // Hide cards
     this.cards.forEach(c => c.show()); // Clean slate
     cardsToRemove.forEach(c => c.hide()); // Play removed animation on affected cards
-
     if (cardsToRemove.length) await delay(500);
-
+    // Re-layout
     this.hiddenIndices = cardsToRemove.map(c => this.cards.indexOf(c));
-    this.position = this.position; // Re-layout
-
+    this.position = this.position;
+    // If the user is now in an illegal position, shift the carousel back into view
     if (this.position > this.maxIndex) {
       await delay(750); // 250ms of space after first adjustment is completed
       this.position = this.maxIndex;
