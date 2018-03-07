@@ -8,6 +8,7 @@ export default function init() {
   const tagsContainer = document.getElementsByClassName('tags')[0];
   const tagElems = [...tagsContainer.getElementsByClassName('tag')];
   const tags = tagElems.map(t => new CarouselTag(t));
+  const emptyElem = document.getElementById('carousel-empty-state');
 
-  window.workCarousel = new Carousel(cards, tags);
+  window.workCarousel = new Carousel(cards, tags, emptyElem);
 }

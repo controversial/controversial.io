@@ -217,11 +217,12 @@ export class CarouselCard {
 
 /** Collects and orchestrates multiple CarouselCards */
 export class Carousel {
-  constructor(cards, tags) {
+  constructor(cards, tags, emptyElem) {
     this.tags = tags;
     this.tags.forEach((t) => { t.carousel = this; });
     this.cards = cards;
     this.cards.forEach((c) => { c.carousel = this; });
+    this.emptyElem = emptyElem;
     this.hiddenIndices = [];
 
     this._position = 0;
@@ -358,6 +359,8 @@ export class Carousel {
     // Re-layout
     this.hiddenIndices = cardsToRemove.map(c => this.cards.indexOf(c));
     this.position = this.adjustIndex(this.position);
+    // Show message if no cards are displayed
+    if (this.hiddenIndices.length === this.cards.length) this.emptyElem.classList.add('displayed');
   }
 
   async clearFilter() {
@@ -375,6 +378,8 @@ export class Carousel {
       } else {
         newPos = this.position;
       }
+      // Hide 'No projects found' message
+      this.emptyElem.classList.remove('displayed');
       // Re-layout assuming no cards are hidden
       this.hiddenIndices = [];
       this.position = newPos;
