@@ -352,6 +352,8 @@ export class Carousel {
       this.cards[this.expandedIndex].collapse();
       await delay(1000);
     }
+    // Make sure the empty indicator isn't displayed if it shouldn't be
+    if (cardsToRemove.length < this.cards.length) this.emptyElem.classList.remove('displayed');
     // Hide cards
     this.cards.forEach(c => c.show()); // Clean slate
     cardsToRemove.forEach(c => c.hide()); // Play removed animation on affected cards
