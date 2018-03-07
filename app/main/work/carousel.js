@@ -357,7 +357,6 @@ export class Carousel {
 
     const selectedCard = this.cards.filter(c => !c.hidden)[this.position];
     // Hide cards
-    this.cards.forEach(c => c.show()); // Clean slate
     cardsToRemove.forEach(c => c.hide()); // Play removed animation on affected cards
     if (cardsToRemove.length) await delay(1000);
     // Minimal movement (first non-hidden card after previously selected card)
@@ -367,6 +366,9 @@ export class Carousel {
     this.position = this.adjustIndex(Math.max(this.cards.indexOf(newCard), 0));
     // Show message if no cards are displayed
     if (this.hiddenIndices.length === this.cards.length) this.emptyElem.classList.add('displayed');
+    // Show non-hidden cards
+    await delay(500);
+    this.cards.filter(c => !cardsToRemove.includes(c)).forEach(c => c.show());
   }
 
   async clearFilter() {
