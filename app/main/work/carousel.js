@@ -354,13 +354,17 @@ export class Carousel {
     }
     // Make sure the empty indicator isn't displayed if it shouldn't be
     if (cardsToRemove.length < this.cards.length) this.emptyElem.classList.remove('displayed');
+
+    const selectedCard = this.cards.filter(c => !c.hidden)[this.position];
     // Hide cards
     this.cards.forEach(c => c.show()); // Clean slate
     cardsToRemove.forEach(c => c.hide()); // Play removed animation on affected cards
     if (cardsToRemove.length) await delay(1000);
+    // Minimal movement (first non-hidden card after previously selected card)
+    const newCard = this.cards.slice(this.cards.indexOf(selectedCard)).find(c => !c.hidden);
     // Re-layout
     this.hiddenIndices = cardsToRemove.map(c => this.cards.indexOf(c));
-    this.position = this.adjustIndex(this.position);
+    this.position = this.adjustIndex(Math.max(this.cards.indexOf(newCard), 0));
     // Show message if no cards are displayed
     if (this.hiddenIndices.length === this.cards.length) this.emptyElem.classList.add('displayed');
   }
