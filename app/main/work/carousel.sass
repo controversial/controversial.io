@@ -21,7 +21,7 @@
   background: transparentize($white, .85)
   box-shadow: 0 .4vw 2vw -.2vw transparentize($black, .5)
   transform-style: preserve-3d
-  transition: width .5s, max-height .5s, opacity .5s, box-shadow .5s
+  transition: width .5s, max-height .5s, opacity .5s, box-shadow .5s .5s
 
   &.expanded-x
     width: 65vw
@@ -102,7 +102,7 @@
     mask-position: 0 0
     mask-size: 100vw 43vw // Slightly taller than twice the height of .graphic
     mask-image: linear-gradient(to bottom, $black 49%, transparent 49.1%)
-    transition: mask-position .5s
+    transition: mask-position .5s .5s
 
   .hidden-indicator
     display: block
@@ -112,7 +112,6 @@
     font-size: 5vw
     transform: translate(-50%, -50%)
     opacity: 0
-    transition: opacity .3s .15s
 
 
   .content
@@ -124,6 +123,8 @@
 
   &.hidden
     box-shadow: none
+    opacity: 0
+    transition: opacity .5s .65s, box-shadow .5s
 
     h1
       transform: translateZ(25px)
@@ -131,9 +132,11 @@
 
     .graphic
       mask-position: 0 -21.1vw // Slightly more than should be necessary in order to prevent error
+      transition: mask-position .5s
 
     .hidden-indicator
       opacity: .25
+      transition: opacity .3s .15s
 
 
 

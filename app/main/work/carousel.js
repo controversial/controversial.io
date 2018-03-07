@@ -351,7 +351,7 @@ export class Carousel {
     // Hide cards
     this.cards.forEach(c => c.show()); // Clean slate
     cardsToRemove.forEach(c => c.hide()); // Play removed animation on affected cards
-    if (cardsToRemove.length) await delay(500);
+    if (cardsToRemove.length) await delay(1000);
     // Re-layout
     this.hiddenIndices = cardsToRemove.map(c => this.cards.indexOf(c));
     this.position = this.adjustIndex(this.position);
