@@ -343,10 +343,7 @@ export class Carousel {
     if (this.position < this.maxIndex) this.position += 1;
   }
 
-  async filter(tag) {
-    tag.opacify();
-    this.tags.filter(t => t !== tag).forEach((t) => { t.selected = false; t.fade(); });
-    const cardsToRemove = this.cards.filter(c => !c.tagNames.includes(tag.name));
+  async _filter(cardsToRemove) {
     // If the expanded card needs to be hidden, collapse it first
     if (typeof this.expandedIndex !== 'undefined') {
       this.cards[this.expandedIndex].collapse();
@@ -371,29 +368,15 @@ export class Carousel {
     this.cards.filter(c => !cardsToRemove.includes(c)).forEach(c => c.show());
   }
 
-  async clearFilter() {
+  filter(tag) {
+    tag.opacify();
+    this.tags.filter(t => t !== tag).forEach((t) => { t.selected = false; t.fade(); });
+    const cardsToRemove = this.cards.filter(c => !c.tagNames.includes(tag.name));
+    this._filter(cardsToRemove);
+  }
+
+  clearFilter() {
     this.tags.forEach(t => t.opacify());
-    if (this.hiddenIndices.length) {
-      // Collapse all cards
-      if (typeof this.expandedIndex !== 'undefined') {
-        this.cards[this.expandedIndex].collapse();
-        await delay(1000);
-      }
-      // Adjust position to prevent shift when showing cards, unless EVERY card is hidden
-      let newPos;
-      if (this.hiddenIndices.length !== this.cards.length) {
-        newPos = this.position + this.hiddenIndices.filter(i => i <= this.position).length;
-      } else {
-        newPos = this.position;
-      }
-      // Hide 'No projects found' message
-      this.emptyElem.classList.remove('displayed');
-      // Re-layout assuming no cards are hidden
-      this.hiddenIndices = [];
-      this.position = newPos;
-      await delay(500);
-      // Actually visually reveal the previously hidden cards
-      this.cards.forEach(c => c.show());
-    }
+    this._filter([]);
   }
 }
