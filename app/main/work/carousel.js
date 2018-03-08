@@ -366,7 +366,12 @@ export class Carousel {
     if (this.hiddenIndices.length === this.cards.length) this.emptyElem.classList.add('displayed');
     // Show non-hidden cards
     await delay(500);
+    const previouslyHidden = this.cards.filter(c => c.hidden);
     this.cards.filter(c => !cardsToRemove.includes(c)).forEach(c => c.show());
+    await delay(1000);
+    const displayed = this.cards.filter(c => !c.hidden);
+    const currentCard = displayed[this.position];
+    if (previouslyHidden.includes(currentCard)) currentCard.title.fadeInTop();
   }
 
   filter(tag) {
