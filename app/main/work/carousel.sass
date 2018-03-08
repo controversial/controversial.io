@@ -70,6 +70,9 @@
     &.in-from-right
       animation-name: in-from-right
 
+    &.in-from-top
+      animation-name: in-from-top
+
     &.fade-out
       animation-name: fade-out
 
@@ -149,6 +152,13 @@ $translate-amount: 10vw
 @keyframes in-from-right
   from
     transform: translate3d($translate-amount, 0, 25px)
+
+  to
+    opacity: 1
+
+@keyframes in-from-top
+  from
+    transform: translate3d(0, -100%, 25px)
 
   to
     opacity: 1
