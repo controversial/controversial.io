@@ -35,6 +35,17 @@ export class CarouselTag {
 export class CarouselDots {
   constructor(elem) {
     this.elem = elem;
+    this.carousel = undefined; // Will be set when added to a carousel
+  }
+
+  init() {
+    this.dots = this.carousel.cards.map((c, i) => {
+      const e = document.createElement('div');
+      e.dataset.index = i;
+      e.className = 'dot';
+      return e;
+    });
+    this.dots.forEach(d => this.elem.appendChild(d));
   }
 }
 
@@ -226,11 +237,13 @@ export class CarouselCard {
 export class Carousel {
   constructor(cards, dots, tags, emptyElem) {
     this.dots = dots;
+    this.dots.carousel = this;
     this.tags = tags;
     this.tags.forEach((t) => { t.carousel = this; });
     this.cards = cards;
     this.cards.forEach((c) => { c.carousel = this; });
     this.emptyElem = emptyElem;
+    this.dots.init();
     this.hiddenIndices = [];
 
     this._position = 0;
