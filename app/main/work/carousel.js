@@ -32,6 +32,13 @@ export class CarouselTag {
 }
 
 
+export class CarouselDots {
+  constructor(elem) {
+    this.elem = elem;
+  }
+}
+
+
 export class CarouselCard {
   constructor(elem, tagNames) {
     this.elem = elem;
@@ -217,7 +224,8 @@ export class CarouselCard {
 
 /** Collects and orchestrates multiple CarouselCards */
 export class Carousel {
-  constructor(cards, tags, emptyElem) {
+  constructor(cards, dots, tags, emptyElem) {
+    this.dots = dots;
     this.tags = tags;
     this.tags.forEach((t) => { t.carousel = this; });
     this.cards = cards;
