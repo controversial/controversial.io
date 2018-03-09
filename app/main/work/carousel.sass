@@ -137,6 +137,9 @@
       opacity: .25
       transition: opacity .3s .15s
 
+
+
+
 #carousel-dots
   position: absolute
   top: calc(65vh + 11.25vw)
@@ -146,12 +149,17 @@
 
   .dot
     display: inline-block
-    width: .55vw
-    height: .55vw
-    background: $white
+    width: .5vw
+    height: .5vw
     opacity: .4
-    margin: .2vw .5vw
+    margin: .5vw
     border-radius: 50%
+    border: .25vw solid $white
+
+    &.active
+      border-width: .15vw
+      width: .8vw
+      height: .8vw
 
 
 
