@@ -59,8 +59,12 @@ export class CarouselDots {
     const selectedIndex = this.carousel.cards.indexOf(
       this.carousel.cards.filter(c => !c.hidden)[this.carousel.position]
     );
-    this.dots.forEach(d => d.classList.remove('active'));
+    // Clean slate
+    this.dots.forEach(d => d.classList.remove('active', 'disabled'));
+    // Expand active dot
     if (selectedIndex !== -1) this.dots[selectedIndex].classList.add('active');
+    // Disable hidden dots
+    this.carousel.hiddenIndices.forEach(i => this.dots[i].classList.add('disabled'));
   }
 }
 
