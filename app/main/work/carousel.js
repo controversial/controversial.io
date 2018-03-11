@@ -46,6 +46,13 @@ export class CarouselDots {
       return e;
     });
     this.dots.forEach(d => this.elem.appendChild(d));
+    this.layout();
+  }
+
+  layout() {
+    this.dots.forEach((d, i) => {
+      d.style.transform = `translate(calc(-50% + ${i}vw), -50%)`;
+    });
   }
 }
 
