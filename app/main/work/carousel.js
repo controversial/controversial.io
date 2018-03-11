@@ -351,6 +351,8 @@ export class Carousel {
       });
       // Update internally-stored position tracker
       this._position = pos;
+      // Update carousel dots
+      if (this.dots) this.dots.update();
     })();
   }
 
@@ -403,6 +405,9 @@ export class Carousel {
     await delay(500);
     const previouslyHidden = this.cards.filter(c => c.hidden);
     this.cards.filter(c => !cardsToRemove.includes(c)).forEach(c => c.show());
+    // Update carousel dots
+    if (this.dots) this.dots.update();
+    // Fade in title if necessary
     await delay(1000);
     const displayed = this.cards.filter(c => !c.hidden);
     const currentCard = displayed[this.position];
