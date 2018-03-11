@@ -51,7 +51,7 @@ export class CarouselDots {
 
   layout() {
     this.dots.forEach((d, i) => {
-      d.style.transform = `translate(calc(-50% + ${i}vw), -50%)`;
+      d.style.transform = `translate(calc(-50% + ${i * 1.25}vw), -50%)`;
     });
   }
 }
