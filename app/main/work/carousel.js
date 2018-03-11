@@ -208,7 +208,6 @@ export class CarouselCard {
     this.elem.style.maxHeight = '';
     this.elem.classList.add('expanded-y');
     setTimeout(() => this.elem.classList.remove('expanded-y'), 10);
-    document.getElementById('email').classList.remove('hidden');
     window.nav.disableScrollBinding = false;
 
     this._expansionTimeout = setTimeout(() => {
