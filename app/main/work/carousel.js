@@ -54,6 +54,14 @@ export class CarouselDots {
       d.style.transform = `translate(calc(-50% + ${i * 1.25}vw), -50%)`;
     });
   }
+
+  update() {
+    const selectedIndex = this.carousel.cards.indexOf(
+      this.carousel.cards.filter(c => !c.hidden)[this.carousel.position]
+    );
+    this.dots.forEach(d => d.classList.remove('active'));
+    if (selectedIndex !== -1) this.dots[selectedIndex].classList.add('active');
+  }
 }
 
 
