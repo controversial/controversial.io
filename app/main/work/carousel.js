@@ -53,6 +53,7 @@ export class CarouselDots {
     this.dots.forEach((d, i) => {
       d.style.transform = `translate(calc(-50% + ${i * 1.25}vw), -50%)`;
     });
+    this.elem.style.width = `${1.25 * this.dots.length}vw`;
   }
 
   update() {
