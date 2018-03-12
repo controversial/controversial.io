@@ -171,6 +171,14 @@
     cursor: pointer
     transition: box-shadow .3s, opacity .3s
 
+    &::after
+      content: ''
+      position: absolute
+      top: -50%
+      left: -50%
+      width: 200%
+      height: 200%
+
     &.active
       box-shadow: 0 0 0 .03vw $white inset, 0 0 0 .15vw $white
 
