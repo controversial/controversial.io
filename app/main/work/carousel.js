@@ -52,9 +52,10 @@ export class CarouselDots {
 
   layout() {
     this.dots.forEach((d, i) => {
-      d.style.transform = `translate(calc(-50% + ${i * 1.25}vw), -50%)`;
+      d.style.transform = `translate(${i * 1.25}vw, -50%)`;
     });
-    this.elem.style.width = `${1.25 * this.dots.length}vw`;
+    // Width based on number of dots, in order to center
+    this.elem.style.width = `${1.25 * (this.dots.length - 0.75)}vw`;
   }
 
   update() {
