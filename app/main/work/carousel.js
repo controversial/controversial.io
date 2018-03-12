@@ -46,6 +46,7 @@ export class CarouselDots {
       return e;
     });
     this.dots.forEach(d => this.elem.appendChild(d));
+    this.dots.forEach((d, i) => d.addEventListener('click', () => this.clicked(i)));
     this.layout();
   }
 
@@ -66,6 +67,12 @@ export class CarouselDots {
     if (selectedIndex !== -1) this.dots[selectedIndex].classList.add('active');
     // Disable hidden dots
     this.carousel.hiddenIndices.forEach(i => this.dots[i].classList.add('disabled'));
+  }
+
+  clicked(i) {
+    if (!this.carousel.hiddenIndices.includes(i)) {
+      this.carousel.position = this.carousel.adjustIndex(i);
+    }
   }
 }
 
