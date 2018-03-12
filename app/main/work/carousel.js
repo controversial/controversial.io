@@ -46,7 +46,13 @@ export class CarouselDots {
       return e;
     });
     this.dots.forEach(d => this.elem.appendChild(d));
+
+    this.left = this.elem.getElementsByClassName('left')[0];
+    this.right = this.elem.getElementsByClassName('right')[0];
+
     this.dots.forEach((d, i) => d.addEventListener('click', () => this.clicked(i)));
+    this.left.addEventListener('click', () => this.carousel.left());
+    this.right.addEventListener('click', () => this.carousel.right());
     this.layout();
   }
 
