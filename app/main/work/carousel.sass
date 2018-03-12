@@ -188,6 +188,31 @@
       opacity: .15
       cursor: default
 
+  .left,
+  .right
+    position: absolute
+    width: 1.75vw
+    height: 1.75vw
+    border: .15vw solid transparentize($white, .9)
+    border-radius: 50%
+
+    i
+      color: transparentize($white, .4)
+      font-size: 1.5vw
+      user-select: none
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+
+  .left
+    left: 0
+    transform: translate(-175%, -50%)
+
+  .right
+    right: 0
+    transform: translate(175%, -50%)
+
 
 
 $translate-amount: 10vw
