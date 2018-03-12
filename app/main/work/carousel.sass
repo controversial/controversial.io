@@ -145,6 +145,11 @@
   top: calc(65vh + 11.25vw)
   left: 50vw
   transform: translateX(-50%)
+  transition: opacity .5s
+
+  &.hidden
+    opacity: 0
+    pointer-events: none
 
   .dot
     display: block
