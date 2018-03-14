@@ -30,38 +30,38 @@
 <body>
 
   <!-- Top navigation bar -->
-  ${require('!html-loader!./navigation/links.html')}
+  <%- include('./navigation/links.html'); %>
 
   <!-- HOME PAGE -->
   <div id="home-wrapper">
-    ${require('!html-loader!./home/home.html')}
+    <%- include('./home/home.html'); %>
   </div>
 
   <!-- ABOUT PAGE (loaded from about.html) -->
   <div id="about-wrapper">
-    ${require('!html-loader!./about/about.html')}
+    <%- include('./about/about.html'); %>
   </div>
 
   <!-- WORK PAGE (loaded from work.html) -->
   <div id="work-wrapper">
-    ${require('!html-loader!./work/work.html')}
+    <%- include('./work/work.html'); %>
   </div>
 
   <!-- NAVIGATION PAGE -->
   <!-- The laptops -->
-  ${require('!html-loader!./navigation/laptops.html')}
+  <%- include('./navigation/laptops.html'); %>
   <!-- The rings that spin in the background of the navigation page -->
-  ${require('!html-loader!./navigation/background-rings.html')}
+  <%- include('./navigation/background-rings.html'); %>
 
   <!-- Popups for unsupported browsers -->
-  ${require('!html-loader!./browser-popups.html')}
+  <%- include('./browser-popups.html'); %>
 
   <!-- SVG filters for part of the glitch effect -->
-  ${require('!html-loader!./glitch-filter.svg')}
+  <%- include('./glitch-filter.svg'); %>
 
   <!-- MISC -->
   <!-- Bottom right social links-->
-  ${require('!html-loader!./social.html')}
+  <%- include('./social.html'); %>
 
 
 
