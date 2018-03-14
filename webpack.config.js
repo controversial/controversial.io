@@ -36,8 +36,7 @@ module.exports = {
         test: /\.html$/,
         loaders: [
           'file-loader?name=[path][name].html&context=app',
-          'extract-loader',
-          'html-loader?interpolate',
+          'ejs-html-loader',
         ],
       },
       // Files that require no compilation or processing
