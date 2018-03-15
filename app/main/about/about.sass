@@ -37,119 +37,119 @@
     perspective: 1500px
 
 
-.info-wrapper
-  position: absolute
-  z-index: 101
-  top: 50%
-  left: 50%
+  .info-wrapper
+    position: absolute
+    z-index: 101
+    top: 50%
+    left: 50%
 
-.info
-  width: 75vw
-  max-width: 36em
-  position: absolute
-  transform: translate(-50%, -50%)
-  transform-style: preserve-3d
-
-  font-size: calc(13px + .75vw)
-  color: $white
-
-  *
+  .info
+    width: 75vw
+    max-width: 36em
+    position: absolute
+    transform: translate(-50%, -50%)
     transform-style: preserve-3d
 
-  .border
-    position: absolute
-    top: 0
-    width: 100%
-    height: 100%
-    border: 3px solid transparentize($white, .75)
-    border-top: 0
-
-    transform: translateZ(-50px) rotateY(0)
-    transition: transform .75s
-
-    &::before,
-    &::after
-      content: ''
-      width: 40%
-      border-bottom: inherit
-      position: absolute
-      top: 0
-
-    &::after
-      right: 0
-
-  .monogram
-    position: absolute
-    top: 0
-    left: 50%
-    transform: translate3d(-50%, -50%, 50px)
-    font-family: 'Montserrat'
-    font-weight: 600
-    font-size: 4vw
-    letter-spacing: .33em
-    padding-left: .33em
-
-    .glitch::after
-        content: 'LT'
-        color: transparentize($white, .5)
-
-  .content,
-  .content-back
-    width: 100%
-    padding: 3em
-    line-height: 1.5em
-    transition: transform .75s
-    backface-visibility: hidden
+    font-size: calc(13px + .75vw)
+    color: $white
 
     *
-      backface-visibility: hidden
+      transform-style: preserve-3d
 
-    i.material-icons
-      display: block
-      position: absolute
-      top: 1.5em
-      left: 2em
-      cursor: pointer
-      font-size: 1.25em
-      transform: translateZ(-25px)
-
-  .content
-    transform: rotateY(0deg)
-
-    a
-      display: inline-block
-
-      color: inherit
-      font-weight: 700
-      text-decoration: none
-
-      background-color: transparentize($white, .85)
-      transition: background-color .25s, transform .25s ease-out
-      padding: 0 .3em .1em
-      transform: translateZ(15px)
-      backface-visibility: hidden
-
-      &:hover
-        background-color: transparentize($white, .77)
-        transform: translateZ(45px)
-
-  .content-back
-    position: absolute
-    top: 0
-    left: 0
-    transform: rotateY(-180deg)
-    height: 100%
-
-
-  &.flipped
     .border
-      transform: translateZ(-50px) rotateY(180deg)
+      position: absolute
+      top: 0
+      width: 100%
+      height: 100%
+      border: 3px solid transparentize($white, .75)
+      border-top: 0
+
+      transform: translateZ(-50px) rotateY(0)
+      transition: transform .75s
+
+      &::before,
+      &::after
+        content: ''
+        width: 40%
+        border-bottom: inherit
+        position: absolute
+        top: 0
+
+      &::after
+        right: 0
+
+    .monogram
+      position: absolute
+      top: 0
+      left: 50%
+      transform: translate3d(-50%, -50%, 50px)
+      font-family: 'Montserrat'
+      font-weight: 600
+      font-size: 4vw
+      letter-spacing: .33em
+      padding-left: .33em
+
+      .glitch::after
+          content: 'LT'
+          color: transparentize($white, .5)
+
+    .content,
+    .content-back
+      width: 100%
+      padding: 3em
+      line-height: 1.5em
+      transition: transform .75s
+      backface-visibility: hidden
+
+      *
+        backface-visibility: hidden
+
+      i.material-icons
+        display: block
+        position: absolute
+        top: 1.5em
+        left: 2em
+        cursor: pointer
+        font-size: 1.25em
+        transform: translateZ(-25px)
 
     .content
-      transform: rotateY(180deg)
-
-    .content-back
       transform: rotateY(0deg)
 
-#age
-  will-change: contents
+      a
+        display: inline-block
+
+        color: inherit
+        font-weight: 700
+        text-decoration: none
+
+        background-color: transparentize($white, .85)
+        transition: background-color .25s, transform .25s ease-out
+        padding: 0 .3em .1em
+        transform: translateZ(15px)
+        backface-visibility: hidden
+
+        &:hover
+          background-color: transparentize($white, .77)
+          transform: translateZ(45px)
+
+    .content-back
+      position: absolute
+      top: 0
+      left: 0
+      transform: rotateY(-180deg)
+      height: 100%
+
+
+    &.flipped
+      .border
+        transform: translateZ(-50px) rotateY(180deg)
+
+      .content
+        transform: rotateY(180deg)
+
+      .content-back
+        transform: rotateY(0deg)
+
+  #age
+    will-change: contents
