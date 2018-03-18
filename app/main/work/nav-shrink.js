@@ -14,7 +14,7 @@ export default class WorkNavigationAnimation extends NavigationBase {
     Object.assign(this.elem, {
       wrapper: document.getElementById('work-wrapper'),
       background: document.querySelector('#work-wrapper .background'),
-      tags: document.querySelector('#work-wrapper .tags'),
+      tags: document.getElementById('tags'),
       carousel: document.querySelector('#work-wrapper .projects-container'),
     });
   }

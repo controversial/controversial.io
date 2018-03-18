@@ -9,7 +9,7 @@ export default function init() {
   const dotsElem = document.getElementById('carousel-dots');
   const dots = new CarouselDots(dotsElem);
 
-  const tagsContainer = document.getElementsByClassName('tags')[0];
+  const tagsContainer = document.getElementById('tags');
   const tagElems = [...tagsContainer.getElementsByClassName('tag')];
   const tags = tagElems.map(t => new CarouselTag(t));
 
