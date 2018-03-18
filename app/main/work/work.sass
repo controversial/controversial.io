@@ -85,16 +85,15 @@ $shadow-color: transparentize($black, .5)
     flex-direction: row
     width: 100%
 
-  .col-left,
-  .col-right
+  .col
     flex-grow: 1
     flex-basis: 0
 
-  .col-left
-    padding-right: 1.5vw
+    &.left
+      padding-right: 1.5vw
 
-  .col-right
-    padding-left: 1.5vw
+    &.right
+      padding-left: 1.5vw
 
 
   p:first-child
