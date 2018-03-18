@@ -60,9 +60,25 @@ $shadow-color: transparentize($black, .5)
   width: 100vw
   overflow: hidden
 
+#carousel-empty-state
+  position: absolute
+  top: 50vh
+  left: 50vw
+  transform: translate(-50%, -50%)
+  color: $light-text-primary
+  opacity: 0
+  transition: opacity .5s
+
+  &.displayed
+    opacity: .5
+
+
+
+
 .content
   padding-right: 3vw
   padding-left: 3vw
+
 
   section
     display: flex
@@ -80,17 +96,8 @@ $shadow-color: transparentize($black, .5)
   .col-right
     padding-left: 1.5vw
 
+
   p:first-child
     margin-top: 0
 
-#carousel-empty-state
-  position: absolute
-  top: 50vh
-  left: 50vw
-  transform: translate(-50%, -50%)
-  color: $light-text-primary
-  opacity: 0
-  transition: opacity .5s
 
-  &.displayed
-    opacity: .5
