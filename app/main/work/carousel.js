@@ -258,7 +258,7 @@ export class CarouselCard {
     const progress = Math.min(this.wrapper.scrollTop / transitionDistance, 1);
 
     const nav = document.getElementById('navigation');
-    const tags = document.querySelector('.tags');
+    const tags = document.getElementById('tags');
     nav.style.opacity = 0.5 * (1 - progress);
     tags.style.opacity = 1 - progress;
 
