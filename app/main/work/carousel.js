@@ -105,6 +105,18 @@ export class CarouselCard {
     this.elem.addEventListener('click', () => this.clickHandler());
     this.wrapper.addEventListener('scroll', () => this.scrollHandler());
 
+    // Add tags if there's a place for them
+    const tagsDisplay = this.elem.querySelector('.content .tags-display');
+    if (tagsDisplay) {
+      this.tagNames.forEach((tagName) => {
+        const tag = document.createElement('div');
+        tag.className = 'tag';
+        tag.textContent = tagName;
+        tag.style.pointerEvents = 'none'; // Can't interact with these tags
+        tagsDisplay.appendChild(tag);
+      });
+    }
+
 
     // Title manipulation interface
 
