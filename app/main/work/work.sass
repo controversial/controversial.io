@@ -81,17 +81,17 @@ $shadow-color: transparentize($black, .5)
     display: flex
     flex-direction: row
     width: 100%
-    margin-bottom: 1em
+    margin-bottom: 2vw
 
   .col
     flex-grow: 1
     flex-basis: 0
 
     &.left
-      padding-right: 1.5vw
+      padding-right: 1vw
 
     &.right
-      padding-left: 1.5vw
+      padding-left: 1vw
 
   .row
     display: flex
@@ -107,6 +107,9 @@ $shadow-color: transparentize($black, .5)
 
     &:first-child
       margin-top: 0
+
+    &:last-child
+      margin-bottom: 0
 
 
   ul.info
