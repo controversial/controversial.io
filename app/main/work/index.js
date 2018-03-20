@@ -22,8 +22,13 @@ export default async function init() {
   const starsMap = await fetchStars();
   window.starsMap = starsMap;
   cardElems.forEach((c) => {
+    const repoName = c.dataset.repoName;
     const starsElem = c.getElementsByClassName('stars')[0];
-    const starsCount = starsMap[c.dataset.repoName];
-    if (starsElem && starsCount) starsElem.textContent = starsCount;
+    if (starsElem && repoName) {
+      const repoNames = repoName.split(',').map(t => t.trim());
+      // Sum stars for each repo described
+      const starsCount = repoNames.map(r => starsMap[r]).reduce((a, b) => a + b);
+      starsElem.textContent = starsCount;
+    }
   });
 }
