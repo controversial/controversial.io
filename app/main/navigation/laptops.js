@@ -258,6 +258,7 @@ export class LaptopCarousel {
         .filter(laptop => laptop.index !== pos) // Exclude the one we're about to open
         .map(laptop => laptop.setLidAngle(0));  // But close the rest
       await Promise.all(lidsClosed); // Wait for all to close
+      this.laptops.forEach((l) => { l.screen.style.display = 'none'; });
 
       // Update internal position value
       const delta = Math.abs(this._position - pos);
@@ -281,6 +282,7 @@ export class LaptopCarousel {
 
       // Open the selected laptop
       if (this.position in this.laptopsByIndex) {
+        this.laptopsByIndex[pos].screen.style.display = '';
         await this.laptopsByIndex[pos].setLidAngle(100);
       }
 
