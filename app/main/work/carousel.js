@@ -216,14 +216,17 @@ export class CarouselCard {
     // timeout won't remove the expanded-x class after it's been added by this method.
     clearInterval(this._expansionTimeout);
 
+    const content = this.elem.getElementsByClassName('content')[0];
+
     this.elem.classList.add('expanded-x');
     this.title.moveDown();
     this.disable();
+    content.style.display = '';
     this._expansionTimeout = setTimeout(() => {
       this.elem.classList.add('expanded-y');
       this._expansionTimeout = setTimeout(() => {
         this.elem.style.maxHeight = 'none';
-        this.elem.getElementsByClassName('content')[0].style.overflow = 'visible';
+        content.style.overflow = 'visible';
         this.elem.classList.remove('expanded-y');
       }, 500);
       document.getElementById('carousel-dots').classList.add('hidden');
@@ -236,8 +239,10 @@ export class CarouselCard {
   collapse() {
     clearInterval(this._expansionTimeout);
 
+    const content = this.elem.getElementsByClassName('content')[0];
+
     this.elem.style.maxHeight = '';
-    this.elem.getElementsByClassName('content')[0].style.overflow = '';
+    content.style.overflow = '';
     this.elem.classList.add('expanded-y');
     setTimeout(() => this.elem.classList.remove('expanded-y'), 10);
     document.getElementById('carousel-dots').classList.remove('hidden');
@@ -247,6 +252,7 @@ export class CarouselCard {
       this.elem.classList.remove('expanded-x');
       this.title.moveUp();
       this.enable();
+      this._expansionTimeout = setTimeout(() => { content.style.display = 'none'; });
     }, 500);
 
     this.expanded = false;
