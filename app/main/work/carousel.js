@@ -221,7 +221,11 @@ export class CarouselCard {
     this.disable();
     this._expansionTimeout = setTimeout(() => {
       this.elem.classList.add('expanded-y');
-      this._expansionTimeout = setTimeout(() => { this.elem.style.maxHeight = 'none'; this.elem.classList.remove('expanded-y'); }, 500);
+      this._expansionTimeout = setTimeout(() => {
+        this.elem.style.maxHeight = 'none';
+        this.elem.getElementsByClassName('content')[0].style.overflow = 'visible';
+        this.elem.classList.remove('expanded-y');
+      }, 500);
       document.getElementById('carousel-dots').classList.add('hidden');
       window.nav.disableScrollBinding = true;
     }, 500);
@@ -233,6 +237,7 @@ export class CarouselCard {
     clearInterval(this._expansionTimeout);
 
     this.elem.style.maxHeight = '';
+    this.elem.getElementsByClassName('content')[0].style.overflow = '';
     this.elem.classList.add('expanded-y');
     setTimeout(() => this.elem.classList.remove('expanded-y'), 10);
     document.getElementById('carousel-dots').classList.remove('hidden');
