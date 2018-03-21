@@ -23,12 +23,42 @@
         <code>livejson</code> is an open-source Python library I wrote which enables users to easily
         manipulate JSON files on-disk as though they were in-memory Python <code>dict</code>s. It's
         a pure-python library with no dependencies, written for compatibility across Python 2 and
-        Python 3.
+        Python 3. The animation below shows livejson in action; the user is modifying an in-memory
+        object in the Python REPL and the changes made in memory can be seen reflected in the JSON
+        file, displayed behind.
       </p>
     </div>
   </section>
 
   <section>
     <img src="/main/img/livejson.gif" alt="livejson in action">
+  </section>
+
+  <section>
+    <div class="col">
+      <p>
+        My primary goal in developing the <code>livejson</code> library was ease of use. The "live"
+        <code>list</code>s and <code>dict</code>s that the library provides are virtually
+        indistinguishable from their native Python eqivalents, so they can be used as drop-in
+        replacements in almost all cases. Because it's a public library, it was important to me that
+        the library's reliability was guaranteed, so every line of its code is covered by unit tests.
+      </p>
+      <p>
+        The default behavior of the library is to write to disk for each time the in-memory object is
+        mutated, but for cases of many consecutive writes, a Python context manager can be used to
+        group multiple modifications into a single file write.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <ul class="col left info">
+      <li><h4>"Instant write"</h4></li>
+      <li><code>Here's some code</code></li>
+    </ul>
+    <ul class="col right info">
+      <li><h4>"Grouped write"</h4></li>
+      <li><code>Here's some other code</code></li>
+    </ul>
   </section>
 </div>
