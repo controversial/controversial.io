@@ -54,11 +54,23 @@
   <section>
     <ul class="col left info">
       <li><h4>"Instant write"</h4></li>
-      <li><code>Here's some code</code></li>
+      <li><code class="block"><!--
+     -->import livejson<br/>
+        f = livejson.File("test.json")<br/>
+        f["a"] = "b"<br/>
+        f["c"] = "d"<br/>
+      </code></li>
+      <li style="margin-top: .5em">In this case, two separate file writes were performed.</li>
     </ul>
     <ul class="col right info">
       <li><h4>"Grouped write"</h4></li>
-      <li><code>Here's some other code</code></li>
+      <li><code class="block"><!--
+     -->import livejson<br/>
+        with livejson.File("test.json") as f:<br/>
+        &nbsp;&nbsp;f["a"] = "b"<br/>
+        &nbsp;&nbsp;f["c"] = "d"
+      </code></li>
+      <li style="margin-top: .5em">Only one write is performed in this case; the file is not written to until the <code>with</code> block exits.</li>
     </ul>
   </section>
 </div>
