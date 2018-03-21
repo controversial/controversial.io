@@ -8,7 +8,7 @@ export default async function fetchStars() {
 
   const ghStars = {};
   repos.forEach((r) => {
-    ghStars[r.name] = r.stargazers_count;
+    ghStars[r.full_name] = r.stargazers_count;
   });
   window.ghStars = ghStars;
   return ghStars;
