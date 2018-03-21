@@ -1,4 +1,4 @@
-export default async function fetchStars() {
+async function requestStars() {
   // Fetch repos from users 'controversial' and 'arkis'
   const users = ['controversial', 'arkis'];
   const requests = users
@@ -9,5 +9,21 @@ export default async function fetchStars() {
   const ghStars = {};
   repos.forEach((r) => { ghStars[r.full_name] = r.stargazers_count; });
   window.ghStars = ghStars;
+  return ghStars;
+}
+
+// Includes caching
+export default async function fetchStars() {
+  let ghStars;
+  const timeSinceRequest = new Date() - new Date(localStorage.ghStarsTimestamp);
+  // Requested within last half hour; no need to request again
+  if (localStorage.ghStars && timeSinceRequest < 1800000) {
+    ghStars = JSON.parse(localStorage.ghStars);
+  // Never requested or it's been more than half an hour (need to request again)
+  } else {
+    localStorage.ghStarsTimestamp = new Date(); // Record time info was requested
+    ghStars = await requestStars();
+    localStorage.ghStars = JSON.stringify(ghStars);
+  }
   return ghStars;
 }
