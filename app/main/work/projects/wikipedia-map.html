@@ -22,7 +22,35 @@
 
     <div class="col right">
       <p>
+        Wikipedia map is a web app for visualizing the connections between Wikipedia articles. The
+        project scrapes Wikipedia and uses the links between pages that are present in each article
+        as an indicator of articles about topics that might be connected.
       </p>
+      <p>
+        The project originally featured a Python/Flask back-end, but for increased maintainability
+        I've since migrated the backend to a Node.js/Express app hosted on <a target="_blank" href="https://zeit.co/now">Now</a>.
+        The back-end is responsible for all of the logic of fetching, parsing, and processing each
+        page's HTML in order to extract the links.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="col left">
+      <h3>Functional design choices</h3>
+      <p>
+        Only the links from the first paragraph of each Wikipedia article are included, because the
+        first paragraph links tend to be the links to topics most revlevant to the article. For
+        example, the image to the right highlights the links that Wikipedia map selects from the
+        first paragraph of the "Cat" article.
+      </p>
+      <p>
+        This also has the benefit of preventing long articles from expanding with a ridiculous and
+        confusing amount of information.
+      </p>
+    </div>
+    <div class="col right">
+      <img src="img/wikipedia-links.png">
     </div>
   </section>
 </div>
