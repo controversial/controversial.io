@@ -57,7 +57,7 @@ module.exports = {
 
   plugins: [
     new CopyWebpackPlugin([
-      { from: 'app/main/img', to: 'main/img' },
+      { from: 'app/main/assets', to: 'main/assets' },
     ]),
     new ExtractTextWebpackPlugin('[name]/style.css'),
   ],
