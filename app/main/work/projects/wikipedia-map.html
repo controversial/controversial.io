@@ -24,20 +24,40 @@
       <p>
         Wikipedia map is a web app for visualizing the connections between Wikipedia articles. The
         project scrapes Wikipedia and uses the links between pages that are present in each article
-        as an indicator of articles about topics that might be connected.
+        as an indicator of topics that might be connected.
       </p>
       <p>
-        The project originally featured a Python/Flask back-end, but for increased maintainability
-        I've since migrated the backend to a Node.js/Express app hosted on <a target="_blank" href="https://zeit.co/now">Now</a>.
-        The back-end is responsible for all of the logic of fetching, parsing, and processing each
-        page's HTML in order to extract the links.
+        After simply entering any topic for which a Wikipedia article exists, users can begin to
+        explore connected topics via an interactive navigable graph (rendered on a <code>canvas</code>
+        using <a href="https://github.com/almende/vis">vis.js</a>) which displays all of the
+        articles which the user has "discovered." After a while exploring the map, a large graph of
+        hundreds of connected topics is formed.
       </p>
     </div>
   </section>
 
   <section>
     <div class="col left">
-      <h3>Functional design choices</h3>
+      <p>
+        The main interface to Wikipedia Map is its graph. The graph presents each article as a
+        round blue bubble, a "node," and each node can be clicked to expand into multiple new
+        "connected" nodes for related articles.
+      </p>
+      <p>
+        Each node expansion requires a request to the Wikipedia Map back-end. The project originally
+        featured a Python/Flask back-end, but for increased maintainability I've since migrated the
+        backend to a Node.js/Express app hosted on <a target="_blank" href="https://zeit.co/now">Now</a>.
+        The back-end is responsible for all of the logic of fetching, parsing, and processing each
+        Wikipedia article's HTML in order to extract the links.
+      </p>
+    </div>
+    <div class="col right">
+      <img src="assets/wikipedia-expand.gif">
+    </div>
+  </section>
+
+  <section>
+    <div class="col left">
       <p>
         Only the links from the first paragraph of each Wikipedia article are included, because the
         first paragraph links tend to be the links to topics most revlevant to the article. For
@@ -58,5 +78,35 @@
         <a href="assets/cc-by-sa-3.0.txt">Creative Commons Attribution-Share-Alike License 3.0</a>.
       </div>
     </div>
+  </section>
+
+  <section>
+    <!-- div instead of img so that it matches the height of the tezxt; I don't care if some gets cut off -->
+    <div class="col left img" style="background-image: url('assets/wikipedia-node-color.png');"></div>
+    <div class="col right">
+      <p>
+        Wikipedia Map's main goal is to present relationships between topics in a digestible format.
+        Several subtle aspects of the web app help to achieve this goal. First, nodes are lighter in
+        color when they are farther away from the central node.
+      </p>
+      <p>
+        For example, if the user started with "Penguin" and it took 5 expansions to reach "Ancient
+        Greek", "Ancient Greek" would be a lighter color than a node like "Birding," which only took
+        2 steps to reach. This indicates that "Birding" is a topic more closely connected with
+        "Penguin" than "Ancient Greek."
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="col left">
+      <p>
+        Second, when the user hovers over any node in the graph, the path that the user took to
+        reach that article is highlighted. This helps users visualize exactly how, step by step, two
+        topics on the graph are connected, which is useful for breaking down the connections between
+        distantly-related articles.
+      </p>
+    </div>
+    <div class="col right img" style="background-image: url('assets/wikipedia-traceback.png'); background-position: 50% 85%;"></div>
   </section>
 </div>

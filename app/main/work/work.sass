@@ -148,10 +148,10 @@ $shadow-color: transparentize($black, .5)
   .tags-display
     margin-left: -.5em
 
-  iframe
+  iframe,
+  div.img
     width: 28.5vw
     border: 0
-    box-shadow: 0 .4vw 2.75vw -.4vw transparentize($black, .5)
 
     &.col.left
       padding: 0
@@ -165,6 +165,14 @@ $shadow-color: transparentize($black, .5)
     display: block
     width: 100%
     height: auto
+
+  div.img
+    background-size: cover
+    background-position: 50%, -50%
+
+  iframe,
+  img,
+  div.img
     box-shadow: 0 .4vw 2.75vw -.4vw transparentize($black, .5)
 
   .caption
