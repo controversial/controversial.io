@@ -20,7 +20,118 @@
     </div>
 
     <div class="col right">
-      <p>Isn't <code>maze-cv</code> fascinating?</p>
+      <p>
+        <code>maze-cv</code> is a proof-of-concept tool that runs on iOS devices capable of solving
+        mazes plotted on special graph paper, with minimal user input. The tool is built on the
+        fantastic <a href="http://omz-software.com/pythonista/">Pythonista</a> platform for Python
+        development on iOS.
+      </p>
+      <p>
+        I built <code>maze-cv</code> to learn about basic image manipulation and computer vision
+        algorithms, so I implemented all of the logic involved myself, without borrowing from
+        high-level libraries like <a href="https://opencv.org">OpenCV</a>, but instead by reading
+        image values pixel-by-pixel using the <a href="https://pillow.readthedocs.io/en/latest/">Python Imaging Library</a>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="col left">
+      <p>
+        Since <code>maze-cv</code> was designed more as a proof-of-concept than a practical tool, it
+        does impose several restrictions on the user. Mazes must be plotted on a 16x16 graph paper
+        grid between four clearly marked red squares. This makes the task of interpreting the maze
+        much easier for the program, because the location of the maze is easily identifiable and the
+        size of the grid is known.
+      </p>
+    </div>
+    <div class="col right img" style="background-image: url('assets/maze-cv-paper.jpg');"></div>
+  </section>
+
+  <section>
+    <div class="col left img" style="background-image: url('assets/maze-cv-red-detect.jpg');"></div>
+    <div class="col right">
+      <p>
+        The first step that <code>maze-cv</code> takes is to identify the corners of the maze by
+        finding the red markers. Each pixel in the image is searched and its hue and saturation are
+        inspected in order to determine which pixels are "red." Then, a breadth-first-search
+        algorithm is used to connect adjacent red pixels. The image to the left shows a test in
+        which the center of each identified red object in an image is marked with a small black
+        square.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="col left">
+      <p>
+        The next step that <code>maze-cv</code> goes through is to transform the maze to get a
+        straight-on view of it, to eliminate the variable of perspective. This allows the program to
+        view the 16x16 grid as a grid and to easily segment each piece of the maze later.
+      </p>
+      <p>
+        The animation to the right illustrates the process of perspective transformation that
+        <code>maze-cv</code> uses. Hover the animation to highlight the box being transformed.
+      </p>
+    </div>
+    <div class="col right">
+      <iframe style="height: 28.5vw" src="https://s.codepen.io/controversial/debug/pLrxyw" sandbox="allow-same-origin allow-scripts"></iframe>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="col left"> <img src="assets/maze-cv-thresholded.png"> </div>
+    <div class="col right">
+      <p>
+        The third step that <code>maze-cv</code> performs on the image is to threshold the image.
+        Using <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.420.7883&rep=rep1&type=pdf">adaptive thresholding</a>
+        to avoid errors caused by shadows on the page, each pixel in the transformed image is
+        determined to be either light or dark, resulting in an image like the one to the left.
+      </p>
+      <p>
+        This image can now be easily segmented to determine the value of each square in the 16x16
+        grid.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="col left">
+      <p>
+        After being transformed and thresholded, the image is segmented. The grid of pixels is split
+        into 256 chunks of equal size, one for each square on the 16x16 grid. Within each segment,
+        the value of each thresholded pixel (<code>0</code> or <code>1</code>) is averaged. A
+        weighted average is used such that pixels near the center of the segment are counted more
+        than those near the edges; this helps correct for cases in which the grid isn't quite lined
+        up after transformation. A weighted average of less than <code>0.5</code> (more dark than
+        light pixels) is considered to be a wall (black square), while a weighted average greater
+        than <code>0.5</code> is considered to be traversible path (a white square). By repeating
+        this calculation with each square, a pixel map like the one to the right is generated.
+      </p>
+    </div>
+    <div class="col right">
+      <img src="assets/maze-cv-segmented.png" style="image-rendering: -moz-crisp-edges; image-rendering: pixelated; -ms-interpolation-mode: nearest-neighbor; ">
+    </div>
+  </section>
+
+  <section>
+    <div class="col left">
+      <img src="assets/maze-cv-solved.png">
+    </div>
+    <div class="col right">
+      <p>
+        The final step, after the image is segmented, is to solve the maze. A graph is constructed,
+        in which all white squares are nodes. Using breadth-first-search on the data from the
+        previous step, adjacent white squares are connected by edges of equal weight in the graph.
+        Then, Dijkstra's algorithm is used to solve (the A* algorithm doesn't bring sufficient
+        performance improvements to mazes of this size to justify its increased complexity of
+        implementation).
+      </p>
+      <p>
+        For now, the user has to manually mark the starting and ending points on
+        the maze, but this could change in a future version.
+      </p>
     </div>
   </section>
 </div>
