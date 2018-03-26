@@ -27,6 +27,9 @@
   &.expanded-x
     width: 65vw
 
+    .content
+      display: block
+
   &.expanded-y
     max-height: calc(50vh + 11.25vw)
 
@@ -130,6 +133,7 @@
     left: 50%
     transform: translate(-50%)
     overflow: hidden
+    display: none
 
   &.hidden
     box-shadow: none

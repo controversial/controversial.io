@@ -221,7 +221,6 @@ export class CarouselCard {
     this.elem.classList.add('expanded-x');
     this.title.moveDown();
     this.disable();
-    content.style.display = '';
     this._expansionTimeout = setTimeout(() => {
       this.elem.classList.add('expanded-y');
       this._expansionTimeout = setTimeout(() => {
@@ -252,7 +251,6 @@ export class CarouselCard {
       this.elem.classList.remove('expanded-x');
       this.title.moveUp();
       this.enable();
-      this._expansionTimeout = setTimeout(() => { content.style.display = 'none'; });
     }, 500);
 
     this.expanded = false;
