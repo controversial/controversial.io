@@ -35,7 +35,54 @@
     </div>
 
     <div class="col right">
-      <p>Image2ASCII and its iOS wrapper are great!</p>
+      <p>
+        Image2ASCII is a Python library I wrote which is capable of approximating images with text,
+        creating ASCII art from any source. To make the tool more accessible, I also wrapped the
+        library in a simple app using <a href="http://omz-software.com/pythonista/">Pythonista</a>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="col left">
+      <p>
+        Image2ASCII generates artwork by looking at the source image and matching brightness levels
+        in different parts of the image with characters that have an approximately appropriate
+        "visual weight" on the page. Characters that fill more of their area with black, like <code>W</code>
+        or <code>$</code> are considered to have a high visual weight, while characters like <code>.</code>
+        and <code>'</code>, which leave most of the space they occupy blank, are considered to have
+        low visual weight.
+      </p>
+      <p>
+        In order to apply this principle, the first step that the program takes is to generate a map
+        between characters and their visual weights. The program renders each ASCII glyph onto a
+        canvas the size of one character, and computes the average brightness of the resulting
+        image. Lower brightnesses indicate characters with more visual weight, because more of the
+        image is black.
+      </p>
+    </div>
+    <iframe src="https://s.codepen.io/controversial/debug/YarQqq" class="col right"></iframe>
+  </section>
+
+  <section>
+    <div class="col left">
+      <iframe style="height: 34.08350364963504vw" src="https://s.codepen.io/controversial/debug/5d72135d39a98950574226326b164862"></iframe>
+      <p class="caption">Grant Wood's <i>American Gothic</i> as ASCII art. Roll over for a more detailed view.</p>
+    </div>
+    <div class="col right">
+      <p>
+        After building the map between each character and its visual weight, image2ASCII assigns
+        characters to different portions of the image. The image is converted to black and white,
+        its contrast increased to improve clarity of the ASCII art, and then the image is downscaled
+        to a size where each pixel could be reasonably represented by a single character. Then,
+        pixel-by-pixel the character with the visual weight most similar to the brightness of the
+        pixel in question is selected and added to the output string. The result is the entire
+        artwork represented as text.
+      </p>
+      <p>
+        Image2ASCII provides functions for rendering artwork onto an image for display, but the
+        example to the left uses the raw text output and dynamically renders it onto a canvas.
+      </p>
     </div>
   </section>
 </div>
