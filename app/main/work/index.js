@@ -21,14 +21,13 @@ export default async function init() {
   // Add number of github stars to all applicable cards
   const starsMap = await fetchStars();
   window.starsMap = starsMap;
-  cardElems.forEach((c) => {
-    const repoName = c.dataset.repoName;
-    const starsElem = c.getElementsByClassName('stars')[0];
-    if (starsElem && repoName) {
-      const repoNames = repoName.split(',').map(t => t.trim());
-      // Sum stars for each repo described
-      const starsCount = repoNames.map(r => starsMap[r]).reduce((a, b) => a + b);
-      starsElem.textContent = starsCount;
-    }
+
+  const starsElems = projectsContainer.getElementsByClassName('stars-display');
+  [...starsElems].forEach((sel) => {
+    const repoNames = (sel.dataset.repo || '').split(',').map(t => t.trim());
+    const starsCount = repoNames
+      .map(r => starsMap[r])    // Number of stars for each
+      .reduce((a, b) => a + b); // Sum
+    sel.textContent = starsCount;
   });
 }
