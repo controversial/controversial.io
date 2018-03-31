@@ -77,4 +77,28 @@
       </p>
     </div>
   </section>
+
+  <section>
+    <div class="col left">
+      <p>
+        Pythonista Cloud is an effort by me to create a full-fledged package manager for Pythonista
+        which would allow downloading remote scripts and importing remote modules. The project is
+        not complete, nor is it under active development at the moment, but it was a popular
+        project; its components have gained <span class="stars-display" data-repo="pythonista-cloud/pythonista-cloud, pythonista-cloud/cloud, pythonista-cloud/server, pythonista-cloud/pythonista.cloud, pythonista-cloud/sample">loading...</span>
+        stars on GitHub.
+      </p>
+      <p>
+        The service consists of a REST API that communicates with an underlying CouchDB instance.
+        This allows authors to submit packages to the registry, and allows clients to query for
+        package information. The official client is a Python module called <code>cloud</code> which
+        exposes a custom import handler capable of downloading modules on the fly or exposing cached
+        versions seamlessly. The goal is that users can simply replace an <code>import x</code>
+        statement with <code>from cloud import x</code> and achieve the same behavior without having
+        to worry about whether the user has installed <code>x</code>.
+      </p>
+    </div>
+    <div class="col right">
+      <img src="assets/pythonista-cloud.svg">
+    </div>
+  </section>
 </div>

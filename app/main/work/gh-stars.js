@@ -1,6 +1,6 @@
 async function requestStars() {
   // Fetch repos from users 'controversial' and 'arkis'
-  const users = ['controversial', 'arkis'];
+  const users = ['controversial', 'arkis', 'pythonista-cloud'];
   const requests = users
     .map(user => `https://api.github.com/users/${user}/repos?per_page=100`)
     .map(url => fetch(url).then(r => r.json()));
