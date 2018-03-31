@@ -131,17 +131,14 @@
     transform: translate(-50%, 200%) rotate(45deg)
     font-size: 50px
     cursor: pointer
-    opacity: 0
-    transition: text-shadow .25s, opacity .5s
+    opacity: .25         // Changed in JS
     pointer-events: none // Changed in JS
+    transition: text-shadow .25s, opacity .5s
     text-shadow: 0 3px 8px transparentize($black, .8)
 
     &:hover
+      opacity: .35
       text-shadow: 0 5px 12px transparentize($black, .8)
-
-  &.expanded-x .close-button
-    opacity: .25
-    transition: text-shadow .25s, opacity .5s 1s
 
 
   .content

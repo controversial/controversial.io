@@ -221,7 +221,6 @@ export class CarouselCard {
     const content = this.elem.getElementsByClassName('content')[0];
 
     this.elem.classList.add('expanded-x');
-    this.closeButton.style.pointerEvents = 'all';
     this.title.moveDown();
     this.disable();
     this._expansionTimeout = setTimeout(() => {
@@ -229,6 +228,8 @@ export class CarouselCard {
       this._expansionTimeout = setTimeout(() => {
         this.elem.style.maxHeight = 'none';
         content.style.overflow = 'visible';
+        this.closeButton.style.pointerEvents = 'all';
+        this.closeButton.style.opacity = '';
         this.elem.classList.remove('expanded-y');
       }, 500);
       document.getElementById('carousel-dots').classList.add('hidden');
@@ -246,6 +247,7 @@ export class CarouselCard {
     this.elem.style.maxHeight = '';
     content.style.overflow = '';
     this.closeButton.style.pointerEvents = 'none';
+    this.closeButton.style.opacity = 0;
     this.elem.classList.add('expanded-y');
     setTimeout(() => this.elem.classList.remove('expanded-y'), 10);
     document.getElementById('carousel-dots').classList.remove('hidden');
