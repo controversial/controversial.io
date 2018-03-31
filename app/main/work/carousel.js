@@ -96,14 +96,16 @@ export class CarouselCard {
 
     this.tagNames = tagNames || elem.dataset.tags.split(',').map(t => t.trim());
     this.titleElem = elem.getElementsByTagName('h1')[0];
+    this.closeButton = elem.getElementsByClassName('close-button')[0];
 
     this.carousel = undefined; // Will be set when added to a carousel
     this.hidden = false;
     this.transitionTime = this.baseTransitionTime = 0.5;
     this.parallax = new Parallax3D(this.elem);
 
-    this.elem.addEventListener('click', () => this.clickHandler());
+    this.elem.addEventListener('click', (e) => this.clickHandler(e));
     this.wrapper.addEventListener('scroll', () => this.scrollHandler());
+    this.closeButton.addEventListener('click', () => { this.collapse(); });
 
     // Add tags if there's a place for them
     const tagsDisplay = this.elem.querySelector('.content .tags-display');
@@ -219,6 +221,7 @@ export class CarouselCard {
     const content = this.elem.getElementsByClassName('content')[0];
 
     this.elem.classList.add('expanded-x');
+    this.closeButton.style.pointerEvents = 'all';
     this.title.moveDown();
     this.disable();
     this._expansionTimeout = setTimeout(() => {
@@ -242,6 +245,7 @@ export class CarouselCard {
 
     this.elem.style.maxHeight = '';
     content.style.overflow = '';
+    this.closeButton.style.pointerEvents = 'none';
     this.elem.classList.add('expanded-y');
     setTimeout(() => this.elem.classList.remove('expanded-y'), 10);
     document.getElementById('carousel-dots').classList.remove('hidden');
@@ -263,14 +267,13 @@ export class CarouselCard {
   fade() { if (!this.hidden) this.elem.style.opacity = 0.5; }
   opacify() { this.elem.style.opacity = ''; }
 
-  clickHandler() {
-    if (this.carousel && !this.hidden) {
+  clickHandler(e) {
+    console.log(e.target);
+    if (this.carousel && !this.hidden && !e.target.classList.contains('close-button')) {
       const i1 = this.carousel.cards.indexOf(this);
       const i2 = this.carousel.adjustIndex(i1);
       if (this.carousel.position !== i2) this.centerSelf();
       else if (!this.expanded) this.expand();
-    } else if (!this.hidden && !this.expanded) {
-      this.expand();
     }
   }
 

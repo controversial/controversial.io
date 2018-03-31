@@ -15,6 +15,7 @@
 
 .carousel-card
   // 16:9
+  position: relative
   width: 40vw
   min-height: 22.5vw
   max-height: 22.5vw
@@ -122,6 +123,25 @@
     font-size: 5vw
     transform: translate(-50%, -50%)
     opacity: 0
+
+  .close-button
+    position: absolute
+    bottom: 0
+    left: 50%
+    transform: translate(-50%, 200%)
+    font-size: 50px
+    cursor: pointer
+    opacity: 0
+    transition: text-shadow .25s, opacity .5s
+    pointer-events: none // Changed in JS
+    text-shadow: 0 3px 8px transparentize($black, .8)
+
+    &:hover
+      text-shadow: 0 5px 12px transparentize($black, .8)
+
+  &.expanded-x .close-button
+    opacity: .25
+    transition: text-shadow .25s, opacity .5s 1s
 
 
   .content
