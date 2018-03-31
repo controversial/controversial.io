@@ -307,6 +307,15 @@ export class Carousel {
     // Trigger immediate layout of cards
     this.position = this._position;
 
+    // Close cards if clicked outside
+    window.addEventListener('click', (e) => {
+      // Outside of card
+      if (e.target.classList.contains('projects-container') || e.target.classList.contains('carousel-card-wrapper')) {
+        if (typeof this.expandedIndex !== 'undefined') this.cards[this.expandedIndex].collapse();
+      }
+    });
+
+    // Key bindings
     window.addEventListener('keydown', (e) => {
       // Carousel left/right with arrow keys, but only if carousel is expanded.
       // Carousel is expanded when the parent is #work-wrapper, the parent is .screen if it's not
