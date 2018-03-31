@@ -268,9 +268,9 @@ export class CarouselCard {
       const i1 = this.carousel.cards.indexOf(this);
       const i2 = this.carousel.adjustIndex(i1);
       if (this.carousel.position !== i2) this.centerSelf();
-      else this.toggleExpand();
-    } else if (!this.hidden) {
-      this.toggleExpand();
+      else if (!this.expanded) this.expand();
+    } else if (!this.hidden && !this.expanded) {
+      this.expand();
     }
   }
 
