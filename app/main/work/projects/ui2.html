@@ -49,4 +49,36 @@
       </p>
     </div>
   </section>
+
+  <section>
+    <div class="col left">
+      <p>
+        One of the most significant improvements that <code>ui2</code> makes over <code>ui</code> is
+        the abundance of new Python classes wrapping <code>UIKit</code> views that were previously
+        inaccessible from Pythonista. These include:
+        <ul>
+          <li>
+            <code>BlurView</code>, which wraps <code>UIVisualEffectView</code> to create the
+            "frosted glass" effect common since iOS 7
+          </li>
+          <li>
+            <code>CameraView</code>, which wraps <code>AVCaptureVideoPreviewLayer</code> to display
+            a live camera feed, useful for building camera-based UIs.
+          </li>
+          <li>
+            <code>MapView</code>, which wraps <code>MKMapView</code> to display a mutable Apple Maps
+            view. The coordinates and scale of the map can be read and controlled programmatically,
+            so with a little effort interactive graphics can be precisely placed on top of
+            geographical features.
+          </li>
+          <li>
+            <code>ProgressPathView</code>, which wraps <code>CAShapeLayer</code> and <code>CGPath</code>
+            to allow using a <code>Path</code> of any shape to form a progress bar.
+          </li>
+        </ul>
+        <p>and many more.</p>
+      </p>
+    </div>
+    <div class="col right"></div>
+  </section>
 </div>
