@@ -270,7 +270,6 @@ export class CarouselCard {
   opacify() { this.elem.style.opacity = ''; }
 
   clickHandler(e) {
-    console.log(e.target);
     if (this.carousel && !this.hidden && !e.target.classList.contains('close-button')) {
       const i1 = this.carousel.cards.indexOf(this);
       const i2 = this.carousel.adjustIndex(i1);
