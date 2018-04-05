@@ -230,6 +230,11 @@ $shadow-color: transparentize($black, .5)
       opacity: 0
       cursor: default
 
+      transition: color .25s
+
+    &:hover::after
+      color: opacify($light-text-secondary, .15)
+
     &.paused::after
       opacity: 1
       cursor: pointer
