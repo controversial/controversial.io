@@ -205,8 +205,34 @@ $shadow-color: transparentize($black, .5)
   video
     box-shadow: 0 .4vw 2.75vw -.4vw transparentize($black, .5)
 
-  video
+  .video-container
+    position: relative
+    overflow: hidden
     border-radius: 3%
+
+    &::after
+      display: block
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      background: transparentize($black, .7)
+
+      content: 'play_circle_outline'
+      font-family: 'Material Icons'
+      color: $light-text-secondary
+      text-shadow: 0 3px 20px transparentize($black, .95)
+      font-size: 10vw
+      text-align: center
+      line-height: 28.5vw
+
+      opacity: 0
+      cursor: default
+
+    &.paused::after
+      opacity: 1
+      cursor: pointer
 
   .caption
     font-size: 90%
