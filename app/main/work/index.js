@@ -34,14 +34,20 @@ export default async function init() {
   // Set up video play buttons
   const videos = [...projectsContainer.getElementsByTagName('video')];
   videos.forEach(v => v.parentNode.addEventListener('click', () => {
-    // Play
-    v.play();
-    v.parentNode.classList.remove('paused');
-    // Pause others
-    videos.filter(vid => vid !== v).forEach((otherVid) => {
-      otherVid.pause();
-      otherVid.currentTime = 0;
-      otherVid.parentNode.classList.add('paused');
-    });
+    if (v.paused) {
+      // Play
+      v.play();
+      v.parentNode.classList.remove('paused');
+      // Pause others
+      videos.filter(vid => vid !== v).forEach((otherVid) => {
+        otherVid.pause();
+        otherVid.currentTime = 0;
+        otherVid.parentNode.classList.add('paused');
+      });
+    } else {
+      v.pause();
+      v.currentTime = 0;
+      v.parentNode.classList.add('paused');
+    }
   }));
 }
