@@ -134,6 +134,13 @@
             multiple animations in sequence without manually creating delays for the duration of
             each animation.
           </li>
+          <li>
+            Redesigned interface for asynchronous UI-related code execution in the form of brand new
+            <code>Delay</code> and <code>DelayManager</code> classes which allow not only for the
+            scheduling of asynchronous actions in the future but for the subsequent cancellation and
+            mutation of these events, which is impossible using Pythonista's built-in <code>ui.Delay</code>
+            interface.
+          </li>
         </ul>
       </p>
     </div>
