@@ -141,6 +141,13 @@
             mutation of these events, which is impossible using Pythonista's built-in <code>ui.Delay</code>
             interface.
           </li>
+          <li>
+            A new <code>ui2.Path</code> class to replace <code>ui.Path</code> that stores each
+            component of the path in memory so that it can be read back after the path is modified.
+            The old <code>ui.Path</code> class was write-only and it was impossible to retrieve
+            information about the components of the path. <code>ui2.Path</code> intercepts every
+            method call and remembers each piece added to the <code>Path</code>.
+          </li>
         </ul>
       </p>
     </div>
