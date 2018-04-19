@@ -124,6 +124,21 @@
     transform: translate(-50%, -50%)
     opacity: 0
 
+  .expand-button
+    position: absolute
+    top: 100%
+    left: 100%
+    transform: translate3d(-50%, -50%, 15px)
+    font-size: 36.66px
+    cursor: pointer
+    width: 1.2em
+    height: 1.2em
+    line-height: 1.2em
+    color: transparentize($light-text-primary, .05)
+    text-align: center
+    background: linear-gradient(120deg, $gradient-a -25%, $gradient-b 150%)
+    box-shadow: 0 2px 30px -5px transparentize($black, .5)
+
   .close-button
     position: absolute
     bottom: 0
