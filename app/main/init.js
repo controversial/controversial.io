@@ -11,4 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   navInit();
   aboutInit();
   workInit();
+
+  document.getElementById('loading-cover').style.display = 'none';
 });
