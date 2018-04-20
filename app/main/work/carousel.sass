@@ -79,33 +79,43 @@
     &.fade-in ~ .expand-button
       animation-name: fade-in
 
-    &.in-from-left,
-    &.in-from-left ~ .expand-button
+    &.in-from-left
       animation-name: in-from-left
 
-    &.in-from-right,
-    &.in-from-right ~ .expand-button
+    &.in-from-right
       animation-name: in-from-right
 
-    &.in-from-top,
-    &.in-from-top ~ .expand-button
+    &.in-from-top
       animation-name: in-from-top
+
+    // See big long comment at the bottom of this file
+    &.in-from-left,
+    &.in-from-right,
+    &.in-from-top
+      & ~ .expand-button
+        animation-name: fade-in
 
     &.fade-out,
     &.fade-out ~ .expand-button
       animation-name: fade-out
 
-    &.out-to-left,
-    &.out-to-left ~ .expand-button
+    &.out-to-left
       animation-name: out-to-left
 
-    &.out-to-right,
-    &.out-to-right ~ .expand-button
+      & ~ .expand-button
+        animation-name: out-to-left-2
+
+    &.out-to-right
       animation-name: out-to-right
 
-    &.out-to-top,
-    &.out-to-top ~ .expand-button
+      & ~ .expand-button
+        animation-name: out-to-right-2
+
+    &.out-to-top
       animation-name: out-to-top
+
+      & ~ .expand-button
+        animation-name: out-to-top-2
 
     &.down
       animation-name: down
@@ -395,3 +405,34 @@ $translate-amount: 10vw
 
   to
     opacity: 1
+
+// Slightly different animations for the "expand" button are necessary for it to b smooth 😬🔫
+   NOTE: Can't add in-from-x animations because animation-fill-mode forwards breaks the hover
+   effect if we animate the transition property on .expand-button; if we animate to unspecified
+   transition the transition has nothing to transition from and it jumps, but if we animate
+   explicitly to the normal value the hover effect disappears entirely.
+   NOTE: Maybe a wrapper element so that there's multiple things to apply transitions to? Maybe have
+   actual displayed button as a pseudo-element and have hover effects on that while animation
+   transitions play on the real element?
+   NOTE: plain fade-in used for now
+
+@keyframes out-to-left-2
+  from
+    opacity: 1
+
+  to
+    transform: translate3d(-50%, -50%, 15px) translateX(-$translate-amount)
+
+@keyframes out-to-right-2
+  from
+    opacity: 1
+
+  to
+    transform: translate3d(-50%, -50%, 15px) translate3d($translate-amount)
+
+@keyframes out-to-top-2
+  from
+    opacity: 1
+
+  to
+    transform: translate3d(-50%, -150%, 15px)
