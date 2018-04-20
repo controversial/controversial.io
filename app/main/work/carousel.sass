@@ -79,43 +79,33 @@
     &.fade-in ~ .expand-button
       animation-name: fade-in
 
-    &.in-from-left
+    &.in-from-left,
+    &.in-from-left ~ .expand-button
       animation-name: in-from-left
 
-    &.in-from-right
+    &.in-from-right,
+    &.in-from-right ~ .expand-button
       animation-name: in-from-right
 
-    &.in-from-top
+    &.in-from-top,
+    &.in-from-top ~ .expand-button
       animation-name: in-from-top
-
-    // See big long comment at the bottom of this file
-    &.in-from-left,
-    &.in-from-right,
-    &.in-from-top
-      & ~ .expand-button
-        animation-name: fade-in
 
     &.fade-out,
     &.fade-out ~ .expand-button
       animation-name: fade-out
 
-    &.out-to-left
+    &.out-to-left,
+    &.out-to-left ~ .expand-button
       animation-name: out-to-left
 
-      & ~ .expand-button
-        animation-name: out-to-left-2
-
-    &.out-to-right
+    &.out-to-right,
+    &.out-to-right ~ .expand-button
       animation-name: out-to-right
 
-      & ~ .expand-button
-        animation-name: out-to-right-2
-
-    &.out-to-top
+    &.out-to-top,
+    &.out-to-top ~ .expand-button
       animation-name: out-to-top
-
-      & ~ .expand-button
-        animation-name: out-to-top-2
 
     &.down
       animation-name: down
@@ -156,23 +146,31 @@
 
   .expand-button
     position: absolute
-    top: 100%
-    left: 100%
-    transform: translate3d(-50%, -50%, 15px)
-    font-size: 36.66px
-    cursor: pointer
-    width: 1.2em
-    height: 1.2em
-    line-height: 1.2em
-    color: transparentize($light-text-primary, .05)
-    text-align: center
-    background: linear-gradient(120deg, $gradient-a -25%, $gradient-b 150%)
-    box-shadow: 0 2px 30px -5px transparentize($black, .5)
-    transition: transform .25s, box-shadow .25s
-    transform-origin: -50% -50%
+    top: calc(100% - 21.996px) // 0.6 * font-size
+    left: calc(100% - 21.996px)
+    transform: translateZ(15px)
 
-    &:hover
-      transform: translate3d(-50%, -50%, 25px) scale(1.065)
+    &::after
+      display: block
+      width: 1.2em
+      height: 1.2em
+      line-height: 1.2em
+      transform: scale(1)
+      transform-origin: -50% -50%
+      transition: transform .25s, box-shadow .25s
+
+      content: 'add'
+      font-family: 'Material Icons'
+      font-size: 36.66px
+      color: transparentize($light-text-primary, .05)
+      text-align: center
+
+      background: linear-gradient(120deg, $gradient-a -25%, $gradient-b 150%)
+      box-shadow: 0 2px 30px -5px transparentize($black, .5)
+      cursor: pointer
+
+    &:hover::after
+      transform: scale(1.065)
       box-shadow: 0 2px 33px -6px transparentize($black, .5)
 
   .close-button
@@ -405,34 +403,3 @@ $translate-amount: 10vw
 
   to
     opacity: 1
-
-// Slightly different animations for the "expand" button are necessary for it to b smooth 😬🔫
-   NOTE: Can't add in-from-x animations because animation-fill-mode forwards breaks the hover
-   effect if we animate the transition property on .expand-button; if we animate to unspecified
-   transition the transition has nothing to transition from and it jumps, but if we animate
-   explicitly to the normal value the hover effect disappears entirely.
-   NOTE: Maybe a wrapper element so that there's multiple things to apply transitions to? Maybe have
-   actual displayed button as a pseudo-element and have hover effects on that while animation
-   transitions play on the real element?
-   NOTE: plain fade-in used for now
-
-@keyframes out-to-left-2
-  from
-    opacity: 1
-
-  to
-    transform: translate3d(-50%, -50%, 15px) translateX(-$translate-amount)
-
-@keyframes out-to-right-2
-  from
-    opacity: 1
-
-  to
-    transform: translate3d(-50%, -50%, 15px) translate3d($translate-amount)
-
-@keyframes out-to-top-2
-  from
-    opacity: 1
-
-  to
-    transform: translate3d(-50%, -150%, 15px)
