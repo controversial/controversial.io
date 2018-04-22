@@ -231,6 +231,7 @@ export class CarouselCard {
         this.closeButton.style.pointerEvents = 'all';
         this.closeButton.style.opacity = '';
         this.elem.classList.remove('expanded-y');
+        this.scrollHandler();
       }, 500);
       document.getElementById('carousel-dots').classList.add('hidden');
       window.nav.disableScrollBinding = true;
