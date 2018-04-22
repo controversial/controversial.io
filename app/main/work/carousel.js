@@ -249,6 +249,7 @@ export class CarouselCard {
     content.style.overflow = '';
     this.closeButton.style.pointerEvents = 'none';
     this.closeButton.style.opacity = 0;
+    this.closeButton.style.transform = '';
     this.elem.classList.add('expanded-y');
     setTimeout(() => this.elem.classList.remove('expanded-y'), 10);
     document.getElementById('carousel-dots').classList.remove('hidden');
