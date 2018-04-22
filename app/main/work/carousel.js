@@ -103,7 +103,7 @@ export class CarouselCard {
     this.transitionTime = this.baseTransitionTime = 0.5;
     this.parallax = new Parallax3D(this.elem);
 
-    this.elem.addEventListener('click', (e) => this.clickHandler(e));
+    this.elem.addEventListener('click', e => this.clickHandler(e));
     this.wrapper.addEventListener('scroll', () => this.scrollHandler());
     this.closeButton.addEventListener('click', () => { this.collapse(); });
 
@@ -279,14 +279,20 @@ export class CarouselCard {
   }
 
   scrollHandler() {
-    const transitionDistance = window.innerHeight / 10;
-    const progress = Math.min(this.wrapper.scrollTop / transitionDistance, 1);
+    const scroll = this.wrapper.scrollTop;
+    // Float close button
+    const buttonTop = (this.closeButton.offsetTop + this.elem.offsetTop) - scroll;
+    const goalTop = window.innerHeight - this.closeButton.offsetHeight;
+    const delta = goalTop - buttonTop - (this.closeButton.offsetHeight / 2);
+    this.closeButton.style.transform = `translateY(${Math.min(delta, 0)}px)`;
 
+    // Fade nav links and tags while scrolling
+    const transitionDistance = window.innerHeight / 10;
+    const progress = Math.min(scroll / transitionDistance, 1);
     const nav = document.getElementById('navigation');
     const tags = document.getElementById('tags');
     nav.style.opacity = 0.5 * (1 - progress);
     tags.style.opacity = 1 - progress;
-
     // Turn off pointer events when halfway faded
     nav.style.pointerEvents = tags.style.pointerEvents = progress < 0.5 ? '' : 'none';
   }
