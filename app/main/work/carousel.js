@@ -284,7 +284,7 @@ export class CarouselCard {
     const buttonTop = (this.closeButton.offsetTop + this.elem.offsetTop) - scroll;
     const goalTop = window.innerHeight - this.closeButton.offsetHeight;
     const delta = goalTop - buttonTop - (this.closeButton.offsetHeight / 2);
-    this.closeButton.style.transform = `translateY(${Math.min(delta, 0)}px)`;
+    this.closeButton.style.transform = delta < 0 ? `translateY(${delta}px) translateZ(15px)` : '';
 
     // Fade nav links and tags while scrolling
     const transitionDistance = window.innerHeight / 10;
