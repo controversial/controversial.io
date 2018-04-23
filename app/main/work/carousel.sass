@@ -327,6 +327,7 @@ $translate-amount: 10vw
 
   to
     transform: translat3d(-$translate-amount, 0, 25px)
+    pointer-events: none
 
 @keyframes out-to-right
   from
@@ -334,6 +335,7 @@ $translate-amount: 10vw
 
   to
     transform: translate3d($translate-amount, 0, 25px)
+    pointer-events: none
 
 @keyframes out-to-top
   from
@@ -341,6 +343,7 @@ $translate-amount: 10vw
 
   to
     transform: translate3d(0, -100%, 25px)
+    pointer-events: out
 
 
 // Go down to the expanded location
@@ -396,6 +399,7 @@ $translate-amount: 10vw
 
   to
     opacity: 0
+    pointer-events: none
 
 @keyframes fade-in
   from
