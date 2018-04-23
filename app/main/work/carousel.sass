@@ -60,17 +60,18 @@
     animation-fill-mode: forwards
     animation-duration: .55s // Takes ever-so-slightly longer than carousel shift
 
-    & ~ .expand-button
-      opacity: 0
-      animation-fill-mode: forwards
-      animation-duration: .55s
-
     &::before
       content: attr(data-text)
       display: inline-block
       animation: distort 15s
       animation-timing-function: step-end
       animation-iteration-count: infinite
+      white-space: nowrap
+
+    & ~ .expand-button
+      opacity: 0
+      animation-fill-mode: forwards
+      animation-duration: .55s
 
     &.in-initial,
     &.in-initial ~ .expand-button
