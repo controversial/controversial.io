@@ -96,7 +96,6 @@ export class CarouselCard {
 
     this.tagNames = tagNames || elem.dataset.tags.split(',').map(t => t.trim());
     this.titleElem = elem.getElementsByTagName('h1')[0];
-    this.closeButton = elem.getElementsByClassName('close-button')[0];
 
     this.carousel = undefined; // Will be set when added to a carousel
     this.hidden = false;
@@ -105,7 +104,6 @@ export class CarouselCard {
 
     this.elem.addEventListener('click', e => this.clickHandler(e));
     this.wrapper.addEventListener('scroll', () => this.scrollHandler());
-    this.closeButton.addEventListener('click', () => { this.collapse(); });
 
     // Add tags if there's a place for them
     const tagsDisplay = this.elem.querySelector('.content .tags-display');
@@ -228,8 +226,6 @@ export class CarouselCard {
       this._expansionTimeout = setTimeout(() => {
         this.elem.style.maxHeight = 'none';
         content.style.overflow = 'visible';
-        this.closeButton.style.pointerEvents = 'all';
-        this.closeButton.style.opacity = '';
         this.elem.classList.remove('expanded-y');
         this.scrollHandler();
       }, 500);
@@ -247,9 +243,6 @@ export class CarouselCard {
 
     this.elem.style.maxHeight = '';
     content.style.overflow = '';
-    this.closeButton.style.pointerEvents = 'none';
-    this.closeButton.style.opacity = 0;
-    this.closeButton.style.transform = '';
     this.elem.classList.add('expanded-y');
     setTimeout(() => this.elem.classList.remove('expanded-y'), 10);
     document.getElementById('carousel-dots').classList.remove('hidden');
@@ -283,10 +276,6 @@ export class CarouselCard {
   scrollHandler() {
     const scroll = this.wrapper.scrollTop;
     // Float close button
-    const buttonTop = (this.closeButton.offsetTop + this.elem.offsetTop) - scroll;
-    const goalTop = window.innerHeight - this.closeButton.offsetHeight;
-    const delta = goalTop - buttonTop - (this.closeButton.offsetHeight / 2);
-    this.closeButton.style.transform = delta < 0 ? `translateY(${delta}px) translateZ(15px)` : '';
 
     // Fade nav links and tags while scrolling
     const transitionDistance = window.innerHeight / 10;
@@ -303,7 +292,7 @@ export class CarouselCard {
 
 /** Collects and orchestrates multiple CarouselCards */
 export class Carousel {
-  constructor(cards, dots, tags, emptyElem) {
+  constructor(cards, dots, tags, emptyElem, closeButton) {
     this.dots = dots;
     this.dots.carousel = this;
     this.tags = tags;
@@ -312,6 +301,7 @@ export class Carousel {
     this.cards.forEach((c) => { c.carousel = this; });
     this.emptyElem = emptyElem;
     this.dots.init();
+    this.closeButton = closeButton;
     this.hiddenIndices = [];
 
     this._position = 0;
@@ -424,9 +414,11 @@ export class Carousel {
     this.cards.forEach((c) => {
       if (c !== card) c.fade();
     });
+    setTimeout(() => { this.closeButton.style.opacity = 1; }, 500);
   }
   collapsed() {
     this.expandedIndex = undefined;
+    this.closeButton.style.opacity = 0;
     setTimeout(() => {
       this.position = this.position; // Re-layout
       this.cards.forEach(c => c.opacify());

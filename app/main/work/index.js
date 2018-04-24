@@ -15,8 +15,9 @@ export default async function init() {
   const tags = tagElems.map(t => new CarouselTag(t));
 
   const emptyElem = document.getElementById('carousel-empty-state');
+  const closeButton = document.getElementById('carousel-close-button');
 
-  window.workCarousel = new Carousel(cards, dots, tags, emptyElem);
+  window.workCarousel = new Carousel(cards, dots, tags, emptyElem, closeButton);
 
   // Add number of github stars to all applicable cards
   const starsMap = await fetchStars();

@@ -175,30 +175,6 @@
       transform: scale(1.065)
       box-shadow: 0 2px 33px -6px transparentize($black, .5)
 
-  .close-button
-    position: absolute
-    bottom: -21.966px
-    left: calc(50% - 21.966px)
-
-    display: block
-    width: 1.2em
-    height: 1.2em
-    line-height: 1.2em
-    transform: scale(1)
-    transition: transform .25s, box-shadow .25s
-
-    font-size: 36.66px
-    color: transparentize($light-text-primary, .15)
-    text-align: center
-
-    background: linear-gradient(120deg, $gradient-a -25%, $gradient-b 145%)
-    box-shadow: 0 2px 30px -5px transparentize($black, .5)
-    cursor: pointer
-
-    &:hover
-      transform: scale(1.065)
-      box-shadow: 0 2px 33px -6px transparentize($black, .5)
-
   .content
     position: relative
     top: -1.25vw
@@ -296,6 +272,31 @@
     right: 0
     transform: translate(175%, -50%)
 
+
+#carousel-close-button
+  position: absolute
+  bottom: 21.966px
+  left: calc(50% - 21.966px)
+  z-index: 2
+
+  display: block
+  width: 1.2em
+  height: 1.2em
+  line-height: 1.2em
+  transform: scale(1)
+  transition: transform .25s, box-shadow .25s
+
+  font-size: 36.66px
+  color: transparentize($light-text-primary, .15)
+  text-align: center
+
+  background: linear-gradient(120deg, $gradient-a -25%, $gradient-b 145%)
+  box-shadow: 0 2px 30px -5px transparentize($black, .5)
+  cursor: pointer
+
+  &:hover
+    transform: scale(1.065)
+    box-shadow: 0 2px 33px -6px transparentize($black, .5)
 
 
 $translate-amount: 10vw
