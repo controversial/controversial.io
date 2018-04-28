@@ -58,6 +58,7 @@ module.exports = {
   plugins: [
     new FileManagerPlugin({
       onStart: [{ copy: [{ source: 'app/main/assets', destination: 'build/main/assets' }] }],
+      onEnd: [{ move: [{ source: 'build/404', destination: 'build/main/404' }] }],
     }),
     new ExtractTextWebpackPlugin('[name]/style.css'),
   ],
