@@ -276,6 +276,16 @@ export class CarouselCard {
   scrollHandler() {
     const scroll = this.wrapper.scrollTop;
     // Float close button
+    const closeButton = this.carousel.closeButton;
+    const closeButtonPinThreshold = window.innerHeight - 44; // 44px is closeButton's offsetHeight
+    const cardBottom = this.elem.getBoundingClientRect().bottom;
+    if (cardBottom <= closeButtonPinThreshold) {
+      if (closeButton.parentNode !== this.elem) {
+        this.elem.appendChild(closeButton);
+      }
+    } else if (this.carousel.closeButton.parentNode !== this.wrapper.parentNode) {
+      this.wrapper.parentNode.appendChild(this.carousel.closeButton);
+    }
 
     // Fade nav links and tags while scrolling
     const transitionDistance = window.innerHeight / 10;
