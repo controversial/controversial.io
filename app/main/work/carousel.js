@@ -122,10 +122,7 @@ export class CarouselCard {
 
     const _this2 = this;
     /**
-     * Interface for updating styles on the title.
-     * Examples:
-     *   this.title.translate = '-10px'
-     *   this.title.opacity = 0.5
+     * Interface for playing animations on a card's title (and usually also the expand button)
      */
     this.title = {
       _elem: _this2.titleElem,
