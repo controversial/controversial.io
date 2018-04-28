@@ -1,37 +1,53 @@
 {
   "name": "controversial.io",
   "scripts": {
-    "start": "gulp",
-    "build": "gulp build",
-    "watch": "gulp watch",
+    "start": "webpack-dev-server --inline --open",
+    "build": "webpack",
+    "watch": "webpack --watch",
     "lint-sass": "sass-lint 'app/**/*.sass' -v",
     "lint-js": "eslint .",
     "lint": "npm run -s lint-sass && npm run -s lint-js",
     "test": "ava -v",
-    "docs": "jsdoc app -r -d docs -t node_modules/minami --verbose"
+    "docs": "jsdoc app -r -d docs -t node_modules/minami --verbose",
+    "deploy": "npm run -s build && now deploy build/main --alias luke.now.sh"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "smoothscroll-polyfill": "^0.3.6"
   },
   "devDependencies": {
+    "autoprefixer": "^7.1.6",
     "ava": "^0.16.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-es2016": "^6.24.1",
-    "browser-sync": "^2.15.0",
+    "babel-register": "^6.26.0",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
+    "ejs": "^2.5.9",
+    "ejs-html-loader": "^3.1.0",
     "eslint": "^3.8.0",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^1.16.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-concat": "^2.6.0",
-    "gulp-connect-php": "0.0.8",
-    "gulp-plumber": "^1.1.0",
-    "gulp-sass": "^2.3.2",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^2.0.0",
-    "jsdoc": "^3.4.2",
+    "extract-loader": "^1.0.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.1",
+    "jsdoc": "^3.5.5",
     "minami": "^1.1.1",
-    "sass-lint": "^1.9.1"
+    "node-sass": "^4.9.0",
+    "now": "^8.5.4",
+    "postcss-loader": "^2.1.4",
+    "raw-loader": "^0.5.1",
+    "sass-lint": "^1.12.1",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.19.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.11.2"
   },
   "description": "This is my website. There are many like it, but this one is mine.",
   "version": "0.16.0",
@@ -47,7 +63,26 @@
   },
   "homepage": "https://github.com/controversial/controversial.io#readme",
   "sasslintConfig": ".sass-lint.yml",
+  "babel": {
+    "presets": [
+      "es2015",
+      "es2016"
+    ]
+  },
   "ava": {
-    "babel": {}
+    "require": [
+      "babel-register"
+    ],
+    "babel": {
+      "presets": [
+        "es2015",
+        "es2016"
+      ]
+    }
+  },
+  "now": {
+    "files": [
+      "build/main"
+    ]
   }
 }

@@ -1,0 +1,99 @@
+<div id="tags">
+  <div class="tag">JavaScript</div>
+  <div class="tag" >HTML</div>
+  <div class="tag">CSS</div>
+  <div class="tag">Python</div>
+  <div class="tag">Java</div>
+  <div class="tag">PHP</div>
+  <div class="tag">SASS</div>
+  <div class="tag">Node.js</div>
+  <div class="tag">ES6</div>
+  <div class="tag">Webpack</div>
+  <div class="tag">Gulp</div>
+  <div class="tag">Vue</div>
+  <div class="tag">Express</div>
+  <div class="tag">Flask</div>
+  <div class="tag">Docker</div>
+  <div class="tag">Pythonista</div>
+  <div class="tag">iOS</div>
+  <div class="tag">Back end</div>
+  <div class="tag">Front end</div>
+  <div class="tag">Image processing</div>
+  <div class="tag">Data visualization</div>
+  <div class="tag">Open source</div>
+  <div class="tag">Paid work</div>
+</div>
+
+<div class="projects-container">
+  <span id="carousel-empty-state">No projects found</span>
+  <i id="carousel-close-button" class="material-icons hidden">clear</i>
+
+
+
+  <div class="carousel-card" id="arkisio-card" data-tags="JavaScript, HTML, CSS, SASS, Node.js, ES6, Webpack, Express, Back end, Front end, Open source">
+    <h1 data-text="arkis.io"></h1>
+    <i class="hidden-indicator material-icons">close</i>
+    <div class="graphic"></div>
+    <div class="expand-button"></div>
+    <%- include('./projects/arkis.io.html'); %>
+  </div>
+
+  <div class="carousel-card" id="livejson-card" data-tags="Python, Open source">
+    <h1 data-text="livejson"></h1>
+    <i class="hidden-indicator material-icons">close</i>
+    <div class="graphic"></div>
+    <div class="expand-button"></div>
+    <%- include('./projects/livejson.html'); %>
+  </div>
+
+  <div class="carousel-card" data-tags="JavaScript, HTML, CSS, Python, SASS, Node.js, ES6, Express, Flask, Back end, Front end, Data visualization, Open source">
+    <h1 data-text="Wikipedia Map"></h1>
+    <i class="hidden-indicator material-icons">close</i>
+    <img class="graphic" src="assets/wikipedia.jpg"></img>
+    <div class="expand-button"></div>
+    <%- include('./projects/wikipedia-map.html'); %>
+  </div>
+
+  <div class="carousel-card" data-tags="Python, Pythonista, iOS, Image processing, Open source">
+    <h1 data-text="maze-cv"></h1>
+    <i class="hidden-indicator material-icons">close</i>
+    <img class="graphic" src="assets/maze-texture.png" style="image-rendering: -moz-crisp-edges; image-rendering: pixelated; -ms-interpolation-mode: nearest-neighbor;"></img>
+    <div class="expand-button"></div>
+    <%- include('./projects/maze-cv.html'); %>
+  </div>
+
+  <div class="carousel-card" id="image2ascii-card" data-tags="Python, Pythonista, iOS, Image processing, Open source">
+    <h1 data-text="Image2ASCII"></h1>
+    <i class="hidden-indicator material-icons">close</i>
+    <img class="graphic" src="assets/image2ascii.jpg">
+    <div class="expand-button"></div>
+    <%- include('./projects/image2ascii.html'); %>
+  </div>
+
+  <div class="carousel-card" id="ui2-card" data-tags="Python, Pythonista, iOS, Front end, Open source, Paid work">
+    <h1 data-text="ui2"></h1>
+    <i class="hidden-indicator material-icons">close</i>
+    <div class="graphic"><div class="text">ui2</div></div>
+    <div class="expand-button"></div>
+    <%- include('./projects/ui2.html'); %>
+  </div>
+
+  <div class="carousel-card" id="pythonista-misc-card" data-tags="Python, Pythonista, iOS, Front end, Open source">
+    <h1 data-text="Pythonista work"></h1>
+    <i class="hidden-indicator material-icons">close</i>
+    <div class="graphic"><img src="assets/pythonista-shape.svg"></div>
+    <div class="expand-button"></div>
+    <%- include('./projects/pythonista-misc.html'); %>
+  </div>
+
+
+
+  <div id="carousel-dots">
+    <div class="left"><i class="material-icons">chevron_left</i></div>
+    <div class="right"><i class="material-icons">chevron_right</i></div>
+  </div>
+</div>
+
+
+
+<div class="background"></div>

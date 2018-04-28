@@ -1,0 +1,100 @@
+// Effect for a "glitch" effect on text
+
+.glitch
+  $anim: transform 7s infinite, distort 8s infinite, flicker 9s infinite
+  position: relative
+  color: $white
+  animation: $anim
+  animation-timing-function: step-end // No transition between animation frames
+
+  &::after
+    content: 'Luke Deen Taylor'
+
+    position: absolute
+    width: 100%
+    top: 0
+    left: 0
+    z-index: -1
+
+    color: $accent
+    animation: $anim
+    animation-timing-function: step-end
+
+
+// Effect 1: very brief flashes to another position
+
+@keyframes transform
+  0%
+    transform: translate(-2.5%, -2.5%) skew(-7deg) scale(1.05)
+
+  1%
+    transform: none
+
+  88%
+    transform: none
+
+  89%
+    transform: translate(2.5%, 5%) scale(1.05)
+
+  90%
+    transform: none
+
+// Effect 2: distortion around the edges of the text. Powered by SVG filters (feTurbulence with feDisplacementMap)
+
+@keyframes distort
+  45%
+    filter: none
+
+  46%
+    filter: url('#distort-1')
+
+  47%
+    filter: url('#sharp-distort')
+
+  48%
+    filter: url('#distort-2')
+
+  50%
+    filter: none
+
+  95%
+    filter: none
+
+  96%
+    filter: url('#sharp-distort')
+
+  97%
+    filter: url('#distort-2')
+
+// Effect 3: flickering
+
+@keyframes flicker
+  20.5%
+    opacity: 0
+
+  21%
+    opacity: 1
+
+  21.5%
+    opacity: 0
+
+  22%
+    opacity: 1
+
+  23%
+    opacity: 0
+
+  23.5%
+    opacity: 1
+
+  24.5%
+    opacity: 0
+
+  25%
+    opacity: 1
+
+  75%
+    opacity: 0
+
+  76%
+    opacity: 1

@@ -1,0 +1,167 @@
+<div class="content">
+  <section>
+    <div class="col left">
+
+      <div class="row">
+        <!-- Links -->
+        <ul class="info">
+          <li><h4>Links</h4></li>
+          <li><a target="_blank" href="https://github.com/controversial/ui2">GitHub</a></li>
+        </ul>
+        <!-- Roles -->
+        <ul class="info">
+          <li><h4>Roles</h4></li>
+          <li>Developer</li>
+          <li>iOS Developer</li>
+        </ul>
+      </div>
+
+      <div class="row">
+        <!-- Timeframe -->
+        <ul class="info">
+          <li><h4>When</h4></li>
+          <li>May-Aug 2016</li>
+        </ul>
+        <!-- GitHub stars -->
+        <ul class="info">
+          <li><h4><i class="fa fa-github"></i> Stars</h4></li>
+          <li class="stars-display" data-repo="controversial/ui2">loading...</li>
+        </ul>
+      </div>
+
+      <div class="tags-display"></div>
+    </div>
+
+    <div class="col right">
+      <p>
+        <code>ui2</code> is a Python module for the iOS app <a href="http://omz-software.com/pythonista/">Pythonista</a>
+        which builds on top of Pythonista's <code>ui</code> module to add functionality and
+        convenience. <code>ui2</code> empowers script authors to take advantage of a much wider
+        range of components, allowing them to create more complex, beautiful, and effective
+        interfaces. The project was commissioned by another community member, who thought that I
+        had the necessary skill to carry out the project and paid me to complete it.
+      </p>
+      <p>
+        <code>ui2</code> lets users access UI components like <a href="https://developer.apple.com/documentation/mapkit/mkmapview"><code>MKMapView</code></a>
+        that are not available through the original <code>ui</code> module, and also provides
+        pure-python abstractions of <code>ui</code> features to add flexibility and convenience,
+        such as allowing the chaining of multiple animations.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="col left">
+      <p>
+        One of the most significant improvements that <code>ui2</code> makes over <code>ui</code> is
+        the abundance of new Python classes wrapping <code>UIKit</code> views that were previously
+        inaccessible from Pythonista. These include:
+        <ul>
+          <li>
+            <code>BlurView</code>, which wraps <code>UIVisualEffectView</code> to create the
+            "frosted glass" effect common since iOS 7
+          </li>
+          <li>
+            <code>CameraView</code>, which wraps <code>AVCaptureVideoPreviewLayer</code> to display
+            a live camera feed, useful for building camera-based UIs.
+          </li>
+          <li>
+            <code>MapView</code>, which wraps <code>MKMapView</code> to display a mutable Apple Maps
+            view. The coordinates and scale of the map can be read and controlled programmatically,
+            so with a little effort interactive graphics can be precisely placed on top of
+            geographical features.
+          </li>
+          <li>
+            <code>ProgressPathView</code>, which wraps <code>CAShapeLayer</code> and <code>CGPath</code>
+            to allow using a <code>Path</code> of any shape to form a progress bar.
+          </li>
+        </ul>
+        <p>and many more.</p>
+      </p>
+    </div>
+    <div class="col right">
+      <div class="video-container paused"><video loop><source src="assets/BlurView.mp4"/></video></div>
+      <div class="caption"><p>
+        A demonstration of BlurView, a <code>ui2</code>-provided view class that allows for the
+        implementation of a common design pattern that is otherwise inaccessible to Pythonista UIs.
+      </p></div>
+    </div>
+  </section>
+  <section>
+    <div class="col left">
+      <div class="video-container paused"><video loop><source src="assets/MapView.mp4"/></video></div>
+      <div class="caption"><p>
+        MapView provides a mutable interface to display and manipulate Apple Maps programmatically.
+        Without the use of <code>ui2</code> it is impossible to render interactive maps unless
+        developers write obscure and messy code to query Objective-C APIs themselves.
+      </p></div>
+    </div>
+    <div class="col right">
+      <div class="video-container paused"><video loop><source src="assets/ProgressPathView.mp4"/></video></div>
+      <div class="caption"><p>
+        <code>ProgressPathView</code> allows the simple creation of progress bars that follow any
+        <code>ui.Path</code> or <code>ui2.Path</code>, which can be constructed as rectangles,
+        circles, lines, and any other shape that can be made up of Bézier curves, lines, and other
+        basic components.
+      </p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="col left">
+      <div class="video-container paused"><video loop><source src="assets/ChainedTransition.mp4"/></video></div>
+      <div class="caption"><p>
+        The <code>Transition</code> class allows interfaces to include animated transitions between
+        views. Pictured, <code>ChainedTransition</code> allows for playing multiple animations in
+        sequence without manually creating delays for the duration of each animation.
+      </p></div>
+      <img src="assets/ui2-kb.jpg">
+      <div class="caption"><p>
+        Here, the iOS "discoverability" interface shows a new "Say Hi" action bound to <kbd>⇧+⌘+esc</kbd>
+        which calls a python method when triggered via an external bluetooth keyboard on the device.
+      </p></div>
+    </div>
+    <div class="col right">
+      <p>
+        Beyond <code>UIView</code> classes, <code>ui2</code> provides an extensive set of tools for
+        fully creating complex and polished user interfaces including interactivity, animations, and
+        transitions. <code>ui2</code> builds upon some Pythonista interfaces to add new features,
+        but also implements its own new pure-Python interfaces and wraps some new Objective-C APIs.
+        Some of the new non-<code>UIView</code> features included in <code>ui2</code>:
+        <ul>
+          <li>
+            New <code>Transition</code> and <code>ChainedTransition</code> classes that
+            interface with the Objective-C <code>[UIView transitionFromView:toView:duration:options:completion:]</code>
+            method to allow for animated transitions between views like cross dissolves, page flips,
+            and 3D "card flip" effects (see the video to the left).
+          </li>
+          <li>
+            A <code>ui2.bind</code> decorator which allows binding Python methods to keybaord
+            shortcuts on bluetooth keyboards connected to the device, functionality which was
+            previously entirely unavailable. Keyboard shortcuts even show up in the "discoverability"
+            menu when the command key is held down on the keyboard.
+          </li>
+          <li>
+            New <code>Animation</code> and <code>ChainedAnimation</code> classes allow for playing
+            multiple animations in sequence without manually creating delays for the duration of
+            each animation.
+          </li>
+          <li>
+            Redesigned interface for asynchronous UI-related code execution in the form of brand new
+            <code>Delay</code> and <code>DelayManager</code> classes which allow not only for the
+            scheduling of asynchronous actions in the future but for the subsequent cancellation and
+            mutation of these events, which is impossible using Pythonista's built-in <code>ui.Delay</code>
+            interface.
+          </li>
+          <li>
+            A new <code>ui2.Path</code> class to replace <code>ui.Path</code> that stores each
+            component of the path in memory so that it can be read back after the path is modified.
+            The old <code>ui.Path</code> class was write-only and it was impossible to retrieve
+            information about the components of the path. <code>ui2.Path</code> intercepts every
+            method call and remembers each piece added to the <code>Path</code>.
+          </li>
+        </ul>
+      </p>
+    </div>
+  </section>
+</div>

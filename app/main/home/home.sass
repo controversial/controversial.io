@@ -1,0 +1,147 @@
+// Text glitch effect
+@import home/glitch
+
+// Styles for everything in the home page
+
+#home-wrapper
+  color: $light-text-primary
+  width: 100%
+  height: 100vh
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 2
+  pointer-events: none
+  will-change: contents
+
+  *
+    pointer-events: all
+
+
+#home-wrapper,
+.laptops-container .laptop3d[data-laptop3d-hash='']
+  h1
+    margin: 0
+
+    position: fixed
+    top: 50%
+    left: 50%
+    width: 60vw
+    transform: translate(-50%, -50%)
+    will-change: transform
+
+    z-index: 101
+
+    font-size: 5vw
+    text-align: center
+    // Since letter-spacing adds space after the last character in a line and
+       messes up text-align: center, I add equal space to the left side in order
+       to achieve balance.
+    letter-spacing: .5em
+    padding-left: 2vw
+    line-height: 150%
+
+    animation: flicker-in 2s linear
+
+    .glitch,
+    .glitch::after
+      animation-delay: 2.5s
+
+
+
+  .background
+    height: 100%
+    width: 100%
+    background-color: $dark-2
+
+    position: fixed
+    left: 0
+    top: 0
+
+    z-index: 100
+
+    will-change: transform, top, left
+
+
+    canvas
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+
+
+// Flickering entrance
+
+@keyframes flicker-in
+  0%
+    opacity: 0
+
+  20%
+    opacity: 0
+
+  20.1%
+    opacity: 1
+
+  25%
+    opacity: 1
+
+  25.1%
+    opacity: 0
+
+  32%
+    opacity: 0
+
+  32.1%
+    opacity: 1
+
+  40%
+    opacity: 1
+
+  40.1%
+    opacity: 0
+
+  42%
+    opacity: 0
+
+  42.1%
+    opacity: 1
+
+  45%
+    opacity: 1
+
+  45.1%
+    opacity: 0
+
+  55%
+    opacity: 0
+
+  55.1%
+    opacity: 1
+
+  65%
+    opacity: 1
+
+  65.1%
+    opacity: 0
+
+  67%
+    opacity: 0
+
+  67.1%
+    opacity: 1
+
+  80%
+    opacity: 1
+
+  80.1%
+    opacity: 0
+
+  81%
+    opacity: 0
+
+  81.1%
+    opacity: 1
+
+  100%
+    opacity: 1

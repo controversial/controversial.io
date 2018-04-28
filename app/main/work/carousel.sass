@@ -1,0 +1,428 @@
+.carousel-card-wrapper
+  position: absolute
+  z-index: 0
+  top: 0
+  height: 100vh
+  padding: calc(50vh - 11.25vw) calc(3.5vw + 25px)
+  left: 50%
+  transform: translateX(-50%)
+  overflow-x: hidden
+  overflow-y: scroll
+
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-thumb
+    background: none
+
+.carousel-card
+  // 16:9
+  position: relative
+  width: 40vw
+  min-height: 22.5vw
+  max-height: 22.5vw
+  padding: .75vw
+  margin-right: -16px
+  padding-bottom: 2vw
+  background: transparentize($white, .85)
+  box-shadow: 0 .4vw 2vw -.2vw transparentize($black, .5)
+  transform-style: preserve-3d
+  transition: width .5s, max-height .5s, opacity .5s, box-shadow .5s .5s
+
+  &.expanded-x
+    width: 65vw
+
+    .content
+      display: block
+
+  &.expanded-y
+    max-height: calc(50vh + 11.25vw)
+
+  &.expanded-y-2
+    max-height: none
+
+  h1
+    position: absolute
+    z-index: 1
+    transform: translateZ(25px)
+    top: 1.25vw
+    left: -3.5vw
+    margin: 0
+    padding: .2vw .7vw
+    background: linear-gradient(120deg, $gradient-a -25%, $gradient-b 125%)
+    box-shadow: 0 5px 30px -5px transparentize($black, .5)
+
+    font-family: 'Montserrat', sans-serif
+    font-weight: 700
+    font-size: 2.5vw
+    letter-spacing: .06em
+    color: transparentize($white, .15)
+    text-shadow: 0 4px 10px transparentize($black, .9)
+
+    opacity: 0
+    animation-fill-mode: forwards
+    animation-duration: .55s // Takes ever-so-slightly longer than carousel shift
+
+    &::before
+      content: attr(data-text)
+      display: inline-block
+      animation: distort 15s
+      animation-timing-function: step-end
+      animation-iteration-count: infinite
+      white-space: nowrap
+
+    & ~ .expand-button
+      opacity: 0
+      animation-fill-mode: forwards
+      animation-duration: .55s
+
+    &.in-initial,
+    &.in-initial ~ .expand-button
+      animation-name: in
+
+    &.fade-in,
+    &.fade-in ~ .expand-button
+      animation-name: fade-in
+
+    &.in-from-left,
+    &.in-from-left ~ .expand-button
+      animation-name: in-from-left
+
+    &.in-from-right,
+    &.in-from-right ~ .expand-button
+      animation-name: in-from-right
+
+    &.in-from-top,
+    &.in-from-top ~ .expand-button
+      animation-name: in-from-top
+
+    &.fade-out,
+    &.fade-out ~ .expand-button
+      animation-name: fade-out
+
+    &.out-to-left,
+    &.out-to-left ~ .expand-button
+      animation-name: out-to-left
+
+    &.out-to-right,
+    &.out-to-right ~ .expand-button
+      animation-name: out-to-right
+
+    &.out-to-top,
+    &.out-to-top ~ .expand-button
+      animation-name: out-to-top
+
+    &.down
+      animation-name: down
+
+      & ~ .expand-button
+        animation-name: fade-out
+
+    &.up
+      animation-name: up
+
+      & ~ .expand-button
+        animation-name: fade-in
+
+
+  .graphic
+    position: absolute
+    z-index: 0
+    width: calc(100% - 1.5vw)
+    // height minus padding (not 100% so that image doesn't get taller if card expands)
+    height: 21vw
+    object-fit: cover
+    opacity: .85
+    transform: translateZ(5px)
+    // Mask for animated wipe up
+    mask-position: 0 0
+    mask-size: 100vw 43vw // Slightly taller than twice the height of .graphic
+    mask-image: linear-gradient(to bottom, $black 49%, transparent 49.1%)
+    transition: mask-position .5s .5s
+
+  .hidden-indicator
+    display: block
+    position: absolute
+    top: 50%
+    left: 50%
+    font-size: 5vw
+    transform: translate(-50%, -50%)
+    opacity: 0
+
+  .expand-button
+    position: absolute
+    top: calc(100% - 21.996px) // 0.6 * font-size
+    left: calc(100% - 21.996px)
+    transform: translateZ(15px)
+
+    &::after
+      display: block
+      width: 1.2em
+      height: 1.2em
+      line-height: 1.2em
+      transform: scale(1)
+      transform-origin: -50% -50%
+      transition: transform .25s, box-shadow .25s
+
+      content: 'add'
+      font-family: 'Material Icons'
+      font-size: 36.66px
+      color: transparentize($light-text-primary, .15)
+      text-align: center
+
+      background: linear-gradient(120deg, $gradient-a -25%, $gradient-b 150%)
+      box-shadow: 0 2px 30px -5px transparentize($black, .5)
+      cursor: pointer
+
+    &:hover::after
+      transform: scale(1.065)
+      box-shadow: 0 2px 33px -6px transparentize($black, .5)
+
+  .content
+    position: relative
+    top: -1.25vw
+    padding-top: 25.25vw
+    max-height: inherit
+    width: 65vw
+    left: 50%
+    transform: translate(-50%)
+    overflow: hidden
+    display: none
+
+  #carousel-close-button
+    bottom: -21.966px
+
+  &.hidden
+    box-shadow: none
+    opacity: 0
+    transition: opacity .5s .65s, box-shadow .5s
+
+    .graphic
+      mask-position: 0 -21.1vw // Slightly more than should be necessary in order to prevent error
+      transition: mask-position .5s
+
+    .hidden-indicator
+      opacity: .25
+      transition: opacity .3s .15s
+
+
+
+
+#carousel-dots
+  position: absolute
+  top: calc(65vh + 11.25vw)
+  left: 50vw
+  transform: translateX(-50%)
+  transition: opacity .5s
+
+  z-index: 1
+
+  &.hidden
+    opacity: 0
+    pointer-events: none
+
+    .dot
+      pointer-events: none
+
+  .dot
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    width: .5vw
+    height: .5vw
+    opacity: .4
+    border-radius: 50%
+    box-shadow: 0 0 0 .25vw $white inset, 0 0 0 0 $white
+    cursor: pointer
+    transition: box-shadow .3s, opacity .3s
+
+    &::after
+      content: ''
+      position: absolute
+      top: -50%
+      left: -50%
+      width: 200%
+      height: 200%
+
+    &.active
+      box-shadow: 0 0 0 .03vw $white inset, 0 0 0 .15vw $white
+
+    &.disabled
+      opacity: .15
+      cursor: default
+
+  .left,
+  .right
+    position: absolute
+    width: 1.75vw
+    height: 1.75vw
+    border: .15vw solid transparentize($white, .9)
+    border-radius: 50%
+    cursor: pointer
+
+    i
+      color: transparentize($white, .4)
+      font-size: 1.5vw
+      user-select: none
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+
+  .left
+    left: 0
+    transform: translate(-175%, -50%)
+
+  .right
+    right: 0
+    transform: translate(175%, -50%)
+
+
+#carousel-close-button
+  position: absolute
+  bottom: 21.966px
+  left: calc(50% - 21.966px)
+  z-index: 2
+
+  display: block
+  width: 1.2em
+  height: 1.2em
+  line-height: 1.2em
+  transform: scale(1)
+  transition: transform .25s, box-shadow .25s, opacity .5s
+
+  font-size: 36.66px
+  color: transparentize($light-text-primary, .15)
+  text-align: center
+
+  background: linear-gradient(120deg, $gradient-a -25%, $gradient-b 145%)
+  box-shadow: 0 2px 30px -5px transparentize($black, .5)
+  cursor: pointer
+
+  &:hover
+    transform: scale(1.065)
+    box-shadow: 0 2px 33px -6px transparentize($black, .5)
+
+  &.hidden
+    opacity: 0
+    pointer-events: none
+
+
+$translate-amount: 10vw
+
+@keyframes in-from-left
+  from
+    transform: translate3d(-$translate-amount, 0, 25px)
+
+  to
+    opacity: 1
+
+@keyframes in-from-right
+  from
+    transform: translate3d($translate-amount, 0, 25px)
+
+  to
+    opacity: 1
+
+@keyframes in-from-top
+  from
+    transform: translate3d(0, -100%, 25px)
+
+  to
+    opacity: 1
+
+@keyframes out-to-left
+  from
+    opacity: 1
+
+  to
+    transform: translat3d(-$translate-amount, 0, 25px)
+    pointer-events: none
+
+@keyframes out-to-right
+  from
+    opacity: 1
+
+  to
+    transform: translate3d($translate-amount, 0, 25px)
+    pointer-events: none
+
+@keyframes out-to-top
+  from
+    opacity: 1
+
+  to
+    transform: translate3d(0, -100%, 25px)
+    pointer-events: out
+
+
+// Go down to the expanded location
+@keyframes down
+  from
+    opacity: 1
+
+  39%
+    opacity: 0
+    top: 1.25vw
+    left: -3.5vw
+    transform: translate3d(0, 0, 25px)
+
+  40%
+    opacity: 0
+    top: 21.75vw
+    left: 50%
+    transform: translate3d(-50%, -100%, 25px)
+
+  to
+    opacity: 1
+    top: 21.75vw
+    left: 50%
+    transform: translate3d(-50%, -50%, 25px)
+
+
+// Go back up to the default location
+@keyframes up
+  from
+    opacity: 1
+    top: 21.75vw
+    left: 50%
+    transform: translate3d(-50%, -50%, 25px)
+
+  39%
+    opacity: 0
+    top: 21.75vw
+    left: 50%
+    transform: translate3d(-50%, -50%, 25px)
+
+  40%
+    opacity: 0
+    top: 1.25vw
+    left: -3.5vw
+    transform: translate3d(0, 0, 25px)
+
+  to
+    opacity: 1
+
+@keyframes fade-out
+  from
+    opacity: 1
+
+  to
+    opacity: 0
+    pointer-events: none
+
+@keyframes fade-in
+  from
+    opacity: 0
+
+  to
+    opacity: 1
+
+// Used on first card so that I don't have to worry about modifying styles like opacity or animation
+   duration. Kind of a hack.
+
+@keyframes in
+  from
+    opacity: 1
+
+  to
+    opacity: 1

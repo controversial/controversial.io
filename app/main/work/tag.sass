@@ -1,0 +1,43 @@
+.tag
+  display: inline-flex
+  align-items: center
+  padding: 0 .75em 0 .5em
+  margin: .4em .5em
+  height: 2em
+
+  background: transparentize($white, .9)
+  border-radius: 1em
+
+  font-size: calc(10px + .4vw)
+  font-family: 'Open Sans', sans-serif
+  font-weight: 700
+  color: transparentize($white, .25)
+
+  box-shadow: 0 .3em 1.5em -.75em $shadow-color
+  cursor: pointer
+  transition: box-shadow .25s, background-color .25s, transform .25s, opacity .25s
+
+  &:hover
+    box-shadow: 0 .8em 1.9em -.9em $shadow-color
+    background: transparentize($white, .875)
+    transform: translateY(-.05em)
+
+
+  &::before
+    content: ''
+    display: block
+    width: 1em
+    height: 1em
+    border-radius: 50%
+    background: transparentize($white, .75)
+    margin-right: .75em
+    transition: .5s
+
+  &.faded
+    opacity: .5
+
+    &:hover
+      opacity: 1
+
+#work-wrapper .tag
+  pointer-events: inherit

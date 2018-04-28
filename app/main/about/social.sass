@@ -1,0 +1,49 @@
+#social-diamond
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%) rotate(45deg)
+  font-size: 28px
+  cursor: pointer
+
+  i
+    transform: rotate(-45deg) translateZ(10px)
+
+  a
+    display: block
+    float: left
+    $size: 60px
+    width: $size
+    height: $size
+    margin: 7px
+
+    background-color: transparentize($white, .85)
+    transition: transform .5s, background-color .5s
+
+    line-height: $size
+    text-align: center
+    vertical-align: middle
+
+    &:hover
+      background-color: transparentize($white, .75)
+
+  // translation directions on hover
+
+  div:first-child
+    a:first-child:hover
+      transform: translate(-10%, -10%)
+
+    a:last-child:hover
+      transform: translate(10%, -10%)
+
+  div:last-child
+    a:first-child:hover
+      transform: translate(-10%, 10%)
+
+    a:last-child:hover
+      transform: translate(10%, 10%)
+
+    // Adjust for visual weight
+
+    .fa-stack-overflow
+      transform: rotate(-45deg) translate3d(0, -.1em, 10px)

@@ -1,0 +1,17 @@
+$misc-card-grad-a: #00d784
+$misc-card-grad-b: #009585
+
+#pythonista-misc-card .graphic
+  background: linear-gradient(to bottom, $misc-card-grad-a, $misc-card-grad-b)
+
+  img
+    height: 30%
+    width: auto
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    transition: transform .5s
+
+#pythonista-misc-card.expanded-x .graphic img
+  transform: translate(-50%, -50%) scale(1.15)

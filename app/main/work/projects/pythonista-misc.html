@@ -1,0 +1,104 @@
+<div class="content">
+  <section>
+    <div class="col left">
+
+      <div class="row">
+        <!-- Links -->
+        <ul class="info">
+          <li><h4><i class="fa fa-github"></i> Links</h4></li>
+          <li><a class="nowrap" target="_blank" href="https://github.com/controversial/Pythonista-Tweaks">Pythonista-Tweaks</a></li>
+          <li><a class="nowrap" target="_blank" href="https://github.com/controversial/Pythonista-theme-utils">Pythonista-theme-utils</a></li>
+          <li><a class="nowrap" target="_blank" href="https://github.com/controversial/Pythonista-UI-Templates">Pythonista-UI-Templates</a></li>
+          <li><a class="nowrap" target="_blank" href="https://github.com/pythonista-cloud">Pythonista Cloud</a></li>
+        </ul>
+        <!-- GitHub stars -->
+        <ul class="info">
+          <li><h4>Total <i class="fa fa-github"></i> Stars</h4></li>
+          <li class="stars-display" data-repo="controversial/Pythonista-Tweaks, controversial/Pythonista-theme-utils, controversial/Pythonista-UI-Templates">loading...</li>
+        </ul>
+      </div>
+
+      <div class="row">
+        <!-- Roles -->
+        <ul class="info">
+          <li><h4>Roles</h4></li>
+          <li>Developer</li>
+          <li>iOS Developer</li>
+        </ul>
+      </div>
+
+      <div class="tags-display"></div>
+    </div>
+
+    <div class="col right">
+      <p>
+        For many years, I was one of the most active members of the community surrounding the iOS
+        app <a href="http://omz-software.com/pythonista/">Pythonista</a>, a fantastic platform for
+        mobile Python development, and one of the most powerful apps for developers on the iOS
+        platform as a whole. During the time that I spent most heavily using the platform, I made
+        several meaningful and well-used contributions to the software community surrounding the
+        app, many of which took the form of libraries that brought new functionality to the app.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="col left">
+      <p>
+        <code>pythonista-theme-utils</code> is a utility I wrote for Pythonista that allows users to
+        retrieve information about the user's current editor theme and to automatically style user
+        interfaces to match the user's current editor theme. This is useful for the
+        authors of scripts that are designed to perform tasks within the editor. At the time this
+        script was written, this functionality was unavailable. However, just four days after I
+        published my code, the developer of the Pythonista app integrated this functionality directly
+        into the app, along with a credit to me in the release notes.
+      </p>
+    </div>
+    <div class="col right img" style="background-image: url('assets/pythonista-theme-utils.jpg'); background-position: 50% 90%;"></div>
+  </section>
+
+  <section>
+    <div class="col left">
+      <img src="assets/progress-badge.jpg">
+    </div>
+    <div class="col right">
+      <p>
+        Another significant contribution I made to the community was the initial creation and
+        maintainence of the collaborative <code>Pythonista-Tweaks</code> module, which aims to
+        collect in one place some general enhancements, extensions, and modifications to
+        Pythonista's behavior, and to generally fill in gaps in Pythonista's functionality by
+        querying Objective-C APIs.
+      </p>
+      <p>
+        Pictured is an example of functionality that <code>Pythonista-Tweaks</code> enables. The
+        script pictured displays progress in real-time as a badge on the app icon, useful for
+        keeping users informed about the progress of long-running tasks even when the app is not
+        open.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="col left">
+      <p>
+        Pythonista Cloud is an effort by me to create a full-fledged package manager for Pythonista
+        which would allow downloading remote scripts and importing remote modules. The project is
+        not complete, nor is it under active development at the moment, but it was a popular
+        project; its components have gained <span class="stars-display" data-repo="pythonista-cloud/pythonista-cloud, pythonista-cloud/cloud, pythonista-cloud/server, pythonista-cloud/pythonista.cloud, pythonista-cloud/sample">loading...</span>
+        stars on GitHub.
+      </p>
+      <p>
+        The service consists of a REST API that communicates with an underlying CouchDB instance.
+        This allows authors to submit packages to the registry, and allows clients to query for
+        package information. The official client is a Python module called <code>cloud</code> which
+        exposes a custom import handler capable of downloading modules on the fly or exposing cached
+        versions seamlessly. The goal is that users can simply replace an <code>import x</code>
+        statement with <code>from cloud import x</code> and achieve the same behavior without having
+        to worry about whether the user has installed <code>x</code>.
+      </p>
+    </div>
+    <div class="col right">
+      <img src="assets/pythonista-cloud.svg">
+    </div>
+  </section>
+</div>

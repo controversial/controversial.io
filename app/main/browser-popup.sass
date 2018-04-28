@@ -1,0 +1,75 @@
+// based heavily off of the design of Material's Snackbar component https://material.io/guidelines/components/snackbars-toasts.html#snackbars-toasts-specs
+
+
+$popup-background: #323232
+
+.browser-popup
+  position: fixed
+  z-index: 2000
+  bottom: 0
+  right: 0
+
+  width: 568px
+  max-width: 100%
+
+  display: none
+  transition: transform .4s
+  animation: popup-slide .4s ease-out
+
+  .card
+    background: $popup-background
+    color: $light-text-primary
+    margin: 24px
+    padding: 19px 24px
+    border-radius: 2px
+    display: flex
+    align-items: center
+    font-size: 14px
+
+    .text
+      line-height: 1.8em
+      font-weight: 400
+
+      a
+        color: $light-text-primary
+        text-decoration: none
+        padding: .15em .4em .3em
+        margin: 0 .1em
+        background: transparentize($light-text-primary, .87)
+        transition: background .25s
+
+        &:hover
+          background: transparentize($light-text-primary, .77)
+
+    button
+      color: $accent
+      text-transform: uppercase
+      font-size: inherit
+      font-weight: 500
+
+      border: 0
+      outline: none
+
+      $horizontal-padding: 16px
+      padding: 0 $horizontal-padding
+      margin-left: 48px - $horizontal-padding
+      @media (max-width: 420px)
+        margin-left: 24px - $horizontal-padding
+
+      height: 36px
+      cursor: pointer
+
+      background: none
+      transition: background .2s
+
+      &:hover
+        background: transparentize($light-text-primary, .9)
+
+      &:active
+        transition: none
+        background: transparentize($light-text-primary, .85)
+
+
+@keyframes popup-slide
+  from
+    transform: translateY(100%)

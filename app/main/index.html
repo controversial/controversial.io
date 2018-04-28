@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Luke Deen Taylor</title>
+  <meta name="description"
+        content="I'm Luke Taylor. I write code. I'm proficient in Python, as well as web technologies like HTML, CSS, SASS, JavaScript, Angular, PHP, and Flask.">
+  <meta name="author" content="Luke Deen Taylor">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+
+  <!-- Google analytics -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-72586531-4', 'auto');
+    ga('send', 'pageview');
+  </script>
+
+</head>
+
+<body>
+
+  <!-- prevent showing elements out of place before everything has happened -->
+  <div id="loading-cover"></div>
+
+  <!-- Top navigation bar -->
+  <%- include('./navigation/links.html'); %>
+
+  <!-- HOME PAGE -->
+  <div id="home-wrapper">
+    <%- include('./home/home.html'); %>
+  </div>
+
+  <!-- ABOUT PAGE (loaded from about.html) -->
+  <div id="about-wrapper">
+    <%- include('./about/about.html'); %>
+  </div>
+
+  <!-- WORK PAGE (loaded from work.html) -->
+  <div id="work-wrapper">
+    <%- include('./work/work.html'); %>
+  </div>
+
+  <!-- NAVIGATION PAGE -->
+  <!-- The laptops -->
+  <%- include('./navigation/laptops.html'); %>
+  <!-- The rings that spin in the background of the navigation page -->
+  <%- include('./navigation/background-rings.html'); %>
+
+  <!-- Popups for unsupported browsers -->
+  <%- include('./browser-popups.html'); %>
+
+  <!-- SVG filters for part of the glitch effect -->
+  <%- include('./glitch-filter.svg'); %>
+
+  <!-- MISC -->
+  <!-- Bottom right social links-->
+  <%- include('./social.html'); %>
+
+
+
+  <!-- Webpack bundle -->
+  <script type="text/javascript" src="index.js"></script>
+
+
+</body>
+</html>

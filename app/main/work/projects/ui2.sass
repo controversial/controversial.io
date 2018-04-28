@@ -1,0 +1,43 @@
+$blue: rgb(0, 122, 255)
+$selection-background: transparentize($blue, .8)
+
+#ui2-card
+  .graphic
+    background: $white
+
+    .text
+      font-size: 4vw
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      font-family: 'SF Pro Display', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif
+      font-weight: 400
+      color: $black
+      letter-spacing: .02em
+      padding: 0 .3em
+      background: $selection-background
+
+      $border-width: .075em
+      border-left: $border-width solid $blue
+      border-right: $border-width solid $blue
+
+      &::before,
+      &::after
+        content: ''
+        display: block
+        position: absolute
+        width: .55em
+        height: .55em
+        background: $blue
+        border-radius: 50%
+
+      &::before
+        top: 0
+        left: -$border-width / 2
+        transform: translate(-50%, -90%)
+
+      &::after
+        bottom: 0
+        right: -$border-width / 2
+        transform: translate(50%, 90%)

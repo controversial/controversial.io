@@ -1,0 +1,48 @@
+.navigation
+  position: fixed
+  z-index: 1001
+  top: 0
+  left: 50%
+  transform: translateX(-50%)
+
+  margin: 0
+  list-style: none
+  display: flex
+
+  overflow: hidden
+
+  opacity: .25
+  will-change: opacity
+
+  li
+    display: inline-block
+    overflow: hidden
+
+    a
+      display: inline-block
+
+      font-family: Montserrat
+      font-size: 1.2em
+      color: $white
+      font-weight: 300
+      letter-spacing: .225em
+      text-transform: uppercase
+
+      padding: 1.25rem 1.75rem
+
+      &.selected
+        font-weight: 700
+
+#navigation-trigger
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 1002
+  padding: 1.25rem 1.75rem
+
+  color: $white
+  font-size: 1.5em
+
+  cursor: pointer
+
+  will-change: opacity
