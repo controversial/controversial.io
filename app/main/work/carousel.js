@@ -312,7 +312,7 @@ export class Carousel {
     // Close cards if clicked outside
     window.addEventListener('click', (e) => {
       // Outside of card
-      if (e.target.classList.contains('projects-container') || e.target.classList.contains('carousel-card-wrapper') || e.target.isSameNode(this.closeButton)) {
+      if (e.target.classList.contains('projects-container') || e.target.classList.contains('carousel-card-wrapper') || e.target === this.closeButton) {
         if (typeof this.expandedIndex !== 'undefined') this.cards[this.expandedIndex].collapse();
       }
     });
