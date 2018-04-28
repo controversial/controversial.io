@@ -424,11 +424,11 @@ export class Carousel {
     this.cards.forEach((c) => {
       if (c !== card) c.fade();
     });
-    setTimeout(() => { this.closeButton.style.opacity = 1; }, 500);
+    setTimeout(() => { this.closeButton.classList.remove('hidden'); }, 500);
   }
   collapsed() {
     this.expandedIndex = undefined;
-    this.closeButton.style.opacity = 0;
+    this.closeButton.classList.add('hidden');
     setTimeout(() => {
       this.position = this.position; // Re-layout
       this.cards.forEach(c => c.opacify());
