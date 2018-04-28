@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -56,9 +56,9 @@ module.exports = {
   },
 
   plugins: [
-    new CopyWebpackPlugin([
-      { from: 'app/main/assets', to: 'main/assets' },
-    ]),
+    new FileManagerPlugin({
+      onStart: [{ copy: [{ source: 'app/main/assets', destination: 'build/main/assets' }] }],
+    }),
     new ExtractTextWebpackPlugin('[name]/style.css'),
   ],
 

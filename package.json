@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "filemanager-webpack-plugin": "^1.0.26",
     "smoothscroll-polyfill": "^0.3.6"
   },
   "devDependencies": {
@@ -23,7 +24,6 @@
     "babel-preset-es2015": "^6.16.0",
     "babel-preset-es2016": "^6.24.1",
     "babel-register": "^6.26.0",
-    "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
     "ejs": "^2.5.9",
     "ejs-html-loader": "^3.1.0",
