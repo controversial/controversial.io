@@ -80,12 +80,12 @@ if (__dirname.startsWith('/var/www')) {
   console.log('Production detected');
   module.exports.plugins = module.exports.plugins.concat([
     // Minify JS
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      compress: {
-        warnings: false,
-      },
-    }),
+//    new webpack.optimize.UglifyJsPlugin({
+//      minimize: true,
+//      compress: {
+//        warnings: false,
+//      },
+//    }),
     // Let all loaders know they can minimize output
     new webpack.LoaderOptionsPlugin({
       minimize: true,
