@@ -2,7 +2,7 @@
   "name": "controversial.io",
   "scripts": {
     "start": "webpack-dev-server --inline --open",
-    "build": "webpack",
+    "build": "rm -rf build && webpack",
     "watch": "webpack --watch",
     "lint-sass": "sass-lint 'app/**/*.sass' -v",
     "lint-js": "eslint .",
